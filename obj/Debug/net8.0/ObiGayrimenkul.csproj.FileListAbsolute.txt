@@ -94,3 +94,5 @@ C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.pdb
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.genruntimeconfig.cache
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ref\ObiGayrimenkul.dll
+C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.RazorAssemblyInfo.cache
+C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.RazorAssemblyInfo.cs

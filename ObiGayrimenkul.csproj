@@ -7,24 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Home\404.cshtml" />
-    <Content Remove="Views\Home\change-password.cshtml" />
-    <Content Remove="Views\Home\contact.cshtml" />
-    <Content Remove="Views\Home\documents.cshtml" />
-    <Content Remove="Views\Home\faq.cshtml" />
-    <Content Remove="Views\Home\index.cshtml" />
-    <Content Remove="Views\Home\submit-property.cshtml" />
     <Content Remove="Views\index.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Home\404.cshtml" />
-    <None Include="Views\Home\change-password.cshtml" />
-    <None Include="Views\Home\contact.cshtml" />
-    <None Include="Views\Home\documents.cshtml" />
-    <None Include="Views\Home\faq.cshtml" />
-    <None Include="Views\Home\index.cshtml" />
-    <None Include="Views\Home\submit-property.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

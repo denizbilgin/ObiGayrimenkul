@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tI6dyt6b4hEVQST/SMVF6n6WdRRrSqldlX7UytWWbSQ=",
+  "Hash": "5yjAgRiS/8Bia4sOCwmWSU/0nvDQKKhAFa6AxIhxdBY=",
   "Source": "ObiGayrimenkul",
   "BasePath": "_content/ObiGayrimenkul",
   "Mode": "Default",
@@ -2922,6 +2922,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\welcome-bg.png"
+    },
+    {
+      "Identity": "C:\\Users\\serda\\Downloads\\ObiGayrimenkul\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\advert-functions.js",
+      "SourceId": "ObiGayrimenkul",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\serda\\Downloads\\ObiGayrimenkul\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "BasePath": "_content/ObiGayrimenkul",
+      "RelativePath": "assets/js/advert-functions.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\advert-functions.js"
     },
     {
       "Identity": "C:\\Users\\serda\\Downloads\\ObiGayrimenkul\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\bootstrap.min.js",

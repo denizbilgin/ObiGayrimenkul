@@ -613,6 +613,10 @@
       "PackagePath": "staticwebassets\\assets\\img\\welcome-bg.png"
     },
     {
+      "Id": "C:\\Users\\serda\\Downloads\\ObiGayrimenkul\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\advert-functions.js",
+      "PackagePath": "staticwebassets\\assets\\js\\advert-functions.js"
+    },
+    {
       "Id": "C:\\Users\\serda\\Downloads\\ObiGayrimenkul\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\bootstrap-hover-dropdown.js",
       "PackagePath": "staticwebassets\\assets\\js\\bootstrap-hover-dropdown.js"
     },
