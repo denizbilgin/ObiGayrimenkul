@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <h5><a href="property-detail.html">${advert.AdvertTitle}</a></h5>
                                 <div class="dot-hr"></div>
                                 <span class="pull-left"><b> Area :</b> ${advert.SquareMeterGross}m</span>
+
                                 <span class="proerty-price pull-right"> $ ${advert.Price}</span>
                                 <p style="display: none;">${advert.Description}</p>
                                 <span> ${advert.Id}</span>
