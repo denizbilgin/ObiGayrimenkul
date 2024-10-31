@@ -2131,19 +2131,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\serda\\.nuget\\packages\\": {}
+    "C:\\Users\\Deniz\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\serda\\Downloads\\ObiGayrimenkul\\ObiGayrimenkul\\ObiGayrimenkul\\ObiGayrimenkul.csproj",
+      "projectUniqueName": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\ObiGayrimenkul.csproj",
       "projectName": "ObiGayrimenkul",
-      "projectPath": "C:\\Users\\serda\\Downloads\\ObiGayrimenkul\\ObiGayrimenkul\\ObiGayrimenkul\\ObiGayrimenkul.csproj",
-      "packagesPath": "C:\\Users\\serda\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\serda\\Downloads\\ObiGayrimenkul\\ObiGayrimenkul\\ObiGayrimenkul\\obj\\",
+      "projectPath": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\ObiGayrimenkul.csproj",
+      "packagesPath": "C:\\Users\\Deniz\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\serda\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Deniz\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2207,7 +2207,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

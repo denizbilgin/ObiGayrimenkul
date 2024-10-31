@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>`;
             advertsContainer.innerHTML += advertCardHtml
         });
-    }).catch(error => console.error("Error fetching adverts:", error))
+    })
 })
+
 
