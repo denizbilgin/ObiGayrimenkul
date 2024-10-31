@@ -93,3 +93,4 @@ C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.sourcelink.json

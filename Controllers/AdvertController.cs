@@ -24,6 +24,18 @@ namespace ObiGayrimenkul.Controllers
             //return Ok(adverts);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByID(string id , CancellationToken ct)
+        {
+            var advert = await _firestore.Get<Advert>(id, "adverts", ct);
+            if (advert == null)
+            {
+                return NotFound();
+            }
+            // return View(advert);
+            return Ok(advert);
+        }
+
         // İlan ekle - GET (Form gösterimi)
         [HttpGet("create")]
         public IActionResult Create()
