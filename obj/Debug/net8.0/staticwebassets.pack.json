@@ -613,8 +613,16 @@
       "PackagePath": "staticwebassets\\assets\\img\\welcome-bg.png"
     },
     {
+      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\advert-detail-functions.js",
+      "PackagePath": "staticwebassets\\assets\\js\\advert-detail-functions.js"
+    },
+    {
       "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\advert-functions.js",
       "PackagePath": "staticwebassets\\assets\\js\\advert-functions.js"
+    },
+    {
+      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\advert-listing-functions.js",
+      "PackagePath": "staticwebassets\\assets\\js\\advert-listing-functions.js"
     },
     {
       "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\bootstrap-hover-dropdown.js",
