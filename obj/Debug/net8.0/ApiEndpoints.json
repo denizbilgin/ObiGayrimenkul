@@ -457,6 +457,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ObiGayrimenkul.Controllers.HomeController",
+    "Method": "Index",
+    "RelativePath": "home",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ObiGayrimenkul.Controllers.UserController",
     "Method": "Index",
     "RelativePath": "users",
