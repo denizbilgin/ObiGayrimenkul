@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("/api/advrerts")
+    fetch("advrerts")
     .then(response => response.json())
     .then(adverts => {
         const advertsContainer = document.getElementById("list-type");
@@ -28,3 +28,4 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }).catch(error => console.error("Error fetching adverts:", error))
 })
+
