@@ -61,9 +61,13 @@ C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Npgsql.dll
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\System.CodeDom.dll
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\System.Linq.Async.dll
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\System.Management.dll
@@ -73,7 +77,9 @@ C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.AssemblyInfoInputs.cache
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.AssemblyInfo.cs
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.csproj.CoreCompileInputs.cache
+C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.sourcelink.json
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\staticwebassets\msbuild.ObiGayrimenkul.Microsoft.AspNetCore.StaticWebAssets.props
@@ -88,9 +94,3 @@ C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.pdb
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.genruntimeconfig.cache
 C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ref\ObiGayrimenkul.dll
-C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Microsoft.OpenApi.dll
-C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\serda\Downloads\ObiGayrimenkul\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.sourcelink.json

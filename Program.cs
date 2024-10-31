@@ -14,9 +14,9 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "ObiGayrimenkul API",
+        Title = "ObiGayrimenkul",
         Version = "v1",
-        Description = "ObiGayrimenkul API for property management"
+        Description = "ObiGayrimenkul Test"
     });
 });
 
