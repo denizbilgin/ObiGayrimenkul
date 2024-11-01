@@ -9,19 +9,19 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ObiGayrimenkul
 build_property.RootNamespace = ObiGayrimenkul
-build_property.ProjectDir = C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\
+build_property.ProjectDir = C:\Users\Deniz\SoftwareProjects\VS Projects\ObiGayrimenkul\ObiGayrimenkul\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul
+build_property.MSBuildProjectDirectory = C:\Users\Deniz\SoftwareProjects\VS Projects\ObiGayrimenkul\ObiGayrimenkul
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/index.cshtml]
+[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxpbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/property-detail.cshtml]
+[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/property-detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxwcm9wZXJ0eS1kZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
