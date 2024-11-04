@@ -79,10 +79,24 @@ namespace ObiGayrimenkul.Firebase
         }
 
 
-        private static async Task<IReadOnlyCollection<T>> GetList<T>(Query query, CancellationToken ct) where T : IFirebaseEntity
+       /* private static async Task<IReadOnlyCollection<T>> GetList<T>(Query query, CancellationToken ct) where T : IFirebaseEntity
         {
             var snapshot = await query.GetSnapshotAsync(ct);
             return snapshot.Documents.Select(x => x.ConvertTo<T>()).ToList();
+        }*/
+
+        private async Task<IReadOnlyCollection<T>> GetList<T>(Query query, CancellationToken ct) where T : IFirebaseEntity
+        {
+            var snapshot = await query.GetSnapshotAsync(ct);
+            var list = new List<T>();
+
+            foreach (var document in snapshot.Documents)
+            {
+                var entity = document.ConvertTo<T>();
+                list.Add(entity);
+            }
+
+            return list.AsReadOnly();
         }
     }
 
