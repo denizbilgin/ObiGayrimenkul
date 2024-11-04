@@ -21,17 +21,30 @@ namespace ObiGayrimenkul.Controllers
             return View("Views/Home/register.cshtml");
         }
 
-        [HttpPost("/login")]
-        public async Task<IActionResult> Login(LoginModel loginModel)
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
+            Console.WriteLine("Gelen Email: " + loginModel.Email);
+            Console.WriteLine("Gelen Şifre: " + loginModel.Password);
             var user = await GetUserFromEmail(loginModel.Email);
             if (user != null && loginModel.Password == user.Password)
             {
                 var token = _jwtService.GenerateJwtToken(user);
-                return Ok(new { token });
+
+                Response.Cookies.Append("AuthToken", token, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.Strict
+                });
+
+                return Ok(new { success = true });
             }
-            return Unauthorized();
+            return Unauthorized(new { success = false, message = "Geçersiz giriş bilgileri" });
         }
+
+
+
 
         [HttpGet("get-email")]
         public async Task<User> GetUserFromEmail(string email)

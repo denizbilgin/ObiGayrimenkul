@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <div id="preloader">
         <div id="status">&nbsp;</div>
@@ -119,18 +120,18 @@
                 <div class="box-for overflow">
                     <div class="col-md-12 col-xs-12 register-blocks">
                         <h2>ÜYE OL : </h2>
-                        <form action="" method="post">
+                        <form asp-controller="Login" asp-action="Register" method="post">
                             <div class="form-group">
                                 <label for="name">İsim - Soyisim</label>
                                 <input type="text" class="form-control" id="name">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email">
+                                <input type="text" class="form-control" id="email-register">
                             </div>
                             <div class="form-group">
                                 <label for="password">Şifre</label>
-                                <input type="password" class="form-control" id="password">
+                                <input type="password" class="form-control" id="password-register">
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-default">Üye Ol</button>
@@ -144,17 +145,17 @@
                 <div class="box-for overflow">
                     <div class="col-md-12 col-xs-12 login-blocks">
                         <h2>GİRİŞ YAP : </h2>
-                        <form action="" method="post">
+                        <form asp-controller="Login" asp-action="Login" method="post">
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email">
+                                <label for="email-login">Email</label>
+                                <input type="text" class="form-control" id="email-login" name="Email" required>
                             </div>
                             <div class="form-group">
-                                <label for="password">Şifre</label>
-                                <input type="password" class="form-control" id="password">
+                                <label for="password-login">Şifre</label>
+                                <input type="password" class="form-control" id="password-login" name="Password" required>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-default"> Giriş Yap</button>
+                                <button type="submit" class="btn btn-default" id="loginButton"> Giriş Yap</button>
                             </div>
                         </form>
                         <a href="change-password.html">Şifremi unuttum</a>
@@ -165,6 +166,28 @@
 
         </div>
     </div>
+
+    <script>
+        $('#loginButton').click(function() {
+            $.ajax({
+                url: '/user-process/login',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    Email: $('#email-login').val(),
+                    Password: $('#password-login').val()
+                }),
+                success: function(response) {
+                    // Başarılı girişte yönlendirme
+                    window.location.href = '/home';
+                },
+                error: function(xhr) {
+                    // Giriş başarısızsa kullanıcıya hata göster
+                    alert('Giriş başarısız! Lütfen bilgilerinizi kontrol edin.');
+                }
+            });
+        });
+    </script>
 
     <!-- Footer area-->
     <div class="footer-area">

@@ -487,27 +487,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
-    "Method": "Login",
-    "RelativePath": "login",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Password",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "ObiGayrimenkul.Controllers.PropertiesController",
     "Method": "Index",
     "RelativePath": "properties",
@@ -561,6 +540,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
+    "Method": "Login",
+    "RelativePath": "user-process/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginModel",
+        "Type": "ObiGayrimenkul.Models.LoginModel",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
