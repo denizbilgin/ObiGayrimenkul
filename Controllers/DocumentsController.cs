@@ -7,7 +7,7 @@ namespace ObiGayrimenkul.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View("Views/Home/documents.cshtml");
         }
     }
 }
