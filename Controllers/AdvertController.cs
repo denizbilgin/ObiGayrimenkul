@@ -1,5 +1,6 @@
 ﻿using Google.Cloud.Firestore;
 using Google.Rpc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ObiGayrimenkul.Firebase;
 
@@ -126,7 +127,7 @@ namespace ObiGayrimenkul.Controllers
             }
             return View(advert);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("delete/{id}")]
         public async Task<IActionResult> DeleteConfirmed(string id, CancellationToken ct)
         {
@@ -139,7 +140,7 @@ namespace ObiGayrimenkul.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // İlan onaylama
+        [Authorize(Roles = "Admin")]
         [HttpPost("approve/{id}")]
         public async Task<IActionResult> Approve(string id, CancellationToken ct)
         {
@@ -154,6 +155,7 @@ namespace ObiGayrimenkul.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet("advert-exists")]
         private async Task<bool> AdvertExists(string id, CancellationToken ct)
         {
             var advert = await _firestore.Get<Advert>(id,"adverts", ct);

@@ -487,6 +487,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
+    "Method": "Login",
+    "RelativePath": "login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Password",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ObiGayrimenkul.Controllers.PropertiesController",
     "Method": "Index",
     "RelativePath": "properties",
@@ -497,19 +518,45 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ObiGayrimenkul.Controllers.UserController",
-    "Method": "GetUsers",
-    "RelativePath": "user-list",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ObiGayrimenkul.Controllers.UserController",
+    "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
     "Method": "Index",
-    "RelativePath": "users",
+    "RelativePath": "user-process",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
+    "Method": "GetUserFromEmail",
+    "RelativePath": "user-process/get-email",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ObiGayrimenkul.Models.User",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
+    "Method": "Login",
+    "RelativePath": "user-process/login",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -517,9 +564,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ObiGayrimenkul.Controllers.UserController",
-    "Method": "Create",
-    "RelativePath": "users/create",
+    "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
+    "Method": "Register",
+    "RelativePath": "user-process/register",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -550,8 +597,8 @@
         "IsRequired": false
       },
       {
-        "Name": "IsAdmin",
-        "Type": "System.Boolean",
+        "Name": "Role",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -580,6 +627,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.UserController",
+    "Method": "Index",
+    "RelativePath": "users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -653,8 +710,8 @@
         "IsRequired": false
       },
       {
-        "Name": "IsAdmin",
-        "Type": "System.Boolean",
+        "Name": "Role",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
