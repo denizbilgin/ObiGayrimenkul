@@ -8,11 +8,11 @@ namespace ObiGayrimenkul.Controllers
     [Route("api/search")]
     public class NeighborhoodController : Controller
     {
-        private readonly FirestoreProvider _fireStore;
+        private readonly FirestoreProvider _firestore;
 
         public NeighborhoodController(FirestoreProvider fireStore)
         {
-            _fireStore = fireStore;
+            _firestore = fireStore;
         }
 
         public IActionResult Index()
@@ -35,8 +35,8 @@ namespace ObiGayrimenkul.Controllers
             bool? isFurnished = null,
             CancellationToken ct = default) where T : IFirebaseEntity
         {
-            var approvedAdverts = await _fireStore.GetAllApproved<Advert>(CancellationToken.None);
-            Query query = _fireStore._fireStoreDb.Collection("adverts");
+            var approvedAdverts = await _firestore.GetAllApproved<Advert>(CancellationToken.None);
+            Query query = _firestore._fireStoreDb.Collection("adverts");
 
             if (minPrice.HasValue)
                 query = query.WhereGreaterThanOrEqualTo("price", minPrice.Value);
@@ -74,7 +74,7 @@ namespace ObiGayrimenkul.Controllers
             if (isFurnished.HasValue)
                 query = query.WhereEqualTo("furnished", isFurnished.Value);
 
-            return await GetList<T>(query, ct);
+            return await _firestore.GetList<T>(query, ct);
         }
 
         
