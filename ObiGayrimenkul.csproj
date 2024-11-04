@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Home\properties.cshtml" />
     <Content Remove="Views\index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\properties.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
