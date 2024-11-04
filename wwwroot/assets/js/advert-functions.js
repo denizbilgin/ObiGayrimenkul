@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="col-sm-6 col-md-3 p0">
                         <div class="box-two proerty-item">
                             <div class="item-thumb">
-                                <a href="property-detail.html"><img src="${thumbnailUrl}"></a>
+                                <a href="adverts/${advert.id}"><img src="${thumbnailUrl}"></a>
                             </div>
                             <div class="item-entry overflow">
-                                <h5><a href="property-detail.html">${advert.advertTitle}</a></h5>
+                                <h5><a href="adverts/${advert.id}">${advert.advertTitle}</a></h5>
                                 <div class="dot-hr"></div>
                                 <span class="pull-left"><b> Area :</b> ${advert.squareMeterGross}m</span>
 

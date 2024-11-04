@@ -32,15 +32,14 @@ namespace ObiGayrimenkul.Controllers
             {
                 return NotFound();
             }
-            // return View(advert);
-            return Ok(advert);
+            return View("Views/Home/property-detail.cshtml");
         }
 
         // İlan ekle - GET (Form gösterimi)
         [HttpGet("create")]
         public IActionResult Create()
         {
-            return View("../Views/Home/submit-property.cshtml");
+            return View("Views/Home/submit-property.cshtml");
 
         }
 
