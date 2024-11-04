@@ -20,6 +20,13 @@ namespace ObiGayrimenkul.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+
+            return View("Views/Home/index.cshtml");
+        }
+
+        [HttpGet("all-adverts")]
+        public async Task<IActionResult> GetAllAdverts(CancellationToken ct)
+        {
             var adverts = await _firestore.GetAllApproved<Advert>(CancellationToken.None);
             return Ok(adverts);
         }

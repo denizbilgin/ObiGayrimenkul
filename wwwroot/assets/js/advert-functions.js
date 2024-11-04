@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("/adverts")
+    fetch("/adverts/all-adverts")
     .then(response => response.json())
     .then(adverts => {
         const advertsContainer = document.getElementById("list-type");
