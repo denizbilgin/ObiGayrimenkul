@@ -27,6 +27,16 @@
   },
   {
     "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
+    "Method": "GetAllAdverts",
+    "RelativePath": "adverts/all-adverts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
     "Method": "Approve",
     "RelativePath": "adverts/approve/{id}",
     "HttpMethod": "POST",
