@@ -457,16 +457,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ObiGayrimenkul.Controllers.NeighborhoodController",
-    "Method": "Index",
-    "RelativePath": "api/search",
-    "HttpMethod": "",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "ObiGayrimenkul.Controllers.HomeController",
     "Method": "Index",
     "RelativePath": "home",
