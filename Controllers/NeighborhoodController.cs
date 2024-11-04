@@ -5,7 +5,7 @@ using ObiGayrimenkul.Firebase;
 namespace ObiGayrimenkul.Controllers
 {
     [ApiController]
-    [Route("api/search")]
+    [Route("api")]
     public class NeighborhoodController : Controller
     {
         private readonly FirestoreProvider _firestore;
@@ -15,11 +15,8 @@ namespace ObiGayrimenkul.Controllers
             _firestore = fireStore;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
 
+        [HttpGet("search")]
         public async Task<IReadOnlyCollection<T>> FilterBy<T>(
             double? minPrice = null,
             double? maxPrice = null,
@@ -31,7 +28,7 @@ namespace ObiGayrimenkul.Controllers
             bool? hasPantry = null,
             bool? nearHealthCenter = null,
             bool? hasParking = null,
-            bool? hasNaturalGas = null,
+            string? hasNaturalGas = null,
             bool? isFurnished = null,
             CancellationToken ct = default) where T : IFirebaseEntity
         {
@@ -68,8 +65,8 @@ namespace ObiGayrimenkul.Controllers
             if (hasParking.HasValue)
                 query = query.WhereEqualTo("parking", hasParking.Value);
 
-            if (hasNaturalGas.HasValue)
-                query = query.WhereEqualTo("naturalGas", hasNaturalGas.Value);
+            if (hasNaturalGas != null)
+                query = query.WhereEqualTo("Doğalgaz", hasNaturalGas);
 
             if (isFurnished.HasValue)
                 query = query.WhereEqualTo("furnished", isFurnished.Value);
