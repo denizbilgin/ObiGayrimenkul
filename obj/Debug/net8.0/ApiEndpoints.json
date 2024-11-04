@@ -457,6 +457,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ObiGayrimenkul.Controllers.ContactController",
+    "Method": "Index",
+    "RelativePath": "contact",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ObiGayrimenkul.Controllers.DocumentsController",
     "Method": "Index",
     "RelativePath": "documents",
@@ -480,6 +490,16 @@
     "ContainingType": "ObiGayrimenkul.Controllers.PropertiesController",
     "Method": "Index",
     "RelativePath": "properties",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.UserController",
+    "Method": "GetUsers",
+    "RelativePath": "user-list",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
