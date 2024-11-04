@@ -125,35 +125,21 @@
                             <div class="panel-body search-widget">
                                 <form action="" class=" form-inline"> 
                                     <fieldset>
-                                        <div class="row">
+                                        <div class="row" style="margin-bottom: 1rem;">
                                             <div class="col-xs-12">
-                                                <input type="text" class="form-control" placeholder="Key word">
+                                                <select id="lunchBegins" class="selectpicker districtPicker" data-live-search="true" data-live-search-style="begins" title="İlçe">
+                                                </select>
                                             </div>
                                         </div>
-                                    </fieldset>
-
-                                    <fieldset>
                                         <div class="row">
                                             <div class="col-xs-6">
-
-                                                <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select Your City">
-
-                                                    <option>New york, CA</option>
-                                                    <option>Paris</option>
-                                                    <option>Casablanca</option>
-                                                    <option>Tokyo</option>
-                                                    <option>Marraekch</option>
-                                                    <option>kyoto , shibua</option>
+                                                <select id="lunchBegins" class="selectpicker quarterPicker" data-live-search="true" data-live-search-style="begins" title="Mahalle">
                                                 </select>
                                             </div>
                                             <div class="col-xs-6">
-
-                                                <select id="basic" class="selectpicker show-tick form-control">
-                                                    <option> -Status- </option>
-                                                    <option>Rent </option>
-                                                    <option>Boy</option>
-                                                    <option>used</option>  
-
+                                                <select id="basic" class="selectpicker show-tick form-control" title="Durum">
+                                                    <option>Satılık</option>
+                                                    <option>Kiralık</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -162,15 +148,15 @@
                                     <fieldset class="padding-5">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <label for="price-range">Price range ($):</label>
+                                                <label for="price-range">Fiyat aralığı (₺):</label>
                                                 <input type="text" class="span2" value="" data-slider-min="0" 
                                                        data-slider-max="600" data-slider-step="5" 
                                                        data-slider-value="[0,450]" id="price-range" ><br />
-                                                <b class="pull-left color">2000$</b> 
-                                                <b class="pull-right color">100000$</b>                                                
+                                                <b class="pull-left color">2000₺</b>
+                                                <b class="pull-right color">100000₺</b>                                              
                                             </div>
                                             <div class="col-xs-6">
-                                                <label for="property-geo">Property geo (m2) :</label>
+                                                <label for="property-geo">Metrekare (m²) :</label>
                                                 <input type="text" class="span2" value="" data-slider-min="0" 
                                                        data-slider-max="600" data-slider-step="5" 
                                                        data-slider-value="[50,450]" id="property-geo" ><br />
@@ -183,37 +169,14 @@
                                     <fieldset class="padding-5">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <label for="price-range">Min baths :</label>
-                                                <input type="text" class="span2" value="" data-slider-min="0" 
-                                                       data-slider-max="600" data-slider-step="5" 
-                                                       data-slider-value="[250,450]" id="min-baths" ><br />
-                                                <b class="pull-left color">1</b> 
-                                                <b class="pull-right color">120</b>                                                
-                                            </div>
-
-                                            <div class="col-xs-6">
-                                                <label for="property-geo">Min bed :</label>
-                                                <input type="text" class="span2" value="" data-slider-min="0" 
-                                                       data-slider-max="600" data-slider-step="5" 
-                                                       data-slider-value="[250,450]" id="min-bed" ><br />
-                                                <b class="pull-left color">1</b> 
-                                                <b class="pull-right color">120</b>
-
-                                            </div>
-                                        </div>
-                                    </fieldset>
-
-                                    <fieldset class="padding-5">
-                                        <div class="row">
-                                            <div class="col-xs-6">
                                                 <div class="checkbox">
-                                                    <label> <input type="checkbox" checked> Fire Place</label>
+                                                    <label> <input type="checkbox"> Asansör</label>
                                                 </div> 
                                             </div>
 
                                             <div class="col-xs-6">
                                                 <div class="checkbox">
-                                                    <label> <input type="checkbox"> Dual Sinks</label>
+                                                    <label> <input type="checkbox"> Kiler</label>
                                                 </div>
                                             </div>                                            
                                         </div>
@@ -223,12 +186,12 @@
                                         <div class="row">
                                             <div class="col-xs-6"> 
                                                 <div class="checkbox">
-                                                    <label> <input type="checkbox" checked> Swimming Pool</label>
+                                                    <label> <input type="checkbox"> Doğalgaz</label>
                                                 </div>
                                             </div>  
                                             <div class="col-xs-6"> 
                                                 <div class="checkbox">
-                                                    <label> <input type="checkbox" checked> 2 Stories </label>
+                                                    <label> <input type="checkbox"> Okul</label>
                                                 </div>
                                             </div>  
                                         </div>
@@ -238,12 +201,12 @@
                                         <div class="row">
                                             <div class="col-xs-6"> 
                                                 <div class="checkbox">
-                                                    <label><input type="checkbox"> Laundry Room </label>
+                                                    <label><input type="checkbox"> Sağlık ocağı</label>
                                                 </div>
                                             </div>  
                                             <div class="col-xs-6"> 
                                                 <div class="checkbox">
-                                                    <label> <input type="checkbox"> Emergency Exit</label>
+                                                    <label> <input type="checkbox"> Eşyalı</label>
                                                 </div>
                                             </div>  
                                         </div>
@@ -253,27 +216,16 @@
                                         <div class="row">
                                             <div class="col-xs-6"> 
                                                 <div class="checkbox">
-                                                    <label>  <input type="checkbox" checked> Jog Path </label>
+                                                    <label>  <input type="checkbox"> Site içerisinde </label>
                                                 </div>
                                             </div>  
                                             <div class="col-xs-6"> 
                                                 <div class="checkbox">
-                                                    <label>  <input type="checkbox"> 26' Ceilings </label>
+                                                    <label>  <input type="checkbox"> Otopark </label>
                                                 </div>
                                             </div>  
                                         </div>
                                     </fieldset>
-
-                                    <fieldset class="padding-5">
-                                        <div class="row">
-                                            <div class="col-xs-12"> 
-                                                <div class="checkbox">
-                                                    <label>  <input type="checkbox"> Hurricane Shutters </label>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                    </fieldset>
-
                                     <fieldset >
                                         <div class="row">
                                             <div class="col-xs-12">  
@@ -410,5 +362,8 @@
         <script src="assets/js/price-range.js"></script>
         <script src="assets/js/main.js"></script>
         <script src = "assets/js/advert-functions.js"></script>
+        <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+        <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
+        <script type="module" src="assets/js/search-functions.js"></script>
     </body>
 </html>
