@@ -222,3 +222,11 @@ C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\refi
 C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.pdb
 C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ObiGayrimenkul.genruntimeconfig.cache
 C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\obj\Debug\net8.0\ref\ObiGayrimenkul.dll
+C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

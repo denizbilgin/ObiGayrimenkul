@@ -22,7 +22,7 @@ namespace ObiGayrimenkul.Models
         public string InstagramLink { get; set; }
 
         [FirestoreProperty("is_admin")]
-        public bool IsAdmin { get; set; }
+        public string Role{ get; set; }
 
         [FirestoreProperty("mid_name")]
         public string MidName { get; set; }
