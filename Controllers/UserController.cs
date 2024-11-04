@@ -16,11 +16,17 @@ namespace ObiGayrimenkul.Controllers
             _firestore = firestore;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Index()
+        [HttpGet("/user-list")]
+        public async Task<IActionResult> GetUsers()
         {
             var users = await _firestore.GetAll<User>("users", CancellationToken.None);
             return Ok(users);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            return View("Views/Home/user-properties.cshtml");
         }
 
         [HttpPost("create")]
