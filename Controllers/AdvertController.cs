@@ -60,7 +60,7 @@ namespace ObiGayrimenkul.Controllers
                     advert.PublishDate = Timestamp.FromDateTime(DateTime.UtcNow);
                     advert.Approved = false;
 
-                    await _firestore.Add(advert, "adverts", ct);
+                    await _firestore.Add(advert, "advert-request", ct);
 
                     return RedirectToAction(nameof(Index));
                 }

@@ -73,7 +73,5 @@ namespace ObiGayrimenkul.Controllers
 
             return await _firestore.GetList<T>(query, ct);
         }
-
-        
     }
 }

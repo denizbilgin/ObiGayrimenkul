@@ -460,7 +460,7 @@
     "ContainingType": "ObiGayrimenkul.Controllers.DocumentsController",
     "Method": "Index",
     "RelativePath": "documents",
-    "HttpMethod": "",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
