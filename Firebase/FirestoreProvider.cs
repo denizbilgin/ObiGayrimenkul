@@ -85,7 +85,7 @@ namespace ObiGayrimenkul.Firebase
             return snapshot.Documents.Select(x => x.ConvertTo<T>()).ToList();
         }*/
 
-        private async Task<IReadOnlyCollection<T>> GetList<T>(Query query, CancellationToken ct) where T : IFirebaseEntity
+        public async Task<IReadOnlyCollection<T>> GetList<T>(Query query, CancellationToken ct) where T : IFirebaseEntity
         {
             var snapshot = await query.GetSnapshotAsync(ct);
             var list = new List<T>();
