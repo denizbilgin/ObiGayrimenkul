@@ -7,12 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Home\properties-eski.cshtml" />
     <Content Remove="Views\index.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Home\properties-eski.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
