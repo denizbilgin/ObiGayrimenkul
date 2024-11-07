@@ -104,7 +104,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">Örnek Daire </h1>               
+                        <h1 class="page-title"></h1>               
                     </div>
                 </div>
             </div>
@@ -147,8 +147,8 @@
 
                         <div class="single-property-wrapper">
                             <div class="single-property-header">                                          
-                                <h1 class="property-title pull-left">Başlık 2</h1>
-                                <span class="property-price pull-right">825,000 TL</span>
+                                <h1 class="property-title pull-left"></h1>
+                                <span id="advert-price" class="property-price pull-right"></span>
                             </div>
 
                             <div class="property-meta entry-meta clearfix ">   
@@ -158,8 +158,28 @@
                                         <img src="assets/img/icon/sale-orange.png">
                                     </span>
                                     <span class="property-info-entry">
-                                        <span class="property-info-label">Status</span>
-                                        <span class="property-info-value">For Sale</span>
+                                        <span class="property-info-label">İLÇE</span>
+                                        <span id="advert-district-location" class="property-info-value"></span>
+                                    </span>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                    <span class="property-info-icon icon-tag">                                        
+                                        <img src="assets/img/icon/sale-orange.png">
+                                    </span>
+                                    <span class="property-info-entry">
+                                        <span class="property-info-label">MAHALLE</span>
+                                        <span id="advert-quarter-location" class="property-info-value"></span>
+                                    </span>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                    <span class="property-info-icon icon-tag">                                        
+                                        <img src="assets/img/icon/sale-orange.png">
+                                    </span>
+                                    <span class="property-info-entry">
+                                        <span class="property-info-label">Durum</span>
+                                        <span id="advert-status-value" class="property-info-value"></span>
                                     </span>
                                 </div>
 
@@ -168,8 +188,8 @@
                                         <img src="assets/img/icon/room-orange.png">
                                     </span>
                                     <span class="property-info-entry">
-                                        <span class="property-info-label">Area</span>
-                                        <span class="property-info-value">3500<b class="property-info-unit">Sq Ft</b></span>
+                                        <span class="property-info-label">Brüt M²</span>
+                                        <span id="advert-gross-m2-value" class="property-info-value"></span>
                                     </span>
                                 </div>
 
@@ -178,8 +198,8 @@
                                         <img src="assets/img/icon/bed-orange.png">
                                     </span>
                                     <span class="property-info-entry">
-                                        <span class="property-info-label">Bedrooms</span>
-                                        <span class="property-info-value">3</span>
+                                        <span class="property-info-label">Net M²</span>
+                                        <span id="advert-net-m2-value" class="property-info-value"></span>
                                     </span>
                                 </div>
 
@@ -188,8 +208,8 @@
                                         <img src="assets/img/icon/cars-orange.png">
                                     </span>
                                     <span class="property-info-entry">
-                                        <span class="property-info-label">Car garages</span>
-                                        <span class="property-info-value">1</span>
+                                        <span class="property-info-label">Odalar</span>
+                                        <span id="room-number-value" class="property-info-value"></span>
                                     </span>
                                 </div>
 
@@ -198,8 +218,8 @@
                                         <img src="assets/img/icon/os-orange.png">
                                     </span>
                                     <span class="property-info-entry">
-                                        <span class="property-info-label">Bathrooms</span>
-                                        <span class="property-info-value">3.5</span>
+                                        <span class="property-info-label">BİNA YAŞI</span>
+                                        <span id="advert-building-age-value" class="property-info-value"></span>
                                     </span>
                                 </div>
 
@@ -208,8 +228,8 @@
                                         <img src="assets/img/icon/room-orange.png">
                                     </span>
                                     <span class="property-info-entry">
-                                        <span class="property-info-label">Garages</span>
-                                        <span class="property-info-value">2</span>
+                                        <span class="property-info-label">Kat</span>
+                                        <span id="advert-which-floor-value" class="property-info-value"></span>
                                     </span>
                                 </div>
 
@@ -218,8 +238,18 @@
                                         <img src="assets/img/icon/shawer-orange.png">
                                     </span>
                                     <span class="property-info-entry">
-                                        <span class="property-info-label">Garages</span>
-                                        <span class="property-info-value">2</span>
+                                        <span class="property-info-label">BİNA TOPLAM KAT</span>
+                                        <span id="advert-building-floor-number-value" class="property-info-value"></span>
+                                    </span>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                    <span class="property-info-icon icon-garage">
+                                        <img src="assets/img/icon/shawer-orange.png">
+                                    </span>
+                                    <span class="property-info-entry">
+                                        <span class="property-info-label">BALKON SAYISI</span>
+                                        <span id="advert-balcony-count-value" class="property-info-value"></span>
                                     </span>
                                 </div>
 
@@ -230,7 +260,7 @@
                             <div class="section">
                                 <h4 class="s-property-title">İlan Açıklaması</h4>
                                 <div class="s-property-content">
-                                    <p>Nulla quis dapibus nisl. Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies                                </p>
+                                    <p id="advert-description"></p>
                                 </div>
                             </div>
                             <!-- End description area  -->
@@ -240,49 +270,20 @@
                                 <h4 class="s-property-title">Ek Detaylar</h4>
 
                                 <ul class="additional-details-list clearfix">
-                                    <li>
-                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Waterfront</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Yes</span>
-                                    </li>
-
-                                    <li>
-                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Built In</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">2003</span>
-                                    </li>
-                                    <li>
-                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Parking</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">2 Or More Spaces,Covered Parking,Valet Parking</span>
-                                    </li>
-
-                                    <li>
-                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Waterfront</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Yes</span>
-                                    </li>
-
-                                    <li>
-                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">View</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Intracoastal View,Direct ew</span>
-                                    </li>
-
-                                    <li>
-                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Waterfront Description:</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Intracoastal Front,Ocean Access</span>
-                                    </li> 
-
                                 </ul>
                             </div>  
                             <!-- End additional-details area  -->
 
                             <div class="section property-features">      
 
-                                <h4 class="s-property-title">Özellikler</h4>                            
+                                <h4 class="s-property-title">Diğer Özellikler</h4>                            
                                 <ul>
-                                    <li><a href="properties.html">Swimming Pool</a></li>   
-                                    <li><a href="properties.html">3 Stories</a></li>
-                                    <li><a href="properties.html">Central Cooling</a></li>
-                                    <li><a href="properties.html">Jog Path 2</a></li>
-                                    <li><a href="properties.html">2 Lawn</a></li>
-                                    <li><a href="properties.html">Bike Path</a></li>
+                                    <li id="advert-dues-value"></li>   
+                                    <li>3 Stories</li>
+                                    <li>Central Cooling</li>
+                                    <li>Jog Path 2</li>
+                                    <li>2 Lawn</li>
+                                    <li>Bike Path</li>
                                 </ul>
 
                             </div>
@@ -434,20 +435,22 @@
         </div>
 
 
-        <script src="assets/js/vendor/modernizr-2.6.2.min.js"></script>
-        <script src="assets/js/jquery-1.10.2.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/bootstrap-select.min.js"></script>
-        <script src="assets/js/bootstrap-hover-dropdown.js"></script>
-        <script src="assets/js/easypiechart.min.js"></script>
-        <script src="assets/js/jquery.easypiechart.min.js"></script>
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="assets/js/wow.js"></script>
-        <script src="assets/js/icheck.min.js"></script>
-        <script src="assets/js/price-range.js"></script>
-        <script type="text/javascript" src="assets/js/lightslider.min.js"></script>
-        <script src="assets/js/main.js"></script>
-
+        <script src="~/assets/js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="~/assets/js/jquery-1.10.2.min.js"></script>
+        <script src="~/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/assets/js/bootstrap-select.min.js"></script>
+        <script src="~/assets/js/bootstrap-hover-dropdown.js"></script>
+        <script src="~/assets/js/easypiechart.min.js"></script>
+        <script src="~/assets/js/jquery.easypiechart.min.js"></script>
+        <script src="~/assets/js/owl.carousel.min.js"></script>
+        <script src="~/assets/js/wow.js"></script>
+        <script src="~/assets/js/icheck.min.js"></script>
+        <script src="~/assets/js/price-range.js"></script>
+        <script type="text/javascript" src="~/assets/js/lightslider.min.js"></script>
+        <script src="~/assets/js/main.js"></script>
+        <script type="module" src="~/assets/js/advert-detail-functions.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
 
     </body>
 </html>
