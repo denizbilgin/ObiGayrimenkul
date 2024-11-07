@@ -281,6 +281,10 @@
       "PackagePath": "staticwebassets\\assets\\img\\emrah-oguz.jpg"
     },
     {
+      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\favicon.ico",
+      "PackagePath": "staticwebassets\\assets\\img\\favicon.ico"
+    },
+    {
       "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\footer-logo-2.png",
       "PackagePath": "staticwebassets\\assets\\img\\footer-logo-2.png"
     },

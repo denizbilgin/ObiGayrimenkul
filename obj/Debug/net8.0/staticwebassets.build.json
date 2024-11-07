@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5uX2C4m9bFUJKPGxTJ7Sa4sP0aqzwVz3phs3+NJO7xI=",
+  "Hash": "zKuvTSr5fAomolw9mefU0RUZdL5YIGgVcSqaABcXEvY=",
   "Source": "ObiGayrimenkul",
   "BasePath": "_content/ObiGayrimenkul",
   "Mode": "Default",
@@ -1345,6 +1345,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\emrah-oguz.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\favicon.ico",
+      "SourceId": "ObiGayrimenkul",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "BasePath": "_content/ObiGayrimenkul",
+      "RelativePath": "assets/img/favicon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\favicon.ico"
     },
     {
       "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\footer-logo.png",
