@@ -21,7 +21,7 @@ namespace ObiGayrimenkul.Controllers
         public async Task<IActionResult> Index()
         {
 
-            return View("Views/Home/index.cshtml");
+            return View("~/Views/Home/index.cshtml");
         }
 
         [HttpGet("all-adverts")]
@@ -39,14 +39,14 @@ namespace ObiGayrimenkul.Controllers
             {
                 return NotFound();
             }
-            return View("Views/Home/property-detail.cshtml");
+            return View("~/Views/Home/property-detail.cshtml");
         }
 
         // İlan ekle - GET (Form gösterimi)
         [HttpGet("create")]
         public IActionResult Create()
         {
-            return View("Views/Home/submit-property.cshtml");
+            return View("~/Views/Home/submit-property.cshtml");
 
         }
 

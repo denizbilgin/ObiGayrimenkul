@@ -12,13 +12,13 @@ namespace ObiGayrimenkul.Controllers
         private readonly JwtService _jwtService;
         public IActionResult Index()
         {
-            return View("Views/Home/register.cshtml");
+            return View("~/Views/Home/register.cshtml");
         }
 
         [HttpGet("login")]
         public async Task<IActionResult> Login()
         {
-            return View("Views/Home/register.cshtml");
+            return View("~/Views/Home/register.cshtml");
         }
 
         [HttpPost("login")]
