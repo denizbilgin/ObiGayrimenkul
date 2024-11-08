@@ -39,9 +39,8 @@ const getPlaceNameById = async (db, place_id) => {
 };
 
 const getImagesAndPopulateSlider = async (storage, imagePaths) => {
-    //const gallery = document.querySelector('ul.lSPager.lSGallery'); 
-    //const gallery = document.getElementById("image-gallery");
     const gallery = document.getElementById("lightSlider");
+    let imagesLoaded = 0;
 
     for (let i = 0; i < imagePaths.length; i++) {
         const imagePath = imagePaths[i];
@@ -49,35 +48,35 @@ const getImagesAndPopulateSlider = async (storage, imagePaths) => {
 
         try {
             const url = await getDownloadURL(storageRef);
-            console.log("Resim URL'si:", url);
-
-            // Yeni bir <li> öğesi oluştur ve içine <img> öğesini ekle
             const li = document.createElement("li");
-            li.setAttribute("data-thumb", url); // data-thumb özelliğini resmin URL'siyle set et
+            li.setAttribute("data-thumb", url);
             li.style.width = "720px";
 
-
             const img = document.createElement("img");
-            img.setAttribute("src", url); // img öğesinin src'ini Firebase URL'siyle set et
+            img.setAttribute("src", url);
+
+            img.onload = () => {
+                imagesLoaded++;
+                if (imagesLoaded === imagePaths.length) {
+                    document.getElementById("preloader").style.display = "none";
+                    $("#lightSlider").lightSlider({
+                        gallery: true,
+                        item: 1,
+                        loop: true,
+                        thumbItem: 9,
+                        slideMargin: 0,
+                        enableDrag: true,
+                        currentPagerPosition: 'left',
+                    });
+                }
+            };
 
             li.appendChild(img);
-            gallery.appendChild(li); // Yeni <li> öğesini gallery'ye ekle
+            gallery.appendChild(li);
         } catch (error) {
             console.error("Resmi alırken hata:", error);
         }
     }
-
-    $(document).ready(function() {
-        $("#lightSlider").lightSlider({
-            gallery: true,
-            item: 1,
-            loop: true,
-            thumbItem: 9,
-            slideMargin: 0,
-            enableDrag: true,
-            currentPagerPosition: 'left',
-        });
-    });
 };
 
 document.addEventListener("DOMContentLoaded", async function() {
@@ -93,14 +92,16 @@ document.addEventListener("DOMContentLoaded", async function() {
         measurementId: "G-FK8D85WJKV"
     };
 
-    const booleanFields = [
-        { key: "has_lift", label: "ASANSÖR" },
-        { key: "have_cellar", label: "KİLER" },
-        { key: "is_close_health_center", label: "SAĞLIK OCAĞINA YAKIN" },
-        { key: "is_close_school", label: "OKULA YAKIN" },
-        { key: "is_furnished", label: "EŞYALI" },
-        { key: "is_in_site", label: "SİTE İÇERİSİNDE" },
-        { key: "parking", label: "OTOPARK" }
+    const extraDetails = [
+        { key: "has_lift", label: "ASANSÖR", type:"boolean" },
+        { key: "have_cellar", label: "KİLER", type:"boolean" },
+        { key: "is_close_health_center", label: "SAĞLIK OCAĞINA YAKIN", type:"boolean" },
+        { key: "is_close_school", label: "OKULA YAKIN", type:"boolean" },
+        { key: "is_furnished", label: "EŞYALI", type:"boolean" },
+        { key: "is_in_site", label: "SİTE İÇERİSİNDE", type:"boolean" },
+        { key: "parking", label: "OTOPARK", type:"boolean" },
+        { key: "dues", label: "AİDAT", type:"string"},
+        { key: "heating", label: "ISITMA", type:"string"}
     ];
 
     try {
@@ -114,10 +115,10 @@ document.addEventListener("DOMContentLoaded", async function() {
         const data = await getAdvertById(db, "adverts", advertId);
 
         if (data) {
+            getImagesAndPopulateSlider(storage, data.images);
             console.log(data);
             document.getElementsByTagName("h1")[0].innerHTML = data.title;
             document.getElementsByTagName("h1")[1].innerHTML = data.title;
-            getImagesAndPopulateSlider(storage, data.images);
             const districtName = await getPlaceNameById(db, data.address_district_id);
             const quarterName = await getPlaceNameById(db, data.address_quarter_id);
             document.getElementById("advert-district-location").innerHTML = districtName;
@@ -132,19 +133,25 @@ document.addEventListener("DOMContentLoaded", async function() {
             document.getElementById("advert-which-floor-value").innerHTML = data.which_floor;
             document.getElementById("advert-building-floor-number-value").innerHTML = data.building_floor_number;
             document.getElementById("advert-balcony-count-value").innerHTML = data.balcony_count;
-            document.getElementById("advert-dues-value").innerHTML = "Aidat: " + data.dues + " TL";
+            document.getElementById("advert-number-of-bathrooms-value").innerHTML = data.number_of_bathrooms + " Adet Banyo";
+            document.getElementById("advert-side-value").innerHTML = data.side + " Cephe";
+            
             
             
 
             const detailsList = document.querySelector(".additional-details-list");
-            booleanFields.forEach(field => {
+            extraDetails.forEach(field => {
                 const listItem = document.createElement("li");
                 const titleSpan = document.createElement("span");
                 titleSpan.className = "col-xs-6 col-sm-4 col-md-4 add-d-title";
                 titleSpan.textContent = field.label;
                 const valueSpan = document.createElement("span");
                 valueSpan.className = "col-xs-6 col-sm-8 col-md-8 add-d-entry";
-                valueSpan.textContent = data[field.key] ? "Evet" : "Hayır";
+                if (field.type === "boolean") {
+                    valueSpan.textContent = data[field.key] ? "Evet" : "Hayır";
+                } else {
+                    valueSpan.textContent = data[field.key] || "";
+                }
                 
                 listItem.appendChild(titleSpan);
                 listItem.appendChild(valueSpan);

@@ -95,7 +95,7 @@ public class Advert : IFirebaseEntity
     public string DocumentPath { get; set; }
 
     [FirestoreProperty("status")]
-    public int Status { get; set; }
+    public bool Status { get; set; }
 
     [FirestoreProperty("user_id")]
     public int UserID { get; set; }
