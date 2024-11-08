@@ -693,6 +693,10 @@
       "PackagePath": "staticwebassets\\assets\\js\\lightslider.min.js"
     },
     {
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\login-form.js",
+      "PackagePath": "staticwebassets\\assets\\js\\login-form.js"
+    },
+    {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\main.js",
       "PackagePath": "staticwebassets\\assets\\js\\main.js"
     },

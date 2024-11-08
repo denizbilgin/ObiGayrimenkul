@@ -10,35 +10,52 @@ namespace ObiGayrimenkul.Controllers
     {
         private readonly FirestoreProvider _firestore;
         private readonly JwtService _jwtService;
+
+        public LoginController(FirestoreProvider firestore, JwtService jwtService)
+        {
+            _firestore = firestore;
+            _jwtService = jwtService;
+        }
+
         public IActionResult Index()
         {
+            Console.WriteLine("register sayfası açıldı");
             return View("~/Views/Home/register.cshtml");
         }
 
-        [HttpGet("login")]
+       /* [HttpGet("login")]
         public async Task<IActionResult> Login()
         {
+            Console.WriteLine("deneme");
             return View("~/Views/Home/register.cshtml");
-        }
+        }*/
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
+        public async Task<IActionResult> Login([FromForm] LoginModel loginModel)
         {
             Console.WriteLine("Gelen Email: " + loginModel.Email);
             Console.WriteLine("Gelen Şifre: " + loginModel.Password);
             var user = await GetUserFromEmail(loginModel.Email);
             if (user != null && loginModel.Password == user.Password)
             {
-                var token = _jwtService.GenerateJwtToken(user);
-
-                Response.Cookies.Append("AuthToken", token, new CookieOptions
+                try
                 {
-                    HttpOnly = true,
-                    Secure = true,
-                    SameSite = SameSiteMode.Strict
-                });
+                    var token = _jwtService.GenerateJwtToken(user);
 
-                return Ok(new { success = true });
+
+                    Response.Cookies.Append("AuthToken", token, new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = true,
+                        SameSite = SameSiteMode.Strict
+                    });
+
+                    return Ok(new { success = true, token });
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, "Token olusturulamadı.");
+                }
             }
             return Unauthorized(new { success = false, message = "Geçersiz giriş bilgileri" });
         }
@@ -46,7 +63,7 @@ namespace ObiGayrimenkul.Controllers
 
 
 
-        [HttpGet("get-email")]
+        [HttpGet("get-from-email")]
         public async Task<User> GetUserFromEmail(string email)
         {
             var users = await _firestore.GetAll<User>("users", CancellationToken.None);

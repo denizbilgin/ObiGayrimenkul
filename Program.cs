@@ -8,6 +8,8 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ObiGayrimenkul.Services;
+using ObiGayrimenkul.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
@@ -66,6 +68,9 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = false
     };
 });
+
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+builder.Services.AddScoped<JwtService>();
 
 // Firestore yapýlandýrmasý
 var firebaseJson = File.ReadAllText("Firebase/obidatabase-3e651-firebase-adminsdk-ta9fl-2ef236de49.json");
