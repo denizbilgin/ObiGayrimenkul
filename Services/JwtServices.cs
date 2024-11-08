@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ObiGayrimenkul.Models;
 
@@ -11,9 +12,9 @@ namespace ObiGayrimenkul.Services
     {
         private readonly string _secretKey;
 
-        public JwtService(string secretKey)
+        public JwtService(IOptions<JwtSettings> jwtSettings)
         {
-            _secretKey = secretKey;
+            _secretKey = jwtSettings.Value.SecretKey;
         }
 
         public string GenerateJwtToken(User user)
@@ -22,11 +23,11 @@ namespace ObiGayrimenkul.Services
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim("userId", user.Id),
-                new Claim(ClaimTypes.Role, user.Role)
-            };
+                    new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim("userId", user.Id),
+                    new Claim(ClaimTypes.Role, user.Role)
+                };
 
             var token = new JwtSecurityToken(
                 claims: claims,

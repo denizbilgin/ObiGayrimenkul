@@ -40,6 +40,7 @@
 </head>
 <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
 
     <div id="preloader">
         <div id="status">&nbsp;</div>
@@ -120,7 +121,7 @@
                 <div class="box-for overflow">
                     <div class="col-md-12 col-xs-12 register-blocks">
                         <h2>ÜYE OL : </h2>
-                        <form asp-controller="Login" asp-action="Register" method="post">
+                        <form asp-controller="LoginController" asp-action="Register" method="post">
                             <div class="form-group">
                                 <label for="name">İsim - Soyisim</label>
                                 <input type="text" class="form-control" id="name">
@@ -145,7 +146,7 @@
                 <div class="box-for overflow">
                     <div class="col-md-12 col-xs-12 login-blocks">
                         <h2>GİRİŞ YAP : </h2>
-                        <form asp-controller="Login" asp-action="Login" method="post">
+                        <form asp-controller="LoginController" asp-action="Login" method="post" id="loginForm">
                             <div class="form-group">
                                 <label for="email-login">Email</label>
                                 <input type="text" class="form-control" id="email-login" name="Email" required>
@@ -166,28 +167,6 @@
 
         </div>
     </div>
-
-    <script>
-        $('#loginButton').click(function() {
-            $.ajax({
-                url: '/user-process/login',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    Email: $('#email-login').val(),
-                    Password: $('#password-login').val()
-                }),
-                success: function(response) {
-                    // Başarılı girişte yönlendirme
-                    window.location.href = '/home';
-                },
-                error: function(xhr) {
-                    // Giriş başarısızsa kullanıcıya hata göster
-                    alert('Giriş başarısız! Lütfen bilgilerinizi kontrol edin.');
-                }
-            });
-        });
-    </script>
 
     <!-- Footer area-->
     <div class="footer-area">
@@ -252,6 +231,7 @@
         </div>
     </div>
 
+    <script src="assets/js/login-form.js"></script>
     <script src="assets/js/modernizr-2.6.2.min.js"></script>
 
     <script src="assets/js/jquery-1.10.2.min.js"></script>

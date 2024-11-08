@@ -519,7 +519,7 @@
   {
     "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
     "Method": "GetUserFromEmail",
-    "RelativePath": "user-process/get-email",
+    "RelativePath": "user-process/get-from-email",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -541,16 +541,6 @@
         "StatusCode": 200
       }
     ]
-  },
-  {
-    "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
-    "Method": "Login",
-    "RelativePath": "user-process/login",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
   },
   {
     "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
