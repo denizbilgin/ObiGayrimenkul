@@ -95,11 +95,14 @@ public class Advert : IFirebaseEntity
     public string DocumentPath { get; set; }
 
     [FirestoreProperty("status")]
-    public int Status { get; set; }
+    public bool Status { get; set; }
 
     [FirestoreProperty("user_id")]
     public int UserID { get; set; }
 
     [FirestoreProperty("building_floor_number")]
     public int BuildingFloors {  get; set; }
+
+    [FirestoreProperty("is_earthquake_resistant")]
+    public bool IsEarthquakeResistant { get; set; }
 }

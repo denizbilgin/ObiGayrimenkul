@@ -50,7 +50,7 @@ namespace ObiGayrimenkul.Controllers
                         SameSite = SameSiteMode.Strict
                     });
 
-                    return Ok(new { success = true, token });
+                    return Ok(new { success = true, userName = user.Name ,token });
                 }
                 catch (Exception ex)
                 {

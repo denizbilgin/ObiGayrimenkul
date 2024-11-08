@@ -27,7 +27,10 @@
             })
             .then(data => {
                 console.log("Başarılı giriş:", data);
-                window.location.href = "/home";
+                if (data.success) {
+                    window.location.href = "/home";
+                    localStorage.setItem("userName", data.userName);
+                }
             })
             .catch(error => {
                 console.error("Giriş hatası:", error);
