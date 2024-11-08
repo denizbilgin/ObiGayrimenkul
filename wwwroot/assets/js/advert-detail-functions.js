@@ -39,7 +39,9 @@ const getPlaceNameById = async (db, place_id) => {
 };
 
 const getImagesAndPopulateSlider = async (storage, imagePaths) => {
-    const gallery = document.getElementById("image-gallery"); 
+    //const gallery = document.querySelector('ul.lSPager.lSGallery'); 
+    //const gallery = document.getElementById("image-gallery");
+    const gallery = document.getElementById("lightSlider");
 
     for (let i = 0; i < imagePaths.length; i++) {
         const imagePath = imagePaths[i];
@@ -52,6 +54,8 @@ const getImagesAndPopulateSlider = async (storage, imagePaths) => {
             // Yeni bir <li> öğesi oluştur ve içine <img> öğesini ekle
             const li = document.createElement("li");
             li.setAttribute("data-thumb", url); // data-thumb özelliğini resmin URL'siyle set et
+            li.style.width = "720px";
+
 
             const img = document.createElement("img");
             img.setAttribute("src", url); // img öğesinin src'ini Firebase URL'siyle set et
@@ -63,12 +67,16 @@ const getImagesAndPopulateSlider = async (storage, imagePaths) => {
         }
     }
 
-    $('#image-gallery').lightSlider({
-        item: 1,
-        slideMargin: 0,
-        thumbItem: 9,
-        speed: 600,
-        auto: true
+    $(document).ready(function() {
+        $("#lightSlider").lightSlider({
+            gallery: true,
+            item: 1,
+            loop: true,
+            thumbItem: 9,
+            slideMargin: 0,
+            enableDrag: true,
+            currentPagerPosition: 'left',
+        });
     });
 };
 
@@ -109,7 +117,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             console.log(data);
             document.getElementsByTagName("h1")[0].innerHTML = data.title;
             document.getElementsByTagName("h1")[1].innerHTML = data.title;
-            getImagesAndPopulateSlider(storage, data.images)
+            getImagesAndPopulateSlider(storage, data.images);
             const districtName = await getPlaceNameById(db, data.address_district_id);
             const quarterName = await getPlaceNameById(db, data.address_quarter_id);
             document.getElementById("advert-district-location").innerHTML = districtName;

@@ -36,14 +36,14 @@
         <link rel="stylesheet" href="~/assets/css/lightslider.min.css">
         <link rel="stylesheet" href="~/assets/css/style.css">
         <link rel="stylesheet" href="~/assets/css/responsive.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.min.css" />
 
 
     </head>
     <body>
 
-        <script src="/assets/js/jquery-1.10.2.min.js"></script>
-        <script src="/assets/js/bootstrap.min.js"></script>
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
 
         <!-- Body content -->
 
@@ -129,7 +129,15 @@
                                         </a>
                                     </div> 
 
-                                    <ul id="image-gallery" class="gallery list-unstyled cS-hidden">                                      
+                                    <!--
+                                    <ul id="image-gallery" class="gallery list-unstyled cS-hidden">    
+                                        <li data-thumb="https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/WXborLAeq0i4IX0j5kxb_4.jpg?alt=media&amp;token=c68245ff-59b9-4e66-972d-45133df2fef8" style="width: 760px; margin-right: 0px;"><img src="https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/WXborLAeq0i4IX0j5kxb_4.jpg?alt=media&amp;token=c68245ff-59b9-4e66-972d-45133df2fef8"></li>
+                                        <li data-thumb="https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/WXborLAeq0i4IX0j5kxb_4.jpg?alt=media&amp;token=c68245ff-59b9-4e66-972d-45133df2fef8" style="width: 760px; margin-right: 0px;"><img src="https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/WXborLAeq0i4IX0j5kxb_4.jpg?alt=media&amp;token=c68245ff-59b9-4e66-972d-45133df2fef8"></li>
+                                        <li data-thumb="https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/WXborLAeq0i4IX0j5kxb_4.jpg?alt=media&amp;token=c68245ff-59b9-4e66-972d-45133df2fef8" style="width: 760px; margin-right: 0px;"><img src="https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/WXborLAeq0i4IX0j5kxb_4.jpg?alt=media&amp;token=c68245ff-59b9-4e66-972d-45133df2fef8"></li>
+                                    </ul>
+                                    -->
+
+                                    <ul id="lightSlider">
                                     </ul>
                                 </div>
                             </div>
@@ -425,6 +433,7 @@
         </div>
 
         <script src="~/assets/js/jquery-1.10.2.min.js"></script>
+        <script src="~/assets/js/jquery.slitslider.js"></script>
         <script src="~/bootstrap/js/bootstrap.min.js"></script>
         <script src="~/assets/js/bootstrap-select.min.js"></script>
         <script src="~/assets/js/bootstrap-hover-dropdown.js"></script>
@@ -434,13 +443,12 @@
         <script src="~/assets/js/wow.js"></script>
         <script src="~/assets/js/icheck.min.js"></script>
         <script src="~/assets/js/price-range.js"></script>
-        <script type="text/javascript" src="~/assets/js/lightslider.min.js"></script>
+        <script src="~/assets/js/lightslider.min.js"></script>
         <script src="~/assets/js/main.js"></script>
-        <script type="module" src="~/assets/js/advert-detail-functions.js"></script>
         <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
         <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
         <script src="~/assets/js/modernizr-2.6.2.min.js"></script>
-
+        <script type="module" src="~/assets/js/advert-detail-functions.js"></script>
 
     </body>
 </html>
