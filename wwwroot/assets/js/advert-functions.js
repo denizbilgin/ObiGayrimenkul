@@ -4,7 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(adverts => {
         const advertsContainer = document.getElementById("list-type");
         adverts.forEach(advert => {
-            const thumbnailUrl = advert.advertImages[0] || "https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/default_advert_thumbnail.webp?alt=media&token=7d5b7089-afcb-414b-a31c-cda31dbae71e";
+            //const thumbnailUrl = advert.advertImages[0] || "https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/default_advert_thumbnail.webp?alt=media&token=7d5b7089-afcb-414b-a31c-cda31dbae71e";
+            const thumbnailUrl = "https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/default_advert_thumbnail.webp?alt=media&token=7d5b7089-afcb-414b-a31c-cda31dbae71e";
+
             const advertCardHtml = `
                     <div class="col-sm-6 col-md-3 p0">
                         <div class="box-two proerty-item">

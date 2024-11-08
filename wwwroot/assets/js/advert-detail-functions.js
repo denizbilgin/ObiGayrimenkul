@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getFirestore, collection, getDocs, query, where, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
 
 const getAdvertById = async (db, collectionName, id) => {
@@ -37,6 +38,40 @@ const getPlaceNameById = async (db, place_id) => {
     }
 };
 
+const getImagesAndPopulateSlider = async (storage, imagePaths) => {
+    const gallery = document.getElementById("image-gallery"); 
+
+    for (let i = 0; i < imagePaths.length; i++) {
+        const imagePath = imagePaths[i];
+        const storageRef = ref(storage, imagePath);
+
+        try {
+            const url = await getDownloadURL(storageRef);
+            console.log("Resim URL'si:", url);
+
+            // Yeni bir <li> öğesi oluştur ve içine <img> öğesini ekle
+            const li = document.createElement("li");
+            li.setAttribute("data-thumb", url); // data-thumb özelliğini resmin URL'siyle set et
+
+            const img = document.createElement("img");
+            img.setAttribute("src", url); // img öğesinin src'ini Firebase URL'siyle set et
+
+            li.appendChild(img);
+            gallery.appendChild(li); // Yeni <li> öğesini gallery'ye ekle
+        } catch (error) {
+            console.error("Resmi alırken hata:", error);
+        }
+    }
+
+    $('#image-gallery').lightSlider({
+        item: 1,
+        slideMargin: 0,
+        thumbItem: 9,
+        speed: 600,
+        auto: true
+    });
+};
+
 document.addEventListener("DOMContentLoaded", async function() {
     // Firebase configuration
     const firebaseConfig = {
@@ -63,6 +98,8 @@ document.addEventListener("DOMContentLoaded", async function() {
     try {
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const storage = getStorage(app);
+
         const path = window.location.pathname;
         const advertId = path.split('/').pop();
         
@@ -72,6 +109,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             console.log(data);
             document.getElementsByTagName("h1")[0].innerHTML = data.title;
             document.getElementsByTagName("h1")[1].innerHTML = data.title;
+            getImagesAndPopulateSlider(storage, data.images)
             const districtName = await getPlaceNameById(db, data.address_district_id);
             const quarterName = await getPlaceNameById(db, data.address_quarter_id);
             document.getElementById("advert-district-location").innerHTML = districtName;
