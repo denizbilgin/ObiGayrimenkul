@@ -3,9 +3,9 @@ import { getFirestore, collection, getDocs, query, where, doc, getDoc } from "ht
 import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
 
-const getAdvertById = async (db, collectionName, id) => {
+const getAdvertById = async (db, id) => {
     try {
-        const docRef = doc(db, collectionName, id);
+        const docRef = doc(db, "adverts", id);
         const docSnap = await getDoc(docRef);
         
         if (docSnap.exists()) {
@@ -40,44 +40,90 @@ const getPlaceNameById = async (db, place_id) => {
 
 const getImagesAndPopulateSlider = async (storage, imagePaths) => {
     const gallery = document.getElementById("lightSlider");
+    const defaultThumbnailUrl = "https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/default_advert_thumbnail.webp?alt=media&token=7d5b7089-afcb-414b-a31c-cda31dbae71e";
     let imagesLoaded = 0;
 
-    for (let i = 0; i < imagePaths.length; i++) {
-        const imagePath = imagePaths[i];
-        const storageRef = ref(storage, imagePath);
+    if (imagePaths.length === 0){
+        const li = document.createElement("li");
+        li.setAttribute("data-thumb", defaultThumbnailUrl);
+        li.style.width = "720px";
+        gallery.style.marginBottom = "3rem";
 
-        try {
-            const url = await getDownloadURL(storageRef);
-            const li = document.createElement("li");
-            li.setAttribute("data-thumb", url);
-            li.style.width = "720px";
+        const img = document.createElement("img");
+        img.setAttribute("src", defaultThumbnailUrl);
+        img.style.height = "423px";
+        img.style.width = "100%";
 
-            const img = document.createElement("img");
-            img.setAttribute("src", url);
+        li.appendChild(img);
+        gallery.appendChild(li);
 
-            img.onload = () => {
-                imagesLoaded++;
-                if (imagesLoaded === imagePaths.length) {
-                    document.getElementById("preloader").style.display = "none";
-                    $("#lightSlider").lightSlider({
-                        gallery: true,
-                        item: 1,
-                        loop: true,
-                        thumbItem: 9,
-                        slideMargin: 0,
-                        enableDrag: true,
-                        currentPagerPosition: 'left',
-                    });
-                }
-            };
+        img.onload = () => {
+            document.getElementById("preloader").style.display = "none";
+            $("#lightSlider").lightSlider({
+                gallery: true,
+                item: 1,
+                loop: true,
+                thumbItem: 9,
+                slideMargin: 0,
+                enableDrag: true,
+                currentPagerPosition: 'left',
+            });
+        };
+    } else{
+        for (let i = 0; i < imagePaths.length; i++) {
+            const imagePath = imagePaths[i];
+            const storageRef = ref(storage, imagePath);
+    
+            try {
+                const url = await getDownloadURL(storageRef);
+                const li = document.createElement("li");
+                li.setAttribute("data-thumb", url);
+                li.style.width = "720px";
+    
+                const img = document.createElement("img");
+                img.setAttribute("src", url);
 
-            li.appendChild(img);
-            gallery.appendChild(li);
-        } catch (error) {
-            console.error("Resmi alırken hata:", error);
+                li.appendChild(img);
+                gallery.appendChild(li);
+    
+                img.onload = () => {
+                    imagesLoaded++;
+                    if (imagesLoaded === imagePaths.length) {
+                        document.getElementById("preloader").style.display = "none";
+                        $("#lightSlider").lightSlider({
+                            gallery: true,
+                            item: 1,
+                            loop: true,
+                            thumbItem: 9,
+                            slideMargin: 0,
+                            enableDrag: true,
+                            currentPagerPosition: 'left',
+                        });
+                    }
+                };
+            } catch (error) {
+                console.error("Resmi alırken hata:", error);
+            }
         }
     }
 };
+
+const getUserById = async (db, id) => {
+    try {
+        const docRef = doc(db, "users", id);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            return docSnap.data();
+        } else {
+            console.log("User bulunamadı.");
+            return null;
+        }
+    } catch (error) {
+        console.error("User alınırken hata oluştu:", error);
+        throw error;
+    }
+}
 
 document.addEventListener("DOMContentLoaded", async function() {
     // Firebase configuration
@@ -100,9 +146,27 @@ document.addEventListener("DOMContentLoaded", async function() {
         { key: "is_furnished", label: "EŞYALI", type:"boolean" },
         { key: "is_in_site", label: "SİTE İÇERİSİNDE", type:"boolean" },
         { key: "parking", label: "OTOPARK", type:"boolean" },
-        { key: "dues", label: "AİDAT", type:"string"},
-        { key: "heating", label: "ISITMA", type:"string"}
     ];
+
+    const sideTypes = {
+        0: "Kuzey",
+        1: "Kuzey Doğu",
+        2: "Doğu",
+        3: "Güney Doğu",
+        4: "Güney",
+        5: "Güney Batı",
+        6: "Batı",
+        7: "Kuzey Batı"
+    }
+
+    const heatingTypes = {
+        0: "Merkezi Doğalgaz",
+        1: "Bireysel Doğalgaz",
+        2: "Kömür",
+        3: "Soba",
+        4: "Yerden Isıtma",
+        5: "Isı Pompası",
+    }
 
     try {
         const app = initializeApp(firebaseConfig);
@@ -112,7 +176,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         const path = window.location.pathname;
         const advertId = path.split('/').pop();
         
-        const data = await getAdvertById(db, "adverts", advertId);
+        const data = await getAdvertById(db, advertId);
 
         if (data) {
             getImagesAndPopulateSlider(storage, data.images);
@@ -125,7 +189,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             document.getElementById("advert-quarter-location").innerHTML = quarterName;
             document.getElementById("advert-price").innerHTML = data.price + " TL";
             document.getElementById("advert-description").innerHTML = data.description;
-            document.getElementById("advert-status-value").innerHTML = data.status;
+            document.getElementById("advert-status-value").innerHTML = data.status === true ? "Satılık" : "Kiralık";
             document.getElementById("advert-gross-m2-value").innerHTML = data.square_meter_gross + `<b class="property-info-unit"> m²</b>`;
             document.getElementById("advert-net-m2-value").innerHTML = data.square_meter_net + `<b class="property-info-unit"> m²</b>`;
             document.getElementById("room-number-value").innerHTML = data.room_number;
@@ -133,12 +197,12 @@ document.addEventListener("DOMContentLoaded", async function() {
             document.getElementById("advert-which-floor-value").innerHTML = data.which_floor;
             document.getElementById("advert-building-floor-number-value").innerHTML = data.building_floor_number;
             document.getElementById("advert-balcony-count-value").innerHTML = data.balcony_count;
-            document.getElementById("advert-number-of-bathrooms-value").innerHTML = data.number_of_bathrooms + " Adet Banyo";
-            document.getElementById("advert-side-value").innerHTML = data.side + " Cephe";
+            document.getElementById("advert-number-of-bathrooms-value").innerHTML = data.number_of_bathrooms + " Banyo";
+            document.getElementById("advert-side-value").innerHTML = sideTypes[data.side] ? sideTypes[data.side] + " Cephe" : "Diğer";
+            document.getElementById("advert-heating-value").innerHTML = heatingTypes[data.heating] ? heatingTypes[data.heating] : "Diğer";
+            document.getElementById("advert-dues-value").innerHTML = data.dues + " TL Aidat";
             
             
-            
-
             const detailsList = document.querySelector(".additional-details-list");
             extraDetails.forEach(field => {
                 const listItem = document.createElement("li");
@@ -158,6 +222,13 @@ document.addEventListener("DOMContentLoaded", async function() {
 
                 detailsList.appendChild(listItem);
             });
+
+            const user = await getUserById(db, data.user_id);
+            if (user){
+                console.log(user);
+                document.getElementById("whatsapp-button").setAttribute("href", `https://wa.me/${user.phone_number}/?text=Merhaba ${data.title} başlıklı dairenin detayları hakkında görüşmek istiyorum.`)
+
+            }
         }
     } catch (error) {
         console.error("Firebase başlatma hatası:", error);

@@ -226,12 +226,17 @@
       },
       {
         "Name": "UserID",
-        "Type": "System.Int32",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
         "Name": "BuildingFloors",
         "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsEarthquakeResistant",
+        "Type": "System.Boolean",
         "IsRequired": false
       }
     ],
@@ -455,12 +460,17 @@
       },
       {
         "Name": "UserID",
-        "Type": "System.Int32",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
         "Name": "BuildingFloors",
         "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsEarthquakeResistant",
+        "Type": "System.Boolean",
         "IsRequired": false
       }
     ],
