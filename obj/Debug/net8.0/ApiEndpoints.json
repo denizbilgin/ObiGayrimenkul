@@ -233,6 +233,11 @@
         "Name": "BuildingFloors",
         "Type": "System.Int32",
         "IsRequired": false
+      },
+      {
+        "Name": "IsEarthquakeResistant",
+        "Type": "System.Boolean",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -461,6 +466,11 @@
       {
         "Name": "BuildingFloors",
         "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsEarthquakeResistant",
+        "Type": "System.Boolean",
         "IsRequired": false
       }
     ],
