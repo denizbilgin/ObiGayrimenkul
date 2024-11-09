@@ -697,6 +697,10 @@
       "PackagePath": "staticwebassets\\assets\\js\\lightslider.min.js"
     },
     {
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\logged-user-dropdown.js",
+      "PackagePath": "staticwebassets\\assets\\js\\logged-user-dropdown.js"
+    },
+    {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\login-form.js",
       "PackagePath": "staticwebassets\\assets\\js\\login-form.js"
     },

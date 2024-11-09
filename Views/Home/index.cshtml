@@ -91,70 +91,24 @@
             <div class="collapse navbar-collapse yamm" id="navigation">
                 <div class="button navbar-right">
                     <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('/sell-house')" data-wow-delay="0.4s">Evimi Sat/Kirala</button>
-                    <li class="dropdown ymm-sw " data-wow-delay="0.1s" id="logged-in-user-dropdown">
-                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown" data-hover="dropdown" data-delay="200">
-                            Hoş geldiniz, <span id="userName">Kullanıcı</span>! <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu navbar-nav">
-                            <li><a href="#" id="logoutButton">Çıkış Yap</a></li>
-                        </ul>
-                        <ul class="dropdown-menu navbar-nav">
-                            <li>
-                                <button class="navbar-btn nav-button wow fadeInRight" onclick=" window.open('/submit-property')" data-wow-delay="0.5s">İlan Ekle</button>
-                            </li>
-                        </ul>
-                        <ul class="dropdown-menu navbar-nav">
-                            <li class="wow" ><a href="/user-properties">İlanlarım</a></li>
-                        </ul>
-                    </li>
                 </div>
                 <ul class="main-nav nav navbar-nav navbar-right">
                     <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="/home">Ana Sayfa</a></li>
                     <li class="wow fadeInDown" data-wow-delay="0.2s"><a class="" href="/properties">İlanlar</a></li>
                     <li class="wow fadeInDown" data-wow-delay="0.3s"><a href="/contact">İletişim</a></li>
                     <li class="wow fadeInDown" data-wow-delay="0.4s"><a href="/documents">Belgelerimiz</a></li>
-                    
-
-
+                    <li class="dropdown ymm-sw " data-wow-delay="0.1s" id="logged-in-user-dropdown">
+                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown" data-hover="dropdown" data-delay="200">
+                            <span id="userName">Kullanıcı</span><b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu navbar-nav">
+                            <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/users/" id="profileLink">Profil</a></li>
+                            <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/submit-property">İlan Ekle</a></li>
+                            <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/user-properties">İlanlarım</a></li>
+                            <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="#" id="logoutButton">Çıkış Yap</a></li>
+                        </ul>
+                    </li>
                 </ul>
-
-                <script>
-                   /* document.addEventListener("DOMContentLoaded", function () {
-                        const authToken = localStorage.getItem("AuthToken");
-                        const userName = localStorage.getItem("userName");
-
-                        if (authToken && userName) {
-                            document.getElementById("userName").textContent = userName;
-                            document.getElementById("logged-in-user-dropdown").style.display = "inline";
-                        }else{
-                            document.getElementById("logged-inuser-dropdown").style.display = "none";
-                        }
-                    }); */
-                </script>
-
-                <script>
-                    document.addEventListener("DOMContentLoaded", function () {
-                        document.addEventListener("DOMContentLoaded", function () {
-                            const authToken = localStorage.getItem("AuthToken");
-                            const userName = localStorage.getItem("userName");
-
-                            if (authToken && userName) {
-                                document.getElementById("userName").textContent = userName;
-                                document.getElementById("logged-in-user-dropdown").style.display = "inline";
-
-                                document.getElementById("logoutButton").addEventListener("click", function () {
-                                    localStorage.removeItem("AuthToken");
-                                    localStorage.removeItem("userName");
-                                    document.cookie = "AuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                                    window.location.href = "/";
-                                });
-
-                            } else {
-                                document.getElementById("logged-inuser-dropdown").style.display = "none";
-                            }
-                        });
-                    });
-                </script>
 
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -451,6 +405,7 @@
 
     <script src="assets/js/main.js"></script>
     <script src = "assets/js/advert-functions.js"></script>
+    <script src = "assets/js/logged-user-dropdown.js"></script>
 
     <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
     <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
