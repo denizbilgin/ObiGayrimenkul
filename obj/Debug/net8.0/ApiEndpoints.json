@@ -201,7 +201,7 @@
       },
       {
         "Name": "Videos",
-        "Type": "System.String[]",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -435,7 +435,7 @@
       },
       {
         "Name": "Videos",
-        "Type": "System.String[]",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -597,6 +597,11 @@
         "IsRequired": false
       },
       {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "FacebookLink",
         "Type": "System.String",
         "IsRequired": false
@@ -706,6 +711,11 @@
       },
       {
         "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
         "Type": "System.String",
         "IsRequired": false
       },

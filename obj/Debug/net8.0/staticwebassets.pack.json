@@ -281,19 +281,11 @@
       "PackagePath": "staticwebassets\\assets\\img\\emrah-oguz.jpg"
     },
     {
-<<<<<<< HEAD
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\favicon.ico",
       "PackagePath": "staticwebassets\\assets\\img\\favicon.ico"
     },
     {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\footer-logo-2.png",
-=======
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\favicon.ico",
-      "PackagePath": "staticwebassets\\assets\\img\\favicon.ico"
-    },
-    {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\footer-logo-2.png",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "PackagePath": "staticwebassets\\assets\\img\\footer-logo-2.png"
     },
     {

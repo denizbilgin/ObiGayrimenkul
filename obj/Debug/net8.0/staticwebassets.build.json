@@ -1,10 +1,6 @@
 {
   "Version": 1,
-<<<<<<< HEAD
   "Hash": "wpITvXKrk6akcN73NemfTLjDGYdnfFLgrFfvZwvVEEM=",
-=======
-  "Hash": "G+aG+qdE/hF5VcrinfXXw9FW/lyBc/UZWdcgCwzDxDA=",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
   "Source": "ObiGayrimenkul",
   "BasePath": "_content/ObiGayrimenkul",
   "Mode": "Default",
@@ -439,17 +435,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\docs\\test.pdf"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\fonts\\FontAwesome.otf",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\fonts\\FontAwesome.otf",
-      "SourceId": "ObiGayrimenkul",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/fonts/FontAwesome.otf",
       "AssetKind": "All",
@@ -465,7 +454,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\fonts\\FontAwesome.otf"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\fonts\\FontAwesome_1.otf",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
@@ -657,9 +645,6 @@
     },
     {
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\fonts\\fontello\\fontello.eot",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\fonts\\FontAwesome_1.otf",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -982,17 +967,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\arrow-right.svg"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\arrows.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\arrows.png",
-      "SourceId": "ObiGayrimenkul",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/img/arrows.png",
       "AssetKind": "All",
@@ -1008,7 +986,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\arrows.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\arrows-small.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
@@ -1029,9 +1006,6 @@
     },
     {
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\bg-footer.jpg",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\arrows-small.png",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -1373,14 +1347,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\emrah-oguz.jpg"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\favicon.ico",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\favicon.ico",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/img/favicon.ico",
       "AssetKind": "All",
@@ -1396,17 +1366,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\favicon.ico"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\footer-logo.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\footer-logo.png",
-      "SourceId": "ObiGayrimenkul",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/img/footer-logo.png",
       "AssetKind": "All",
@@ -1422,11 +1385,7 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\footer-logo.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\footer-logo-2.png",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\footer-logo-2.png",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -1445,17 +1404,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\footer-logo-2.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\bed.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\bed.png",
-      "SourceId": "ObiGayrimenkul",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/img/icon/bed.png",
       "AssetKind": "All",
@@ -1471,11 +1423,7 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\bed.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\bed-orange.png",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\bed-orange.png",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -1513,7 +1461,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\cars.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\cars-orange.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
@@ -1534,9 +1481,6 @@
     },
     {
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\declined.png",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\cars-orange.png",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -1593,17 +1537,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\floors.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\os.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\os.png",
-      "SourceId": "ObiGayrimenkul",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/img/icon/os.png",
       "AssetKind": "All",
@@ -1619,7 +1556,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\os.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\os-orange.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
@@ -1640,9 +1576,6 @@
     },
     {
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\pending.png",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\os-orange.png",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -1661,17 +1594,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\pending.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\picine.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\picine.png",
-      "SourceId": "ObiGayrimenkul",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/img/icon/picine.png",
       "AssetKind": "All",
@@ -1687,7 +1613,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\picine.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\picine-orange.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
@@ -1708,9 +1633,6 @@
     },
     {
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\rent-orange.png",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\picine-orange.png",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -1729,17 +1651,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\rent-orange.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\room.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\room.png",
-      "SourceId": "ObiGayrimenkul",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/img/icon/room.png",
       "AssetKind": "All",
@@ -1755,7 +1670,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\room.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\room-orange.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
@@ -1776,9 +1690,6 @@
     },
     {
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\sale-orange.png",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\room-orange.png",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -1797,17 +1708,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\sale-orange.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\shawer.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\shawer.png",
-      "SourceId": "ObiGayrimenkul",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/img/icon/shawer.png",
       "AssetKind": "All",
@@ -1823,7 +1727,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\shawer.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\shawer-orange.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
@@ -1844,9 +1747,6 @@
     },
     {
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\user.png",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\shawer-orange.png",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -1884,7 +1784,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\verified.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon-shearch.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
@@ -1905,9 +1804,6 @@
     },
     {
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\logo.png",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon-shearch.png",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -2477,17 +2373,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\skin\\square@2x.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\skin\\yellow.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\skin\\yellow.png",
-      "SourceId": "ObiGayrimenkul",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/img/skin/yellow.png",
       "AssetKind": "All",
@@ -2522,11 +2411,7 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\skin\\yellow@2x.png"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\skin\\yellow_1.png",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\skin\\yellow_1.png",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -2602,7 +2487,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\slide1\\slider-image-4.jpg"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\slide-2.jpg",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
@@ -2623,9 +2507,6 @@
     },
     {
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\slide2\\1.jpg",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\slide-2.jpg",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -3119,17 +3000,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\advert-listing-functions.js"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\bootstrap.min.js",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\bootstrap.min.js",
-      "SourceId": "ObiGayrimenkul",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -3145,7 +3019,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\bootstrap.min.js"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\bootstrap-hover-dropdown.js",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
@@ -3223,9 +3096,6 @@
     },
     {
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\documents-funtions.js",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\bootstrap-hover-dropdown.js",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -3320,17 +3190,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\icheck.min.js"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\jquery.ba-cond.min.js",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\jquery.ba-cond.min.js",
-      "SourceId": "ObiGayrimenkul",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/js/jquery.ba-cond.min.js",
       "AssetKind": "All",
@@ -3422,7 +3285,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\jquery.validate.min.js"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\jquery-1.10.2.min.js",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
@@ -3443,9 +3305,6 @@
     },
     {
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\lightslider.min.js",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\jquery-1.10.2.min.js",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -3502,17 +3361,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\main.js"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\modernizr.custom.79639.js",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\modernizr.custom.79639.js",
-      "SourceId": "ObiGayrimenkul",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/js/modernizr.custom.79639.js",
       "AssetKind": "All",
@@ -3528,7 +3380,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\modernizr.custom.79639.js"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\modernizr-2.6.2.min.js",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
@@ -3549,9 +3400,6 @@
     },
     {
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\owl.carousel.min.js",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\modernizr-2.6.2.min.js",
->>>>>>> e717d04965238f443d041b358383c3fbff7e503b
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",

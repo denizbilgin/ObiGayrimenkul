@@ -15,6 +15,9 @@ namespace ObiGayrimenkul.Models
         [FirestoreProperty("email")]
         public string Email { get; set; }
 
+        [FirestoreProperty("description")]
+        public string Description { get; set; }
+
         [FirestoreProperty("facebook_link")]
         public string FacebookLink { get; set; }
 

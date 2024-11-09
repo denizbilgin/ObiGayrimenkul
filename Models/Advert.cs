@@ -83,7 +83,7 @@ public class Advert : IFirebaseEntity
     public int WhichFloor { get; set; }
 
     [FirestoreProperty("videos")]
-    public string[] Videos { get; set; }
+    public string Videos { get; set; }
 
     [FirestoreProperty("images")]
     public string[] AdvertImages { get; set; }
