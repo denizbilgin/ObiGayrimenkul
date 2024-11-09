@@ -202,6 +202,18 @@ document.addEventListener("DOMContentLoaded", async function() {
             document.getElementById("advert-heating-value").innerHTML = heatingTypes[data.heating] ? heatingTypes[data.heating] : "Diğer";
             document.getElementById("advert-dues-value").innerHTML = data.dues + " TL Aidat";
             
+            const date = data.publish_date.toDate();
+            const formattedDate = date.toLocaleString("tr-TR", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+            });
+
+            document.getElementById("advert-upload-date-value").innerHTML = formattedDate;
+            
             
             const detailsList = document.querySelector(".additional-details-list");
             extraDetails.forEach(field => {
