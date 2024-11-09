@@ -1,10 +1,6 @@
 {
   "Version": 1,
-<<<<<<< HEAD
-  "Hash": "G+aG+qdE/hF5VcrinfXXw9FW/lyBc/UZWdcgCwzDxDA=",
-=======
-  "Hash": "9h8FO+zSzlL4BiwEX8Gc7B5Kl6dbNYsd+O5sX+NDNz4=",
->>>>>>> c87250287f89104a92fb9431e0246874a2483c43
+  "Hash": "craPqbLO/tfljPwbj3lZlJ+4kQaDm1xI+mA6QfDAiEs=",
   "Source": "ObiGayrimenkul",
   "BasePath": "_content/ObiGayrimenkul",
   "Mode": "Default",
@@ -1408,6 +1404,25 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\footer-logo-2.png"
     },
     {
+      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\balcony-orange.png",
+      "SourceId": "ObiGayrimenkul",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "BasePath": "_content/ObiGayrimenkul",
+      "RelativePath": "assets/img/icon/balcony-orange.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\balcony-orange.png"
+    },
+    {
       "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\bed.png",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
@@ -1444,6 +1459,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\bed-orange.png"
+    },
+    {
+      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\blueprint.png",
+      "SourceId": "ObiGayrimenkul",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "BasePath": "_content/ObiGayrimenkul",
+      "RelativePath": "assets/img/icon/blueprint.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\blueprint.png"
+    },
+    {
+      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\building-orange.png",
+      "SourceId": "ObiGayrimenkul",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "BasePath": "_content/ObiGayrimenkul",
+      "RelativePath": "assets/img/icon/building-orange.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\building-orange.png"
     },
     {
       "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\cars.png",
@@ -1520,6 +1573,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\district.png"
+    },
+    {
+      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\district-orange.png",
+      "SourceId": "ObiGayrimenkul",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "BasePath": "_content/ObiGayrimenkul",
+      "RelativePath": "assets/img/icon/district-orange.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\district-orange.png"
+    },
+    {
+      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\floor-orange.png",
+      "SourceId": "ObiGayrimenkul",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "BasePath": "_content/ObiGayrimenkul",
+      "RelativePath": "assets/img/icon/floor-orange.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\floor-orange.png"
     },
     {
       "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\floors.png",
@@ -1634,6 +1725,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\picine-orange.png"
+    },
+    {
+      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\quarter-orange.png",
+      "SourceId": "ObiGayrimenkul",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "BasePath": "_content/ObiGayrimenkul",
+      "RelativePath": "assets/img/icon/quarter-orange.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\icon\\quarter-orange.png"
     },
     {
       "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\rent-orange.png",
@@ -3327,13 +3437,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\lightslider.min.js"
     },
     {
-<<<<<<< HEAD
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\login-form.js",
-=======
-      "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\logged-user-dropdown.js",
+      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\logged-user-dropdown.js",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/js/logged-user-dropdown.js",
       "AssetKind": "All",
@@ -3349,8 +3456,7 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\logged-user-dropdown.js"
     },
     {
-      "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\login-form.js",
->>>>>>> c87250287f89104a92fb9431e0246874a2483c43
+      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\login-form.js",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -3481,6 +3587,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\js\\price-range.js"
+    },
+    {
+      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\properties-functions.js",
+      "SourceId": "ObiGayrimenkul",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "BasePath": "_content/ObiGayrimenkul",
+      "RelativePath": "assets/js/properties-functions.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\properties-functions.js"
     },
     {
       "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\search-functions.js",

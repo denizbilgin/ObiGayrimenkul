@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ObiGayrimenkul")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4e624a2a006263b2ea0241900656e1452cc6a40")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ffdffa0b55a1c398253b6132b53f1defb1268f0d")]
 [assembly: System.Reflection.AssemblyProductAttribute("ObiGayrimenkul")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ObiGayrimenkul")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
