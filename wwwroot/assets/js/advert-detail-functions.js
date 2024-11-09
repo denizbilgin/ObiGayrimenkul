@@ -237,9 +237,17 @@ document.addEventListener("DOMContentLoaded", async function() {
 
             const user = await getUserById(db, data.user_id);
             if (user){
-                console.log(user);
-                document.getElementById("whatsapp-button").setAttribute("href", `https://wa.me/${user.phone_number}/?text=Merhaba ${data.title} başlıklı dairenin detayları hakkında görüşmek istiyorum.`)
-
+                document.getElementById("whatsapp-button").setAttribute("href", `https://wa.me/${user.phone_number}/?text=Merhaba ${data.title} başlıklı dairenin detayları hakkında görüşmek istiyorum.`);
+                document.getElementById("user-name").innerHTML = user.name + (user.mid_name === "" ? "": " " + user.mid_name)  + " " + user.surname;
+                document.getElementById("user-facebook-link").setAttribute("href", user.facebook_link);
+                document.getElementById("user-instagram-link").setAttribute("href", user.instagram_link);
+                document.getElementById("user-document-number").innerHTML = user.auth_doc_number;
+                document.getElementById("user-email").innerHTML = user.email;
+                let formattedPhoneNumber = user.phone_number.replace(/^\+90/, "0");
+                formattedPhoneNumber = formattedPhoneNumber.replace(/(\d{4})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3 $4");
+                document.getElementById("user-phone-number").innerHTML = formattedPhoneNumber;
+                document.getElementById("user-description").innerHTML = user.description.length > 100 ? user.description.slice(0, 100) + "..." : user.description;
+                
             }
         }
     } catch (error) {
