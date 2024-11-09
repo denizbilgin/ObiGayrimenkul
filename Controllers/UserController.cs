@@ -27,6 +27,16 @@ namespace ObiGayrimenkul.Controllers
             return Ok(users);
         }
 
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetProfile(string userId , CancellationToken ct)
+        {
+            var user = await _firestore.Get<User>(userId, "users", ct);
+            if (user == null) {
+                return StatusCode(404);
+            }
+            return View("~/Views/Home/user-profile.cshtml");
+        }
+
         [HttpPost("delete/{id}")]
         public async Task<IActionResult> Delete(string id, CancellationToken ct)
         {
@@ -47,8 +57,8 @@ namespace ObiGayrimenkul.Controllers
             {
                 return NotFound();
             }
-            //return View();
-            return Ok(user);
+            return View("~/Views/Home/user-profile.cshtml");
+
         }
 
 

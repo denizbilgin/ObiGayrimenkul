@@ -30,6 +30,8 @@
                 if (data.success) {
                     window.location.href = "/home";
                     localStorage.setItem("userName", data.userName);
+                    localStorage.setItem("AuthToken", data.authToken);
+                    localStorage.setItem("userId", data.userId);
                 }
             })
             .catch(error => {
