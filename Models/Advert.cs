@@ -98,7 +98,7 @@ public class Advert : IFirebaseEntity
     public bool Status { get; set; }
 
     [FirestoreProperty("user_id")]
-    public int UserID { get; set; }
+    public string UserID { get; set; }
 
     [FirestoreProperty("building_floor_number")]
     public int BuildingFloors {  get; set; }
