@@ -92,20 +92,21 @@ namespace ObiGayrimenkul.Controllers
             }
         }
 
-        [HttpGet("edit/{id}")]
+       /* [HttpGet("edit/{id}")]
         public async Task<IActionResult> Edit(string id, CancellationToken ct)
         {
             var advert = await _firestore.Get<Advert>(id,"adverts", ct);
+            
             if (advert == null)
             {
                 return NotFound();
             }
             // return View(advert);
             return Ok(advert);
-        }
+        }*/
 
         [HttpPost("edit/{id}")]
-        public async Task<IActionResult> Edit(string id, Advert advert, CancellationToken ct)
+        public async Task<IActionResult> Edit(string id,[FromBody] Advert advert, CancellationToken ct)
         {
             if (id != advert.Id.ToString())
             {
@@ -113,23 +114,13 @@ namespace ObiGayrimenkul.Controllers
             }
 
             if (ModelState.IsValid)
-            {
-                try
-                {
+            {   
                     await _firestore.Update(advert,"adverts", ct);
-                }
-                catch
-                {
+                
                     if (!await AdvertExists(advert.Id.ToString(), ct))
                     {
                         return NotFound();
                     }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
             }
             return Ok(advert);
         }

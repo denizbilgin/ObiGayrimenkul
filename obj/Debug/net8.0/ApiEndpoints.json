@@ -278,22 +278,6 @@
     "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
     "Method": "Edit",
     "RelativePath": "adverts/edit/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
-    "Method": "Edit",
-    "RelativePath": "adverts/edit/{id}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -301,177 +285,12 @@
       {
         "Name": "id",
         "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Id",
-        "Type": "System.String",
         "IsRequired": true
       },
       {
-        "Name": "AdvertTitle",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Approved",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "Price",
-        "Type": "System.Double",
-        "IsRequired": false
-      },
-      {
-        "Name": "PublishDate",
-        "Type": "Google.Cloud.Firestore.Timestamp",
-        "IsRequired": false
-      },
-      {
-        "Name": "Description",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Address",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "SquareMeterGross",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "SquareMeterNet",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "RoomNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "BuildingAge",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "NumberOfBathrooms",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "NumberOfFloors",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasGarage",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsFurnished",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasLift",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HaveCellar",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsCloseToHealthCenter",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsCloseToSchool",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsInSite",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "Heating",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Dues",
-        "Type": "System.Double",
-        "IsRequired": false
-      },
-      {
-        "Name": "AddressDistrictID",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "AddressQuarterID",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Side",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "WhichFloor",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Videos",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "AdvertImages",
-        "Type": "System.String[]",
-        "IsRequired": false
-      },
-      {
-        "Name": "BalconyCount",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "DocumentPath",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Status",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "UserID",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "BuildingFloors",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsEarthquakeResistant",
-        "Type": "System.Boolean",
-        "IsRequired": false
+        "Name": "advert",
+        "Type": "Advert",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -506,6 +325,16 @@
     "ContainingType": "ObiGayrimenkul.Controllers.DocumentsController",
     "Method": "Index",
     "RelativePath": "documents",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.FirebaseController",
+    "Method": "Index",
+    "RelativePath": "fbase/obidatabase-3e651-firebase-adminsdk-ta9fl-2ef236de49",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -790,6 +619,22 @@
         "Name": "Surname",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.UserController",
+    "Method": "GetDetailsByID",
+    "RelativePath": "users/get-details/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

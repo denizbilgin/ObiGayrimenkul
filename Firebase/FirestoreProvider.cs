@@ -24,7 +24,14 @@ namespace ObiGayrimenkul.Firebase
         {
             var collection = _fireStoreDb.Collection(CollectionName);
             var document = collection.Document(entity.Id);
-            await document.SetAsync(entity, SetOptions.Overwrite, ct);
+            try
+            {
+                await document.SetAsync(entity, SetOptions.Overwrite, ct);
+            }catch(Exception e)
+            {
+                Console.WriteLine($"Update Hata : {e.Message}");
+            }
+
 
         }
 

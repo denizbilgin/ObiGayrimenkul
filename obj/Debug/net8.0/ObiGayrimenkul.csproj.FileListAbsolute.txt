@@ -238,3 +238,4 @@ C:\Users\Deniz\SoftwareProjects\VS Projects\ObiGayrimenkul\ObiGayrimenkul\bin\De
 C:\Users\Deniz\SoftwareProjects\VS Projects\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Deniz\SoftwareProjects\VS Projects\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Deniz\SoftwareProjects\VS Projects\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\bin\Debug\net8.0\Firebase\obidatabase-jsconfiguration.json

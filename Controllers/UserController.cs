@@ -27,6 +27,17 @@ namespace ObiGayrimenkul.Controllers
             return Ok(users);
         }
 
+        [HttpGet("get-details/{id}")]
+        public async Task<IActionResult> GetDetailsByID(string id, CancellationToken ct)
+        {
+            var user = await _firestore.Get<User>(id, "users", ct);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
+
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetProfile(string userId , CancellationToken ct)
         {

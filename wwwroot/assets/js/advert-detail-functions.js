@@ -7,7 +7,7 @@ const getAdvertById = async (db, id) => {
     try {
         const docRef = doc(db, "adverts", id);
         const docSnap = await getDoc(docRef);
-        
+
         if (docSnap.exists()) {
             return docSnap.data();
         } else {
@@ -43,7 +43,7 @@ const getImagesAndPopulateSlider = async (storage, imagePaths) => {
     const defaultThumbnailUrl = "https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/default_advert_thumbnail.webp?alt=media&token=7d5b7089-afcb-414b-a31c-cda31dbae71e";
     let imagesLoaded = 0;
 
-    if (imagePaths.length === 0){
+    if (imagePaths.length === 0) {
         const li = document.createElement("li");
         li.setAttribute("data-thumb", defaultThumbnailUrl);
         li.style.width = "720px";
@@ -69,23 +69,23 @@ const getImagesAndPopulateSlider = async (storage, imagePaths) => {
                 currentPagerPosition: 'left',
             });
         };
-    } else{
+    } else {
         for (let i = 0; i < imagePaths.length; i++) {
             const imagePath = imagePaths[i];
             const storageRef = ref(storage, imagePath);
-    
+
             try {
                 const url = await getDownloadURL(storageRef);
                 const li = document.createElement("li");
                 li.setAttribute("data-thumb", url);
                 li.style.width = "720px";
-    
+
                 const img = document.createElement("img");
                 img.setAttribute("src", url);
 
                 li.appendChild(img);
                 gallery.appendChild(li);
-    
+
                 img.onload = () => {
                     imagesLoaded++;
                     if (imagesLoaded === imagePaths.length) {
@@ -125,7 +125,7 @@ const getUserById = async (db, id) => {
     }
 }
 
-document.addEventListener("DOMContentLoaded", async function() {
+document.addEventListener("DOMContentLoaded", async function () {
     // Firebase configuration
     const firebaseConfig = {
         apiKey: "AIzaSyCyAaYIkN3pDw7L-5BoYclpbNtwPnhbNnU",
@@ -138,14 +138,15 @@ document.addEventListener("DOMContentLoaded", async function() {
         measurementId: "G-FK8D85WJKV"
     };
 
+
     const extraDetails = [
-        { key: "has_lift", label: "ASANSÖR", type:"boolean" },
-        { key: "have_cellar", label: "KİLER", type:"boolean" },
-        { key: "is_close_health_center", label: "SAĞLIK OCAĞINA YAKIN", type:"boolean" },
-        { key: "is_close_school", label: "OKULA YAKIN", type:"boolean" },
-        { key: "is_furnished", label: "EŞYALI", type:"boolean" },
-        { key: "is_in_site", label: "SİTE İÇERİSİNDE", type:"boolean" },
-        { key: "parking", label: "OTOPARK", type:"boolean" },
+        { key: "has_lift", label: "ASANSÖR", type: "boolean" },
+        { key: "have_cellar", label: "KİLER", type: "boolean" },
+        { key: "is_close_health_center", label: "SAĞLIK OCAĞINA YAKIN", type: "boolean" },
+        { key: "is_close_school", label: "OKULA YAKIN", type: "boolean" },
+        { key: "is_furnished", label: "EŞYALI", type: "boolean" },
+        { key: "is_in_site", label: "SİTE İÇERİSİNDE", type: "boolean" },
+        { key: "parking", label: "OTOPARK", type: "boolean" },
     ];
 
     const sideTypes = {
@@ -169,13 +170,16 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 
     try {
+        /*const firebaseConfig = await fetch('/fbase/obidatabase-3e651-firebase-adminsdk-ta9fl-2ef236de49')
+            .then((response) => response.json())
+            .then((json) => console.log(json));*/
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const storage = getStorage(app);
 
         const path = window.location.pathname;
         const advertId = path.split('/').pop();
-        
+
         const data = await getAdvertById(db, advertId);
 
         if (data) {
@@ -201,7 +205,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             document.getElementById("advert-side-value").innerHTML = sideTypes[data.side] ? sideTypes[data.side] + " Cephe" : "Diğer";
             document.getElementById("advert-heating-value").innerHTML = heatingTypes[data.heating] ? heatingTypes[data.heating] : "Diğer";
             document.getElementById("advert-dues-value").innerHTML = data.dues + " TL Aidat";
-            
+
             const date = data.publish_date.toDate();
             const formattedDate = date.toLocaleString("tr-TR", {
                 day: "2-digit",
@@ -213,8 +217,8 @@ document.addEventListener("DOMContentLoaded", async function() {
             });
 
             document.getElementById("advert-upload-date-value").innerHTML = formattedDate;
-            
-            
+
+
             const detailsList = document.querySelector(".additional-details-list");
             extraDetails.forEach(field => {
                 const listItem = document.createElement("li");
@@ -228,7 +232,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                 } else {
                     valueSpan.textContent = data[field.key] || "";
                 }
-                
+
                 listItem.appendChild(titleSpan);
                 listItem.appendChild(valueSpan);
 
@@ -236,9 +240,9 @@ document.addEventListener("DOMContentLoaded", async function() {
             });
 
             const user = await getUserById(db, data.user_id);
-            if (user){
+            if (user) {
                 document.getElementById("whatsapp-button").setAttribute("href", `https://wa.me/${user.phone_number}/?text=Merhaba ${data.title} başlıklı dairenin detayları hakkında görüşmek istiyorum.`);
-                document.getElementById("user-name").innerHTML = user.name + (user.mid_name === "" ? "": " " + user.mid_name)  + " " + user.surname;
+                document.getElementById("user-name").innerHTML = user.name + (user.mid_name === "" ? "" : " " + user.mid_name) + " " + user.surname;
                 document.getElementById("user-facebook-link").setAttribute("href", user.facebook_link);
                 document.getElementById("user-instagram-link").setAttribute("href", user.instagram_link);
                 document.getElementById("user-document-number").innerHTML = user.auth_doc_number;
@@ -247,7 +251,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                 formattedPhoneNumber = formattedPhoneNumber.replace(/(\d{4})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3 $4");
                 document.getElementById("user-phone-number").innerHTML = formattedPhoneNumber;
                 document.getElementById("user-description").innerHTML = user.description.length > 100 ? user.description.slice(0, 100) + "..." : user.description;
-                
+
             }
         }
     } catch (error) {
