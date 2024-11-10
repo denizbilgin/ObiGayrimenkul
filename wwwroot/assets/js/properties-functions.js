@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const thumbnailUrl = await getThumbnailUrl(storage, advert.advertImages[0]);
         
         const advertCardHtml = `
-            <div class="col-sm-6 col-md-3 p0">
+            <div class="col-sm-6 col-md-4 p0">
                 <div class="box-two proerty-item">
                     <div class="item-thumb">
                         <a href="adverts/${advert.id}"><img src="${thumbnailUrl}"></a>

@@ -106,7 +106,7 @@
         <div class="container">
             <div class="row">
                 <div class="page-head-content">
-                    <h1 class="page-title">Hello : <span class="orange strong">Kimaro kyoto</span></h1>
+                    <h1 class="page-title">Merhaba : <span id="user-header-name" class="orange strong"></span></h1>
                 </div>
             </div>
         </div>
@@ -122,8 +122,8 @@
                     <form action="" method="">
                         <div class="profiel-header">
                             <h3>
-                                <b>BUILD</b> YOUR PROFILE <br>
-                                <small>This information will let us know more about you.</small>
+                                PROFİLİNİ <b>GÜNCELLE</b> <br>
+                                <small>Değiştirmek istediğin alanları değiştirdikten sonra <b>Kaydet</b> butonuna tıklaman yeterli. </small>
                             </h3>
                             <hr>
                         </div>
@@ -135,33 +135,33 @@
                                         <img src="~/assets/img/emrah-oguz.jpg" class="picture-src" id="wizardPicturePreview" title="" />
                                         <input type="file" id="wizard-picture">
                                     </div>
-                                    <h6>Choose Picture</h6>
+                                    <h6>BİR RESİM SEÇ</h6>
                                 </div>
                             </div>
 
                             <div class="col-sm-3 padding-top-25">
 
                                 <div class="form-group">
-                                    <label>First Name <small>(required)</small></label>
-                                    <input name="firstname" type="text" class="form-control" placeholder="Andrew...">
+                                    <label>Ad</label>
+                                    <input id="user-firstname" name="firstname" type="text" class="form-control" placeholder="Ali...">
                                 </div>
                                 <div class="form-group">
-                                    <label>Last Name <small>(required)</small></label>
-                                    <input name="lastname" type="text" class="form-control" placeholder="Smith...">
+                                    <label>Orta Ad</label>
+                                    <input id="user-midname" name="midname" type="text" class="form-control" placeholder="Ahmet...">
                                 </div>
                                 <div class="form-group">
-                                    <label>Email <small>(required)</small></label>
-                                    <input name="email" type="email" class="form-control" placeholder="andrew@email@email.com.com">
+                                    <label>Soyad</label>
+                                    <input id="user-lastname" name="lastname" type="text" class="form-control" placeholder="Yılmaz...">
                                 </div>
                             </div>
                             <div class="col-sm-3 padding-top-25">
                                 <div class="form-group">
-                                    <label>Password <small>(required)</small></label>
-                                    <input name="Password" type="password" class="form-control">
+                                    <label>Belge Numarası</label>
+                                    <input id="user-document-number" name="document-number" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label>Confirm password : <small>(required)</small></label>
-                                    <input type="password" class="form-control">
+                                    <label>Email</label>
+                                    <input id="user-email" name="email" type="email" class="form-control" placeholder="aliyilmaz@email.com">
                                 </div>
                             </div>
 
@@ -174,30 +174,25 @@
                             <div class="col-sm-5 col-sm-offset-1">
                                 <div class="form-group">
                                     <label>Facebook :</label>
-                                    <input name="Facebook" type="text" class="form-control" placeholder="https://facebook.com/user">
+                                    <input id="user-facebook-link" name="facebook" type="text" class="form-control" placeholder="https://facebook.com/user">
                                 </div>
                                 <div class="form-group">
-                                    <label>Twitter :</label>
-                                    <input name="Twitter" type="text" class="form-control" placeholder="https://Twitter.com/user">
-                                </div>
-                                <div class="form-group">
-                                    <label>Website :</label>
-                                    <input name="website" type="text" class="form-control" placeholder="https://yoursite.com/">
+                                    <label>İnstagram :</label>
+                                    <input id="user-instagram-link" name="instagram" type="text" class="form-control" placeholder="https://instagram.com/user">
                                 </div>
                             </div>
 
                             <div class="col-sm-5">
                                 <div class="form-group">
-                                    <label>Public email :</label>
-                                    <input name="p-email" type="email" class="form-control" placeholder="p-email@rmail.com">
+                                    <label>Telefon :</label>
+                                    <input id="user-phone-number" name="phone-number" class="form-control" placeholder="+905325343366">
                                 </div>
+                            </div>
+
+                            <div class="col-sm-10 col-sm-offset-1">
                                 <div class="form-group">
-                                    <label>Phone :</label>
-                                    <input name="Phone" type="text" class="form-control" placeholder="+1 9090909090">
-                                </div>
-                                <div class="form-group">
-                                    <label>FAX :</label>
-                                    <input name="FAX" type="text" class="form-control" placeholder="+1 9090909090">
+                                    <label>Açıklama :</label>
+                                    <input id="user-description" name="description" class="form-control" type="textarea" placeholder="Açıklama giriniz...">
                                 </div>
                             </div>
 
@@ -205,7 +200,7 @@
 
                         <div class="col-sm-5 col-sm-offset-1">
                             <br>
-                            <input type='button' class='btn btn-finish btn-primary' name='finish' value='Finish' />
+                            <input type='button' class='btn btn-finish btn-primary' name='finish' value='Kaydet' onclick="updateUser()"/>
                         </div>
                         <br>
                     </form>
@@ -296,8 +291,50 @@
     <script src="~/assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
     <script src="~/assets/js/jquery.validate.min.js"></script>
     <script src="~/assets/js/wizard.js"></script>
-
+    <script type="module" src="~/assets/js/user-profile-functions.js"></script>
     <script src="~/assets/js/main.js"></script>
+
+
+    <script>
+        async function updateUser(){
+            const path = window.location.pathname;
+            const userId = path.split('/').pop();
+            const url = `/users/edit/${userId}`;
+
+            const userData = {
+                id: userId,
+                name: document.getElementById("user-firstname").value,
+                mid_name: document.getElementById("user-midname").value,
+                surname: document.getElementById("user-lastname").value,
+                auth_doc_number: document.getElementById("user-document-number").value,
+                email: document.getElementById("user-email").value,
+                img_path: "aaaaa",
+                facebook_link: document.getElementById("user-facebook-link").value,
+                instagram_link: document.getElementById("user-instagram-link").value,
+                phone_number: document.getElementById("user-phone-number").value,
+                description: document.getElementById("user-description").value
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                if (response.ok) {
+                    console.log("Kullanıcı bilgileri başarıyla güncellendi.");
+                    window.location.href = `/users/${userId}`;
+                } else {
+                    console.log("Kullanıcı bilgileri güncellenemedi.");
+                }
+            } catch (error) {
+                console.error("Hata:", error);
+            }
+        }
+    </script>
 
 
 </body>
