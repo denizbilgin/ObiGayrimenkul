@@ -297,15 +297,11 @@
       "PackagePath": "staticwebassets\\assets\\img\\icon-shearch.png"
     },
     {
-<<<<<<< HEAD
-      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\bed-orange.png",
-=======
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\balcony-orange.png",
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\balcony-orange.png",
       "PackagePath": "staticwebassets\\assets\\img\\icon\\balcony-orange.png"
     },
     {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\bed-orange.png",
->>>>>>> 84eff2166a54b668a59a5658a68e71e1c52aac03
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\bed-orange.png",
       "PackagePath": "staticwebassets\\assets\\img\\icon\\bed-orange.png"
     },
     {
@@ -313,19 +309,15 @@
       "PackagePath": "staticwebassets\\assets\\img\\icon\\bed.png"
     },
     {
-<<<<<<< HEAD
-      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\cars-orange.png",
-=======
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\blueprint.png",
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\blueprint.png",
       "PackagePath": "staticwebassets\\assets\\img\\icon\\blueprint.png"
     },
     {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\building-orange.png",
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\building-orange.png",
       "PackagePath": "staticwebassets\\assets\\img\\icon\\building-orange.png"
     },
     {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\cars-orange.png",
->>>>>>> 84eff2166a54b668a59a5658a68e71e1c52aac03
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\cars-orange.png",
       "PackagePath": "staticwebassets\\assets\\img\\icon\\cars-orange.png"
     },
     {
@@ -337,27 +329,19 @@
       "PackagePath": "staticwebassets\\assets\\img\\icon\\declined.png"
     },
     {
-<<<<<<< HEAD
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\district-orange.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icon\\district-orange.png"
+    },
+    {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\district.png",
       "PackagePath": "staticwebassets\\assets\\img\\icon\\district.png"
     },
     {
-      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\floors.png",
-=======
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\district-orange.png",
-      "PackagePath": "staticwebassets\\assets\\img\\icon\\district-orange.png"
-    },
-    {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\district.png",
-      "PackagePath": "staticwebassets\\assets\\img\\icon\\district.png"
-    },
-    {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\floor-orange.png",
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\floor-orange.png",
       "PackagePath": "staticwebassets\\assets\\img\\icon\\floor-orange.png"
     },
     {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\floors.png",
->>>>>>> 84eff2166a54b668a59a5658a68e71e1c52aac03
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\floors.png",
       "PackagePath": "staticwebassets\\assets\\img\\icon\\floors.png"
     },
     {
@@ -381,15 +365,11 @@
       "PackagePath": "staticwebassets\\assets\\img\\icon\\picine.png"
     },
     {
-<<<<<<< HEAD
-      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\rent-orange.png",
-=======
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\quarter-orange.png",
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\quarter-orange.png",
       "PackagePath": "staticwebassets\\assets\\img\\icon\\quarter-orange.png"
     },
     {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\rent-orange.png",
->>>>>>> 84eff2166a54b668a59a5658a68e71e1c52aac03
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\img\\icon\\rent-orange.png",
       "PackagePath": "staticwebassets\\assets\\img\\icon\\rent-orange.png"
     },
     {
@@ -741,19 +721,11 @@
       "PackagePath": "staticwebassets\\assets\\js\\lightslider.min.js"
     },
     {
-<<<<<<< HEAD
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\logged-user-dropdown.js",
       "PackagePath": "staticwebassets\\assets\\js\\logged-user-dropdown.js"
     },
     {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\login-form.js",
-=======
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\logged-user-dropdown.js",
-      "PackagePath": "staticwebassets\\assets\\js\\logged-user-dropdown.js"
-    },
-    {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\login-form.js",
->>>>>>> 84eff2166a54b668a59a5658a68e71e1c52aac03
       "PackagePath": "staticwebassets\\assets\\js\\login-form.js"
     },
     {
@@ -781,27 +753,19 @@
       "PackagePath": "staticwebassets\\assets\\js\\price-range.js"
     },
     {
-<<<<<<< HEAD
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\properties-functions.js",
+      "PackagePath": "staticwebassets\\assets\\js\\properties-functions.js"
+    },
+    {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\search-functions.js",
       "PackagePath": "staticwebassets\\assets\\js\\search-functions.js"
     },
     {
-      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\wizard.js",
-=======
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\properties-functions.js",
-      "PackagePath": "staticwebassets\\assets\\js\\properties-functions.js"
-    },
-    {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\search-functions.js",
-      "PackagePath": "staticwebassets\\assets\\js\\search-functions.js"
-    },
-    {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\user-profile-functions.js",
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\user-profile-functions.js",
       "PackagePath": "staticwebassets\\assets\\js\\user-profile-functions.js"
     },
     {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\wizard.js",
->>>>>>> 84eff2166a54b668a59a5658a68e71e1c52aac03
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\wizard.js",
       "PackagePath": "staticwebassets\\assets\\js\\wizard.js"
     },
     {

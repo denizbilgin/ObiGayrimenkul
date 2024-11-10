@@ -74,7 +74,7 @@ namespace ObiGayrimenkul.Controllers
 
 
         [HttpPost("edit/{id}")]
-        public async Task<IActionResult> Update(string id, User user, CancellationToken ct)
+        public async Task<IActionResult> Update(string id,[FromBody] User user, CancellationToken ct)
         {
             if (id != user.Id.ToString())
             {
@@ -82,22 +82,12 @@ namespace ObiGayrimenkul.Controllers
             }
             if (ModelState.IsValid)
             {
-                try
+                if (!await UserExists(user.Id.ToString(), ct))
                 {
-                    await _firestore.Update<User>(user, "users", ct);
+                    return NotFound();
                 }
-                catch (Exception ex)
-                {
-                    if (!await UserExists(user.Id.ToString(), ct))
-                    {
-                        return NotFound(ex.Message);
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+
+                await _firestore.Update<User>(user, "users", ct);
             }
             return Ok(user);
         }
