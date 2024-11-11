@@ -485,6 +485,11 @@
         "Name": "Surname",
         "Type": "System.String",
         "IsRequired": false
+      },
+      {
+        "Name": "ImgPath",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
