@@ -200,7 +200,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Videos",
+        "Name": "Video",
         "Type": "System.String",
         "IsRequired": false
       },

@@ -21,7 +21,7 @@ const getUserById = async (id) => {
     } catch (error) {
         console.log("Bir hata oluştu:", error);
     }
-}
+};
 
 export async function updateUser(){
     const path = window.location.pathname;
@@ -69,7 +69,7 @@ export async function updateUser(){
     } catch (error) {
         console.error("Hata:", error);
     }
-}
+};
 
 const getFirebaseConfigurations = async () => {
     const url = '/fbase/obidatabase-3e651-firebase-adminsdk-ta9fl-2ef236de49';
@@ -93,7 +93,7 @@ const getFirebaseConfigurations = async () => {
     } catch (error) {
         console.log("Bir hata oluştu:", error);
     }
-}
+};
 
 const getUserPhotoFromStorage = async (app, user) => {
     const storage = getStorage(app);

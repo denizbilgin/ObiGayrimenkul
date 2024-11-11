@@ -1,35 +1,100 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getFirestore, collection, getDocs, query, where, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
 
-const getAdvertById = async (db, id) => {
-    try {
-        const docRef = doc(db, "adverts", id);
-        const docSnap = await getDoc(docRef);
+const getAdvertById = async (id) => {
+    const url = `/adverts/get-details/${id}`;
 
-        if (docSnap.exists()) {
-            return docSnap.data();
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            const advertData = await response.json();
+            return advertData;
         } else {
-            console.log("Belge bulunamadı.");
-            return null;
+            console.log("İlan bulunamadı");
         }
     } catch (error) {
-        console.error("Belge alınırken hata oluştu:", error);
-        throw error;
+        console.log("Bir hata oluştu:", error);
     }
 };
 
-const getPlaceNameById = async (db, place_id) => {
+const getUserById = async (id) => {
+    const url = `/users/get-details/${id}`;
+
     try {
-        const docRef = doc(db, 'district_and_quarters', String(place_id));
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            const userData = await response.json();
+            return userData;
+        } else {
+            console.log("Kullanıcı bulunamadı");
+        }
+    } catch (error) {
+        console.log("Bir hata oluştu:", error);
+    }
+};
+
+const getFirebaseConfigurations = async () => {
+    const url = '/fbase/obidatabase-3e651-firebase-adminsdk-ta9fl-2ef236de49';
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Firebase yapılandırması alınamadı");
+        }
+
+        const firebaseConfig = await response.json();
+        const app = initializeApp(firebaseConfig);
+        
+        return app
+    } catch (error) {
+        console.log("Bir hata oluştu:", error);
+    }
+};
+
+const getUserPhotoFromStorage = async (app, user) => {
+    const storage = getStorage(app);
+
+    const userImageRef = ref(storage, user.imgPath);
+    try {
+        const userImageUrl = await getDownloadURL(userImageRef);
+        return userImageUrl;
+    } catch (error) {
+        const defaultImageRef = ref(storage, 'user_photos/default_user_photo.jpg');
+        const defaultImageUrl = await getDownloadURL(defaultImageRef);
+        return defaultImageUrl;
+    }
+};
+
+const getPlaceNameById = async (db, placeId) => {
+    try {
+        const docRef = doc(db, 'district_and_quarters', String(placeId));
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
             const data = docSnap.data();
             return data.sehir_ilce_mahalle_adi;
         } else {
-            console.log(`${place_id} IDsine sahip belge bulunamadı.`);
+            console.log(`${placeId} IDsine sahip belge bulunamadı.`);
             return null;
         }
     } catch (error) {
@@ -108,45 +173,16 @@ const getImagesAndPopulateSlider = async (storage, imagePaths) => {
     }
 };
 
-const getUserById = async (db, id) => {
-    try {
-        const docRef = doc(db, "users", id);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-            return docSnap.data();
-        } else {
-            console.log("User bulunamadı.");
-            return null;
-        }
-    } catch (error) {
-        console.error("User alınırken hata oluştu:", error);
-        throw error;
-    }
-}
-
 document.addEventListener("DOMContentLoaded", async function () {
-    // Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyCyAaYIkN3pDw7L-5BoYclpbNtwPnhbNnU",
-        authDomain: "obidatabase-3e651.firebaseapp.com",
-        databaseURL: "https://obidatabase-3e651-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "obidatabase-3e651",
-        storageBucket: "obidatabase-3e651.appspot.com",
-        messagingSenderId: "636529667392",
-        appId: "1:636529667392:web:c4996d9c3d9f7324c61ea5",
-        measurementId: "G-FK8D85WJKV"
-    };
-
-
     const extraDetails = [
-        { key: "has_lift", label: "ASANSÖR", type: "boolean" },
-        { key: "have_cellar", label: "KİLER", type: "boolean" },
-        { key: "is_close_health_center", label: "SAĞLIK OCAĞINA YAKIN", type: "boolean" },
-        { key: "is_close_school", label: "OKULA YAKIN", type: "boolean" },
-        { key: "is_furnished", label: "EŞYALI", type: "boolean" },
-        { key: "is_in_site", label: "SİTE İÇERİSİNDE", type: "boolean" },
-        { key: "parking", label: "OTOPARK", type: "boolean" },
+        { key: "hasLift", label: "ASANSÖR", type: "boolean" },
+        { key: "haveCellar", label: "KİLER", type: "boolean" },
+        { key: "isCloseToHealthCenter", label: "SAĞLIK OCAĞINA YAKIN", type: "boolean" },
+        { key: "isCloseToSchool", label: "OKULA YAKIN", type: "boolean" },
+        { key: "isFurnished", label: "EŞYALI", type: "boolean" },
+        { key: "isInSite", label: "SİTE İÇERİSİNDE", type: "boolean" },
+        { key: "hasGarage", label: "OTOPARK", type: "boolean" },
+        { key: "isEarthquakeResistant", label: "DEPREME DAYANIKLI", type: "boolean" },
     ];
 
     const sideTypes = {
@@ -170,52 +206,48 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     try {
-        /*const firebaseConfig = await fetch('/fbase/obidatabase-3e651-firebase-adminsdk-ta9fl-2ef236de49')
-            .then((response) => response.json())
-            .then((json) => console.log(json));*/
-        const app = initializeApp(firebaseConfig);
+        const app = await getFirebaseConfigurations();
         const db = getFirestore(app);
         const storage = getStorage(app);
 
         const path = window.location.pathname;
         const advertId = path.split('/').pop();
-
-        const data = await getAdvertById(db, advertId);
+        const data = await getAdvertById(advertId);
 
         if (data) {
-            getImagesAndPopulateSlider(storage, data.images);
-            console.log(data);
-            document.getElementsByTagName("h1")[0].innerHTML = data.title;
-            document.getElementsByTagName("h1")[1].innerHTML = data.title;
-            const districtName = await getPlaceNameById(db, data.address_district_id);
-            const quarterName = await getPlaceNameById(db, data.address_quarter_id);
+            getImagesAndPopulateSlider(storage, data.advertImages);
+            document.getElementsByTagName("h1")[0].innerHTML = data.advertTitle;
+            document.getElementsByTagName("h1")[1].innerHTML = data.advertTitle;
+            const districtName = await getPlaceNameById(db, data.addressDistrictID);
+            const quarterName = await getPlaceNameById(db, data.addressQuarterID);
             document.getElementById("advert-district-location").innerHTML = districtName;
             document.getElementById("advert-quarter-location").innerHTML = quarterName;
             document.getElementById("advert-price").innerHTML = data.price + " TL";
             document.getElementById("advert-description").innerHTML = data.description;
             document.getElementById("advert-status-value").innerHTML = data.status === true ? "Satılık" : "Kiralık";
-            document.getElementById("advert-gross-m2-value").innerHTML = data.square_meter_gross + `<b class="property-info-unit"> m²</b>`;
-            document.getElementById("advert-net-m2-value").innerHTML = data.square_meter_net + `<b class="property-info-unit"> m²</b>`;
-            document.getElementById("room-number-value").innerHTML = data.room_number;
-            document.getElementById("advert-building-age-value").innerHTML = data.building_age;
-            document.getElementById("advert-which-floor-value").innerHTML = data.which_floor;
-            document.getElementById("advert-building-floor-number-value").innerHTML = data.building_floor_number;
-            document.getElementById("advert-balcony-count-value").innerHTML = data.balcony_count;
-            document.getElementById("advert-number-of-bathrooms-value").innerHTML = data.number_of_bathrooms + " Banyo";
+            document.getElementById("advert-gross-m2-value").innerHTML = data.squareMeterGross + `<b class="property-info-unit"> m²</b>`;
+            document.getElementById("advert-net-m2-value").innerHTML = data.squareMeterNet + `<b class="property-info-unit"> m²</b>`;
+            document.getElementById("room-number-value").innerHTML = data.roomNumber;
+            document.getElementById("advert-building-age-value").innerHTML = data.buildingAge;
+            document.getElementById("advert-which-floor-value").innerHTML = data.whichFloor;
+            document.getElementById("advert-building-floor-number-value").innerHTML = data.buildingFloors;
+            document.getElementById("advert-balcony-count-value").innerHTML = data.balconyCount;
+            document.getElementById("advert-number-of-bathrooms-value").innerHTML = data.numberOfBathrooms + " Banyo";
             document.getElementById("advert-side-value").innerHTML = sideTypes[data.side] ? sideTypes[data.side] + " Cephe" : "Diğer";
             document.getElementById("advert-heating-value").innerHTML = heatingTypes[data.heating] ? heatingTypes[data.heating] : "Diğer";
             document.getElementById("advert-dues-value").innerHTML = data.dues + " TL Aidat";
+            document.getElementById("advert-video").setAttribute("src", data.video);
+            document.getElementById("advert-adress-text").innerHTML = data.address;
+            
 
-            const date = data.publish_date.toDate();
-            const formattedDate = date.toLocaleString("tr-TR", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit",
-            });
-
+            const date = new Date(data.publishDate);
+            const day = date.getDate();
+            const month = date.getMonth() + 1;
+            const year = date.getFullYear();
+            const hours = date.getHours();
+            const minutes = date.getMinutes();
+            const seconds = date.getSeconds();
+            const formattedDate = `${day < 10 ? '0' + day : day}.${month < 10 ? '0' + month : month}.${year} ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
             document.getElementById("advert-upload-date-value").innerHTML = formattedDate;
 
 
@@ -239,19 +271,22 @@ document.addEventListener("DOMContentLoaded", async function () {
                 detailsList.appendChild(listItem);
             });
 
-            const user = await getUserById(db, data.user_id);
+            const user = await getUserById(data.userID);
             if (user) {
-                document.getElementById("whatsapp-button").setAttribute("href", `https://wa.me/${user.phone_number}/?text=Merhaba ${data.title} başlıklı dairenin detayları hakkında görüşmek istiyorum.`);
-                document.getElementById("user-name").innerHTML = user.name + (user.mid_name === "" ? "" : " " + user.mid_name) + " " + user.surname;
-                document.getElementById("user-facebook-link").setAttribute("href", user.facebook_link);
-                document.getElementById("user-instagram-link").setAttribute("href", user.instagram_link);
-                document.getElementById("user-document-number").innerHTML = user.auth_doc_number;
+                const userImageUrl = await getUserPhotoFromStorage(app, user);
+                document.getElementById("user-picture").src = userImageUrl;
+                document.getElementById("user-picture").style.height = "100%";
+                document.getElementById("whatsapp-button").setAttribute("href", `https://wa.me/${user.phoneNumber}/?text=Merhaba ${data.advertTitle} başlıklı dairenin detayları hakkında görüşmek istiyorum.`);
+                document.getElementById("user-name").innerHTML = user.name + (user.midName === "" ? "" : " " + user.midName) + " " + user.surname;
+                document.getElementById("user-facebook-link").setAttribute("href", user.facebookLink);
+                document.getElementById("user-instagram-link").setAttribute("href", user.instagramLink);
+                document.getElementById("user-document-number").innerHTML = user.authDocNumber;
                 document.getElementById("user-email").innerHTML = user.email;
-                let formattedPhoneNumber = user.phone_number.replace(/^\+90/, "0");
+                let formattedPhoneNumber = user.phoneNumber.replace(/^\+90/, "0");
                 formattedPhoneNumber = formattedPhoneNumber.replace(/(\d{4})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3 $4");
                 document.getElementById("user-phone-number").innerHTML = formattedPhoneNumber;
                 document.getElementById("user-description").innerHTML = user.description.length > 100 ? user.description.slice(0, 100) + "..." : user.description;
-
+    
             }
         }
     } catch (error) {

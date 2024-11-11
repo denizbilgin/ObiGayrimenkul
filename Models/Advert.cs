@@ -82,8 +82,8 @@ public class Advert : IFirebaseEntity
     [FirestoreProperty("which_floor")]
     public int WhichFloor { get; set; }
 
-    [FirestoreProperty("videos")]
-    public string Videos { get; set; }
+    [FirestoreProperty("video")]
+    public string Video { get; set; }
 
     [FirestoreProperty("images")]
     public string[] AdvertImages { get; set; }
