@@ -132,7 +132,7 @@
                             <div class="col-sm-3 col-sm-offset-1">
                                 <div class="picture-container">
                                     <div class="picture">
-                                        <img src="~/assets/img/emrah-oguz.jpg" class="picture-src" id="wizardPicturePreview" title="" />
+                                        <img id="user-picture" class="picture-src" id="wizardPicturePreview" title="" />
                                         <input type="file" id="wizard-picture">
                                     </div>
                                     <h6>BİR RESİM SEÇ</h6>
@@ -296,7 +296,9 @@
     <script type="module">
     import { updateUser } from '/assets/js/user-profile-functions.js';
     window.updateUser = updateUser;
-</script>
+    </script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
 
 
 </body>

@@ -1,36 +1,25 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getFirestore, collection, getDocs, query, where, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+import { getStorage, ref, getDownloadURL, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
 const getUserById = async (id) => {
-    // Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyCyAaYIkN3pDw7L-5BoYclpbNtwPnhbNnU",
-        authDomain: "obidatabase-3e651.firebaseapp.com",
-        databaseURL: "https://obidatabase-3e651-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "obidatabase-3e651",
-        storageBucket: "obidatabase-3e651.appspot.com",
-        messagingSenderId: "636529667392",
-        appId: "1:636529667392:web:c4996d9c3d9f7324c61ea5",
-        measurementId: "G-FK8D85WJKV"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    const url = `/users/get-details/${id}`;
 
     try {
-        const docRef = doc(db, "users", id);
-        const docSnap = await getDoc(docRef);
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
 
-        if (docSnap.exists()) {
-            return docSnap.data();
+        if (response.ok) {
+            const userData = await response.json();
+            return userData;
         } else {
-            console.log("User bulunamadı.");
-            return null;
+            console.log("Kullanıcı bulunamadı");
         }
     } catch (error) {
-        console.error("User alınırken hata oluştu:", error);
-        throw error;
+        console.log("Bir hata oluştu:", error);
     }
 }
 
@@ -39,7 +28,12 @@ export async function updateUser(){
     const userId = path.split('/').pop();
     const url = `/users/edit/${userId}`;
     const user = await getUserById(userId);
-    console.log(user);
+
+    const imgName = "user_photos/" + document.getElementById("user-picture").getAttribute("user-filename");
+    if (!imgName) {
+        const fileInput = document.getElementById("wizard-picture");
+        imgName = fileInput.files.length > 0 ? fileInput.files[0].name : "user_photos/default_user_photo.jpg";
+    }
 
     const userData = {
         Id: userId,
@@ -48,7 +42,7 @@ export async function updateUser(){
         Surname: document.getElementById("user-lastname").value,
         AuthDocNumber: document.getElementById("user-document-number").value,
         Email: document.getElementById("user-email").value,
-        ImgPath: "aaaaa",
+        ImgPath: imgName,
         FacebookLink: document.getElementById("user-facebook-link").value,
         InstagramLink: document.getElementById("user-instagram-link").value,
         PhoneNumber: document.getElementById("user-phone-number").value,
@@ -56,7 +50,6 @@ export async function updateUser(){
         Password: user.password,
         Role: user.role
     };
-    console.log(userData);
 
     try {
         const response = await fetch(url, {
@@ -69,7 +62,7 @@ export async function updateUser(){
 
         if (response.ok) {
             console.log("Kullanıcı bilgileri başarıyla güncellendi.");
-            //window.location.href = `/users/${userId}`;
+            window.location.href = `/users/${userId}`;
         } else {
             console.log("Kullanıcı bilgileri güncellenemedi.");
         }
@@ -78,22 +71,94 @@ export async function updateUser(){
     }
 }
 
+const getFirebaseConfigurations = async () => {
+    const url = '/fbase/obidatabase-3e651-firebase-adminsdk-ta9fl-2ef236de49';
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Firebase yapılandırması alınamadı");
+        }
+
+        const firebaseConfig = await response.json();
+        const app = initializeApp(firebaseConfig);
+        
+        return app
+    } catch (error) {
+        console.log("Bir hata oluştu:", error);
+    }
+}
+
+const getUserPhotoFromStorage = async (app, user) => {
+    const storage = getStorage(app);
+
+    const userImageRef = ref(storage, user.imgPath);
+    try {
+        const userImageUrl = await getDownloadURL(userImageRef);
+        return userImageUrl;
+    } catch (error) {
+        const defaultImageRef = ref(storage, 'user_photos/default_user_photo.jpg');
+        const defaultImageUrl = await getDownloadURL(defaultImageRef);
+        return defaultImageUrl;
+    }
+};
+
 document.addEventListener("DOMContentLoaded", async function() {
     const path = window.location.pathname;
     const userId = path.split('/').pop();
     const user = await getUserById(userId);
     if (user){
-        console.log(user);
+        const app = await getFirebaseConfigurations();
 
-        document.getElementById("user-header-name").innerHTML = user.name + (user.mid_name === "" ? "": " " + user.mid_name)  + " " + user.surname;
+        document.getElementById("user-header-name").innerHTML = user.name + (user.midName === "" ? "": " " + user.midName)  + " " + user.surname;
         document.getElementById("user-firstname").value = user.name;
-        document.getElementById("user-midname").value = user.mid_name;
+        document.getElementById("user-midname").value = user.midName;
         document.getElementById("user-lastname").value = user.surname;
-        document.getElementById("user-document-number").value = user.auth_doc_number;
+        document.getElementById("user-document-number").value = user.authDocNumber;
         document.getElementById("user-email").value = user.email;
-        document.getElementById("user-facebook-link").value = user.facebook_link;
-        document.getElementById("user-instagram-link").value = user.instagram_link;
-        document.getElementById("user-phone-number").value = user.phone_number;
+        document.getElementById("user-facebook-link").value = user.facebookLink;
+        document.getElementById("user-instagram-link").value = user.instagramLink;
+        document.getElementById("user-phone-number").value = user.phoneNumber;
         document.getElementById("user-description").value = user.description;
+
+        const userImageUrl = await getUserPhotoFromStorage(app, user);
+        document.getElementById("user-picture").src = userImageUrl;
+        document.getElementById("user-picture").style.height = "100%";
+
+
+        document.getElementById("wizard-picture").addEventListener("change", async function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const storage = getStorage(app);
+                const userFirstName = document.getElementById("user-firstname").value;
+                const userLastName = document.getElementById("user-lastname").value;
+                const fileName = `${userFirstName}-${userLastName}-${new Date().getTime()}.jpg`;
+                const storageRef = ref(storage, "user_photos/" + fileName);
+
+                const uploadTask = uploadBytesResumable(storageRef, file);
+                uploadTask.on("state_changed",
+                    (snapshot) => {
+                        // Yükleme ilerleme durumu burada ele alınabilir
+                        // Örneğin: progress bar eklemek
+                    },
+                    (error) => {
+                        // Hata durumunda yapılacaklar
+                        console.error("Yükleme hatası:", error);
+                    },
+                    async () => {
+                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                        document.getElementById("user-picture").setAttribute("src", downloadURL);
+                        document.getElementById("user-picture").setAttribute("user-filename", fileName);
+                        await updateUser();
+                    }
+                )
+            }
+        });
     }
 });
