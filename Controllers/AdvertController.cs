@@ -75,12 +75,13 @@ namespace ObiGayrimenkul.Controllers
                         advert.Id = Guid.NewGuid().ToString();
                     }
 
-                    advert.PublishDate = Timestamp.FromDateTime(DateTime.UtcNow);
+                    var date = Timestamp.FromDateTime(DateTime.UtcNow);
+                    advert.PublishDate = date.ToDateTime().ToString("o");
                     advert.Approved = false;
+                    Console.WriteLine(advert.PublishDate);
+                    await _firestore.Add(advert, "advert-requests", ct);
 
-                    await _firestore.Add(advert, "advert-request", ct);
-
-                    return RedirectToAction(nameof(Index));
+                    return Ok(advert);
                 }
                 var errors = ModelState.Values.SelectMany(v => v.Errors)
                                               .Select(e => e.ErrorMessage).ToList();
@@ -135,11 +136,11 @@ namespace ObiGayrimenkul.Controllers
             }
             return View(advert);
         }
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPost("delete/{id}")]
         public async Task<IActionResult> DeleteConfirmed(string id, CancellationToken ct)
         {
-            var advert = await _firestore.Get<Advert>(id,"adverts" ,ct);
+            var advert = await _firestore.Get<Advert>(id, "adverts", ct);
             if (advert != null)
             {
                 var collection = _firestore._fireStoreDb.Collection("adverts");
@@ -148,18 +149,34 @@ namespace ObiGayrimenkul.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "Admin")]
+
+        //[Authorize(Roles = "Admin")]
         [HttpPost("approve/{id}")]
         public async Task<IActionResult> Approve(string id, CancellationToken ct)
         {
-            var advert = await _firestore.Get<Advert>(id,"adverts" ,ct);
+            var advert = await _firestore.Get<Advert>(id,"advert-requests" ,ct);
+            //Console.WriteLine(advert.Id);
             if (advert == null)
             {
+                Console.WriteLine("advert null");
                 return NotFound();
             }
 
             advert.Approved = true; // İlanı onayla
-            await _firestore.AddOrUpdate(advert,"adverts", ct);
+            await _firestore.Add(advert,"adverts", ct);
+            await DeleteRequest(advert.Id, CancellationToken.None);
+            return Ok(advert);
+        }
+
+        [HttpPost("delete-request/{id}")]
+        public async Task<IActionResult> DeleteRequest(string id, CancellationToken ct)
+        {
+            var advert = await _firestore.Get<Advert>(id, "advert-requests", ct);
+            if (advert != null)
+            {
+                var collection = _firestore._fireStoreDb.Collection("advert-requests");
+                await collection.Document(id).DeleteAsync(null, ct);
+            }
             return RedirectToAction(nameof(Index));
         }
 

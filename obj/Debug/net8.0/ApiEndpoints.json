@@ -91,7 +91,7 @@
       },
       {
         "Name": "PublishDate",
-        "Type": "Google.Cloud.Firestore.Timestamp",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -244,6 +244,22 @@
   },
   {
     "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
+    "Method": "DeleteRequest",
+    "RelativePath": "adverts/delete-request/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
     "Method": "Delete",
     "RelativePath": "adverts/delete/{id}",
     "HttpMethod": "GET",
@@ -365,37 +381,11 @@
     "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
     "Method": "Index",
     "RelativePath": "user-process",
-    "HttpMethod": "",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
-    "Method": "GetUserFromEmail",
-    "RelativePath": "user-process/get-from-email",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "ObiGayrimenkul.Models.User",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
   },
   {
     "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
