@@ -118,25 +118,25 @@
                     <div class="" id="contact1">
                         <div class="row text-center">
                             <div class="col-sm-6">
-                                <img src="assets/img/ugur-bilgin.jpg" alt="Uğur Bilgin" style="width: 50%; border-radius: 100%;">
-                                <h3>Uğur Bilgin</h3>
+                                <img id="ugur-picture" alt="Uğur Bilgin" style="width: 50%; border-radius: 100%;">
+                                <h3 id="ugur-name"></h3>
                                 <strong>Obi Gayrimenkul Kurucu Ortağı</strong>
                                 <p style="padding: 3rem;">
-                                    İnternet sektöründe, kurumsal satışta 11 yıllık mesleki deneyime sahibim. Kurumsal dünyadaki bu deneyim ve eğitimimle ticaretin ve satışın önde gelen sektörü olan gayrimenkul sektöründe kendi yolumu çiziyorum. Unutmayın! “Deneyim, pahalı bir üründür.”
-                                    <br><br><i class="fa fa-phone"></i> 0530 962 36 36
-                                    <br><a href="">Facebook</a>
-                                    <br><a href="">Instagram</a>
+                                    <div id="ugur-description"></div>
+                                    <br><br><i class="fa fa-phone"></i> <span id="ugur-phone-number"></span>
+                                    <br><a id="ugur-facebook-link" href="">Facebook</a>
+                                    <br><a id="ugur-instagram-link" href="">Instagram</a>
                                 </p>
                             </div>
                             <div class="col-sm-6">
-                                <img src="assets/img/emrah-oguz.jpg" alt="Emrah Oğuz" style="width: 50%; border-radius: 100%;">
-                                <h3>Emrah Oğuz</h3>
+                                <img id="emrah-picture" alt="Emrah Oğuz" style="width: 50%; border-radius: 100%;">
+                                <h3 id="emrah-name"></h3>
                                 <strong>Obi Gayrimenkul Kurucu Ortağı</strong>
                                 <p style="padding: 3rem;">
-                                    İnternet sektöründe, kurumsal satışta 11 yıllık mesleki deneyime sahibim. Kurumsal dünyadaki bu deneyim ve eğitimimle ticaretin ve satışın önde gelen sektörü olan gayrimenkul sektöründe kendi yolumu çiziyorum. Unutmayın! “Deneyim, pahalı bir üründür.”
-                                    <br><br><i class="fa fa-phone"></i> 0530 962 36 36
-                                    <br><a href="">Facebook</a>
-                                    <br><a href="">Instagram</a>
+                                    <div id="emrah-description"></div>
+                                    <br><br><i class="fa fa-phone"></i> <span id="emrah-phone-number"></span>
+                                    <br><a id="emrah-facebook-link" href="">Facebook</a>
+                                    <br><a id="emrah-instagram-link" href="">Instagram</a>
                                 </p>
                             </div>
                         </div>
@@ -154,8 +154,8 @@
                             <!-- /.col-sm-4 -->
                             <div class="col-sm-4">
                                 <h3><i class="fa fa-phone"></i> Telefon</h3>
-                                <p class="text-muted">Uğur Bilgin: <strong>0530 962 36 36</strong></p>
-                                <p class="text-muted">Emrah Oğuz: <strong>0530 962 36 36</strong></p>
+                                <p class="text-muted" id="ugur-info"></p>
+                                <p class="text-muted" id="emrah-info"></p>
                             </div>
                             <!-- /.col-sm-4 -->
                             <div class="col-sm-4">
@@ -268,6 +268,10 @@
     <script src="assets/js/gmaps.init.js"></script>
 
     <script src="assets/js/main.js"></script>
+
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
+    <script type="module" src="~/assets/js/contact-functions.js"></script>
 
 </body>
 </html>

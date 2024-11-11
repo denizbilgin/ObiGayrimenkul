@@ -673,6 +673,10 @@
       "PackagePath": "staticwebassets\\assets\\js\\bootstrap.min.js"
     },
     {
+      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\contact-functions.js",
+      "PackagePath": "staticwebassets\\assets\\js\\contact-functions.js"
+    },
+    {
       "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\documents-funtions.js",
       "PackagePath": "staticwebassets\\assets\\js\\documents-funtions.js"
     },
