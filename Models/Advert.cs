@@ -17,7 +17,7 @@ public class Advert : IFirebaseEntity
     public double Price { get; set; }
 
     [FirestoreProperty("publish_date")]
-    public Timestamp PublishDate { get; set; }
+    public String PublishDate { get; set; }
 
     [FirestoreProperty("description")]
     public string Description { get; set; }

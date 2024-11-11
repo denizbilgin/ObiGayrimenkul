@@ -105,6 +105,12 @@ namespace ObiGayrimenkul.Firebase
 
             return list.AsReadOnly();
         }
+        public async Task Delete<T>(string id, string CollectionName, CancellationToken ct) where T : IFirebaseEntity
+        {
+            var document = _fireStoreDb.Collection(CollectionName).Document(id);
+            await document.DeleteAsync(cancellationToken: ct);
+        }
+
     }
 
 }

@@ -17,6 +17,7 @@ namespace ObiGayrimenkul.Controllers
             _jwtService = jwtService;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             Console.WriteLine("register sayfası açıldı");
@@ -35,46 +36,38 @@ namespace ObiGayrimenkul.Controllers
         {
             Console.WriteLine("Gelen Email: " + loginModel.Email);
             Console.WriteLine("Gelen Şifre: " + loginModel.Password);
-            var user = await GetUserFromEmail(loginModel.Email);
-            if (user != null && loginModel.Password == user.Password)
-            {
-                try
-                {
-                    var token = _jwtService.GenerateJwtToken(user);
-
-
-                    Response.Cookies.Append("AuthToken", token, new CookieOptions
-                    {
-                        HttpOnly = true,
-                        Secure = true,
-                        SameSite = SameSiteMode.Strict
-                    });
-
-                    return Ok(new { success = true, userName = user.Name ,AuthToken = token , userId = user.Id });
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, "Token olusturulamadı.");
-                }
-            }
-            return Unauthorized(new { success = false, message = "Geçersiz giriş bilgileri" });
-        }
-
-
-
-
-        [HttpGet("get-from-email")]
-        public async Task<User> GetUserFromEmail(string email)
-        {
             var users = await _firestore.GetAll<User>("users", CancellationToken.None);
             foreach (var user in users)
             {
-                if (user.Email == email)
+                Console.WriteLine("User Email :" +user.Email);
+                if (user.Email == loginModel.Email)
                 {
-                    return user;
+                    var FoundedUser = user;
+                    Console.WriteLine("User Password: " + FoundedUser.Password);
+                    Console.WriteLine("User Email : " + FoundedUser.Email);
+                    if (FoundedUser != null && loginModel.Password == FoundedUser.Password)
+                    {
+                        try
+                        {
+                            var token = _jwtService.GenerateJwtToken(FoundedUser);
+
+                            Response.Cookies.Append("AuthToken", token, new CookieOptions
+                            {
+                                HttpOnly = true,
+                                Secure = true,
+                                SameSite = SameSiteMode.Strict
+                            });
+
+                            return Ok(new { success = true, userName = FoundedUser.Name, AuthToken = token, userId = FoundedUser.Id });
+                        }
+                        catch (Exception ex)
+                        {
+                            return StatusCode(500, "Token olusturulamadı.");
+                        }
+                    }
                 }
             }
-            return null;
+            return Unauthorized(new { success = false, message = "Geçersiz giriş bilgileri" });
         }
 
         [HttpPost("register")]
