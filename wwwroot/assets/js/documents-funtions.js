@@ -1,24 +1,37 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyCyAaYIkN3pDw7L-5BoYclpbNtwPnhbNnU",
-    authDomain: "obidatabase-3e651.firebaseapp.com",
-    databaseURL: "https://obidatabase-3e651-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "obidatabase-3e651",
-    storageBucket: "obidatabase-3e651.appspot.com",
-    messagingSenderId: "636529667392",
-    appId: "1:636529667392:web:c4996d9c3d9f7324c61ea5",
-    measurementId: "G-FK8D85WJKV"
+const getFirebaseConfigurations = async () => {
+    const url = '/fbase/obidatabase-3e651-firebase-adminsdk-ta9fl-2ef236de49';
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Firebase yapılandırması alınamadı");
+        }
+
+        const firebaseConfig = await response.json();
+        const app = initializeApp(firebaseConfig);
+        
+        return app
+    } catch (error) {
+        console.log("Bir hata oluştu:", error);
+    }
 };
 
-// Firebase initializing
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
-
 // List all documents
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
+    // Firebase initializing
+    const app = await getFirebaseConfigurations();
+    const storage = getStorage(app);
+
+
     const storageRef = ref(storage, "documents"); // Belgelerin yüklü olduğu klasör
 
     listAll(storageRef).then(result => {

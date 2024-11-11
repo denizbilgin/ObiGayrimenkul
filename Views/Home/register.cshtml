@@ -82,22 +82,32 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt=""></a>
+                <a class="navbar-brand" href="/home"><img src="assets/img/logo.png" alt=""></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse yamm" id="navigation">
                 <div class="button navbar-right">
-                    <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('sell-house.html')" data-wow-delay="0.4s">Evimi Sat/Kirala</button>
-                    <button class="navbar-btn nav-button wow fadeInRight" onclick=" window.open('submit-property.html')" data-wow-delay="0.5s">İlan Ekle</button>
+                    <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('/sell-house')" data-wow-delay="0.4s">Evimi Sat/Kirala</button>
                 </div>
                 <ul class="main-nav nav navbar-nav navbar-right">
-                    <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="index.html">Ana Sayfa</a></li>
-                    <li class="wow fadeInDown" data-wow-delay="0.2s"><a class="" href="properties.html">İlanlar</a></li>
-                    <li class="wow fadeInDown" data-wow-delay="0.3s"><a href="contact.html">İletişim</a></li>
-                    <li class="wow fadeInDown" data-wow-delay="0.4s"><a href="documents.html">Belgelerimiz</a></li>
-                    <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="user-properties.html">İlanlarım</a></li>
+                    <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="/home">Ana Sayfa</a></li>
+                    <li class="wow fadeInDown" data-wow-delay="0.2s"><a class="" href="/properties">İlanlar</a></li>
+                    <li class="wow fadeInDown" data-wow-delay="0.3s"><a href="/contact">İletişim</a></li>
+                    <li class="wow fadeInDown" data-wow-delay="0.4s"><a href="/documents">Belgelerimiz</a></li>
+                    <li class="dropdown ymm-sw " data-wow-delay="0.1s" id="logged-in-user-dropdown">
+                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown" data-hover="dropdown" data-delay="200">
+                            <span id="userName">Kullanıcı</span><b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu navbar-nav">
+                            <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/users/" id="profileLink">Profil</a></li>
+                            <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/submit-property">İlan Ekle</a></li>
+                            <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/user-properties">İlanlarım</a></li>
+                            <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="#" id="logoutButton">Çıkış Yap</a></li>
+                        </ul>
+                    </li>
                 </ul>
+
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
@@ -113,6 +123,7 @@
         </div>
     </div>
     <!-- End page header -->
+
     <!-- register-area -->
     <div class="register-area" style="background-color: rgb(249, 249, 249);">
         <div class="container">
@@ -249,6 +260,7 @@
     <script src="assets/js/price-range.js"></script>
 
     <script src="assets/js/main.js"></script>
+    <script src = "assets/js/logged-user-dropdown.js"></script>
 
 </body>
 </html>
