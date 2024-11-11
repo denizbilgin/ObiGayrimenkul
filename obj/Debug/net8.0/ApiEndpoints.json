@@ -558,67 +558,12 @@
       {
         "Name": "id",
         "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Id",
-        "Type": "System.String",
         "IsRequired": true
       },
       {
-        "Name": "AuthDocNumber",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Description",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "FacebookLink",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "InstagramLink",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Role",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "MidName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Password",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PhoneNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Surname",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "user",
+        "Type": "ObiGayrimenkul.Models.User",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
