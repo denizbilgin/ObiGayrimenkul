@@ -41,6 +41,9 @@ namespace ObiGayrimenkul.Models
 
         [FirestoreProperty("surname")]
         public string Surname { get; set; }
+
+        [FirestoreProperty("img_path")]
+        public string ImgPath { get; set; }
     }
 
 }

@@ -200,7 +200,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Videos",
+        "Name": "Video",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -483,6 +483,11 @@
       },
       {
         "Name": "Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ImgPath",
         "Type": "System.String",
         "IsRequired": false
       }

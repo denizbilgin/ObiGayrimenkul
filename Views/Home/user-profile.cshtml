@@ -132,7 +132,7 @@
                             <div class="col-sm-3 col-sm-offset-1">
                                 <div class="picture-container">
                                     <div class="picture">
-                                        <img src="~/assets/img/emrah-oguz.jpg" class="picture-src" id="wizardPicturePreview" title="" />
+                                        <img id="user-picture" class="picture-src" id="wizardPicturePreview" title="" />
                                         <input type="file" id="wizard-picture">
                                     </div>
                                     <h6>BİR RESİM SEÇ</h6>
@@ -293,48 +293,12 @@
     <script src="~/assets/js/wizard.js"></script>
     <script type="module" src="~/assets/js/user-profile-functions.js"></script>
     <script src="~/assets/js/main.js"></script>
-
-
-    <script>
-        async function updateUser(){
-            const path = window.location.pathname;
-            const userId = path.split('/').pop();
-            const url = `/users/edit/${userId}`;
-
-            const userData = {
-                id: userId,
-                name: document.getElementById("user-firstname").value,
-                mid_name: document.getElementById("user-midname").value,
-                surname: document.getElementById("user-lastname").value,
-                auth_doc_number: document.getElementById("user-document-number").value,
-                email: document.getElementById("user-email").value,
-                img_path: "aaaaa",
-                facebook_link: document.getElementById("user-facebook-link").value,
-                instagram_link: document.getElementById("user-instagram-link").value,
-                phone_number: document.getElementById("user-phone-number").value,
-                description: document.getElementById("user-description").value
-            };
-
-            try {
-                const response = await fetch(url, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(userData)
-                });
-
-                if (response.ok) {
-                    console.log("Kullanıcı bilgileri başarıyla güncellendi.");
-                    window.location.href = `/users/${userId}`;
-                } else {
-                    console.log("Kullanıcı bilgileri güncellenemedi.");
-                }
-            } catch (error) {
-                console.error("Hata:", error);
-            }
-        }
+    <script type="module">
+    import { updateUser } from '/assets/js/user-profile-functions.js';
+    window.updateUser = updateUser;
     </script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
 
 
 </body>
