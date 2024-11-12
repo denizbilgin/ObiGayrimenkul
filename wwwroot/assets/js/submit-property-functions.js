@@ -59,15 +59,25 @@ const loadQuarters = async (db, districtId, quarterElement) => {
     $('.selectpicker').selectpicker('refresh');
 };
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener("DOMContentLoaded", async function() {
     const app = await getFirebaseConfigurations();
     const db = getFirestore(app);
-    const districtSelectHome = document.querySelector('.form-group .districtPicker');
-    const quarterSelectHome = document.querySelector('.form-group .quarterPicker');
-    
-    await loadDistricts(db, districtSelectHome);
-    districtSelectHome.addEventListener('change', async (event) => {
+
+    const districtSelectSubmitProp = document.querySelector('.districtPicker');
+    const quarterSelectSubmitProp = document.querySelector('.quarterPicker');
+
+    await loadDistricts(db, districtSelectSubmitProp);
+    districtSelectSubmitProp.addEventListener('change', async (event) => {
         const selectedDistrictId = Number(event.target.value);
-        await loadQuarters(db, selectedDistrictId, quarterSelectHome);
+        await loadQuarters(db, selectedDistrictId, quarterSelectSubmitProp);
     });
+
+    const newAdvertData = {
+        advertTitle: document.getElementById("advert-title").value,
+        price: document.getElementById("advert-price").value,
+        address: document.getElementById("advert-address").value,
+        description: document.getElementById("advert-description").value,
+    };
+
+    
 });
