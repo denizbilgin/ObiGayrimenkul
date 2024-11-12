@@ -239,17 +239,48 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById("advert-video").setAttribute("src", data.video);
             document.getElementById("advert-adress-text").innerHTML = data.address;
             
-
+            /*
             const date = new Date(data.publishDate);
             const day = date.getDate();
             const month = date.getMonth() + 1;
             const year = date.getFullYear();
             const hours = date.getHours();
             const minutes = date.getMinutes();
-            const seconds = date.getSeconds();
-            const formattedDate = `${day < 10 ? '0' + day : day}.${month < 10 ? '0' + month : month}.${year} ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+            const seconds = date.getSeconds();*/
+            const months = new Map([
+                ["January", "Ocak"],
+                ["February", "Şubat"],
+                ["March", "Mart"],
+                ["April", "Nisan"],
+                ["May", "Mayıs"],
+                ["June", "Haziran"],
+                ["July", "Temmuz"],
+                ["August", "Ağustos"],
+                ["September", "Eylül"],
+                ["October", "Ekim"],
+                ["November", "Kasım"],
+                ["December", "Aralık"]
+            ]);
+
+            const date = data.publishDate;
+            const dateSpliited = date.split(" ");
+            const day = dateSpliited[1].replace(",", "");
+            const month = months.get(dateSpliited[0]);
+            const year = dateSpliited[2];
+            let hours = parseInt(dateSpliited[4].split(":")[0]);
+            const minutes = dateSpliited[4].split(":")[1];
+            const seconds = dateSpliited[4].split(":")[2].split("")[0] + dateSpliited[4].split(":")[2].split("")[1];
+            const period = dateSpliited[4].split(":")[2].split("")[3] + dateSpliited[4].split(":")[2].split("")[4];
+            if (period === "PM" && hours !== 12) {
+                hours += 12;
+            } else if (period === "AM" && hours === 12) {
+                hours = 0;
+            }
+
+            const formattedDate = `${day < 10 ? '0' + day : day} ${month} ${year} ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
             document.getElementById("advert-upload-date-value").innerHTML = formattedDate;
 
+            
 
             const detailsList = document.querySelector(".additional-details-list");
             extraDetails.forEach(field => {
