@@ -10,5 +10,11 @@ namespace ObiGayrimenkul.Controllers
         {
             return View("~/Views/Home/properties.cshtml");
         }
+
+        [HttpGet("submit-property")]
+        public IActionResult SubmitProperty()
+        {
+            return View("~/Views/Home/properties.cshtml");
+        }
     }
 }

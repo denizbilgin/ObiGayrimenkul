@@ -76,21 +76,47 @@ namespace ObiGayrimenkul.Controllers
         [HttpPost("edit/{id}")]
         public async Task<IActionResult> Update(string id,[FromBody] User user, CancellationToken ct)
         {
+            Console.WriteLine($"User Details: {System.Text.Json.JsonSerializer.Serialize(user)}");
             if (id != user.Id.ToString())
             {
-                return NotFound();
+                return Content("User bulunamadi");
             }
             if (ModelState.IsValid)
             {
                 if (!await UserExists(user.Id.ToString(), ct))
                 {
-                    return NotFound();
+                    return Content("User mevcut degil");
                 }
 
                 await _firestore.Update<User>(user, "users", ct);
             }
             return Ok(user);
         }
+
+        //[Authorize]
+        [HttpGet("change-user-password")]
+        public IActionResult ChangePassword()
+        {
+            return View("~/Views/Home/change-password.cshtml");
+        }
+
+        // [Authorize]
+        [HttpPost("change-user-password")]
+        public async Task<IActionResult> ChangePassword(string userId, string newPassword, CancellationToken ct)
+        {
+            var user = await _firestore.Get<User>(userId, "users", ct);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.Password = newPassword;
+            await _firestore.Update<User>(user, "users", ct);
+
+            return Ok(user);
+        }
+
+
 
         [HttpGet("user-exists")]
         private async Task<bool> UserExists(string id, CancellationToken ct)
