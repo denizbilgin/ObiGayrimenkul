@@ -21,13 +21,15 @@ const getPlaceNameById = async (db, place_id) => {
 };
 
 const getThumbnailUrl = async (storage, imagePath) => {
-    const defaultThumbnailUrl = "https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/default_advert_thumbnail.webp?alt=media&token=7d5b7089-afcb-414b-a31c-cda31dbae71e";
-    
     try {
-        const url = imagePath ? await getDownloadURL(ref(storage, imagePath)) : defaultThumbnailUrl;
-        return url;
+        const advertThumbnailRef = ref(storage, imagePath);
+        const advertThumbnailUrl = await getDownloadURL(advertThumbnailRef);
+        return advertThumbnailUrl;
     } catch (error) {
-        console.error("Resmi alırken hata:", error);
+        const defaultThumbnailUrl = 'default_advert_thumbnail.webp';
+        const advertThumbnailRef = ref(storage, defaultThumbnailUrl);
+        const defaultImageUrl = await getDownloadURL(advertThumbnailRef);
+        return defaultImageUrl;
     }
 };
 

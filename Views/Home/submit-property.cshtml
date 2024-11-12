@@ -150,7 +150,7 @@
                                 <div class="tab-pane" id="step1">
                                     <div class="row p-b-15  ">
                                         <h4 class="info-text"> Temel bilgilerle başlayalım</h4>
-                                        <div class="col-sm-6 col-sm-offset-1">
+                                        <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>İlan Adı <small>(zorunlu)</small></label>
                                                 <input id="advert-title" name="propertyname" type="text" class="form-control" placeholder="Kat Dubleks Daire ..." required>
@@ -158,11 +158,87 @@
 
                                             <div class="form-group">
                                                 <label>İlan Fiyatı <small>(zorunlu)</small></label>
-                                                <input id="advert-price" name="propertyprice" type="text" class="form-control" placeholder="3330000" required>
+                                                <input id="advert-price" name="propertyprice" type="number" class="form-control" placeholder="3330000" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Adres <small>(zorunlu)</small></label>
                                                 <textarea id="advert-address" name="discrition" class="form-control" placeholder="Şu cadde, şu sokak..." required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Bina Yaşı <small>(zorunlu)</small></label>
+                                                        <input id="advert-building-age" name="propertyprice" type="number" class="form-control" placeholder="7" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Bina Toplam Kat <small>(zorunlu)</small></label>
+                                                        <input id="advert-building-floors" name="propertyprice" type="number" class="form-control" placeholder="5" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Ev Toplam Kat <small>(zorunlu)</small></label>
+                                                        <input id="advert-number-of-floors" name="propertyprice" type="number" class="form-control" placeholder="Daire ise 1, Dubleks ise 2" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Aylık Aidat <small>(zorunlu)</small></label>
+                                                        <input id="advert-dues" name="propertyprice" type="number" class="form-control" placeholder="80" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Balkon Sayısı <small>(zorunlu)</small></label>
+                                                        <input id="advert-balcony-count" name="propertyprice" type="number" class="form-control" placeholder="1" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Dairenin Bulunduğu Kat <small>(zorunlu)</small></label>
+                                                        <input id="advert-which-floor" name="propertyprice" type="number" class="form-control" placeholder="3" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row p-b-15  ">
+                                        <div class="col-sm-6 padding-top-15" style="padding-left: 0px; padding-right: 0px">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Cephe <small>(zorunlu)</small></label>
+                                                    <select id="lunchBegins" class="selectpicker sidePicker" data-live-search="true" data-live-search-style="begins" title="Cephe" required>
+                                                        <option value="0">Kuzey</option>
+                                                        <option value="1">Kuzey Doğu</option>
+                                                        <option value="2">Doğu</option>
+                                                        <option value="3">Güney Doğu</option>
+                                                        <option value="4">Güney</option>
+                                                        <option value="5">Güney Batı</option>
+                                                        <option value="6">Batı</option>
+                                                        <option value="7">Kuzey Batı</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Isınma Tipi <small>(zorunlu)</small></label>
+                                                    <select id="lunchBegins" class="selectpicker heatingPicker" data-live-search="true" data-live-search-style="begins" title="Isınma Tipi" required>
+                                                        <option value="0">Merkezi Doğalgaz</option>
+                                                        <option value="1">Bireysel Doğalgaz</option>
+                                                        <option value="2">Kömür</option>
+                                                        <option value="3">Soba</option>
+                                                        <option value="4">Yerden Isıtma</option>
+                                                        <option value="5">Isı Pompası</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -175,7 +251,7 @@
                                         <div class="col-sm-12">
                                             <div class="col-sm-12">
                                                 <div class="form-group">
-                                                    <label>İlan Açıklaması :</label>
+                                                    <label>İlan Açıklaması :  <small>(zorunlu)</small></label>
                                                     <textarea id="advert-description" name="discrition" class="form-control" required></textarea>
                                                 </div>
                                             </div>
@@ -184,57 +260,49 @@
                                         <div class="col-sm-12">
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <select id="lunchBegins" class="selectpicker districtPicker" data-live-search="true" data-live-search-style="begins" title="İlçe">
+                                                    <select id="lunchBegins" class="selectpicker districtPicker" data-live-search="true" data-live-search-style="begins" title="İlçe" required>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <select id="lunchBegins" class="selectpicker quarterPicker" data-live-search="true" data-live-search-style="begins" title="Mahalle">
+                                                    <select id="lunchBegins" class="selectpicker quarterPicker" data-live-search="true" data-live-search-style="begins" title="Mahalle" required>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <select id="basic" class="selectpicker show-tick form-control" title="Durum">
-                                                        <option value="0">Satılık</option>
-                                                        <option value="1">Kiralık</option>
+                                                    <select id="basic" class="selectpicker show-tick form-control statusPicker" title="Durum" required>
+                                                        <option value="1">Satılık</option>
+                                                        <option value="0">Kiralık</option>
 
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-12 padding-top-15">
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label for="property-geo">Min bed :</label>
-                                                    <input type="text" class="span2" value="" data-slider-min="0"
-                                                           data-slider-max="600" data-slider-step="5"
-                                                           data-slider-value="[250,450]" id="min-bed"><br />
-                                                    <b class="pull-left color">1</b>
-                                                    <b class="pull-right color">120</b>
+                                                    <label>Brüt Metre Kare <small>(zorunlu)</small></label>
+                                                    <input id="advert-square-meter-gross" name="propertyprice" type="text" class="form-control" placeholder="88" required>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
-
+                                            <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label for="price-range">Min baths :</label>
-                                                    <input type="text" class="span2" value="" data-slider-min="0"
-                                                           data-slider-max="600" data-slider-step="5"
-                                                           data-slider-value="[250,450]" id="min-baths"><br />
-                                                    <b class="pull-left color">1</b>
-                                                    <b class="pull-right color">120</b>
+                                                    <label>Net Metre Kare <small>(zorunlu)</small></label>
+                                                    <input id="advert-square-meter-net" name="propertyprice" type="text" class="form-control" placeholder="77" required>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
-
+                                            <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label for="property-geo">Property geo (m2) :</label>
-                                                    <input type="text" class="span2" value="" data-slider-min="0"
-                                                           data-slider-max="600" data-slider-step="5"
-                                                           data-slider-value="[50,450]" id="property-geo"><br />
-                                                    <b class="pull-left color">40m</b>
-                                                    <b class="pull-right color">12000m</b>
+                                                    <label>Kaç Oda + Kaç Salon <small>(zorunlu)</small></label>
+                                                    <input id="advert-room-number" name="propertyprice" type="text" class="form-control" placeholder="3+1" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label>Banyo Sayısı <small>(zorunlu)</small></label>
+                                                    <input id="advert-number-of-bathrooms" name="propertyprice" type="text" class="form-control" placeholder="1" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -243,7 +311,7 @@
                                                 <div class="form-group">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> Swimming Pool
+                                                            <input id="advert-has-garage" type="checkbox"> Otopark
                                                         </label>
                                                     </div>
                                                 </div>
@@ -252,7 +320,7 @@
                                                 <div class="form-group">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> 2 Stories
+                                                            <input id="advert-is-furnished" type="checkbox"> Eşyalı
                                                         </label>
                                                     </div>
                                                 </div>
@@ -261,7 +329,7 @@
                                                 <div class="form-group">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> Emergency Exit
+                                                            <input id="advert-has-lift" type="checkbox"> Asansör
                                                         </label>
                                                     </div>
                                                 </div>
@@ -270,7 +338,7 @@
                                                 <div class="form-group">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> Fire Place
+                                                            <input id="advert-have-cellar" type="checkbox"> Kiler
                                                         </label>
                                                     </div>
                                                 </div>
@@ -281,7 +349,7 @@
                                                 <div class="form-group">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> Laundry Room
+                                                            <input id="advert-is-close_health_center" type="checkbox"> Sağlık Ocağına Yakın
                                                         </label>
                                                     </div>
                                                 </div>
@@ -290,7 +358,7 @@
                                                 <div class="form-group">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> Jog Path
+                                                            <input id="advert-is-close_school" type="checkbox"> Okula Yakın
                                                         </label>
                                                     </div>
                                                 </div>
@@ -299,7 +367,7 @@
                                                 <div class="form-group">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> Ceilings
+                                                            <input id="advert-is-in-site" type="checkbox"> Site İçerisinde
                                                         </label>
                                                     </div>
                                                 </div>
@@ -308,7 +376,7 @@
                                                 <div class="form-group">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> Dual Sinks
+                                                            <input id="advert-is-earthquake-resistant" type="checkbox"> Depreme Dayanıklı
                                                         </label>
                                                     </div>
                                                 </div>
@@ -329,8 +397,8 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="property-images">Resimleri Seçin :</label>
-                                                <input class="form-control" type="file" id="property-images">
-                                                <p class="help-block">İlanınız için birden fazla resim seçebilirsiniz .</p>
+                                                <input class="form-control" type="file" id="property-images" multiple>
+                                                <p class="help-block"><small>İlanınız için birden fazla resim seçebilirsiniz .</small></p>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
