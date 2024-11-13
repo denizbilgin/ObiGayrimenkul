@@ -284,13 +284,13 @@
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label>Brüt Metre Kare <small>(zorunlu)</small></label>
-                                                    <input id="advert-square-meter-gross" name="propertyprice" type="text" class="form-control" placeholder="88" required>
+                                                    <input id="advert-square-meter-gross" name="propertyprice" type="number" class="form-control" placeholder="88" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label>Net Metre Kare <small>(zorunlu)</small></label>
-                                                    <input id="advert-square-meter-net" name="propertyprice" type="text" class="form-control" placeholder="77" required>
+                                                    <input id="advert-square-meter-net" name="propertyprice" type="number" class="form-control" placeholder="77" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
@@ -302,7 +302,7 @@
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label>Banyo Sayısı <small>(zorunlu)</small></label>
-                                                    <input id="advert-number-of-bathrooms" name="propertyprice" type="text" class="form-control" placeholder="1" required>
+                                                    <input id="advert-number-of-bathrooms" name="propertyprice" type="number" class="form-control" placeholder="1" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -403,16 +403,8 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="property-video">İlan ile ilgili Videolar :</label>
-                                                <input class="form-control" value="" placeholder="http://www.youtube.com, http://vimeo.com" name="property_video" type="text">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <input class="form-control" value="" placeholder="http://www.youtube.com, http://vimeo.com" name="property_video" type="text">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <input class="form-control" value="" placeholder="http://www.youtube.com, http://vimeo.com" name="property_video" type="text">
+                                                <label for="property-video">İlan ile ilgili Video :</label>
+                                                <input id="advert-video" class="form-control" value="" placeholder="http://www.youtube.com" name="property_video" type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -421,13 +413,13 @@
 
 
                                 <div class="tab-pane" id="step4">
-                                    <h4 class="info-text"> Son Olarak X Dosyasını Yükeyin </h4>
+                                    <h4 class="info-text"> Son Olarak Dökümanı Yükeyin </h4>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="">
                                                 <div class="form-group">
-                                                    <label for="property-document">X Belgesini Seçin :</label>
-                                                    <input class="form-control" type="file" id="property-document">
+                                                    <label for="property-document">Dökümanı Seçin :</label>
+                                                    <input id="advert-document" class="form-control" type="file" id="property-document">
                                                 </div>
 
                                                 <p>
@@ -444,7 +436,7 @@
                             <div class="wizard-footer">
                                 <div class="pull-right">
                                     <input type='button' class='btn btn-next btn-primary' name='next' value='DEVAM' />
-                                    <input type='button' class='btn btn-finish btn-primary ' name='finish' value='BİTİR' />
+                                    <input type='button' class='btn btn-finish btn-primary ' name='finish' value='BİTİR' id="advert-submit-button"/>
                                 </div>
 
                                 <div class="pull-left">
@@ -544,7 +536,6 @@
     
     <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
     <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
-
     <script type="module" src="~/assets/js/submit-property-functions.js" defer></script>
 </body>
 </html>

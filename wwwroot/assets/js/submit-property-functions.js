@@ -61,44 +61,71 @@ const loadQuarters = async (db, districtId, quarterElement) => {
     $('.selectpicker').selectpicker('refresh');
 };
 
+async function resizeImage(file, width, height) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        img.onload = () => {
+            canvas.width = width;
+            canvas.height = height;
+
+            ctx.drawImage(img, 0, 0, width, height);
+
+            canvas.toBlob((blob) => {
+                if (blob) {
+                    resolve(blob);
+                } else {
+                    reject(new Error("Resmi yeniden boyutlandırma başarısız."));
+                }
+            }, file.type);
+        };
+
+        img.onerror = (error) => reject(error);
+        img.src = URL.createObjectURL(file);
+    });
+}
+
 document.addEventListener("DOMContentLoaded", async function() {
     const app = await getFirebaseConfigurations();
     const db = getFirestore(app);
 
     const newAdvertData = {
-        advertTitle: '',                   //
-        approved: false,                   //
-        price: 0,                          //
-        publishDate: Date.now(),           //
-        description: '',                   //
-        address: '',                       //
-        squareMeterGross: 0,               //
-        squareMeterNet: 0,                 //
-        roomNumber: '',                    //
-        buildingAge: 0,                    //
-        numberOfBathrooms: 0,              //
-        numberOfFloors: 0,                 //
-        hasGarage: false,                  //
-        isFurnished: false,                //
-        hasLift: false,                    //
-        haveCellar: false,                 //
-        isCloseToHealthCenter: false,      //
-        isCloseToSchool: false,            //
-        isInSite: false,                   //
-        isEarthquakeResistant: false,      //
-        heating: 0,                        //
-        dues: 0,                           //
-        addressDistrictID: null,           //
-        addressQuarterID: null,            //
-        side: 0,                           //
-        whichFloor: 0,                     //
-        video: "",
-        advertImages: [],
-        balconyCount: 0,                   //
-        documentPath: "",
-        status: false,                     //
-        userID: "",
-        buildingFloors: 0,                 //
+        Id: "",
+        AdvertTitle: '',                   
+        Price: 0,                          
+        Description: '',                   
+        Address: '',                       
+        SquareMeterGross: 0,               
+        SquareMeterNet: 0,                 
+        RoomNumber: '',                    
+        BuildingAge: 0,                    
+        NumberOfBathrooms: 0,              
+        NumberOfFloors: 0,                 
+        HasGarage: false,                  
+        IsFurnished: false,                
+        HasLift: false,                    
+        HaveCellar: false,                 
+        IsCloseToHealthCenter: false,      
+        IsCloseToSchool: false,            
+        IsInSite: false,                   
+        IsEarthquakeResistant: false,      
+        Heating: 0,                        
+        Dues: 0,                           
+        AddressDistrictID: null,           
+        AddressQuarterID: null,            
+        Side: 0,                           
+        WhichFloor: 0,                     
+        Video: "",                         
+        AdvertImages: [],                  
+        BalconyCount: 0,                   
+        DocumentPath: "",                  
+        Status: false,                     
+        UserID: localStorage.getItem("userId"),
+        BuildingFloors: 0,                 
+        Approved: false,
+        PublishDate: ""
     };
 
 
@@ -110,105 +137,110 @@ document.addEventListener("DOMContentLoaded", async function() {
     const sideSelectSubmitProp = document.querySelector('.sidePicker');
     await loadDistricts(db, districtSelectSubmitProp);
     districtSelectSubmitProp.addEventListener('change', async (event) => {
-        newAdvertData.addressDistrictID = Number(event.target.value);
-        await loadQuarters(db, newAdvertData.addressDistrictID, quarterSelectSubmitProp);
+        newAdvertData.AddressDistrictID = Number(event.target.value);
+        await loadQuarters(db, newAdvertData.AddressDistrictID, quarterSelectSubmitProp);
     });
     quarterSelectSubmitProp.addEventListener('change', (event) => {
-        newAdvertData.addressQuarterID = Number(event.target.value);
+        newAdvertData.AddressQuarterID = Number(event.target.value);
     });
     statusSelectSubmitProp.addEventListener('change', (event) => {
-        newAdvertData.status = Number(event.target.value) === 1;
+        newAdvertData.Status = Number(event.target.value) === 1;
     });
     heatingSelectSubmitProp.addEventListener('change', (event) => {
-        newAdvertData.heating = Number(event.target.value);
+        newAdvertData.Heating = Number(event.target.value);
     });
     sideSelectSubmitProp.addEventListener('change', (event) => {
-        newAdvertData.side = Number(event.target.value);
+        newAdvertData.Side = Number(event.target.value);
     });
 
 
     // Inputs
     document.getElementById("advert-title").addEventListener('input', (event) => {
-        newAdvertData.advertTitle = event.target.value;
+        newAdvertData.AdvertTitle = event.target.value;
     });
     document.getElementById("advert-price").addEventListener('input', (event) => {
-        newAdvertData.price = Number(event.target.value);
+        newAdvertData.Price = Number(event.target.value);
     });
     document.getElementById("advert-address").addEventListener('input', (event) => {
-        newAdvertData.address = event.target.value;
+        newAdvertData.Address = event.target.value;
     });
     document.getElementById("advert-description").addEventListener('input', (event) => {
-        newAdvertData.description = event.target.value;
+        newAdvertData.Description = event.target.value;
     });
     document.getElementById("advert-square-meter-gross").addEventListener('input', (event) => {
-        newAdvertData.squareMeterGross = Number(event.target.value);
+        newAdvertData.SquareMeterGross = Number(event.target.value);
     });
     document.getElementById("advert-square-meter-net").addEventListener('input', (event) => {
-        newAdvertData.squareMeterNet = Number(event.target.value);
+        newAdvertData.SquareMeterNet = Number(event.target.value);
     });
     document.getElementById("advert-room-number").addEventListener('input', (event) => {
-        newAdvertData.roomNumber = event.target.value;
+        newAdvertData.RoomNumber = event.target.value;
     });
     document.getElementById("advert-number-of-bathrooms").addEventListener('input', (event) => {
-        newAdvertData.numberOfBathrooms = Number(event.target.value);
+        newAdvertData.NumberOfBathrooms = Number(event.target.value);
     });
     document.getElementById("advert-building-age").addEventListener('input', (event) => {
-        newAdvertData.buildingAge = Number(event.target.value);
+        newAdvertData.BuildingAge = Number(event.target.value);
     });
     document.getElementById("advert-building-floors").addEventListener('input', (event) => {
-        newAdvertData.buildingFloors = Number(event.target.value);
+        newAdvertData.BuildingFloors = Number(event.target.value);
     });
     document.getElementById("advert-dues").addEventListener('input', (event) => {
-        newAdvertData.dues = Number(event.target.value);
+        newAdvertData.Dues = Number(event.target.value);
     });
     document.getElementById("advert-which-floor").addEventListener('input', (event) => {
-        newAdvertData.whichFloor = Number(event.target.value);
+        newAdvertData.WhichFloor = Number(event.target.value);
     });
     document.getElementById("advert-balcony-count").addEventListener('input', (event) => {
-        newAdvertData.balconyCount = Number(event.target.value);
+        newAdvertData.BalconyCount = Number(event.target.value);
     });
     document.getElementById("advert-number-of-floors").addEventListener('input', (event) => {
-        newAdvertData.numberOfFloors = Number(event.target.value);
+        newAdvertData.NumberOfFloors = Number(event.target.value);
+    });
+    document.getElementById("advert-video").addEventListener('input', (event) => {
+        newAdvertData.Video = event.target.value;
     });
 
     // Checkboxes
     document.getElementById("advert-has-garage").addEventListener('change', (event) => {
-        newAdvertData.hasGarage = event.target.checked;
+        newAdvertData.HasGarage = event.target.checked;
     });
     document.getElementById("advert-is-furnished").addEventListener('change', (event) => {
-        newAdvertData.isFurnished = event.target.checked;
+        newAdvertData.IsFurnished = event.target.checked;
     });
     document.getElementById("advert-has-lift").addEventListener('change', (event) => {
-        newAdvertData.hasLift = event.target.checked;
+        newAdvertData.HasLift = event.target.checked;
     });
     document.getElementById("advert-have-cellar").addEventListener('change', (event) => {
-        newAdvertData.haveCellar = event.target.checked;
+        newAdvertData.HaveCellar = event.target.checked;
     });
     document.getElementById("advert-is-close_health_center").addEventListener('change', (event) => {
-        newAdvertData.isCloseToHealthCenter = event.target.checked;
+        newAdvertData.IsCloseToHealthCenter = event.target.checked;
     });
     document.getElementById("advert-is-close_school").addEventListener('change', (event) => {
-        newAdvertData.isCloseToSchool = event.target.checked;
+        newAdvertData.IsCloseToSchool = event.target.checked;
     });
     document.getElementById("advert-is-in-site").addEventListener('change', (event) => {
-        newAdvertData.isInSite = event.target.checked;
+        newAdvertData.IsInSite = event.target.checked;
     });
     document.getElementById("advert-is-earthquake-resistant").addEventListener('change', (event) => {
-        newAdvertData.isEarthquakeResistant = event.target.checked;
+        newAdvertData.IsEarthquakeResistant = event.target.checked;
     });
 
     // File Selects
     document.getElementById("property-images").addEventListener("change", async function(event) {
         const files = event.target.files;
+        console.log(files);
         if (files.length > 0) {
             const storage = getStorage(app);
 
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
                 const extension = file.name.split('.').pop();
-                const filenameToUpload = `${newAdvertData.advertTitle.replaceAll(" ", "-")}-${i}-${new Date().getTime()}.${extension}`;
+                const filenameToUpload = `${newAdvertData.AdvertTitle.replaceAll(" ", "-")}-${i}-${new Date().getTime()}.${extension}`;
                 const storageRef = ref(storage, filenameToUpload);
-                const uploadTask = uploadBytesResumable(storageRef, file);
+                const resizedBlob = await resizeImage(file, 850, 570);
+                const uploadTask = uploadBytesResumable(storageRef, resizedBlob);
 
                 uploadTask.on("state_changed",
                     (snapshot) => {
@@ -220,7 +252,8 @@ document.addEventListener("DOMContentLoaded", async function() {
                         // Hata durumunda yapılacaklar
                         console.error("Yükleme hatası:", error);
                     },
-                    async () => {
+                    async () => {     
+                        newAdvertData.AdvertImages.push(filenameToUpload);   
                         //const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
                         //document.getElementById("user-picture").setAttribute("src", downloadURL);
                         //document.getElementById("user-picture").setAttribute("user-filename", fileName);
@@ -228,8 +261,59 @@ document.addEventListener("DOMContentLoaded", async function() {
                     }
                 )
             }
+        }
+    });
+    document.getElementById("advert-document").addEventListener("change", async function(event) {
+        const file = event.target.files[0];
+        if (file && file.type === "application/pdf") {
+            const storage = getStorage(app);
+            const filenameToUpload = `advert_documents/${newAdvertData.AdvertTitle.replaceAll(" ", "-")}-${new Date().getTime()}.pdf`;
+            const storageRef = ref(storage, filenameToUpload);
+            const uploadTask = uploadBytesResumable(storageRef, file);
 
-            
+            uploadTask.on("state_changed",
+                (snapshot) => {
+                    // Yükleme ilerleme durumu burada ele alınabilir
+                    console.log(filenameToUpload, " adlı PDF firebase'e yüklendi.");
+                    newAdvertData.DocumentPath = filenameToUpload;
+                },
+                (error) => {
+                    // Hata durumunda yapılacaklar
+                    console.error("PDF yükleme hatası:", error);
+                },
+                async () => {
+                    // Yükleme tamamlandığında yapılacak işlemler
+                    // const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                    // console.log("PDF Dosya URL:", downloadURL);
+                }
+            );
+        } else {
+            console.error("Lütfen bir PDF dosyası seçin.");
+        }
+    });
+
+
+    document.getElementById("advert-submit-button").addEventListener("click", async function() {
+        try {
+            console.log(newAdvertData);
+            const response = await fetch("/adverts/create", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newAdvertData)
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log("İlan başarıyla eklendi:", data);
+                window.location.href = `/home`;
+            } else {
+                const errorData = await response.json();
+                console.error("İlan eklenirken hata oluştu:", errorData);
+            }
+        } catch (error) {
+            console.error("Veri gönderilirken bir hata oluştu:", error);
         }
     });
     
