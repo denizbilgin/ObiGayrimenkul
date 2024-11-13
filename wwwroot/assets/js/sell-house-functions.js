@@ -71,11 +71,10 @@ document.addEventListener("DOMContentLoaded", async function() {
         Price: 0,
         BuildingAge: 0,
         Dues: 0,
-        HeatingType: 0,
+        Heating: "",
         WhichFloor: 0,
         NumberOfRooms: "",
         SquareMeter: "",
-        NumberOfBalcony: 0,
         IsFurnished: false,
         Status: false,
         DistrictId: 0,
@@ -86,7 +85,6 @@ document.addEventListener("DOMContentLoaded", async function() {
     // Selects
     const districtSelectSubmitProp = document.querySelector('.districtPicker');
     const quarterSelectSubmitProp = document.querySelector('.quarterPicker');
-    const heatingSelectSubmitProp = document.querySelector('.heatingPicker');
     await loadDistricts(db, districtSelectSubmitProp);
     districtSelectSubmitProp.addEventListener('change', async (event) => {
         newAdvertData.DistrictId = Number(event.target.value);
@@ -94,9 +92,6 @@ document.addEventListener("DOMContentLoaded", async function() {
     });
     quarterSelectSubmitProp.addEventListener('change', (event) => {
         newAdvertData.QuarterId = Number(event.target.value);
-    });
-    heatingSelectSubmitProp.addEventListener('change', (event) => {
-        newAdvertData.HeatingType = Number(event.target.value);
     });
 
     // Inputs
@@ -124,9 +119,6 @@ document.addEventListener("DOMContentLoaded", async function() {
     document.getElementById("advert-square-meter").addEventListener('input', (event) => {
         newAdvertData.SquareMeter = Number(event.target.value);
     });
-    document.getElementById("advert-balcony-count").addEventListener('input', (event) => {
-        newAdvertData.NumberOfBalcony = Number(event.target.value);
-    });
     document.getElementById("advert-is-furnished").addEventListener('input', (event) => {
         newAdvertData.IsFurnished = event.target.value;
     });
@@ -135,5 +127,33 @@ document.addEventListener("DOMContentLoaded", async function() {
     });
     document.getElementById("advert-other-information").addEventListener('input', (event) => {
         newAdvertData.OtherInformations = event.target.value;
+    });
+    document.getElementById("advert-heating").addEventListener('input', (event) => {
+        newAdvertData.Heating = event.target.value;
+    });
+
+
+    document.getElementById("advert-send-button").addEventListener("click", async function() {
+        console.log(newAdvertData);
+        try {
+            const response = await fetch("/adverts/sell-house", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newAdvertData)
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log("İlan başarıyla gönderildi:", data);
+                //window.location.href = `/home`;
+            } else {
+                const errorData = await response.json();
+                console.error("İlan gönderilirken hata oluştu:", errorData);
+            }
+        } catch (error) {
+            console.error("Veri gönderilirken bir hata oluştu:", error);
+        }
     });
 });

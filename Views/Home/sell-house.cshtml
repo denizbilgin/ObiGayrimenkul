@@ -17,21 +17,21 @@
     <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="assets/css/normalize.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/fontello.css">
-    <link href="assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
-    <link href="assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
-    <link href="assets/css/animate.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/icheck.min_all.css">
-    <link rel="stylesheet" href="assets/css/price-range.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.css">
-    <link rel="stylesheet" href="assets/css/owl.transitions.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/fontello.css">
+    <link href="/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+    <link href="/assets/css/animate.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="/assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/icheck.min_all.css">
+    <link rel="stylesheet" href="/assets/css/price-range.css">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="/assets/css/owl.theme.css">
+    <link rel="stylesheet" href="/assets/css/owl.transitions.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
 </head>
 <body>
     <div id="preloader">
@@ -123,7 +123,7 @@
 
             <h2>İletişim Formu</h2>
             <p>Lütfen evinizle ilgili bilgileri doğru ve eksiksiz giriniz.</p>
-            <form target="_blank" action="mailto:denizbilgin2002@hotmail.com" method="post">
+            <form action="" method="">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -157,19 +157,6 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Isınma Tipi <small>(zorunlu)</small></label>
-                            <select id="lunchBegins" class="selectpicker heatingPicker" data-live-search="true" data-live-search-style="begins" title="Isınma Tipi" required>
-                                <option value="0">Merkezi Doğalgaz</option>
-                                <option value="1">Bireysel Doğalgaz</option>
-                                <option value="2">Kömür</option>
-                                <option value="3">Soba</option>
-                                <option value="4">Yerden Isıtma</option>
-                                <option value="5">Isı Pompası</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
                             <label for="which_floor">Bulunduğu Kat</label>
                             <input type="number" class="form-control" id="advert-which-floor" name="which_floor" required>
                         </div>
@@ -177,7 +164,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="room_number">Oda Sayısı</label> <small>(Örneğin 3+1)</small>
-                            <input type="number" class="form-control" id="advert-room-number" name="room_number" required>
+                            <input type="text" class="form-control" id="advert-room-number" name="room_number" required placeholder="3+1">
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -188,20 +175,20 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="balcony_count">Balkon Sayısı</label>
-                            <input type="number" class="form-control" id="advert-balcony-count" name="balcony_count" required>
+                            <label for="heating">Isınma Tipi</label>
+                            <input type="text" class="form-control" id="advert-heating" name="heating" required placeholder="Doğalgaz">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="is_furnished">Eşyalı Mı?</label>
-                            <input type="text" class="form-control" id="advert-is-furnished" name="is_furnished" required>
+                            <input type="text" class="form-control" id="advert-is-furnished" name="is_furnished" required placeholder="Evet/Hayır">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="sell_or_rent">Satılık/Kiralık</label>
-                            <input type="text" class="form-control" id="advert-sell-or-rent" name="sell_or_rent" required>
+                            <input type="text" class="form-control" id="advert-sell-or-rent" name="sell_or_rent" required placeholder="Satılık/Kiralık">
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -221,11 +208,11 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="message">Diğer Bilgiler</label>
-                            <textarea id="advert-other-information" class="form-control" rows="7" name="text-area"></textarea>
+                            <textarea id="advert-other-information" class="form-control" rows="7" name="text-area" placeholder="Evinizle ilgili belirtmek istediğiniz diğer hususlar..."></textarea>
                         </div>
                     </div>
                     <div class="col-sm-12 text-center">
-                        <button id="advert-send-button" type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Gönder</button>
+                        <button id="advert-send-button" type="button" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Gönder</button>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -298,24 +285,24 @@
     </div>
 
 
-    <script src="assets/js/modernizr-2.6.2.min.js"></script>
+    <script src="~/assets/js/modernizr-2.6.2.min.js"></script>
 
-    <script src="assets/js/jquery-1.10.2.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bootstrap-select.min.js"></script>
-    <script src="assets/js/bootstrap-hover-dropdown.js"></script>
+    <script src="~/assets/js/jquery-1.10.2.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/bootstrap-select.min.js"></script>
+    <script src="~/assets/js/bootstrap-hover-dropdown.js"></script>
 
-    <script src="assets/js/easypiechart.min.js"></script>
-    <script src="assets/js/jquery.easypiechart.min.js"></script>
+    <script src="~/assets/js/easypiechart.min.js"></script>
+    <script src="~/assets/js/jquery.easypiechart.min.js"></script>
 
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/wow.js"></script>
+    <script src="~/assets/js/owl.carousel.min.js"></script>
+    <script src="~/assets/js/wow.js"></script>
 
-    <script src="assets/js/icheck.min.js"></script>
-    <script src="assets/js/price-range.js"></script>
+    <script src="~/assets/js/icheck.min.js"></script>
+    <script src="~/assets/js/price-range.js"></script>
 
-    <script src="assets/js/main.js"></script>
-    <script src = "assets/js/logged-user-dropdown.js"></script>
+    <script src="~/assets/js/main.js"></script>
+    <script src = "~/assets/js/logged-user-dropdown.js"></script>
 
     <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
     <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>

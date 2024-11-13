@@ -295,7 +295,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     document.getElementById("advert-submit-button").addEventListener("click", async function() {
         try {
-            console.log(newAdvertData);
             const response = await fetch("/adverts/create", {
                 method: "POST",
                 headers: {

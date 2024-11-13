@@ -199,7 +199,11 @@ namespace ObiGayrimenkul.Controllers
                 }
                 await _firestore.Add<ClientHouse>(clientHouse, "client-requests", ct);
             }
+<<<<<<< HEAD
             return Ok(new { success = true, message = "Kayit olma islemi basariili." });
+=======
+            return Ok(new { success = true, message = "işlem başarılı." });
+>>>>>>> 29c1f004f23394a19ec5976dfb361b7dce0b99d3
         }
 
         [HttpGet("advert-exists")]
