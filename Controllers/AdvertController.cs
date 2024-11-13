@@ -182,9 +182,14 @@ namespace ObiGayrimenkul.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-
         [HttpGet("sell-house")]
-        private async Task<ClientHouse> ClientHouseSell([FromBody] ClientHouse clientHouse, CancellationToken ct)
+        private async Task<IActionResult> ClientHouseSell(CancellationToken ct)
+        {
+            return View("~/Views/Home/sell-house.cshtml");
+        }
+
+        [HttpPost("sell-house")]
+        private async Task<IActionResult> ClientHouseSell([FromBody] ClientHouse clientHouse, CancellationToken ct)
         {
             if (ModelState.IsValid)
             {
@@ -194,7 +199,7 @@ namespace ObiGayrimenkul.Controllers
                 }
                 await _firestore.Add(clientHouse, "client-houses", ct);
             }
-            return clientHouse;
+            return Ok("Ilan koyma basarili");
         }
 
         [HttpGet("advert-exists")]
