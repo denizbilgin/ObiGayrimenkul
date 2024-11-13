@@ -83,7 +83,7 @@ namespace ObiGayrimenkul.Controllers
                         user.Id = Guid.NewGuid().ToString();
                     }
                     await _firestore.Add(user, "users", ct);
-                    return RedirectToAction("Index");
+                    return Ok("Kayit olma islemi basariili.");
                 }
                 var errors = ModelState.Values.SelectMany(v => v.Errors)
                                              .Select(e => e.ErrorMessage).ToList();
