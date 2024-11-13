@@ -64,7 +64,7 @@ namespace ObiGayrimenkul.Controllers
         // İlan ekle - POST (Formdan gelen verileri işleme)
         [HttpPost("create")]
 
-        public async Task<IActionResult> Create(Advert advert, CancellationToken ct)
+        public async Task<IActionResult> Create([FromBody] Advert advert, CancellationToken ct)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace ObiGayrimenkul.Controllers
                     }
 
                     var date = Timestamp.FromDateTime(DateTime.UtcNow);
-                    advert.PublishDate = date.ToDateTime().ToString("o");
+                    advert.PublishDate = date.ToDateTime().ToString();
                     advert.Approved = false;
                     Console.WriteLine(advert.PublishDate);
                     await _firestore.Add(advert, "advert-requests", ct);

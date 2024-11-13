@@ -127,109 +127,105 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="firstname">İsim</label>
-                            <input type="text" class="form-control" id="firstname" name="firstname" required>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="lastname">Soyisim</label>
-                            <input type="text" class="form-control" id="lastname" name="lastname" required>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="email">E-Posta</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <label for="firstname">Tam Ad</label>
+                            <input id="advert-name" type="text" class="form-control" name="firstname" required placeholder="Ad Soyad">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="phone">Telefon</label>
-                            <input type="text" class="form-control" id="phone" name="phone" required>
+                            <input id="advert-phone-number" type="text" class="form-control" name="phone" required placeholder="05....">
                         </div>
                     </div>
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="price">Fiyat</label>
-                            <input type="text" class="form-control" id="price" name="price" required>
+                            <input id="advert-price" type="number" class="form-control" name="price" required>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="building_age">Bina Yaşı</label>
-                            <input type="text" class="form-control" id="building_age" name="building_age" required>
+                            <input type="number" class="form-control" id="advert-building-age" name="building_age" required>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="dues">Aidat</label>
-                            <input type="text" class="form-control" id="dues" name="dues" required>
+                            <input type="number" class="form-control" id="advert-dues" name="dues" required>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="heating">Isıtma</label>
-                            <input type="text" class="form-control" id="heating" name="heating" required>
+                            <label>Isınma Tipi <small>(zorunlu)</small></label>
+                            <select id="lunchBegins" class="selectpicker heatingPicker" data-live-search="true" data-live-search-style="begins" title="Isınma Tipi" required>
+                                <option value="0">Merkezi Doğalgaz</option>
+                                <option value="1">Bireysel Doğalgaz</option>
+                                <option value="2">Kömür</option>
+                                <option value="3">Soba</option>
+                                <option value="4">Yerden Isıtma</option>
+                                <option value="5">Isı Pompası</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="which_floor">Bulunduğu Kat</label>
-                            <input type="text" class="form-control" id="which_floor" name="which_floor" required>
+                            <input type="number" class="form-control" id="advert-which-floor" name="which_floor" required>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="room_number">Oda Sayısı</label> (Örneğin 3+1)
-                            <input type="text" class="form-control" id="room_number" name="room_number" required>
+                            <label for="room_number">Oda Sayısı</label> <small>(Örneğin 3+1)</small>
+                            <input type="number" class="form-control" id="advert-room-number" name="room_number" required>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="square_meter">Metrekare</label>
-                            <input type="text" class="form-control" id="square_meter" name="square_meter" required>
+                            <input type="number" class="form-control" id="advert-square-meter" name="square_meter" required>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="balcony_count">Balkon Sayısı</label>
-                            <input type="text" class="form-control" id="balcony_count" name="balcony_count" required>
+                            <input type="number" class="form-control" id="advert-balcony-count" name="balcony_count" required>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="is_furnished">Eşyalı Mı?</label>
-                            <input type="text" class="form-control" id="is_furnished" name="is_furnished" required>
+                            <input type="text" class="form-control" id="advert-is-furnished" name="is_furnished" required>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="sell_or_rent">Satılık/Kiralık</label>
-                            <input type="text" class="form-control" id="sell_or_rent" name="sell_or_rent" required>
+                            <input type="text" class="form-control" id="advert-sell-or-rent" name="sell_or_rent" required>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="district">İlçe</label>
-                            <input type="text" class="form-control" id="district" name="district" required>
+                            <select id="lunchBegins" class="selectpicker districtPicker" data-live-search="true" data-live-search-style="begins" title="İlçe" required>
+                            </select>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="neighborhood">Mahalle</label>
-                            <input type="text" class="form-control" id="neighborhood" name="neighborhood" required>
+                            <select id="lunchBegins" class="selectpicker quarterPicker" data-live-search="true" data-live-search-style="begins" title="Mahalle" required>
+                            </select>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="message">Diğer Bilgiler</label>
-                            <textarea id="message" class="form-control" rows="7" name="text-area"></textarea>
+                            <textarea id="advert-other-information" class="form-control" rows="7" name="text-area"></textarea>
                         </div>
                     </div>
                     <div class="col-sm-12 text-center">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Gönder</button>
+                        <button id="advert-send-button" type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Gönder</button>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -320,6 +316,10 @@
 
     <script src="assets/js/main.js"></script>
     <script src = "assets/js/logged-user-dropdown.js"></script>
+
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
+    <script type="module" src="~/assets/js/sell-house-functions.js" defer></script>
 
 
 </body>
