@@ -189,7 +189,7 @@ namespace ObiGayrimenkul.Controllers
         }
 
         [HttpPost("sell-house")]
-        private async Task<IActionResult> ClientHouseSell([FromBody] ClientHouse clientHouse, CancellationToken ct)
+        public async Task<IActionResult> ClientHouseSell([FromBody] ClientHouse clientHouse, CancellationToken ct)
         {
             if (ModelState.IsValid)
             {
@@ -197,9 +197,9 @@ namespace ObiGayrimenkul.Controllers
                 {
                     clientHouse.Id = Guid.NewGuid().ToString();
                 }
-                await _firestore.Add(clientHouse, "client-houses", ct);
+                await _firestore.Add<ClientHouse>(clientHouse, "client-requests", ct);
             }
-            return Ok("Ilan koyma basarili");
+            return Ok(new { success = true, message = "Kayit olma islemi basariili." });
         }
 
         [HttpGet("advert-exists")]

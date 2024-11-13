@@ -42,46 +42,53 @@
 
     const registerForm = document.getElementById("register-form");
 
-    registerForm.addEventListener("submit" , function(event) {
-        const fullName = document.getElementById("name-register");
-        const email = document.getElementById("email-register");
-        const password = docuemnt.getElementById("password-register");
+    registerForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const fullName = document.getElementById("name-register").value;
+        const email = document.getElementById("email-register").value;
+        const password = document.getElementById("password-register").value;
+
         const names = fullName.split(" ");
-        const formData = new URLSearchParams();
         const name = names[0];
-        if(names.length > 2){
-            const surname = names[names.length - 1];
-            for(var i = 1 ; i < names.length - 2 ; i++){
-                const midname = " " + i;
-            }
-        }else{
-            const surname = names[1];
+        let midName = "";
+        let surname = "";
+
+        if (names.length > 2) {
+            surname = names[names.length - 1];
+            midName = names.slice(1, -1).join(" ");
+        } else if (names.length === 2) {
+            surname = names[1];
         }
+
         const userRegisterData = {
             "Id": "",
-            "auth_doc_number": 0,
-            "email": email,
-            "description": "",
-            "facebook_link": "",
-            "instagram_link": "",
-            "role": "",
-            "mid_name": midname? midname : "",
-            "name": name,
-            "password": password,
-            "phone_number": "",
-            "surname": surname,
-            "img_path": ""
-          }
-          
+            "AuthDocNumber": 0,
+            "Email": email,
+            "Description": "",
+            "FacebookLink": "",
+            "InstagramLink": "",
+            "Role": "",
+            "MidName": midName,
+            "Name": name,
+            "Password": password,
+            "PhoneNumber": "",
+            "Surname": surname,
+            "ImgPath": ""
+        }
+        
+
+        console.log(JSON.stringify(userRegisterData));
+
         fetch("/user-process/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: userRegisterData
+            body: JSON.stringify(userRegisterData)
         })
             .then(response => {
-                console.log(userRegisterData);
+                
                 if (response.ok) {
                     return response.json();
                 } else {
@@ -91,15 +98,16 @@
             .then(data => {
                 console.log("Kayit olundu:", data);
                 if (data.success) {
+                    const formData = new URLSearchParams();
+                    formData.append("Email", email);
+                    formData.append("Password", password);
+
                     fetch("/user-process/login", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/x-www-form-urlencoded"
                         },
-                        body: {
-                            "Email" : email,
-                            "Password" : password
-                        }
+                        body: formData
                     })
                         .then(response => {
                             if (response.ok) {

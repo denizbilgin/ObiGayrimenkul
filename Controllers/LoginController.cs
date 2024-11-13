@@ -71,7 +71,7 @@ namespace ObiGayrimenkul.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(User user, CancellationToken ct)
+        public async Task<IActionResult> Register([FromBody]User user, CancellationToken ct)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace ObiGayrimenkul.Controllers
                         user.Id = Guid.NewGuid().ToString();
                     }
                     await _firestore.Add(user, "users", ct);
-                    return Ok("Kayit olma islemi basariili.");
+                    return Ok(new { success = true, message = "Kayit olma islemi basariili." });
                 }
                 var errors = ModelState.Values.SelectMany(v => v.Errors)
                                              .Select(e => e.ErrorMessage).ToList();

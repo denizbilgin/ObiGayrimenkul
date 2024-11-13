@@ -59,7 +59,7 @@ namespace ObiGayrimenkul.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-        [Authorize(Roles ="Admin")]
+        //[Authorize(Roles ="Admin")]
         [HttpGet("edit/{id}")]
         public async Task<IActionResult> Update(string id, CancellationToken ct)
         {

@@ -173,6 +173,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
+    "Method": "ClientHouseSell",
+    "RelativePath": "adverts/sell-house",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clientHouse",
+        "Type": "ObiGayrimenkul.Models.ClientHouse",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ObiGayrimenkul.Controllers.ContactController",
     "Method": "Index",
     "RelativePath": "contact",
@@ -272,69 +288,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Id",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "AuthDocNumber",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Description",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "FacebookLink",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "InstagramLink",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Role",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "MidName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Password",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PhoneNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Surname",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "ImgPath",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "user",
+        "Type": "ObiGayrimenkul.Models.User",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
