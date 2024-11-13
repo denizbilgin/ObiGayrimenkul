@@ -173,6 +173,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
+    "Method": "ClientHouseSell",
+    "RelativePath": "adverts/sell-house",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clientHouse",
+        "Type": "ObiGayrimenkul.Models.ClientHouse",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ObiGayrimenkul.Controllers.ContactController",
     "Method": "Index",
     "RelativePath": "contact",
