@@ -3,6 +3,7 @@ using Google.Rpc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ObiGayrimenkul.Firebase;
+using ObiGayrimenkul.Models;
 
 namespace ObiGayrimenkul.Controllers
 {
@@ -54,6 +55,7 @@ namespace ObiGayrimenkul.Controllers
         }
 
         // İlan ekle - GET (Form gösterimi)
+        [Authorize]
         [HttpGet("create")]
         public IActionResult Create()
         {
@@ -62,6 +64,7 @@ namespace ObiGayrimenkul.Controllers
         }
 
         // İlan ekle - POST (Formdan gelen verileri işleme)
+        [Authorize]
         [HttpPost("create")]
 
         public async Task<IActionResult> Create(Advert advert, CancellationToken ct)
@@ -93,19 +96,19 @@ namespace ObiGayrimenkul.Controllers
             }
         }
 
-       /* [HttpGet("edit/{id}")]
-        public async Task<IActionResult> Edit(string id, CancellationToken ct)
-        {
-            var advert = await _firestore.Get<Advert>(id,"adverts", ct);
-            
-            if (advert == null)
-            {
-                return NotFound();
-            }
-            // return View(advert);
-            return Ok(advert);
-        }*/
+        /* [HttpGet("edit/{id}")]
+         public async Task<IActionResult> Edit(string id, CancellationToken ct)
+         {
+             var advert = await _firestore.Get<Advert>(id,"adverts", ct);
 
+             if (advert == null)
+             {
+                 return NotFound();
+             }
+             // return View(advert);
+             return Ok(advert);
+         }*/
+        
         [HttpPost("edit/{id}")]
         public async Task<IActionResult> Edit(string id,[FromBody] Advert advert, CancellationToken ct)
         {
@@ -180,7 +183,22 @@ namespace ObiGayrimenkul.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet("sell-house")]
+        private async Task<ClientHouse> ClientHouseSell([FromBody] ClientHouse clientHouse, CancellationToken ct)
+        {
+            if (ModelState.IsValid)
+            {
+                if (string.IsNullOrEmpty(clientHouse.Id))
+                {
+                    clientHouse.Id = Guid.NewGuid().ToString();
+                }
+                await _firestore.Add(clientHouse, "client-houses", ct);
+            }
+            return clientHouse;
+        }
+
         [HttpGet("advert-exists")]
+            
         private async Task<bool> AdvertExists(string id, CancellationToken ct)
         {
             var advert = await _firestore.Get<Advert>(id,"adverts", ct);
