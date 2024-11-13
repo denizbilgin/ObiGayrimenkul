@@ -673,19 +673,11 @@
       "PackagePath": "staticwebassets\\assets\\js\\bootstrap.min.js"
     },
     {
-<<<<<<< HEAD
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\change-password.js",
-      "PackagePath": "staticwebassets\\assets\\js\\change-password.js"
-    },
-    {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\contact-functions.js",
-=======
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\change-password.js",
       "PackagePath": "staticwebassets\\assets\\js\\change-password.js"
     },
     {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\contact-functions.js",
->>>>>>> c15960d9e27fff9960c30dff86e8a4992f57cdee
       "PackagePath": "staticwebassets\\assets\\js\\contact-functions.js"
     },
     {
@@ -775,6 +767,10 @@
     {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\search-functions.js",
       "PackagePath": "staticwebassets\\assets\\js\\search-functions.js"
+    },
+    {
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\sell-house-functions.js",
+      "PackagePath": "staticwebassets\\assets\\js\\sell-house-functions.js"
     },
     {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\submit-property-functions.js",

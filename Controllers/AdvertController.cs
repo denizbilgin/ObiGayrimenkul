@@ -55,7 +55,7 @@ namespace ObiGayrimenkul.Controllers
         }
 
         // İlan ekle - GET (Form gösterimi)
-        [Authorize]
+        //[Authorize]
         [HttpGet("create")]
         public IActionResult Create()
         {
@@ -64,7 +64,7 @@ namespace ObiGayrimenkul.Controllers
         }
 
         // İlan ekle - POST (Formdan gelen verileri işleme)
-        [Authorize]
+        //[Authorize]
         [HttpPost("create")]
 
         public async Task<IActionResult> Create([FromBody] Advert advert, CancellationToken ct)
@@ -183,7 +183,7 @@ namespace ObiGayrimenkul.Controllers
             return RedirectToAction(nameof(Index));
         }
         [HttpGet("sell-house")]
-        private async Task<IActionResult> ClientHouseSell(CancellationToken ct)
+        public ViewResult ClientHouseSell()
         {
             return View("~/Views/Home/sell-house.cshtml");
         }
