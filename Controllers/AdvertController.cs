@@ -38,7 +38,8 @@ namespace ObiGayrimenkul.Controllers
             var advert = await _firestore.Get<Advert>(id, "adverts", ct);
             if (advert == null)
             {
-                return NotFound();
+                Response.StatusCode = 404;
+                return View("~/Views/Home/404.cshtml");
             }
             return View("~/Views/Home/property-detail.cshtml");
         }
@@ -49,7 +50,8 @@ namespace ObiGayrimenkul.Controllers
             var advert = await _firestore.Get<Advert>(id, "adverts", ct);
             if (advert == null)
             {
-                return NotFound();
+                Response.StatusCode = 404;
+                return View("~/Views/Home/404.cshtml");
             }
             return Ok(advert);
         }
@@ -113,7 +115,8 @@ namespace ObiGayrimenkul.Controllers
         {
             if (id != advert.Id.ToString())
             {
-                return NotFound();
+                Response.StatusCode = 404;
+                return View("~/Views/Home/404.cshtml");
             }
 
             if (ModelState.IsValid)
@@ -122,8 +125,9 @@ namespace ObiGayrimenkul.Controllers
                 
                     if (!await AdvertExists(advert.Id.ToString(), ct))
                     {
-                        return NotFound();
-                    }
+                    Response.StatusCode = 404;
+                    return View("~/Views/Home/404.cshtml");
+                }
             }
             return Ok(advert);
         }
@@ -134,7 +138,8 @@ namespace ObiGayrimenkul.Controllers
             var advert = await _firestore.Get<Advert>(id,"adverts", ct);
             if (advert == null)
             {
-                return NotFound();
+                Response.StatusCode = 404;
+                return View("~/Views/Home/404.cshtml");
             }
             return View(advert);
         }
@@ -160,8 +165,8 @@ namespace ObiGayrimenkul.Controllers
             //Console.WriteLine(advert.Id);
             if (advert == null)
             {
-                Console.WriteLine("advert null");
-                return NotFound();
+                Response.StatusCode = 404;
+                return View("~/Views/Home/404.cshtml");
             }
 
             advert.Approved = true; // İlanı onayla
@@ -199,6 +204,10 @@ namespace ObiGayrimenkul.Controllers
                 await _firestore.Add<ClientHouse>(clientHouse, "client-requests", ct);
             }
             return Ok(new { success = true, message = "işlem başarılı." });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4e73ab87baab5afd7a20363b6ed68d368d4b0f18
         }
 
         [HttpGet("advert-exists")]

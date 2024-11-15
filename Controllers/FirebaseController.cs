@@ -15,7 +15,8 @@ namespace ObiGayrimenkul.Controllers
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Firebase", "obidatabase-jsconfiguration.json");
             if (!System.IO.File.Exists(filePath))
             {
-                return NotFound("JSON dosyası bulunamadı.");
+                Response.StatusCode = 404;
+                return View("~/Views/Home/404.cshtml");
             }
             try
             {

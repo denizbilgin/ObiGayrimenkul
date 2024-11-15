@@ -33,7 +33,8 @@ namespace ObiGayrimenkul.Controllers
             var user = await _firestore.Get<User>(id, "users", ct);
             if (user == null)
             {
-                return NotFound();
+                Response.StatusCode = 404;
+                return View("~/Views/Home/404.cshtml"); ;
             }
             return Ok(user);
         }
@@ -66,7 +67,8 @@ namespace ObiGayrimenkul.Controllers
             var user = await _firestore.Get<User>(id, "users", ct);
             if (user == null)
             {
-                return NotFound();
+                Response.StatusCode = 404;
+                return View("~/Views/Home/404.cshtml");
             }
             return View("~/Views/Home/user-profile.cshtml");
 
@@ -107,7 +109,8 @@ namespace ObiGayrimenkul.Controllers
             var user = await _firestore.Get<User>(userId, "users", ct);
             if (user == null)
             {
-                return NotFound();
+                Response.StatusCode = 404;
+                return View("~/Views/Home/404.cshtml");
             }
 
             user.Password = newPassword;
