@@ -157,7 +157,6 @@ input[type="radio"] {
 .image-card {
     display: inline-block;
     margin: 10px;
-    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
@@ -167,18 +166,20 @@ input[type="radio"] {
     max-width: 150px;
     height: auto;
     display: block;
-    margin-bottom: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .delete-button {
-    background-color: red;
+    background-color: rgb(214, 5, 5);
     color: white;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-    border-radius: 3px;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    border-radius: 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 100%;
 }
 
 .delete-button:hover {

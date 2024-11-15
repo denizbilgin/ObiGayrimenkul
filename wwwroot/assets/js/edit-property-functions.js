@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getFirestore, doc, getDoc, query, where, collection, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-import { getStorage, ref, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+import { getStorage, ref, getDownloadURL, deleteObject, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
 const getAdvertById = async (id) => {
     const url = `/adverts/get-details/${id}`;
@@ -96,6 +96,7 @@ const getAdvertPhotoFromStorage = async (app, imageName) => {
 
 const getAdvertImages = async (app, advert) => {
     const imagesContainer = document.getElementById('imagesContainer');
+    imagesContainer.innerHTML = "";
 
     if (advert.advertImages.length > 0) {
         for (const imageName of advert.advertImages) {
@@ -145,6 +146,32 @@ function determineCheckboxStatus(elementId, value) {
     if (value === true) {
         document.getElementById(elementId).parentElement.classList.add("checked");
     }
+}
+
+async function resizeImage(file, width, height) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        img.onload = () => {
+            canvas.width = width;
+            canvas.height = height;
+
+            ctx.drawImage(img, 0, 0, width, height);
+
+            canvas.toBlob((blob) => {
+                if (blob) {
+                    resolve(blob);
+                } else {
+                    reject(new Error("Resmi yeniden boyutlandırma başarısız."));
+                }
+            }, file.type);
+        };
+
+        img.onerror = (error) => reject(error);
+        img.src = URL.createObjectURL(file);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -214,5 +241,40 @@ document.addEventListener("DOMContentLoaded", async function () {
             // Step 3
             document.getElementById("advert-video").value = advert.video;
             await getAdvertImages(app, advert);
+            document.getElementById("property-images").addEventListener("change", async function(event) {
+                const files = event.target.files;
+                console.log(files);
+                if (files.length > 0) {
+                    const storage = getStorage(app);
+        
+                    for (let i = 0; i < files.length; i++) {
+                        const file = files[i];
+                        const extension = file.name.split('.').pop();
+                        const filenameToUpload = `${document.getElementById("advert-title").value.replaceAll(" ", "-")}-${i}-${new Date().getTime()}.${extension}`;
+                        const storageRef = ref(storage, filenameToUpload);
+                        const resizedBlob = await resizeImage(file, 850, 570);
+                        const uploadTask = uploadBytesResumable(storageRef, resizedBlob);
+        
+                        uploadTask.on("state_changed",
+                            (snapshot) => {
+                                // Yükleme ilerleme durumu burada ele alınabilir
+                                // Örneğin: progress bar eklemek
+                            },
+                            (error) => {
+                                // Hata durumunda yapılacaklar
+                                console.error("Yükleme hatası:", error);
+                            },
+                            async () => {     
+                                const advertRef = doc(db, 'adverts', advert.id);
+                                advert.advertImages.push(filenameToUpload);
+                                await updateDoc(advertRef, { images: advert.advertImages});
+                                console.log(`${filenameToUpload} başarıyla firebase'e eklendi.`);
+                                await getAdvertImages(app, advert);
+                            }
+                        )
+                        
+                    }
+                }
+            });
         }
 });
