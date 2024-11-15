@@ -1,10 +1,6 @@
 {
   "Version": 1,
-<<<<<<< HEAD
   "Hash": "NJ+7S0vChn83CHZnZiAyNO0JSyaNBObMM03lN8Vfx64=",
-=======
-  "Hash": "VyBhQYICuDMM7b8QSyNtMjxJjsXy9Kx01m+BpzWVn4o=",
->>>>>>> 29c1f004f23394a19ec5976dfb361b7dce0b99d3
   "Source": "ObiGayrimenkul",
   "BasePath": "_content/ObiGayrimenkul",
   "Mode": "Default",
@@ -3213,14 +3209,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\bootstrap-wizard.min.js"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\change-password.js",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\change-password.js",
->>>>>>> 29c1f004f23394a19ec5976dfb361b7dce0b99d3
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/js/change-password.js",
       "AssetKind": "All",
@@ -3236,11 +3228,7 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\change-password.js"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\contact-functions.js",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\contact-functions.js",
->>>>>>> 29c1f004f23394a19ec5976dfb361b7dce0b99d3
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -3677,7 +3665,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\search-functions.js"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\sell-house-functions.js",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
@@ -3698,9 +3685,6 @@
     },
     {
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\submit-property-functions.js",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\sell-house-functions.js",
->>>>>>> 29c1f004f23394a19ec5976dfb361b7dce0b99d3
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
