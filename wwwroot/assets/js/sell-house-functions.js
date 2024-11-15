@@ -83,8 +83,8 @@ document.addEventListener("DOMContentLoaded", async function() {
     };
 
     // Selects
-    const districtSelectSubmitProp = document.querySelector('.districtPicker');
-    const quarterSelectSubmitProp = document.querySelector('.quarterPicker');
+    const districtSelectSubmitProp = document.querySelector('.districtPicker select');
+    const quarterSelectSubmitProp = document.querySelector('.quarterPicker select');
     await loadDistricts(db, districtSelectSubmitProp);
     districtSelectSubmitProp.addEventListener('change', async (event) => {
         newAdvertData.DistrictId = Number(event.target.value);

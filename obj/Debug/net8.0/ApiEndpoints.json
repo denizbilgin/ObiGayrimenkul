@@ -129,6 +129,22 @@
     "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
     "Method": "Edit",
     "RelativePath": "adverts/edit/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
+    "Method": "Edit",
+    "RelativePath": "adverts/edit/{id}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
