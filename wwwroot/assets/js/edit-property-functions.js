@@ -94,6 +94,18 @@ const getAdvertPhotoFromStorage = async (app, imageName) => {
     }
 };
 
+const getDocumentFromStorage = async (app, documentName) => {
+    const storage = getStorage(app);
+
+    const advertDocumentRef = ref(storage, documentName);
+    try {
+        const documentUrl = await getDownloadURL(advertDocumentRef);
+        return documentUrl;
+    } catch (error) {
+        console.log("Hata:", error);
+    }
+};
+
 const getAdvertImages = async (app, advert) => {
     const imagesContainer = document.getElementById('imagesContainer');
     imagesContainer.innerHTML = "";
@@ -173,6 +185,44 @@ async function resizeImage(file, width, height) {
         img.src = URL.createObjectURL(file);
     });
 }
+
+async function uploadPDF(app, advert) {
+    const fileInput = document.getElementById('advert-document');
+
+    const file = fileInput.files[0];
+    if (file.type !== "application/pdf") {
+        console.log("Sadece PDF dosyaları yüklenebilir.");
+        return;
+    }
+
+    try {
+        const storage = getStorage(app);
+        const filenameToUpload = `advert_documents/${advert.advertTitle.replaceAll(" ", "-")}-${new Date().getTime()}.pdf`;
+        const storageRef = ref(storage, filenameToUpload);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        uploadTask.on("state_changed",
+            (snapshot) => {
+                // Yükleme ilerleme durumu burada ele alınabilir
+                console.log(filenameToUpload, " adlı PDF firebase'e yüklendi.");
+            },
+            (error) => {
+                // Hata durumunda yapılacaklar
+                console.error("PDF yükleme hatası:", error);
+            },
+            async () => {
+                // Yükleme tamamlandığında yapılacak işlemler
+                const oldFileRef = ref(storage, advert.documentPath);
+                await deleteObject(oldFileRef);
+
+                advert.documentPath = filenameToUpload;
+            }
+        );
+    } catch (error) {
+        console.error("Dosya yüklenirken bir hata oluştu:", error);
+    }
+}
+
 
 document.addEventListener("DOMContentLoaded", async function () {
     const app = await getFirebaseConfigurations();
@@ -276,5 +326,79 @@ document.addEventListener("DOMContentLoaded", async function () {
                     }
                 }
             });
+
+            // Step 4
+            document.getElementById("advert-document-container").innerHTML = `
+                <div class="clearfix padding-top-40">
+                    <h3> Varolan Belge:</h3>
+                    <iframe src="${await getDocumentFromStorage(app, advert.documentPath)}" width="100%" height="600px"></iframe>
+                </div>
+            `;
+            document.getElementById("advert-document").addEventListener("change", async function(event) {
+                await uploadPDF(app, advert);
+            });
+            
+
+            document.getElementById("advert-update-button").addEventListener("click", async function() {
+                const updatedAdvert = {
+                    Id: advert.id,
+                    AdvertTitle: document.getElementById("advert-title").value,                   
+                    Price: Number(document.getElementById("advert-price").value),                          
+                    Description: document.getElementById("advert-description").value,                
+                    Address: document.getElementById("advert-address").value,                       
+                    SquareMeterGross: Number(document.getElementById("advert-square-meter-gross").value),               
+                    SquareMeterNet: Number(document.getElementById("advert-square-meter-net").value),                 
+                    RoomNumber: document.getElementById("advert-room-number").value,                    
+                    BuildingAge: Number(document.getElementById("advert-building-age").value),                    
+                    NumberOfBathrooms: Number(document.getElementById("advert-number-of-bathrooms").value),              
+                    NumberOfFloors: Number(document.getElementById("advert-number-of-floors").value),             
+                    HasGarage: document.getElementById("advert-has-garage").checked,                  
+                    IsFurnished: document.getElementById("advert-is-furnished").checked,                
+                    HasLift: document.getElementById("advert-has-lift").checked,                    
+                    HaveCellar: document.getElementById("advert-have-cellar").checked,                 
+                    IsCloseToHealthCenter: document.getElementById("advert-is-close-health-center").checked,      
+                    IsCloseToSchool: document.getElementById("advert-is-close-school").checked,            
+                    IsInSite: document.getElementById("advert-is-in-site").checked,                 
+                    IsEarthquakeResistant: document.getElementById("advert-is-earthquake-resistant").checked,      
+                    Heating: Number(document.querySelector('.heatingPicker select').value),                        
+                    Dues: Number(document.getElementById("advert-dues").value),                           
+                    AddressDistrictID: Number(document.querySelector('.districtPicker select').value),           
+                    AddressQuarterID: Number(document.querySelector('.quarterPicker select').value),            
+                    Side: Number(document.querySelector('.sidePicker select').value),                           
+                    WhichFloor: Number(document.getElementById("advert-which-floor").value),                     
+                    Video: document.getElementById("advert-video").value,                         
+                    AdvertImages: advert.advertImages,                  
+                    BalconyCount: Number(document.getElementById("advert-balcony-count").value),                   
+                    DocumentPath: advert.documentPath,                  
+                    Status: Number(document.querySelector('.statusPicker select').value) === 1,                     
+                    UserID: localStorage.getItem("userId"),
+                    BuildingFloors: Number(document.getElementById("advert-building-floors").value),                 
+                    Approved: false,
+                    PublishDate: advert.publishDate
+                };
+                console.log(updatedAdvert);
+
+                try {
+                    const response = await fetch(`/adverts/edit/${advert.id}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(updatedAdvert)
+                    });
+        
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log("İlan başarıyla güncellendi:", data);
+                        window.location.href = `/home`;
+                    } else {
+                        const errorData = await response.json();
+                        console.error("İlan eklenirken hata oluştu:", errorData);
+                    }
+                } catch (error) {
+                    console.error("Veri gönderilirken bir hata oluştu:", error);
+                }
+            });
+            
         }
 });
