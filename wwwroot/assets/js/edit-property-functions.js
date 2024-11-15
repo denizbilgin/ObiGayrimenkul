@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getFirestore, doc, getDoc, query, where, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+import { getFirestore, doc, getDoc, query, where, collection, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { getStorage, ref, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
 const getAdvertById = async (id) => {
     const url = `/adverts/get-details/${id}`;
@@ -48,24 +48,6 @@ const getFirebaseConfigurations = async () => {
     }
 };
 
-const getPlaceNameById = async (db, placeId) => {
-    try {
-        const docRef = doc(db, 'district_and_quarters', String(placeId));
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-            const data = docSnap.data();
-            return data.sehir_ilce_mahalle_adi;
-        } else {
-            console.log(`${placeId} IDsine sahip belge bulunamadı.`);
-            return null;
-        }
-    } catch (error) {
-        console.error("Hata oluştu: ", error);
-        return null;
-    }
-};
-
 const loadDistricts = async (db, districtElement) => {
     const q = query(collection(db, 'district_and_quarters'), where('ust_id', '==', 27));
     const snapshot = await getDocs(q);
@@ -100,6 +82,64 @@ const loadQuarters = async (db, districtId, quarterElement) => {
     $('.selectpicker').selectpicker('refresh');
 };
 
+const getAdvertPhotoFromStorage = async (app, imageName) => {
+    const storage = getStorage(app);
+
+    const advertImageRef = ref(storage, imageName);
+    try {
+        const imageUrl = await getDownloadURL(advertImageRef);
+        return imageUrl;
+    } catch (error) {
+        console.log("Hata:", error);
+    }
+};
+
+const getAdvertImages = async (app, advert) => {
+    const imagesContainer = document.getElementById('imagesContainer');
+
+    if (advert.advertImages.length > 0) {
+        for (const imageName of advert.advertImages) {
+            const imageCard = document.createElement('div');
+            imageCard.classList.add('image-card');
+
+            const img = document.createElement('img');
+            img.src = await getAdvertPhotoFromStorage(app, imageName);
+            img.alt = `Image: ${imageName}`;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Sil';
+            deleteButton.classList.add('delete-button');
+            deleteButton.addEventListener('click', async (event) => {
+                event.preventDefault();
+                await deleteImage(app, imageName, advert);
+                imageCard.remove();
+            });
+
+            imageCard.appendChild(img);
+            imageCard.appendChild(deleteButton);
+            imagesContainer.appendChild(imageCard);
+        }
+    }
+}
+
+async function deleteImage(app, imageName, advert) {
+    try {
+        const storage = getStorage(app);
+        const db = getFirestore(app);
+
+        const imageRef = ref(storage, imageName);
+        await deleteObject(imageRef);
+
+        const updatedImages = advert.advertImages.filter(name => name !== imageName);
+        const advertRef = doc(db, 'adverts', advert.id);
+        await updateDoc(advertRef, { images: updatedImages });
+
+        console.log(`${imageName} başarıyla silindi.`);
+    } catch (error) {
+        console.error(`Resim silinirken hata oluştu: ${error}`);
+    }
+}
+
 function determineCheckboxStatus(elementId, value) {
     document.getElementById(elementId).checked = value;
     if (value === true) {
@@ -109,12 +149,11 @@ function determineCheckboxStatus(elementId, value) {
 
 document.addEventListener("DOMContentLoaded", async function () {
     const app = await getFirebaseConfigurations();
-        const db = getFirestore(app);
-        const storage = getStorage(app);
+    const db = getFirestore(app);
 
-        const path = window.location.pathname;
-        const advertId = path.split('/').pop();
-        const advert = await getAdvertById(advertId);
+    const path = window.location.pathname;
+    const advertId = path.split('/').pop();
+    const advert = await getAdvertById(advertId);
 
         if (advert) {
             console.log(advert);
@@ -137,6 +176,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             Array.from(heatingSelectEditProp.options).forEach(option => {
                 option.selected = option.value === String(advert.heating);
             });
+            $('.sidePicker').selectpicker('refresh');
+            $('.heatingPicker').selectpicker('refresh');
 
             // Step 2
             document.getElementById("advert-description").value = advert.description;
@@ -166,13 +207,12 @@ document.addEventListener("DOMContentLoaded", async function () {
             determineCheckboxStatus("advert-is-close-school", advert.isCloseToSchool);
             determineCheckboxStatus("advert-is-in-site", advert.isInSite);
             determineCheckboxStatus("advert-is-earthquake-resistant", advert.isEarthquakeResistant);
-            
-
-
-            $('.sidePicker').selectpicker('refresh');
-            $('.heatingPicker').selectpicker('refresh');
             $('.districtPicker').selectpicker('refresh');
             $('.quarterPicker').selectpicker('refresh');
             $('.statusPicker').selectpicker('refresh');
+
+            // Step 3
+            document.getElementById("advert-video").value = advert.video;
+            await getAdvertImages(app, advert);
         }
 });
