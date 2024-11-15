@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getFirestore, doc, getDoc, query, where, collection, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, query, where, collection, getDocs, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 import { getStorage, ref, getDownloadURL, deleteObject, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
 const getAdvertById = async (id) => {
@@ -223,7 +223,6 @@ async function uploadPDF(app, advert) {
     }
 }
 
-
 document.addEventListener("DOMContentLoaded", async function () {
     const app = await getFirebaseConfigurations();
     const db = getFirestore(app);
@@ -233,7 +232,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     const advert = await getAdvertById(advertId);
 
         if (advert) {
-            console.log(advert);
 
             // Step 1
             document.getElementById("advert-title").value = advert.advertTitle;
@@ -271,6 +269,10 @@ document.addEventListener("DOMContentLoaded", async function () {
             });
             Array.from(statusSelectEditProp.options).forEach(option => {
                 option.selected = option.value === String(advert.status === true ? 1: 0);
+            });
+            districtSelectEditProp.addEventListener('change', async (event) => {
+                advert.addressDistrictID = Number(event.target.value);
+                await loadQuarters(db, advert.addressDistrictID, quarterSelectEditProp);
             });
             document.getElementById("advert-square-meter-gross").value = advert.squareMeterGross;
             document.getElementById("advert-square-meter-net").value = advert.squareMeterNet;
@@ -376,7 +378,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                     Approved: false,
                     PublishDate: advert.publishDate
                 };
-                console.log(updatedAdvert);
 
                 try {
                     const response = await fetch(`/adverts/edit/${advert.id}`, {
