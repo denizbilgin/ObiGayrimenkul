@@ -32,6 +32,19 @@ namespace ObiGayrimenkul.Controllers
             return Ok(adverts);
         }
 
+        [HttpGet("advert-requests")]
+        public async Task<IActionResult> GetAdvertRequests(CancellationToken ct)
+        {
+            return View("~/Views/Home/advert-approve.cshtml");
+        }
+
+        [HttpGet("all-advert-requests")]
+        public async Task<IActionResult> GetAllAdvertRequests(CancellationToken ct)
+        {
+            var adverts = await _firestore.GetAll<Advert>("advert-requests",CancellationToken.None);
+            return Ok(adverts);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByID(string id , CancellationToken ct)
         {
@@ -112,23 +125,24 @@ namespace ObiGayrimenkul.Controllers
          }*/
         
         [HttpPost("edit/{id}")]
-        public async Task<IActionResult> Edit(string id,[FromBody] Advert advert, CancellationToken ct)
+        public async Task<IActionResult> Edit(string id,[FromBody]Advert advert , CancellationToken ct)
         {
-            if (id != advert.Id.ToString())
+            if (!await AdvertExists(id.ToString(), ct))
             {
+                Console.WriteLine("! advertexists");
                 Response.StatusCode = 404;
                 return View("~/Views/Home/404.cshtml");
             }
-
             if (ModelState.IsValid)
-            {   
-                    await _firestore.Update(advert,"adverts", ct);
+            {
                 
-                    if (!await AdvertExists(advert.Id.ToString(), ct))
-                    {
-                    Response.StatusCode = 404;
-                    return View("~/Views/Home/404.cshtml");
-                }
+                await _firestore.Update(advert, "adverts", ct);
+                advert.Approved = false;
+                await _firestore.MoveDocument<Advert>(id, "adverts", "advert-requests", ct);
+                //await _firestore.Add(advert, "advert-requests", ct);
+                //await _firestore.Delete(advert.Id, "adverts", ct);
+
+                
             }
             return Ok(advert);
         }
@@ -171,8 +185,7 @@ namespace ObiGayrimenkul.Controllers
             }
 
             advert.Approved = true; // İlanı onayla
-            await _firestore.Add(advert,"adverts", ct);
-            await DeleteRequest(advert.Id, CancellationToken.None);
+            await _firestore.MoveDocument<Advert>(id, "advert-requests", "adverts", ct);
             return Ok(advert);
         }
 
@@ -180,13 +193,15 @@ namespace ObiGayrimenkul.Controllers
         public async Task<IActionResult> DeleteRequest(string id, CancellationToken ct)
         {
             var advert = await _firestore.Get<Advert>(id, "advert-requests", ct);
-            if (advert != null)
+            if (advert == null)
             {
-                var collection = _firestore._fireStoreDb.Collection("advert-requests");
-                await collection.Document(id).DeleteAsync(null, ct);
+                Response.StatusCode = 404;
+                return View("~/Views/Home/404.cshtml");
             }
-            return RedirectToAction(nameof(Index));
+            await _firestore.Delete(advert.Id, "advert-requests", CancellationToken.None);
+            return Ok(advert);
         }
+
         [HttpGet("sell-house")]
         public ViewResult ClientHouseSell()
         {

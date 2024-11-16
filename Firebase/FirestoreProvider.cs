@@ -73,6 +73,7 @@ namespace ObiGayrimenkul.Firebase
             var snapshot = await query.GetSnapshotAsync(ct);
             return snapshot.Documents.Select(x => x.ConvertTo<T>()).ToList();
         }
+
         /*public async Task<IReadOnlyCollection<T>> GetAllUsers<T>(CancellationToken ct) where T : IFirebaseEntity
         {
             var collection = _fireStoreDb.Collection("users"); ;
@@ -105,11 +106,40 @@ namespace ObiGayrimenkul.Firebase
 
             return list.AsReadOnly();
         }
-        public async Task Delete<T>(string id, string CollectionName, CancellationToken ct) where T : IFirebaseEntity
+        public async Task Delete(string id, string CollectionName, CancellationToken ct)
         {
             var document = _fireStoreDb.Collection(CollectionName).Document(id);
             await document.DeleteAsync(cancellationToken: ct);
         }
+
+        public async Task MoveDocument<T>(string id, string sourceCollection, string destinationCollection, CancellationToken ct) where T : IFirebaseEntity
+        {
+            try
+            {
+                var sourceDocument = _fireStoreDb.Collection(sourceCollection).Document(id);
+                var snapshot = await sourceDocument.GetSnapshotAsync(ct);
+
+                if (!snapshot.Exists)
+                {
+                    Console.WriteLine("Document hasnot found in collection.");
+                    return;
+                }
+
+                var entity = snapshot.ConvertTo<T>();
+                entity.Id = id;
+
+                var destinationCollectionRef = _fireStoreDb.Collection(destinationCollection);
+                var destinationDocument = destinationCollectionRef.Document(id);
+                await destinationDocument.SetAsync(entity, SetOptions.Overwrite, ct);
+
+                await sourceDocument.DeleteAsync(cancellationToken: ct);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error moving document: {ex.Message}");
+            }
+        }
+
 
     }
 
