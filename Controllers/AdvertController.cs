@@ -184,7 +184,8 @@ namespace ObiGayrimenkul.Controllers
                 return View("~/Views/Home/404.cshtml");
             }
 
-            advert.Approved = true; // İlanı onayla
+            advert.Approved = true;
+            await _firestore.Update(advert, "advert-requests", ct);
             await _firestore.MoveDocument<Advert>(id, "advert-requests", "adverts", ct);
             return Ok(advert);
         }
