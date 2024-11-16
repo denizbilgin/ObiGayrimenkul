@@ -173,6 +173,19 @@ const getImagesAndPopulateSlider = async (storage, imagePaths) => {
     }
 };
 
+const getDocumentFromStorage = async (app, documentName) => {
+    const storage = getStorage(app);
+
+    const advertDocumentRef = ref(storage, documentName);
+    try {
+        const documentUrl = await getDownloadURL(advertDocumentRef);
+        return documentUrl;
+    } catch (error) {
+        console.log("Hata:", error);
+    }
+};
+
+
 document.addEventListener("DOMContentLoaded", async function () {
     const extraDetails = [
         { key: "hasLift", label: "ASANSÖR", type: "boolean" },
@@ -317,8 +330,13 @@ document.addEventListener("DOMContentLoaded", async function () {
                 formattedPhoneNumber = formattedPhoneNumber.replace(/(\d{4})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3 $4");
                 document.getElementById("user-phone-number").innerHTML = formattedPhoneNumber;
                 document.getElementById("user-description").innerHTML = user.description.length > 100 ? user.description.slice(0, 100) + "..." : user.description;
-    
             }
+
+            document.getElementById("advert-document-container").innerHTML = `
+            <div class="clearfix padding-top-40">
+                <iframe src="${await getDocumentFromStorage(app, data.documentPath)}" width="100%" height="600px"></iframe>
+            </div>
+            `;
         }
     } catch (error) {
         console.error("Firebase başlatma hatası:", error);
