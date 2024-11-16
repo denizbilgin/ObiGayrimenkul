@@ -118,8 +118,9 @@ namespace ObiGayrimenkul.Controllers
 
              if (advert == null)
              {
-                 return NotFound();
-             }
+                Response.StatusCode = 404;
+                return View("~/Views/Home/404.cshtml");
+            }
              return View("~/Views/Home/edit-property.cshtml");
          }
         

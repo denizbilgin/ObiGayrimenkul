@@ -27,6 +27,26 @@
   },
   {
     "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
+    "Method": "GetAdvertRequests",
+    "RelativePath": "adverts/advert-requests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
+    "Method": "GetAllAdvertRequests",
+    "RelativePath": "adverts/all-advert-requests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
     "Method": "GetAllAdverts",
     "RelativePath": "adverts/all-adverts",
     "HttpMethod": "GET",
