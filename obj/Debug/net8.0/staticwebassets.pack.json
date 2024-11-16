@@ -653,6 +653,10 @@
       "PackagePath": "staticwebassets\\assets\\js\\advert-listing-functions.js"
     },
     {
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\advert-requests.js",
+      "PackagePath": "staticwebassets\\assets\\js\\advert-requests.js"
+    },
+    {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\bootstrap-hover-dropdown.js",
       "PackagePath": "staticwebassets\\assets\\js\\bootstrap-hover-dropdown.js"
     },

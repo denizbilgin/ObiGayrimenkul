@@ -73,6 +73,7 @@ namespace ObiGayrimenkul.Controllers
         //[Authorize]
         [HttpGet("create")]
         public IActionResult Create()
+
         {
             return View("~/Views/Home/submit-property.cshtml");
 
