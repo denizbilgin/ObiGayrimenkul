@@ -111,7 +111,7 @@ namespace ObiGayrimenkul.Controllers
             }
         }
 
-        /* [HttpGet("edit/{id}")]
+        [HttpGet("edit/{id}")]
          public async Task<IActionResult> Edit(string id, CancellationToken ct)
          {
              var advert = await _firestore.Get<Advert>(id,"adverts", ct);
@@ -120,9 +120,8 @@ namespace ObiGayrimenkul.Controllers
              {
                  return NotFound();
              }
-             // return View(advert);
-             return Ok(advert);
-         }*/
+             return View("~/Views/Home/edit-property.cshtml");
+         }
         
         [HttpPost("edit/{id}")]
         public async Task<IActionResult> Edit(string id,[FromBody]Advert advert , CancellationToken ct)
@@ -220,7 +219,6 @@ namespace ObiGayrimenkul.Controllers
                 await _firestore.Add<ClientHouse>(clientHouse, "client-requests", ct);
             }
             return Ok(new { success = true, message = "işlem başarılı." });
-
         }
 
         [HttpGet("advert-exists")]

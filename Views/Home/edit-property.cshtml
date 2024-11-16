@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>OBİ GAYRİMENKUL | İlan Ekle</title>
+    <title>OBİ GAYRİMENKUL | İlan Düzenle</title>
     <meta name="description" content="Obi Gayrimenkul. Gaziantep'te mülk satma ve kiralamanın en kolay yolu.">
     <meta name="author" content="Uğur Bilgin">
     <meta name="keyword" content="Gaziantep, satılık, kiralık, emlak, gayrimenkul, obi, şahinbey, şehitkamil, emlak danışmanı,
@@ -115,7 +115,7 @@
         <div class="container">
             <div class="row">
                 <div class="page-head-content">
-                    <h1 class="page-title">YENİ İLAN EKLE</h1>
+                    <h1 class="page-title">İLAN DÜZENLE</h1>
                 </div>
             </div>
         </div>
@@ -133,8 +133,8 @@
                         <form action="" method="">
                             <div class="wizard-header">
                                 <h3>
-                                    YENİ İLAN <b>EKLE</b><br>
-                                    <small>Toplam 4 adım ile yeni bir ilan oluşturabilirsiniz. İlanınız admin tarafından onaylandıktan sonra yayınlanacaktır.</small>
+                                    İLAN <b>DÜZENLE</b><br>
+                                    <small>Toplam 4 adım ile ilanınızı düzenleyebilirsiniz. İlanınız admin tarafından onaylandıktan sonra yayınlanacaktır.</small>
                                 </h3>
                             </div>
 
@@ -349,7 +349,7 @@
                                                 <div class="form-group">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input id="advert-is-close_health_center" type="checkbox"> Sağlık Ocağına Yakın
+                                                            <input id="advert-is-close-health-center" type="checkbox"> Sağlık Ocağına Yakın
                                                         </label>
                                                     </div>
                                                 </div>
@@ -358,7 +358,7 @@
                                                 <div class="form-group">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input id="advert-is-close_school" type="checkbox"> Okula Yakın
+                                                            <input id="advert-is-close-school" type="checkbox"> Okula Yakın
                                                         </label>
                                                     </div>
                                                 </div>
@@ -389,7 +389,7 @@
 
                                 <div class="tab-pane" id="step3">
                                     <h4 class="info-text">
-                                        İlan ile ilgili resim ve videoları buradan ekleyebilirsiniz. <br>
+                                        İlan ile ilgili resim ve videoları buradan düzenleyebilirsiniz. <br>
                                         <small>Video linki olarak YouTube <strong>EMBED</strong> linki girmelisiniz.</small>
                                     </h4>
 
@@ -398,7 +398,7 @@
                                             <div class="form-group">
                                                 <label for="property-images">Resimleri Seçin :</label>
                                                 <input class="form-control" type="file" id="property-images" multiple>
-                                                <p class="help-block"><small>İlanınız için birden fazla resim seçebilirsiniz .</small></p>
+                                                <p class="help-block"><small>Buradan varolan resimlerin üzerine yeni ekleyeceğiniz resimleri ekleyebilirsiniz. Resimler <strong>anında</strong> veri tabanına eklenecektir.</small></p>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -407,19 +407,31 @@
                                                 <input id="advert-video" class="form-control" value="" placeholder="http://www.youtube.com" name="property_video" type="text">
                                             </div>
                                         </div>
+                                        <div class="col-sm-12">
+                                            <hr>
+                                            <h5 class="info-text" style="text-transform: capitalize; text-align: left; margin">
+                                                Sil butonuna tıklayarak istediğiniz resmi silebilirsiniz. <br>
+                                                <small>Sildiğiniz resimler anında veri tabanından silinecektir.</small>
+                                            </h5>
+                                            <div class="form-group" id="imagesContainer">
+                                            
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!--  End step 3 -->
 
 
                                 <div class="tab-pane" id="step4">
-                                    <h4 class="info-text"> Son Olarak Dökümanı Yükeyin </h4>
+                                    <h4 class="info-text"> Son Olarak Dökümanı Görüntüleyin/Değiştirin </h4>
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <div class="">
+                                            <div class="col-sm-12">
                                                 <div class="form-group">
-                                                    <label for="property-document">Dökümanı Seçin :</label>
+                                                    <label for="property-document">Döküman Güncellenecekse Dökümanı Seçin :</label>
                                                     <input id="advert-document" class="form-control" type="file" id="property-document">
+                                                </div>
+                                                <div class="col-sm-12" id="advert-document-container">
                                                 </div>
 
                                                 <p>
@@ -435,8 +447,8 @@
 
                             <div class="wizard-footer">
                                 <div class="pull-right">
-                                    <input type='button' class='btn btn-next btn-primary' name='next' value='DEVAM' />
-                                    <input type='button' class='btn btn-finish btn-primary ' name='finish' value='BİTİR' id="advert-submit-button"/>
+                                    <input type='button' class='btn btn-next btn-primary' name='next' value='DEVAM'/>
+                                    <input type='button' class='btn btn-finish btn-primary ' name='finish' value='BİTİR' id="advert-update-button"/>
                                 </div>
 
                                 <div class="pull-left">
@@ -536,6 +548,6 @@
     
     <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
     <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
-    <script type="module" src="~/assets/js/submit-property-functions.js" defer></script>
+    <script type="module" src="~/assets/js/edit-property-functions.js"s></script>
 </body>
 </html>

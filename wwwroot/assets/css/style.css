@@ -153,6 +153,40 @@ input[type="radio"] {
     box-sizing: border-box;
     padding: 0;
 }
+
+.image-card {
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.image-card img {
+    max-width: 150px;
+    height: auto;
+    display: block;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.delete-button {
+    background-color: rgb(214, 5, 5);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 100%;
+}
+
+.delete-button:hover {
+    background-color: darkred;
+}
+
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     height: auto;
@@ -1731,7 +1765,6 @@ proerty-th
     display: block;
     position: relative;
     width:100%;
-    opacity: 0.7;
     min-height: 225px;
     max-height: 265px;
 }

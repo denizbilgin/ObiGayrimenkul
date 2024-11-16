@@ -62,8 +62,8 @@ const loadQuarters = async (db, districtId, quarterElement) => {
 document.addEventListener('DOMContentLoaded', async () => {
     const app = await getFirebaseConfigurations();
     const db = getFirestore(app);
-    const districtSelectHome = document.querySelector('.form-group .districtPicker');
-    const quarterSelectHome = document.querySelector('.form-group .quarterPicker');
+    const districtSelectHome = document.querySelector('.form-group .districtPicker select');
+    const quarterSelectHome = document.querySelector('.form-group .quarterPicker select');
     
     await loadDistricts(db, districtSelectHome);
     districtSelectHome.addEventListener('change', async (event) => {

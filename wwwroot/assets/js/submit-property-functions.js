@@ -130,11 +130,11 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 
     // Selects
-    const districtSelectSubmitProp = document.querySelector('.districtPicker');
-    const quarterSelectSubmitProp = document.querySelector('.quarterPicker');
-    const statusSelectSubmitProp = document.querySelector('.statusPicker');
-    const heatingSelectSubmitProp = document.querySelector('.heatingPicker');
-    const sideSelectSubmitProp = document.querySelector('.sidePicker');
+    const districtSelectSubmitProp = document.querySelector('.districtPicker select');
+    const quarterSelectSubmitProp = document.querySelector('.quarterPicker select');
+    const statusSelectSubmitProp = document.querySelector('.statusPicker select');
+    const heatingSelectSubmitProp = document.querySelector('.heatingPicker select');
+    const sideSelectSubmitProp = document.querySelector('.sidePicker select');
     await loadDistricts(db, districtSelectSubmitProp);
     districtSelectSubmitProp.addEventListener('change', async (event) => {
         newAdvertData.AddressDistrictID = Number(event.target.value);
