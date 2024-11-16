@@ -677,6 +677,10 @@
       "PackagePath": "staticwebassets\\assets\\js\\change-password.js"
     },
     {
+      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\client-requests-functions.js",
+      "PackagePath": "staticwebassets\\assets\\js\\client-requests-functions.js"
+    },
+    {
       "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\contact-functions.js",
       "PackagePath": "staticwebassets\\assets\\js\\contact-functions.js"
     },

@@ -73,6 +73,16 @@
   },
   {
     "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
+    "Method": "GetClientRequests",
+    "RelativePath": "adverts/client-requests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
     "Method": "Create",
     "RelativePath": "adverts/create",
     "HttpMethod": "GET",
