@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, query, where, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
 const getPlaceNameById = async (db, place_id) => {
@@ -21,13 +21,15 @@ const getPlaceNameById = async (db, place_id) => {
 };
 
 const getThumbnailUrl = async (storage, imagePath) => {
-    const defaultThumbnailUrl = "https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/default_advert_thumbnail.webp?alt=media&token=7d5b7089-afcb-414b-a31c-cda31dbae71e";
-    
     try {
-        const url = imagePath ? await getDownloadURL(ref(storage, imagePath)) : defaultThumbnailUrl;
-        return url;
+        const advertThumbnailRef = ref(storage, imagePath);
+        const advertThumbnailUrl = await getDownloadURL(advertThumbnailRef);
+        return advertThumbnailUrl;
     } catch (error) {
-        console.error("Resmi alırken hata:", error);
+        const defaultThumbnailUrl = 'default_advert_thumbnail.webp';
+        const advertThumbnailRef = ref(storage, defaultThumbnailUrl);
+        const defaultImageUrl = await getDownloadURL(advertThumbnailRef);
+        return defaultImageUrl;
     }
 };
 
@@ -37,21 +39,91 @@ const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
+const getFirebaseConfigurations = async () => {
+    const url = '/fbase/obidatabase-3e651-firebase-adminsdk-ta9fl-2ef236de49';
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Firebase yapılandırması alınamadı");
+        }
+
+        const firebaseConfig = await response.json();
+        const app = initializeApp(firebaseConfig);
+        
+        return app
+    } catch (error) {
+        console.log("Bir hata oluştu:", error);
+    }
+};
+
+const loadDistricts = async (db, districtElement) => {
+    const q = query(collection(db, 'district_and_quarters'), where('ust_id', '==', 27));
+    const snapshot = await getDocs(q);
+
+    snapshot.forEach((doc) => {
+        const data = doc.data();
+        const option = document.createElement('option');
+        option.value = doc.id;
+        option.textContent = data.sehir_ilce_mahalle_adi;
+        districtElement.appendChild(option);
+    });
+
+    // Restarting bootstrap select
+    $('.selectpicker').selectpicker('refresh');
+};
+
+const loadQuarters = async (db, districtId, quarterElement) => {
+    const q = query(collection(db, 'district_and_quarters'), where('ust_id', '==', districtId));
+    const snapshot = await getDocs(q);
+
+    quarterElement.innerHTML = '<option class="bs-title-option" value="">Mahalle</option>';
+
+    snapshot.forEach((doc) => {
+        const data = doc.data();
+        const option = document.createElement('option');
+        option.value = doc.id;
+        option.textContent = data.sehir_ilce_mahalle_adi;
+        quarterElement.appendChild(option);
+    });
+
+    // Restarting bootstrap select
+    $('.selectpicker').selectpicker('refresh');
+};
+
 
 document.addEventListener("DOMContentLoaded", async function () {
-    const firebaseConfig = {
-        apiKey: "AIzaSyCyAaYIkN3pDw7L-5BoYclpbNtwPnhbNnU",
-        authDomain: "obidatabase-3e651.firebaseapp.com",
-        databaseURL: "https://obidatabase-3e651-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "obidatabase-3e651",
-        storageBucket: "obidatabase-3e651.appspot.com",
-        messagingSenderId: "636529667392",
-        appId: "1:636529667392:web:c4996d9c3d9f7324c61ea5",
-        measurementId: "G-FK8D85WJKV"
+    const waitForElement = (selector) => {
+        return new Promise((resolve) => {
+            const checkElement = () => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    resolve(element);
+                } else {
+                    setTimeout(checkElement, 100);
+                }
+            };
+            checkElement();
+        });
     };
-    const app = initializeApp(firebaseConfig);
+    const districtSelectProperties = await waitForElement('.districtPicker .selectpicker');
+    const quarterSelectProperties = await waitForElement('.quarterPicker .selectpicker');
+
+    const app = await getFirebaseConfigurations();
     const db = getFirestore(app);
     const storage = getStorage(app);
+
+    await loadDistricts(db, districtSelectProperties);
+    districtSelectProperties.addEventListener('change', async (event) => {
+        const selectedDistrictId = Number(event.target.value);
+        await loadQuarters(db, selectedDistrictId, quarterSelectProperties);
+    });
 
     const response = await fetch("/adverts/all-adverts");
     const adverts = await response.json();
