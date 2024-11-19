@@ -79,7 +79,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse yamm" id="navigation">
                 <div class="button navbar-right">
-                    <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('/sell-house')" data-wow-delay="0.4s">Evimi Sat/Kirala</button>
+                    <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('/adverts/sell-house')" data-wow-delay="0.4s">Evimi Sat/Kirala</button>
                 </div>
                 <ul class="main-nav nav navbar-nav navbar-right">
                     <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="/home">Ana Sayfa</a></li>
@@ -92,8 +92,9 @@
                         </a>
                         <ul class="dropdown-menu navbar-nav">
                             <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/users/" id="profileLink">Profil</a></li>
-                            <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/submit-property">İlan Ekle</a></li>
+                            <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/adverts/create">İlan Ekle</a></li>
                             <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/user-properties">İlanlarım</a></li>
+                            <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/adverts/client-requests">Müşteri İstekleri</a></li>
                             <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="#" id="logoutButton">Çıkış Yap</a></li>
                         </ul>
                     </li>
@@ -163,7 +164,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="room_number">Oda Sayısı</label> <small>(Örneğin 3+1)</small>
+                            <label for="room_number">Kaç Oda - Kaç Salon</label> <small>(Örneğin 3+1)</small>
                             <input type="text" class="form-control" id="advert-room-number" name="room_number" required placeholder="3+1">
                         </div>
                     </div>
@@ -232,7 +233,7 @@
                             <h4>Hakkımızda </h4>
                             <div class="footer-title-line"></div>
 
-                            <img src="assets/img/footer-logo.png" alt="" class="wow pulse" data-wow-delay="1s">
+                            <img src="~/assets/img/footer-logo.png" alt="" class="wow pulse" data-wow-delay="1s">
                             <p>Gaziantepte ev satın almak veya kiralamanın enk kolay yolu!</p>
                             <ul class="footer-adress">
                                 <li><i class="pe-7s-map-marker strong"> </i> Adres</li>
@@ -242,9 +243,9 @@
 
                             <div class="social pull-left" style="margin-top: 1rem;">
                                 <ul>
-                                    <li><a class="wow fadeInUp animated" href="https://www.facebook.com/kimarotec" data-wow-delay="0.2s"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="wow fadeInUp animated" href="https://plus.google.com/kimarotec" data-wow-delay="0.3s"><i class="fa fa-whatsapp"></i></a></li>
-                                    <li><a class="wow fadeInUp animated" href="https://instagram.com/kimarotec" data-wow-delay="0.4s"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a class="wow fadeInUp animated" href="https://www.facebook.com/" data-wow-delay="0.2s"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="wow fadeInUp animated" href="https://plus.google.com/" data-wow-delay="0.3s"><i class="fa fa-whatsapp"></i></a></li>
+                                    <li><a class="wow fadeInUp animated" href="https://instagram.com/" data-wow-delay="0.4s"><i class="fa fa-instagram"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -254,11 +255,11 @@
                             <h4>Hızlı Bağlantılar </h4>
                             <div class="footer-title-line"></div>
                             <ul class="footer-menu">
-                                <li><a href="index.html">ANA SAYFA</a>  </li>
-                                <li><a href="properties.html">İLANLAR</a>  </li>
-                                <li><a href="contact.html">İLETİŞİM</a></li>
-                                <li><a href="sell-house.html">EVİMİ <strong>SATMAK / KİRALAMAK</strong> İSTİYORUM</a>  </li>
-                                <li><a href="documents.html">BELGELERİMİZ</a>  </li>
+                                <li><a href="/home">ANA SAYFA</a>  </li>
+                                <li><a href="/properties">İLANLAR</a>  </li>
+                                <li><a href="/contact">İLETİŞİM</a></li>
+                                <li><a href="/adverts/sell-house">EVİMİ <strong>SATMAK / KİRALAMAK</strong> İSTİYORUM</a>  </li>
+                                <li><a href="/documents">BELGELERİMİZ</a>  </li>
                             </ul>
                         </div>
                     </div>
@@ -269,14 +270,14 @@
             <div class="container">
                 <div class="row">
                     <div class="pull-left">
-                        <span> (C) <a href="http://www.KimaroTec.com">Obi Gayrimenkul</a> , Tüm hakları saklıdır 2024  </span>
+                        <span> (C) <a href="">Obi Gayrimenkul</a> , Tüm hakları saklıdır 2024  </span>
                     </div>
                     <div class="bottom-menu pull-right">
                         <ul>
-                            <li><a class="wow fadeInUp animated" href="index.html" data-wow-delay="0.2s">Ana Sayfa</a></li>
-                            <li><a class="wow fadeInUp animated" href="properties.html" data-wow-delay="0.3s">İlanlar</a></li>
-                            <li><a class="wow fadeInUp animated" href="documents.html" data-wow-delay="0.4s">Belgelerimiz</a></li>
-                            <li><a class="wow fadeInUp animated" href="contact.html" data-wow-delay="0.6s">İletişim</a></li>
+                            <li><a class="wow fadeInUp animated" href="/home" data-wow-delay="0.2s">Ana Sayfa</a></li>
+                            <li><a class="wow fadeInUp animated" href="/properties" data-wow-delay="0.3s">İlanlar</a></li>
+                            <li><a class="wow fadeInUp animated" href="/documents" data-wow-delay="0.4s">Belgelerimiz</a></li>
+                            <li><a class="wow fadeInUp animated" href="/contact" data-wow-delay="0.6s">İletişim</a></li>
                         </ul>
                     </div>
                 </div>

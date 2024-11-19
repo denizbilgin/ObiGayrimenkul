@@ -38,6 +38,12 @@ namespace ObiGayrimenkul.Controllers
             return View("~/Views/Home/advert-approve.cshtml");
         }
 
+        [HttpGet("client-requests")]
+        public async Task<IActionResult> GetClientRequests(CancellationToken ct)
+        {
+            return View("~/Views/Home/client-requests.cshtml");
+        }
+
         [HttpGet("all-advert-requests")]
         public async Task<IActionResult> GetAllAdvertRequests(CancellationToken ct)
         {

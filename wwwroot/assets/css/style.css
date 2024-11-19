@@ -600,6 +600,78 @@ label small{
     background-color: #999999;
 }
 
+.request-card {
+    padding: 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1.1rem;
+    margin: 1rem;
+}
+
+.request-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.request-card-header {
+    background: #f8f9fa;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.request-card-title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.request-card-subtitle {
+    font-size: 1.4rem;
+    color: #555;
+}
+
+.request-card-body {
+    padding: 20px;
+}
+
+.request-card-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.request-card-info-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+    color: #444;
+}
+
+.request-card-info-list li b{
+    margin-right: 1rem;
+}
+
+.request-card-info-list i {
+    color: #ffe800;
+    margin-right: 12px;
+    font-size: 1.5rem;
+}
+
+.request-card-footer {
+    margin-top: 16px;
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+
 .bootstrap-select button.dropdown-toggle{
     background: rgba(252, 252, 252, 0.35) none repeat scroll 0% 0%;
     border-radius: 1px;

@@ -60,10 +60,25 @@ const loadQuarters = async (db, districtId, quarterElement) => {
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
+    
+    const waitForElement = (selector) => {
+        return new Promise((resolve) => {
+            const checkElement = () => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    resolve(element);
+                } else {
+                    setTimeout(checkElement, 100);
+                }
+            };
+            checkElement();
+        });
+    };
+    const districtSelectHome = await waitForElement('.districtPicker select');
+    const quarterSelectHome = await waitForElement('.quarterPicker select');
+
     const app = await getFirebaseConfigurations();
     const db = getFirestore(app);
-    const districtSelectHome = document.querySelector('.form-group .districtPicker select');
-    const quarterSelectHome = document.querySelector('.form-group .quarterPicker select');
     
     await loadDistricts(db, districtSelectHome);
     districtSelectHome.addEventListener('change', async (event) => {

@@ -88,6 +88,22 @@ async function resizeImage(file, width, height) {
 }
 
 document.addEventListener("DOMContentLoaded", async function() {
+    const waitForElement = (selector) => {
+        return new Promise((resolve) => {
+            const checkElement = () => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    resolve(element);
+                } else {
+                    setTimeout(checkElement, 100);
+                }
+            };
+            checkElement();
+        });
+    };
+    const districtSelectSubmitProp = await waitForElement('.districtPicker select');
+    const quarterSelectSubmitProp = await waitForElement('.quarterPicker select');
+
     const app = await getFirebaseConfigurations();
     const db = getFirestore(app);
 
@@ -130,8 +146,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 
     // Selects
-    const districtSelectSubmitProp = document.querySelector('.districtPicker select');
-    const quarterSelectSubmitProp = document.querySelector('.quarterPicker select');
     const statusSelectSubmitProp = document.querySelector('.statusPicker select');
     const heatingSelectSubmitProp = document.querySelector('.heatingPicker select');
     const sideSelectSubmitProp = document.querySelector('.sidePicker select');

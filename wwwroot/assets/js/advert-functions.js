@@ -39,19 +39,33 @@ const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
+const getFirebaseConfigurations = async () => {
+    const url = '/fbase/obidatabase-3e651-firebase-adminsdk-ta9fl-2ef236de49';
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Firebase yapılandırması alınamadı");
+        }
+
+        const firebaseConfig = await response.json();
+        const app = initializeApp(firebaseConfig);
+        
+        return app
+    } catch (error) {
+        console.log("Bir hata oluştu:", error);
+    }
+};
+
 
 document.addEventListener("DOMContentLoaded", async function () {
-    const firebaseConfig = {
-        apiKey: "AIzaSyCyAaYIkN3pDw7L-5BoYclpbNtwPnhbNnU",
-        authDomain: "obidatabase-3e651.firebaseapp.com",
-        databaseURL: "https://obidatabase-3e651-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "obidatabase-3e651",
-        storageBucket: "obidatabase-3e651.appspot.com",
-        messagingSenderId: "636529667392",
-        appId: "1:636529667392:web:c4996d9c3d9f7324c61ea5",
-        measurementId: "G-FK8D85WJKV"
-    };
-    const app = initializeApp(firebaseConfig);
+    const app = await getFirebaseConfigurations();
     const db = getFirestore(app);
     const storage = getStorage(app);
 
