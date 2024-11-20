@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     };
 
     const renderAdverts = async (adverts) => {
-        advertsContainer.innerHTML = ""; // Mevcut içeriği temizle
+        advertsContainer.innerHTML = "";
         for (const advert of adverts) {
             const placeName = await getPlaceNameById(db, advert.addressDistrictID);
             const thumbnailUrl = await getThumbnailUrl(storage, advert.advertImages[0]);
