@@ -10,6 +10,39 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("logged-in-user-dropdown").style.display = "none";
     }
 });
+
+/*document.addEventListener("DOMContentLoaded", function () {
+    fetch("/user-process/current-user", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Kullanıcı bilgisi alınamadı");
+            }
+        })
+        .then(data => {
+            if (data.success) {
+                document.getElementById("userName").textContent = data.userName;
+                document.getElementById("logged-in-user-dropdown").style.display = "inline";
+                document.getElementById("profileLink").setAttribute("href", "/users/" + data.userId);
+            } else {
+                document.getElementById("logged-in-user-dropdown").style.display = "none";
+            }
+        })
+        .catch(error => {
+            console.error("Kullanıcı bilgisi alınamadı:", error);
+            document.getElementById("logged-in-user-dropdown").style.display = "none";
+        });
+});*/
+
+
+
 /*document.addEventListener("DOMContentLoaded", function () {
     if (authToken && userName) {
         document.getElementById("userName").textContent = userName;
@@ -20,8 +53,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });*/
 
 document.getElementById("logoutButton").addEventListener("click", function () {
-    localStorage.removeItem("AuthToken");
-    localStorage.removeItem("userName");
-    document.cookie = "AuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    window.location.href = "/home";
+    fetch("/user-process/logout" , {
+        method: "POST",
+        headers: {
+            "Content-Type" : "application/json"
+        },
+        credentials: "include"
+    })
+    .then(response => {
+        if(response.ok){
+            localStorage.removeItem("AuthToken");
+            localStorage.removeItem("userName");
+            localStorage.removeItem("userId");
+            window.location.href = "/home";
+        }else{
+            console.error("Çıkış yapma başarısız");
+        }
+    })
 });

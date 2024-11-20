@@ -9,71 +9,71 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ObiGayrimenkul
 build_property.RootNamespace = ObiGayrimenkul
-build_property.ProjectDir = C:\Users\Deniz\SoftwareProjects\VS Projects\ObiGayrimenkul\ObiGayrimenkul\
+build_property.ProjectDir = C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Deniz\SoftwareProjects\VS Projects\ObiGayrimenkul\ObiGayrimenkul
+build_property.MSBuildProjectDirectory = C:\Users\serda\Desktop\Proje\ObiGayrimenkul\ObiGayrimenkul
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/404.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/404.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVw0MDQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/change-password.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/change-password.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxjaGFuZ2UtcGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/client-requests.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/client-requests.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxjbGllbnQtcmVxdWVzdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/contact.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxjb250YWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/documents.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/documents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxkb2N1bWVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/edit-property.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/edit-property.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxlZGl0LXByb3BlcnR5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/index.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxpbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/pending-properties.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/pending-properties.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxwZW5kaW5nLXByb3BlcnRpZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/properties.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/properties.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxwcm9wZXJ0aWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/property-detail.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/property-detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxwcm9wZXJ0eS1kZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/register.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxyZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/sell-house.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/sell-house.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxzZWxsLWhvdXNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/submit-property.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/submit-property.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxzdWJtaXQtcHJvcGVydHkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/user-profile.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/user-profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVx1c2VyLXByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Deniz/SoftwareProjects/VS Projects/ObiGayrimenkul/ObiGayrimenkul/Views/Home/user-properties.cshtml]
+[C:/Users/serda/Desktop/Proje/ObiGayrimenkul/ObiGayrimenkul/Views/Home/user-properties.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVx1c2VyLXByb3BlcnRpZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

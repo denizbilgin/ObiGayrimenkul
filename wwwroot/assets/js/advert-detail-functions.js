@@ -11,6 +11,7 @@ const getAdvertById = async (id) => {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'
+
             }
         });
 
@@ -184,6 +185,8 @@ const getDocumentFromStorage = async (app, documentName) => {
     }
 };
 
+const authToken = localStorage.getItem("AuthToken");
+
 
 document.addEventListener("DOMContentLoaded", async function () {
     const extraDetails = [
@@ -281,8 +284,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             ]);
 
             const date = data.publishDate;
-            const dateSpliited = date.split(" ");
-            const day = dateSpliited[1].replace(",", "");
+            /*const dateSpliited = date.split(" ");
+            const day = dateSpliited[0].replace(",", "");
             const month = months.get(dateSpliited[0]);
             const year = dateSpliited[2];
             let hours = parseInt(dateSpliited[4].split(":")[0]);
@@ -293,10 +296,10 @@ document.addEventListener("DOMContentLoaded", async function () {
                 hours += 12;
             } else if (period === "AM" && hours === 12) {
                 hours = 0;
-            }
+            }*/
 
-            const formattedDate = `${day < 10 ? '0' + day : day} ${month} ${year} ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-            document.getElementById("advert-upload-date-value").innerHTML = formattedDate;
+            //const formattedDate = `${day < 10 ? '0' + day : day} ${month} ${year} ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+            document.getElementById("advert-upload-date-value").innerHTML = date;
 
             
 
@@ -320,6 +323,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 detailsList.appendChild(listItem);
             });
 
+<<<<<<< HEAD
             const userImageUrl = await getUserPhotoFromStorage(app, user);
             document.getElementById("user-picture").src = userImageUrl;
             document.getElementById("user-picture").style.height = "100%";
@@ -335,12 +339,52 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById("user-description").innerHTML = user.description.length > 100 ? user.description.slice(0, 100) + "..." : user.description;
 
             document.getElementById("advert-document-container").innerHTML = `
+=======
+            const user = await getUserById(data.userID);
+            if (user) {
+                const userImageUrl = await getUserPhotoFromStorage(app, user);
+                document.getElementById("user-picture").src = userImageUrl;
+                document.getElementById("user-picture").style.height = "100%";
+                document.getElementById("whatsapp-button").setAttribute("href", `https://wa.me/${user.phoneNumber}/?text=Merhaba ${data.advertTitle} başlıklı dairenin detayları hakkında görüşmek istiyorum.`);
+                document.getElementById("user-name").innerHTML = user.name + (user.midName === "" ? "" : " " + user.midName) + " " + user.surname;
+                document.getElementById("user-facebook-link").setAttribute("href", user.facebookLink);
+                document.getElementById("user-instagram-link").setAttribute("href", user.instagramLink);
+                document.getElementById("user-document-number").innerHTML = user.authDocNumber;
+                document.getElementById("user-email").innerHTML = user.email;
+                let formattedPhoneNumber = user.phoneNumber.replace(/^\+90/, "0");
+                formattedPhoneNumber = formattedPhoneNumber.replace(/(\d{4})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3 $4");
+                document.getElementById("user-phone-number").innerHTML = formattedPhoneNumber;
+                document.getElementById("user-description").innerHTML = user.description.length > 100 ? user.description.slice(0, 100) + "..." : user.description;
+            }
+            if(authToken){
+                document.getElementById("special-section").style.display = "inline";
+                document.getElementById("advert-document-container").innerHTML = `
+>>>>>>> a219ebf241c4d66496fc13d20a34fc00d3a6463e
             <div class="clearfix padding-top-40">
                 <iframe src="${await getDocumentFromStorage(app, data.documentPath)}" width="100%" height="600px"></iframe>
             </div>
             `;
+            var url = "/users/isAdmin/" + localStorage.getItem("userId");
+                fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            document.getElementById("container-decision").style.display = "none";
+                        } else {
+                            throw new Error("Kullanıcı bilgisi alınamadı");
+                        }
+                    })
+            }else{
+                document.getElementById("advert-document-container").style.display = "none";   
+            }
+            
         }
     } catch (error) {
         console.error("Firebase başlatma hatası:", error);
     }
 });
+

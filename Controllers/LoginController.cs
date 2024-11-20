@@ -2,6 +2,7 @@
 using ObiGayrimenkul.Firebase;
 using ObiGayrimenkul.Models;
 using ObiGayrimenkul.Services;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace ObiGayrimenkul.Controllers
 {
@@ -34,17 +35,12 @@ namespace ObiGayrimenkul.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromForm] LoginModel loginModel)
         {
-            Console.WriteLine("Gelen Email: " + loginModel.Email);
-            Console.WriteLine("Gelen Şifre: " + loginModel.Password);
             var users = await _firestore.GetAll<User>("users", CancellationToken.None);
             foreach (var user in users)
             {
-                Console.WriteLine("User Email :" +user.Email);
                 if (user.Email == loginModel.Email)
                 {
                     var FoundedUser = user;
-                    Console.WriteLine("User Password: " + FoundedUser.Password);
-                    Console.WriteLine("User Email : " + FoundedUser.Email);
                     if (FoundedUser != null && loginModel.Password == FoundedUser.Password)
                     {
                         try
@@ -95,6 +91,37 @@ namespace ObiGayrimenkul.Controllers
                 return StatusCode(500, $"Veri ekleme sırasında hata oluştu: {ex.Message}");
 
             }
+        }
+
+        [HttpGet("current-user")]
+        public IActionResult GetCurrentUser()
+        {
+            var authToken = Request.Cookies["AuthToken"];
+            if (string.IsNullOrEmpty(authToken))
+            {
+                return Unauthorized(new { success = false, message = "Kullanıcı oturumu geçerli değil." });
+            }
+
+            var handler = new JwtSecurityTokenHandler();
+            var jwtToken = handler.ReadJwtToken(authToken);
+
+            var userId = jwtToken.Claims.FirstOrDefault(c => c.Type == "userId")?.Value;
+            var userName = jwtToken.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(userName))
+            {
+                return Unauthorized(new { success = false, message = "Geçersiz token." });
+            }
+
+            return Ok(new { success = true, userName, userId });
+        }
+
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("AuthToken");
+            return Ok(new { success = true ,  message = "Cikis yapildi " });
         }
     }
 }
