@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const dateOrderedSortedAdverts = [...adverts].sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
     const priceOrderedSortedAdverts = [...adverts].sort((a, b) => a.price - b.price);
 
-    const advertsPerPage = 4;
+    const advertsPerPage = 8;
     let currentPage = 1;
 
     const advertsContainer = document.getElementById("list-type");
