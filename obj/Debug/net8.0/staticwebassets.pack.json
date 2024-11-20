@@ -681,19 +681,11 @@
       "PackagePath": "staticwebassets\\assets\\js\\change-password.js"
     },
     {
-<<<<<<< HEAD
       "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\client-requests-functions.js",
       "PackagePath": "staticwebassets\\assets\\js\\client-requests-functions.js"
     },
     {
       "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\contact-functions.js",
-=======
-      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\client-requests-functions.js",
-      "PackagePath": "staticwebassets\\assets\\js\\client-requests-functions.js"
-    },
-    {
-      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\contact-functions.js",
->>>>>>> fae639528793e713ff5baf489a60d0aa9d33132e
       "PackagePath": "staticwebassets\\assets\\js\\contact-functions.js"
     },
     {
@@ -785,15 +777,11 @@
       "PackagePath": "staticwebassets\\assets\\js\\properties-functions.js"
     },
     {
-<<<<<<< HEAD
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\search-functions.js",
-=======
-      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\request-detail-function.js",
+      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\request-detail-function.js",
       "PackagePath": "staticwebassets\\assets\\js\\request-detail-function.js"
     },
     {
-      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\search-functions.js",
->>>>>>> fae639528793e713ff5baf489a60d0aa9d33132e
+      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\search-functions.js",
       "PackagePath": "staticwebassets\\assets\\js\\search-functions.js"
     },
     {

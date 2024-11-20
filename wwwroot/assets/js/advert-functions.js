@@ -63,6 +63,25 @@ const getFirebaseConfigurations = async () => {
     }
 };
 
+const toggleActiveClass = (clickedButton, otherButton) => {
+    const clickedParent = clickedButton.parentElement;
+    const otherParent = otherButton.parentElement;
+
+    if (!clickedParent.classList.contains("active")) {
+        clickedParent.classList.add("active");
+    }
+
+    if (otherParent.classList.contains("active")) {
+        otherParent.classList.remove("active");
+    }
+};
+
+const parseFirebaseDate = (firebaseDateString) => {
+    const cleanedDateString = firebaseDateString.replace(" at", "").replace(" UTC+3", "");
+    
+    const result = new Date(cleanedDateString);
+    return result;
+};
 
 document.addEventListener("DOMContentLoaded", async function () {
     const app = await getFirebaseConfigurations();
@@ -70,31 +89,100 @@ document.addEventListener("DOMContentLoaded", async function () {
     const storage = getStorage(app);
 
     const response = await fetch("/adverts/all-adverts");
-    const adverts = await response.json();
+    let adverts = await response.json();
+
+    const dateOrderedSortedAdverts = [...adverts].sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
+    const priceOrderedSortedAdverts = [...adverts].sort((a, b) => a.price - b.price);
+
+    const advertsPerPage = 4;
+    let currentPage = 1;
 
     const advertsContainer = document.getElementById("list-type");
-    for (const advert of adverts) {        
-        const placeName = await getPlaceNameById(db, advert.addressDistrictID);
-        const thumbnailUrl = await getThumbnailUrl(storage, advert.advertImages[0]);
-        
-        const advertCardHtml = `
-            <div class="col-sm-6 col-md-3 p0">
-                <div class="box-two proerty-item">
-                    <div class="item-thumb">
-                        <a href="adverts/${advert.id}"><img src="${thumbnailUrl}"></a>
-                    </div>
-                    <div class="item-entry overflow">
-                        <h5><a href="adverts/${advert.id}">${advert.advertTitle}</a></h5>
-                        <div class="dot-hr"></div>
-                        <span class="pull-left"><b> Alan :</b> ${advert.squareMeterGross} m²</span>
-                        <span class="proerty-price pull-right"> $ ${advert.price}</span>
-                        <div class="property-icon">
-                            <img src="assets/img/icon/district.png"><p style="margin-right: 1rem; display: inline;" margin-left: 6px;> ${placeName}</p>
-                            <img src="assets/img/icon/room.png"> ${advert.roomNumber}
+    const paginationContainer = document.querySelector(".pagination ul");
+
+    const updatePagination = (sortedAdverts) => {
+        const totalPages = Math.ceil(sortedAdverts.length / advertsPerPage);
+        paginationContainer.innerHTML = '';
+    
+        // Prev button
+        const prevButton = document.createElement('li');
+        prevButton.innerHTML = '<a href="#">Önceki</a>';
+        prevButton.classList.toggle('disabled', currentPage === 1);
+        prevButton.addEventListener('click', () => changePage(currentPage - 1, sortedAdverts));
+        paginationContainer.appendChild(prevButton);
+    
+        // Page numbers
+        for (let i = 1; i <= totalPages; i++) {
+            const pageButton = document.createElement('li');
+            pageButton.innerHTML = `<a href="#">${i}</a>`;
+            if (i === currentPage) {
+                pageButton.classList.add('active');
+            }
+            pageButton.addEventListener('click', () => changePage(i, sortedAdverts));
+            paginationContainer.appendChild(pageButton);
+        }
+    
+        // Next button
+        const nextButton = document.createElement('li');
+        nextButton.innerHTML = '<a href="#">Sonraki</a>';
+        nextButton.classList.toggle('disabled', currentPage === totalPages);
+        nextButton.addEventListener('click', () => changePage(currentPage + 1, sortedAdverts));
+        paginationContainer.appendChild(nextButton);
+    };
+
+    const changePage = (page, sortedAdverts) => {
+        currentPage = page;
+    
+        const startIndex = (currentPage - 1) * advertsPerPage;
+        const endIndex = startIndex + advertsPerPage;
+        const advertsToShow = sortedAdverts.slice(startIndex, endIndex);
+    
+        renderAdverts(advertsToShow);
+        updatePagination(sortedAdverts);
+    };
+
+    const renderAdverts = async (adverts) => {
+        advertsContainer.innerHTML = ""; // Mevcut içeriği temizle
+        for (const advert of adverts) {
+            const placeName = await getPlaceNameById(db, advert.addressDistrictID);
+            const thumbnailUrl = await getThumbnailUrl(storage, advert.advertImages[0]);
+
+            const advertCardHtml = `
+                <div class="col-sm-6 col-md-3 p0">
+                    <div class="box-two proerty-item">
+                        <div class="item-thumb">
+                            <a href="adverts/${advert.id}"><img src="${thumbnailUrl}"></a>
+                        </div>
+                        <div class="item-entry overflow">
+                            <h5><a href="adverts/${advert.id}">${advert.advertTitle}</a></h5>
+                            <div class="dot-hr"></div>
+                            <span class="pull-left"><b> Alan :</b> ${advert.squareMeterGross} m²</span>
+                            <span class="proerty-price pull-right"> $ ${advert.price}</span>
+                            <div class="property-icon">
+                                <img src="assets/img/icon/district.png"><p style="margin-right: 1rem; display: inline;" margin-left: 6px;> ${placeName}</p>
+                                <img src="assets/img/icon/room.png"> ${advert.roomNumber}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>`;
-        advertsContainer.innerHTML += advertCardHtml;
-    }
+                </div>`;
+            advertsContainer.innerHTML += advertCardHtml;
+        }
+    };
+
+    await changePage(currentPage, dateOrderedSortedAdverts);
+
+    const orderByDateButton = document.getElementById("order-by-date");
+    const orderByPriceButton = document.getElementById("order-by-price");
+
+    orderByDateButton.addEventListener("click", async () => {
+        currentPage = 1;
+        toggleActiveClass(orderByDateButton, orderByPriceButton);
+        await changePage(currentPage, dateOrderedSortedAdverts);
+    });
+
+    orderByPriceButton.addEventListener("click", async () => {
+        toggleActiveClass(orderByPriceButton,orderByDateButton);
+        currentPage = 1;
+        await changePage(currentPage, priceOrderedSortedAdverts);
+    });
 });
