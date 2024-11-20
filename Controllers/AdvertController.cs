@@ -266,5 +266,48 @@ namespace ObiGayrimenkul.Controllers
             var advert = await _firestore.Get<Advert>(id,"adverts", ct);
             return advert != null;
         }
+
+        [HttpGet("search-adverts")]
+        public async Task<IActionResult> SearchAdverts(
+            [FromQuery] double? minPrice,
+            [FromQuery] double? maxPrice,
+            [FromQuery] int? minSquareMeters,
+            [FromQuery] int? maxSquareMeters,
+            [FromQuery] bool? hasElevator,
+            [FromQuery] bool? hasGarage,
+            [FromQuery] bool? isFurnished,
+            [FromQuery] bool? nearSchool,
+            [FromQuery] bool? nearHealthCenter,
+            [FromQuery] bool? inSite,
+            [FromQuery] bool? hasPantry,
+    CancellationToken ct)
+        {
+            try
+            {
+                var allAdverts = await _firestore.GetAllApproved<Advert>(ct);
+
+                var filteredAdverts = allAdverts.Where(advert =>
+                    (!minPrice.HasValue || advert.Price >= minPrice.Value) &&
+                    (!maxPrice.HasValue || advert.Price <= maxPrice.Value) &&
+                    (!minSquareMeters.HasValue || advert.SquareMeterGross >= minSquareMeters.Value) &&
+                    (!maxSquareMeters.HasValue || advert.SquareMeterGross <= maxSquareMeters.Value) &&
+                    (!hasElevator.HasValue || advert.HasLift == hasElevator.Value) &&
+                    (!hasGarage.HasValue || advert.HasGarage == hasGarage.Value) &&
+                    (!isFurnished.HasValue || advert.IsFurnished == isFurnished.Value) &&
+                    (!nearSchool.HasValue || advert.IsCloseToSchool == nearSchool.Value) &&
+                    (!nearHealthCenter.HasValue || advert.IsCloseToHealthCenter == nearHealthCenter.Value) &&
+                    (!inSite.HasValue || advert.IsInSite == inSite.Value) &&
+                    (!hasPantry.HasValue || advert.HaveCellar == hasPantry.Value)
+                ).ToList();
+
+                return Ok(filteredAdverts);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Arama sırasında hata oluştu: {ex.Message}");
+                return StatusCode(500, new { message = "Arama sırasında bir hata oluştu.", error = ex.Message });
+            }
+        }
+
     }
 }

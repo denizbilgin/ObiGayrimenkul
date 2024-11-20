@@ -138,7 +138,7 @@ namespace ObiGayrimenkul.Controllers
             {
                 Console.WriteLine("user role admin değil geldi : " + user.Role);
                 Console.WriteLine("user role yok ama fonksiyon calismakta");
-                return Ok(new { success = false });
+                return Unauthorized(new { success = false });
                 
             }
         }

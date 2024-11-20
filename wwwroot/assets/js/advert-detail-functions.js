@@ -350,7 +350,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 })
                     .then(response => {
                         if (response.ok) {
-                            document.getElementById("container-decision").style.display = "none";
+                            document.getElementById("container-decision").style.display = "inline";
                         } else {
                             throw new Error("Kullanıcı bilgisi alınamadı");
                         }
