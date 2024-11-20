@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getFirestore, doc, getDoc, query, where, collection, getDocs, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-import { getStorage, ref, getDownloadURL, deleteObject, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+import { getStorage, ref, getDownloadURL, deleteObject, uploadBytesResumable, uploadBytes } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
 const getAdvertById = async (id) => {
     const url = `/adverts/get-details/${id}`;
@@ -195,32 +195,30 @@ async function uploadPDF(app, advert) {
         return;
     }
 
-    try {
+    try { 
         const storage = getStorage(app);
         const filenameToUpload = `advert_documents/${advert.advertTitle.replaceAll(" ", "-")}-${new Date().getTime()}.pdf`;
         const storageRef = ref(storage, filenameToUpload);
-        const uploadTask = uploadBytesResumable(storageRef, file);
 
-        uploadTask.on("state_changed",
-            (snapshot) => {
-                // Yükleme ilerleme durumu burada ele alınabilir
-                console.log(filenameToUpload, " adlı PDF firebase'e yüklendi.");
-            },
-            (error) => {
-                // Hata durumunda yapılacaklar
-                console.error("PDF yükleme hatası:", error);
-            },
-            async () => {
-                // Yükleme tamamlandığında yapılacak işlemler
-                const oldFileRef = ref(storage, advert.documentPath);
-                await deleteObject(oldFileRef);
+        await uploadBytes(storageRef, file);
 
-                advert.documentPath = filenameToUpload;
-            }
-        );
+        if (advert.documentPath) {
+            const oldFileRef = ref(storage, advert.documentPath);
+            await deleteObject(oldFileRef);
+        }
+
+        advert.documentPath = filenameToUpload;
     } catch (error) {
         console.error("Dosya yüklenirken bir hata oluştu:", error);
     }
+}
+
+function convertToEmbed(rawLink) {
+    const videoId = rawLink.split("v=")[1]?.split("&")[0];
+    if (videoId) {
+        return `https://www.youtube.com/embed/${videoId}`;
+    }
+    return rawLink;
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -338,6 +336,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             `;
             document.getElementById("advert-document").addEventListener("change", async function(event) {
                 await uploadPDF(app, advert);
+                console.log(advert);
             });
             
 
@@ -368,7 +367,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     AddressQuarterID: Number(document.querySelector('.quarterPicker select').value),            
                     Side: Number(document.querySelector('.sidePicker select').value),                           
                     WhichFloor: Number(document.getElementById("advert-which-floor").value),                     
-                    Video: document.getElementById("advert-video").value,                         
+                    Video: convertToEmbed(document.getElementById("advert-video").value),                         
                     AdvertImages: advert.advertImages,                  
                     BalconyCount: Number(document.getElementById("advert-balcony-count").value),                   
                     DocumentPath: advert.documentPath,                  
