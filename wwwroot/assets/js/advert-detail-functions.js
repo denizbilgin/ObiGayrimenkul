@@ -359,7 +359,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             if(authToken){
                 document.getElementById("special-section").style.display = "inline";
                 document.getElementById("advert-document-container").innerHTML = `
->>>>>>> a219ebf241c4d66496fc13d20a34fc00d3a6463e
             <div class="clearfix padding-top-40">
                 <iframe src="${await getDocumentFromStorage(app, data.documentPath)}" width="100%" height="600px"></iframe>
             </div>
