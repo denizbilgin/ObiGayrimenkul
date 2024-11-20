@@ -36,7 +36,6 @@ const getUserById = async (id) => {
                 'Content-Type': 'application/json'
             }
         });
-
         if (response.ok) {
             const userData = await response.json();
             return userData;
@@ -182,7 +181,7 @@ const getDocumentFromStorage = async (app, documentName) => {
         const documentUrl = await getDownloadURL(advertDocumentRef);
         return documentUrl;
     } catch (error) {
-        console.log("Hata:", error);
+        return NaN;
     }
 };
 
@@ -231,6 +230,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         const data = await getAdvertById(advertId);
 
         if (data) {
+            const user = await getUserById(data.userID);
+            if (!user) {
+                user = await getUserById("3t5SEXDiNhFY0QHZO4n6");
+            }
+            console.log(user);
+
             getImagesAndPopulateSlider(storage, data.advertImages);
             document.getElementsByTagName("h1")[0].innerHTML = data.advertTitle;
             document.getElementsByTagName("h1")[1].innerHTML = data.advertTitle;
@@ -318,6 +323,23 @@ document.addEventListener("DOMContentLoaded", async function () {
                 detailsList.appendChild(listItem);
             });
 
+<<<<<<< HEAD
+            const userImageUrl = await getUserPhotoFromStorage(app, user);
+            document.getElementById("user-picture").src = userImageUrl;
+            document.getElementById("user-picture").style.height = "100%";
+            document.getElementById("whatsapp-button").setAttribute("href", `https://wa.me/${user.phoneNumber}/?text=Merhaba ${data.advertTitle} başlıklı dairenin detayları hakkında görüşmek istiyorum.`);
+            document.getElementById("user-name").innerHTML = user.name + (user.midName === "" ? "" : " " + user.midName) + " " + user.surname;
+            document.getElementById("user-facebook-link").setAttribute("href", user.facebookLink);
+            document.getElementById("user-instagram-link").setAttribute("href", user.instagramLink);
+            document.getElementById("user-document-number").innerHTML = user.authDocNumber;
+            document.getElementById("user-email").innerHTML = user.email;
+            let formattedPhoneNumber = user.phoneNumber.replace(/^\+90/, "0");
+            formattedPhoneNumber = formattedPhoneNumber.replace(/(\d{4})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3 $4");
+            document.getElementById("user-phone-number").innerHTML = formattedPhoneNumber;
+            document.getElementById("user-description").innerHTML = user.description.length > 100 ? user.description.slice(0, 100) + "..." : user.description;
+
+            document.getElementById("advert-document-container").innerHTML = `
+=======
             const user = await getUserById(data.userID);
             if (user) {
                 const userImageUrl = await getUserPhotoFromStorage(app, user);
@@ -337,6 +359,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             if(authToken){
                 document.getElementById("special-section").style.display = "inline";
                 document.getElementById("advert-document-container").innerHTML = `
+>>>>>>> a219ebf241c4d66496fc13d20a34fc00d3a6463e
             <div class="clearfix padding-top-40">
                 <iframe src="${await getDocumentFromStorage(app, data.documentPath)}" width="100%" height="600px"></iframe>
             </div>

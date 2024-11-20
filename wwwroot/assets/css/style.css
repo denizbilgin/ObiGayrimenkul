@@ -2155,6 +2155,7 @@ single property page
     position: relative;
     clear: both;
     overflow: hidden;
+    margin-top: 2rem;
 }
 .single-property-header .property-title {
     margin: 10px 0px;
