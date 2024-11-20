@@ -357,8 +357,22 @@ document.addEventListener("DOMContentLoaded", async function () {
                         throw new Error("Kullanıcı bilgisi alınamadı");
                     }
                 })
+<<<<<<< HEAD
         } else {
             document.getElementById("advert-document-container").style.display = "none";
+=======
+                    .then(response => {
+                        if (response.ok) {
+                            document.getElementById("container-decision").style.display = "inline";
+                        } else {
+                            throw new Error("Kullanıcı bilgisi alınamadı");
+                        }
+                    })
+            }else{
+                document.getElementById("advert-document-container").style.display = "none";   
+            }
+            
+>>>>>>> a452b44c7875eff8c97ac02e0d8a76b16cbfc1cc
         }
 
     } catch (error) {
