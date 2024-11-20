@@ -210,6 +210,38 @@
   },
   {
     "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
+    "Method": "GetRequestDetails",
+    "RelativePath": "adverts/get-request-details/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
+    "Method": "GetRequestByID",
+    "RelativePath": "adverts/requests/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
     "Method": "ClientHouseSell",
     "RelativePath": "adverts/sell-house",
     "HttpMethod": "GET",
