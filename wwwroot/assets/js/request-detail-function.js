@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const path = window.location.pathname;
         const advertId = path.split('/').pop();
-        const data = await getAdvertById(advertId);
+        const data = await getRequestById(advertId);
 
         if (data) {
             getImagesAndPopulateSlider(storage, data.advertImages);

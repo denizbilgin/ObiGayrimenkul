@@ -383,7 +383,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     const response = await fetch(`/adverts/edit/${advert.id}`, {
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/json"
+                            "Content-Type": "application/json",
                         },
                         body: JSON.stringify(updatedAdvert)
                     });

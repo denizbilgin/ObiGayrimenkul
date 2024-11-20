@@ -119,6 +119,30 @@ namespace ObiGayrimenkul.Controllers
             return Ok(user);
         }
 
+        [HttpGet("isAdmin/{userId}")]
+        public async Task<IActionResult> IsAdmin(string userId, CancellationToken ct)
+        {
+            var user = await _firestore.Get<User>(userId, "users", ct);
+            Console.WriteLine("user Id : " + userId);
+            Console.WriteLine("user role : " + user.Role);
+            Console.WriteLine("user role yok ama fonksiyon calismakta");
+
+            if (user.Role.Equals("Admin"))
+            {
+                Console.WriteLine("user role admin geldi : " + user.Role);
+                Console.WriteLine("user role yok ama fonksiyon calismakta");
+                return Ok(new { success = true });
+                
+            }
+            else
+            {
+                Console.WriteLine("user role admin değil geldi : " + user.Role);
+                Console.WriteLine("user role yok ama fonksiyon calismakta");
+                return Ok(new { success = false });
+                
+            }
+        }
+
 
 
         [HttpGet("user-exists")]

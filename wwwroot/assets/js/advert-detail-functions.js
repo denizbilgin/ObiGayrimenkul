@@ -11,6 +11,7 @@ const getAdvertById = async (id) => {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'
+
             }
         });
 
@@ -185,6 +186,8 @@ const getDocumentFromStorage = async (app, documentName) => {
     }
 };
 
+const authToken = localStorage.getItem("AuthToken");
+
 
 document.addEventListener("DOMContentLoaded", async function () {
     const extraDetails = [
@@ -276,8 +279,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             ]);
 
             const date = data.publishDate;
-            const dateSpliited = date.split(" ");
-            const day = dateSpliited[1].replace(",", "");
+            /*const dateSpliited = date.split(" ");
+            const day = dateSpliited[0].replace(",", "");
             const month = months.get(dateSpliited[0]);
             const year = dateSpliited[2];
             let hours = parseInt(dateSpliited[4].split(":")[0]);
@@ -288,10 +291,10 @@ document.addEventListener("DOMContentLoaded", async function () {
                 hours += 12;
             } else if (period === "AM" && hours === 12) {
                 hours = 0;
-            }
+            }*/
 
-            const formattedDate = `${day < 10 ? '0' + day : day} ${month} ${year} ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-            document.getElementById("advert-upload-date-value").innerHTML = formattedDate;
+            //const formattedDate = `${day < 10 ? '0' + day : day} ${month} ${year} ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+            document.getElementById("advert-upload-date-value").innerHTML = date;
 
             
 
@@ -331,14 +334,34 @@ document.addEventListener("DOMContentLoaded", async function () {
                 document.getElementById("user-phone-number").innerHTML = formattedPhoneNumber;
                 document.getElementById("user-description").innerHTML = user.description.length > 100 ? user.description.slice(0, 100) + "..." : user.description;
             }
-
-            document.getElementById("advert-document-container").innerHTML = `
+            if(authToken){
+                document.getElementById("special-section").style.display = "inline";
+                document.getElementById("advert-document-container").innerHTML = `
             <div class="clearfix padding-top-40">
                 <iframe src="${await getDocumentFromStorage(app, data.documentPath)}" width="100%" height="600px"></iframe>
             </div>
             `;
+            var url = "/users/isAdmin/" + localStorage.getItem("userId");
+                fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            document.getElementById("container-decision").style.display = "none";
+                        } else {
+                            throw new Error("Kullanıcı bilgisi alınamadı");
+                        }
+                    })
+            }else{
+                document.getElementById("advert-document-container").style.display = "none";   
+            }
+            
         }
     } catch (error) {
         console.error("Firebase başlatma hatası:", error);
     }
 });
+

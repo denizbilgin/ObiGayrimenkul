@@ -157,6 +157,27 @@
   },
   {
     "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
+    "Method": "ChangeAdvertsUser",
+    "RelativePath": "adverts/edit-user",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "advertId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
     "Method": "Edit",
     "RelativePath": "adverts/edit/{id}",
     "HttpMethod": "GET",
@@ -338,6 +359,16 @@
   },
   {
     "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
+    "Method": "GetCurrentUser",
+    "RelativePath": "user-process/current-user",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
     "Method": "Login",
     "RelativePath": "user-process/login",
     "HttpMethod": "POST",
@@ -355,6 +386,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.LoginController",
+    "Method": "Logout",
+    "RelativePath": "user-process/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -493,6 +534,22 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.UserController",
+    "Method": "IsAdmin",
+    "RelativePath": "users/isAdmin/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
         "Type": "System.String",
         "IsRequired": true
       }

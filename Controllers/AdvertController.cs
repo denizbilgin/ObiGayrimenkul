@@ -107,7 +107,6 @@ namespace ObiGayrimenkul.Controllers
         // İlan ekle - POST (Formdan gelen verileri işleme)
         //[Authorize]
         [HttpPost("create")]
-
         public async Task<IActionResult> Create([FromBody] Advert advert, CancellationToken ct)
         {
             try
@@ -136,7 +135,7 @@ namespace ObiGayrimenkul.Controllers
                 return StatusCode(500, $"Veri ekleme sırasında hata oluştu: {ex.Message}");
             }
         }
-
+        [Authorize]
         [HttpGet("edit/{id}")]
          public async Task<IActionResult> Edit(string id, CancellationToken ct)
          {
@@ -161,15 +160,26 @@ namespace ObiGayrimenkul.Controllers
             }
             if (ModelState.IsValid)
             {
-                
                 await _firestore.Update(advert, "adverts", ct);
                 advert.Approved = false;
                 await _firestore.MoveDocument<Advert>(id, "adverts", "advert-requests", ct);
-                //await _firestore.Add(advert, "advert-requests", ct);
-                //await _firestore.Delete(advert.Id, "adverts", ct);
 
                 
             }
+            return Ok(advert);
+        }
+
+        [HttpPost("edit-user")]
+        public async Task<IActionResult> ChangeAdvertsUser(string userId , string advertId , CancellationToken ct)
+        {
+            if(!await AdvertExists(advertId.ToString() , ct)){
+                Response.StatusCode = 404;
+                return View("~/Views/Home/404.cshtml");
+            }
+            var advert = await _firestore.Get<Advert>(advertId, "adverts", ct);
+            advert.UserID = userId;
+            await _firestore.Update<Advert>(advert, "adverts", ct);
+
             return Ok(advert);
         }
 
