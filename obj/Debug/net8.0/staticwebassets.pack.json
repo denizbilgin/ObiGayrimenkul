@@ -681,15 +681,11 @@
       "PackagePath": "staticwebassets\\assets\\js\\change-password.js"
     },
     {
-<<<<<<< HEAD
-      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\contact-functions.js",
-=======
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\client-requests-functions.js",
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\client-requests-functions.js",
       "PackagePath": "staticwebassets\\assets\\js\\client-requests-functions.js"
     },
     {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\contact-functions.js",
->>>>>>> 22ad13bd0e1da9ba4f11e877d903604e1a11e89f
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\contact-functions.js",
       "PackagePath": "staticwebassets\\assets\\js\\contact-functions.js"
     },
     {
@@ -779,6 +775,10 @@
     {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\properties-functions.js",
       "PackagePath": "staticwebassets\\assets\\js\\properties-functions.js"
+    },
+    {
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\request-detail-function.js",
+      "PackagePath": "staticwebassets\\assets\\js\\request-detail-function.js"
     },
     {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\search-functions.js",

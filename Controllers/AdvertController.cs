@@ -35,7 +35,7 @@ namespace ObiGayrimenkul.Controllers
         [HttpGet("advert-requests")]
         public async Task<IActionResult> GetAdvertRequests(CancellationToken ct)
         {
-            return View("~/Views/Home/advert-approve.cshtml");
+            return View("~/Views/Home/pending-properties.cshtml");
         }
 
         [HttpGet("client-requests")]
@@ -51,10 +51,29 @@ namespace ObiGayrimenkul.Controllers
             return Ok(adverts);
         }
 
+        [HttpGet("get-request-details/{id}")]
+        public async Task<IActionResult> GetRequestDetails(string id ,CancellationToken ct)
+        {
+            var adverts = await _firestore.Get<Advert>(id ,"advert-requests", CancellationToken.None);
+            return Ok(adverts);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByID(string id , CancellationToken ct)
         {
             var advert = await _firestore.Get<Advert>(id, "adverts", ct);
+            if (advert == null)
+            {
+                Response.StatusCode = 404;
+                return View("~/Views/Home/404.cshtml");
+            }
+            return View("~/Views/Home/property-detail.cshtml");
+        }
+
+        [HttpGet("requests/{id}")]
+        public async Task<IActionResult> GetRequestByID(string id, CancellationToken ct)
+        {
+            var advert = await _firestore.Get<Advert>(id, "advert-requests", ct);
             if (advert == null)
             {
                 Response.StatusCode = 404;

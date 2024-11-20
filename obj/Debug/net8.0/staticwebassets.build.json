@@ -1,10 +1,6 @@
 {
   "Version": 1,
-<<<<<<< HEAD
-  "Hash": "/t3AL/tboSZeD4WIeZ28z8aP3hE1YIEzH/JarCBOb8U=",
-=======
-  "Hash": "NPCd8gtb4R67rja+D4fxCtJqh9P0wS9a5tu43kUzfbw=",
->>>>>>> 22ad13bd0e1da9ba4f11e877d903604e1a11e89f
+  "Hash": "gPWdnZBO/Yc7zlQ6+EyC1MnlqhqxljsZPoWDdanwgVY=",
   "Source": "ObiGayrimenkul",
   "BasePath": "_content/ObiGayrimenkul",
   "Mode": "Default",
@@ -3251,13 +3247,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\change-password.js"
     },
     {
-<<<<<<< HEAD
-      "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\contact-functions.js",
-=======
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\client-requests-functions.js",
+      "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\client-requests-functions.js",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
       "BasePath": "_content/ObiGayrimenkul",
       "RelativePath": "assets/js/client-requests-functions.js",
       "AssetKind": "All",
@@ -3273,8 +3266,7 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\client-requests-functions.js"
     },
     {
-      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\contact-functions.js",
->>>>>>> 22ad13bd0e1da9ba4f11e877d903604e1a11e89f
+      "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\contact-functions.js",
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
@@ -3709,6 +3701,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\js\\properties-functions.js"
+    },
+    {
+      "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\request-detail-function.js",
+      "SourceId": "ObiGayrimenkul",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "BasePath": "_content/ObiGayrimenkul",
+      "RelativePath": "assets/js/request-detail-function.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\request-detail-function.js"
     },
     {
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\search-functions.js",
