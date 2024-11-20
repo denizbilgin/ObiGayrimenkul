@@ -23,16 +23,17 @@ const getUserById = async (id) => {
     }
 };
 
-export async function updateUser(){
+export async function updateUser(isImgUpdate){
     const path = window.location.pathname;
     const userId = path.split('/').pop();
     const url = `/users/edit/${userId}`;
     const user = await getUserById(userId);
 
-    const imgName = "user_photos/" + document.getElementById("user-picture").getAttribute("user-filename");
-    if (!imgName) {
-        const fileInput = document.getElementById("wizard-picture");
-        imgName = fileInput.files.length > 0 ? fileInput.files[0].name : "user_photos/default_user_photo.jpg";
+    let imgName = "";
+    if (isImgUpdate) {
+        imgName = "user_photos/" + document.getElementById("user-picture").getAttribute("user-filename");
+    } else {
+        imgName = user.imgPath
     }
 
     const userData = {
@@ -115,6 +116,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     const user = await getUserById(userId);
     if (user){
         const app = await getFirebaseConfigurations();
+        console.log(user);
 
         document.getElementById("user-header-name").innerHTML = user.name + (user.midName === "" ? "": " " + user.midName)  + " " + user.surname;
         document.getElementById("user-firstname").value = user.name;
@@ -130,6 +132,10 @@ document.addEventListener("DOMContentLoaded", async function() {
         const userImageUrl = await getUserPhotoFromStorage(app, user);
         document.getElementById("user-picture").src = userImageUrl;
         document.getElementById("user-picture").style.height = "100%";
+
+        document.getElementById("info-save-button").addEventListener("click", function() {
+            updateUser(false)
+        });
 
 
         document.getElementById("wizard-picture").addEventListener("change", async function(event) {
@@ -155,7 +161,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
                         document.getElementById("user-picture").setAttribute("src", downloadURL);
                         document.getElementById("user-picture").setAttribute("user-filename", fileName);
-                        await updateUser();
+                        await updateUser(true);
                     }
                 )
             }

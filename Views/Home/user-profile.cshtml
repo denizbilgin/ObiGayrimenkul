@@ -212,7 +212,7 @@
 
                         <div class="col-sm-5 col-sm-offset-1">
                             <br>
-                            <input type='button' class='btn btn-finish btn-primary' name='finish' value='Kaydet' onclick="updateUser()"/>
+                            <input id="info-save-button" type='button' class='btn btn-finish btn-primary' name='finish' value='Kaydet'/>
                         </div>
                         <br>
                     </form>
@@ -305,10 +305,6 @@
     <script src="~/assets/js/wizard.js"></script>
     <script type="module" src="~/assets/js/user-profile-functions.js"></script>
     <script src="~/assets/js/main.js"></script>
-    <script type="module">
-    import { updateUser } from '/assets/js/user-profile-functions.js';
-    window.updateUser = updateUser;
-    </script>
     <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
     <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
     <script src = "/assets/js/logged-user-dropdown.js"></script>
