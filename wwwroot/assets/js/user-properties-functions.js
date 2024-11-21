@@ -147,9 +147,8 @@ async function moveAdvertToAnotherUser(advert, destUserId, destUserName) {
     const confirmation = confirm(`${advert.advertTitle} başlıklı ilanı ${destUserName} kişisine taşımak istediğinize emin misiniz?`);
     if (confirmation) {
         advert.userID = destUserId;
-        advert.approved = false;
         try {
-            const response = await fetch(`${window.location.origin}/adverts/edit/${advert.id}`, {
+            const response = await fetch(`${window.location.origin}/adverts/edit-user/${advert.id}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

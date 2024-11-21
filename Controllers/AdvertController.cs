@@ -51,6 +51,12 @@ namespace ObiGayrimenkul.Controllers
             return Ok(adverts);
         }
 
+        [HttpGet("pending-adverts")]
+        public async Task<IActionResult> GetPendingAdverts(CancellationToken ct)
+        {
+            return View("~/Views/Home/pending-properties.cshtml");
+        }
+
         [HttpGet("get-request-details/{id}")]
         public async Task<IActionResult> GetRequestDetails(string id ,CancellationToken ct)
         {
