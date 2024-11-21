@@ -822,6 +822,19 @@ label small{
     border: 0 none;
 }
 
+#list-type .dealer-action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#user-dropdown{
+    height: 100%;
+    width: 100px;
+    margin-right: 0.4rem;
+    border-radius: 10px;
+    background-color: #EDEDED;
+}
 
 .navbar-default .navbar-nav > li > a{
     color: #929292;

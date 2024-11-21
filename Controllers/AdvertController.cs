@@ -194,6 +194,7 @@ namespace ObiGayrimenkul.Controllers
             }
             return View(advert);
         }
+
         //[Authorize(Roles = "Admin")]
         [HttpPost("delete/{id}")]
         public async Task<IActionResult> DeleteConfirmed(string id, CancellationToken ct)
@@ -265,6 +266,22 @@ namespace ObiGayrimenkul.Controllers
         {
             var advert = await _firestore.Get<Advert>(id,"adverts", ct);
             return advert != null;
+        }
+
+        [HttpGet("get-user-adverts/{userId}")]
+        public async Task<IActionResult> GetAdvertsByUserID(string userId, CancellationToken ct)
+        {
+            var adverts = await _firestore.GetAll<Advert>("adverts", CancellationToken.None);
+            var advertRequests = await _firestore.GetAll<Advert>("advert-requests", CancellationToken.None);
+            var allAdverts = adverts.Concat(advertRequests).ToList();
+            var userAdverts = allAdverts.Where(advert => advert.UserID == userId).ToList();
+
+            if (userAdverts == null)
+            {
+                Response.StatusCode = 404;
+                return View("~/Views/Home/404.cshtml");
+            }
+            return Ok(userAdverts);
         }
 
         [HttpGet("search-adverts")]

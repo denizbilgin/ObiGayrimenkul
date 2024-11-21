@@ -247,6 +247,22 @@
   },
   {
     "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
+    "Method": "GetAdvertsByUserID",
+    "RelativePath": "adverts/get-user-adverts/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
     "Method": "GetRequestByID",
     "RelativePath": "adverts/requests/{id}",
     "HttpMethod": "GET",
@@ -610,6 +626,22 @@
     "ContainingType": "ObiGayrimenkul.Controllers.UserController",
     "Method": "IsAdmin",
     "RelativePath": "users/isAdmin/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.UserController",
+    "Method": "UserAdverts",
+    "RelativePath": "users/user-adverts/{userId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

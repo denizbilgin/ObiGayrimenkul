@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                             <h5><a href="adverts/${advert.id}">${advert.advertTitle}</a></h5>
                             <div class="dot-hr"></div>
                             <span class="pull-left"><b> Alan :</b> ${advert.squareMeterGross} m²</span>
-                            <span class="proerty-price pull-right"> $ ${advert.price}</span>
+                            <span class="proerty-price pull-right">${advert.price} TL</span>
                             <div class="property-icon">
                                 <img src="assets/img/icon/district.png"><p style="margin-right: 1rem; display: inline;" margin-left: 6px;> ${placeName}</p>
                                 <img src="assets/img/icon/room.png"> ${advert.roomNumber}

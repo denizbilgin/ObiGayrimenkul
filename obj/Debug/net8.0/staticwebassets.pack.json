@@ -797,6 +797,10 @@
       "PackagePath": "staticwebassets\\assets\\js\\user-profile-functions.js"
     },
     {
+      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\user-properties-functions.js",
+      "PackagePath": "staticwebassets\\assets\\js\\user-properties-functions.js"
+    },
+    {
       "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\wizard.js",
       "PackagePath": "staticwebassets\\assets\\js\\wizard.js"
     },
