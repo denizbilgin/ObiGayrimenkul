@@ -62,12 +62,24 @@ namespace ObiGayrimenkul.Controllers
         public async Task<IActionResult> GetByID(string id , CancellationToken ct)
         {
             var advert = await _firestore.Get<Advert>(id, "adverts", ct);
-            if (advert == null)
+            if (advert != null)
             {
-                Response.StatusCode = 404;
-                return View("~/Views/Home/404.cshtml");
+                return View("~/Views/Home/property-detail.cshtml");
             }
-            return View("~/Views/Home/property-detail.cshtml");
+            else
+            {
+                try
+                {
+                    advert = await _firestore.Get<Advert>(id, "advert-requests", ct);
+                    return View("~/Views/Home/property-detail.cshtml");
+                }
+                catch
+                {
+                    Response.StatusCode = 404;
+                    return View("~/Views/Home/404.cshtml");
+                }
+            }
+            
         }
 
         [HttpGet("requests/{id}")]
@@ -86,12 +98,24 @@ namespace ObiGayrimenkul.Controllers
         public async Task<IActionResult> GetDetailsByID(string id, CancellationToken ct)
         {
             var advert = await _firestore.Get<Advert>(id, "adverts", ct);
-            if (advert == null)
+            if (advert != null)
             {
-                Response.StatusCode = 404;
-                return View("~/Views/Home/404.cshtml");
+                return Ok(advert);
             }
-            return Ok(advert);
+            else
+            {
+                try
+                {
+                    advert = await _firestore.Get<Advert>(id, "advert-requests", ct);
+                    return Ok(advert);
+                }
+                catch
+                {
+                    Response.StatusCode = 404;
+                    return View("~/Views/Home/404.cshtml");
+                }
+            }
+            
         }
 
         // İlan ekle - GET (Form gösterimi)
@@ -143,28 +167,49 @@ namespace ObiGayrimenkul.Controllers
 
              if (advert == null)
              {
-                Response.StatusCode = 404;
-                return View("~/Views/Home/404.cshtml");
+                return View("~/Views/Home/edit-property.cshtml");
+             }
+            else
+            {
+                try
+                {
+                    advert = await _firestore.Get<Advert>(id, "advert-requests", ct);
+                    return View("~/Views/Home/edit-property.cshtml");
+                }
+                catch
+                {
+                    Response.StatusCode = 404;
+                    return View("~/Views/Home/404.cshtml");
+                }
             }
-             return View("~/Views/Home/edit-property.cshtml");
+             
          }
         
         [HttpPost("edit/{id}")]
         public async Task<IActionResult> Edit(string id,[FromBody]Advert advert , CancellationToken ct)
-        {
-            if (!await AdvertExists(id.ToString(), ct))
-            {
-                Console.WriteLine("! advertexists");
-                Response.StatusCode = 404;
-                return View("~/Views/Home/404.cshtml");
-            }
+        {       
             if (ModelState.IsValid)
             {
-                await _firestore.Update(advert, "adverts", ct);
-                advert.Approved = false;
-                await _firestore.MoveDocument<Advert>(id, "adverts", "advert-requests", ct);
-
-                
+                var CurrentAdvert = await _firestore.Get<Advert>(id, "adverts", ct);
+                if(CurrentAdvert != null)
+                {
+                    await _firestore.Update(advert, "adverts", ct);
+                    advert.Approved = false;
+                    await _firestore.MoveDocument<Advert>(id, "adverts", "advert-requests", ct);
+                }
+                else
+                {
+                    try
+                    {
+                        CurrentAdvert = await _firestore.Get<Advert>(id, "advert-requests", ct);
+                        await _firestore.Update(advert, "advert-requests", ct);
+                    }
+                    catch
+                    {
+                        Response.StatusCode = 404;
+                        return View("~/Views/Home/404.cshtml");
+                    }
+                }   
             }
             return Ok(advert);
         }
@@ -172,14 +217,11 @@ namespace ObiGayrimenkul.Controllers
         [HttpPost("edit-user/{advertId}")]
         public async Task<IActionResult> ChangeAdvertsUser(string userId , string advertId , CancellationToken ct)
         {
-            Console.WriteLine($"User Details: {userId}");
-            Console.WriteLine($"Advert ID : {advertId}");
+            Console.WriteLine($"User Id : {userId}\nAdvert Id : {advertId}");
             var advert = await _firestore.Get<Advert>(advertId, "adverts", ct);
-            Console.WriteLine($"User Details: {System.Text.Json.JsonSerializer.Serialize(advert)}");
             if (advert != null)
             {
                 advert.UserID = userId;
-                Console.WriteLine($"User Details: {System.Text.Json.JsonSerializer.Serialize(advert)}");
                 await _firestore.Update<Advert>(advert, "adverts", ct);
             }
             else
@@ -188,12 +230,10 @@ namespace ObiGayrimenkul.Controllers
                 {
                     advert = await _firestore.Get<Advert>(advertId, "advert-requests", ct);
                     advert.UserID = userId;
-                    Console.WriteLine($"User Details: {System.Text.Json.JsonSerializer.Serialize(advert)}");
                     await _firestore.Update<Advert>(advert, "advert-requests", ct);
                 }catch(Exception ex)
                 {
                     Response.StatusCode = 404;
-                    Console.WriteLine("Edit User Exception =>\n", ex);
                     return View("~/Views/Home/404.cshtml");
                 }
 
@@ -206,12 +246,23 @@ namespace ObiGayrimenkul.Controllers
         public async Task<IActionResult> Delete(string id, CancellationToken ct)
         {
             var advert = await _firestore.Get<Advert>(id,"adverts", ct);
-            if (advert == null)
+            if (advert != null)
             {
-                Response.StatusCode = 404;
-                return View("~/Views/Home/404.cshtml");
+                return View(advert);
             }
-            return View(advert);
+            else
+            {
+                try
+                {
+                    advert = await _firestore.Get<Advert>(id, "advert-requests", ct);
+                    return View(advert);
+                }
+                catch
+                {
+                    Response.StatusCode = 404;
+                    return View("~/Views/Home/404.cshtml");
+                }
+            }         
         }
 
         //[Authorize(Roles = "Admin")]
@@ -221,10 +272,24 @@ namespace ObiGayrimenkul.Controllers
             var advert = await _firestore.Get<Advert>(id, "adverts", ct);
             if (advert != null)
             {
-                var collection = _firestore._fireStoreDb.Collection("adverts");
-                await collection.Document(id).DeleteAsync(null, ct);
+                await _firestore.Delete(advert.Id, "adverts", CancellationToken.None);
+                return RedirectToAction(nameof(Index));
             }
-            return RedirectToAction(nameof(Index));
+            else
+            {
+                try
+                {
+                    advert = await _firestore.Get<Advert>(id, "advert-requests", ct);
+                    await _firestore.Delete(advert.Id, "advert-requests", CancellationToken.None);
+                    return RedirectToAction(nameof(Index));
+
+                }
+                catch
+                {
+                    Response.StatusCode = 404;
+                    return View("~/Views/Home/404.cshtml");
+                }
+            }
         }
 
 
