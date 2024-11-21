@@ -781,6 +781,10 @@
       "PackagePath": "staticwebassets\\assets\\js\\request-detail-function.js"
     },
     {
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\search-by-attributes.js",
+      "PackagePath": "staticwebassets\\assets\\js\\search-by-attributes.js"
+    },
+    {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\search-functions.js",
       "PackagePath": "staticwebassets\\assets\\js\\search-functions.js"
     },
@@ -797,15 +801,11 @@
       "PackagePath": "staticwebassets\\assets\\js\\user-profile-functions.js"
     },
     {
-<<<<<<< HEAD
-      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\wizard.js",
-=======
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\user-properties-functions.js",
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\user-properties-functions.js",
       "PackagePath": "staticwebassets\\assets\\js\\user-properties-functions.js"
     },
     {
-      "Id": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\wizard.js",
->>>>>>> f72f025281baadd660aca9d2263669bf0ffd774c
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\wizard.js",
       "PackagePath": "staticwebassets\\assets\\js\\wizard.js"
     },
     {
