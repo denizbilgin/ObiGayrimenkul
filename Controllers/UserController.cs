@@ -136,6 +136,11 @@ namespace ObiGayrimenkul.Controllers
             }
         }
 
+        [HttpGet("user-adverts/{userId}")]
+        public async Task<IActionResult> UserAdverts(string userId, CancellationToken ct)
+        {
+            return View("~/Views/Home/user-properties.cshtml");
+        }
 
 
         [HttpGet("user-exists")]

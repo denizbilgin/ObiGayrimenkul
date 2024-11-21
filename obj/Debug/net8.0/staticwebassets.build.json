@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "Hash": "S/TdIdiMB3WU5mvD74y5FoGhRLeR8r1623fdJW46uyY=",
+=======
+  "Hash": "PumKotedoAZmW3Z7zSAfswZkllbRF8UHcorCAzcf7ZI=",
+>>>>>>> f72f025281baadd660aca9d2263669bf0ffd774c
   "Source": "ObiGayrimenkul",
   "BasePath": "_content/ObiGayrimenkul",
   "Mode": "Default",
@@ -3798,7 +3802,30 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\user-profile-functions.js"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\wizard.js",
+=======
+      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\user-properties-functions.js",
+      "SourceId": "ObiGayrimenkul",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
+      "BasePath": "_content/ObiGayrimenkul",
+      "RelativePath": "assets/js/user-properties-functions.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\user-properties-functions.js"
+    },
+    {
+      "Identity": "C:\\Users\\Deniz\\SoftwareProjects\\VS Projects\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\wizard.js",
+>>>>>>> f72f025281baadd660aca9d2263669bf0ffd774c
       "SourceId": "ObiGayrimenkul",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\",
