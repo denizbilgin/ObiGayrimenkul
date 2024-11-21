@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }).then(response => {
             if (response.ok) {
-                console.log("Response:", response);
                 document.getElementById("pending-properties-link").style.display = "block";
             } else {
                 document.getElementById("pending-properties-link").parentElement.style.display = "none";
