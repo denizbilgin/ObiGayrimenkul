@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("userName").textContent = userName;
         document.getElementById("logged-in-user-dropdown").style.display = "inline";
         document.getElementById("profileLink").setAttribute("href", "/users/" + localStorage.getItem("userId"));
+        document.getElementById("user-properties-link").setAttribute("href", "/users/user-adverts/" + localStorage.getItem("userId"));
     } else {
         document.getElementById("logged-in-user-dropdown").style.display = "none";
     }
