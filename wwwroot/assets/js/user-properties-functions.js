@@ -116,7 +116,7 @@ async function fetchUsers() {
         console.error("Kullanıcılar çekilemedi");
         return [];
     }
-}
+};
 
 async function populateDropdown(defaultUser) {
     const users = await fetchUsers();
@@ -136,7 +136,7 @@ async function populateDropdown(defaultUser) {
             }
         });
     });
-}
+};
 
 async function moveAdvertToAnotherUser(advert, destUserId, destUserName) {
     if (advert.userID === destUserId) {
@@ -171,7 +171,28 @@ async function moveAdvertToAnotherUser(advert, destUserId, destUserName) {
     } else {
         return;
     }
-}
+};
+
+const toggleActiveClass = (clickedButton, otherButton) => {
+    const clickedParent = clickedButton.parentElement;
+    const otherParent = otherButton.parentElement;
+
+    if (!clickedParent.classList.contains("active")) {
+        clickedParent.classList.add("active");
+    }
+
+    if (otherParent.classList.contains("active")) {
+        otherParent.classList.remove("active");
+    }
+};
+
+const parseFirebaseDate = (firebaseDateString) => {
+    const cleanedDateString = firebaseDateString.replace(" at", "").replace(" UTC+3", "");
+    
+    const result = new Date(cleanedDateString);
+    return result;
+};
+
 
 document.addEventListener("DOMContentLoaded", async function () {
     const app = await getFirebaseConfigurations();
@@ -190,11 +211,62 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById("user-name").innerHTML = user.name + (user.midName === "" ? "" : " " + user.midName) + " " + user.surname;
 
         const advertsContainer = document.getElementById("list-type");
+        const paginationContainer = document.querySelector(".pagination ul");
+
         if (adverts.length === 0) {
             advertsContainer.innerHTML = "Şuanda hiçbir ilanınız bulunmamaktadır.";
         } else {
-            for (const advert of adverts) {
-                const placeName = await getPlaceNameById(db, advert.addressDistrictID);
+            const dateOrderedSortedAdverts = [...adverts].sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
+            const priceOrderedSortedAdverts = [...adverts].sort((a, b) => a.price - b.price);
+
+            const advertsPerPage = 6;
+            let currentPage = 1;
+
+            const updatePagination = (sortedAdverts) => {
+                const totalPages = Math.ceil(sortedAdverts.length / advertsPerPage);
+                paginationContainer.innerHTML = '';
+            
+                // Prev button
+                const prevButton = document.createElement('li');
+                prevButton.innerHTML = '<a href="#">Önceki</a>';
+                prevButton.classList.toggle('disabled', currentPage === 1);
+                prevButton.addEventListener('click', () => changePage(currentPage - 1, sortedAdverts));
+                paginationContainer.appendChild(prevButton);
+            
+                // Page numbers
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('li');
+                    pageButton.innerHTML = `<a href="#">${i}</a>`;
+                    if (i === currentPage) {
+                        pageButton.classList.add('active');
+                    }
+                    pageButton.addEventListener('click', () => changePage(i, sortedAdverts));
+                    paginationContainer.appendChild(pageButton);
+                }
+            
+                // Next button
+                const nextButton = document.createElement('li');
+                nextButton.innerHTML = '<a href="#">Sonraki</a>';
+                nextButton.classList.toggle('disabled', currentPage === totalPages);
+                nextButton.addEventListener('click', () => changePage(currentPage + 1, sortedAdverts));
+                paginationContainer.appendChild(nextButton);
+            };
+        
+            const changePage = (page, sortedAdverts) => {
+                currentPage = page;
+            
+                const startIndex = (currentPage - 1) * advertsPerPage;
+                const endIndex = startIndex + advertsPerPage;
+                const advertsToShow = sortedAdverts.slice(startIndex, endIndex);
+            
+                renderAdverts(advertsToShow);
+                updatePagination(sortedAdverts);
+            };
+
+            const renderAdverts = async (adverts) => {
+                advertsContainer.innerHTML = "";
+                for (const advert of adverts) {
+                    const placeName = await getPlaceNameById(db, advert.addressDistrictID);
                 const thumbnailUrl = await getThumbnailUrl(storage, advert.advertImages[0]);
                 const vertificationIcon = advert.approved
                     ? '<img src="/assets/img/icon/verified.png" style="margin-top: 0.7rem;" alt="Onaylandı">'
@@ -234,7 +306,12 @@ document.addEventListener("DOMContentLoaded", async function () {
                         </div>
                     </div>`;
                 advertsContainer.innerHTML += advertCardHtml;
-            }
+
+                document.querySelectorAll('.user-dropdown').forEach(async dropdown => {
+                    await populateDropdown(user);
+                });
+                }
+            };
 
             document.addEventListener("click", async (event) => {
                 if (event.target.classList.contains("delete-user-car")) {
@@ -277,8 +354,21 @@ document.addEventListener("DOMContentLoaded", async function () {
                 }
             });
 
-            document.querySelectorAll('#user-dropdown').forEach(async dropdown => {
-                await populateDropdown(user);
+            await changePage(currentPage, dateOrderedSortedAdverts);
+
+            const orderByDateButton = document.getElementById("order-by-date");
+            const orderByPriceButton = document.getElementById("order-by-price");
+
+            orderByDateButton.addEventListener("click", async () => {
+                currentPage = 1;
+                toggleActiveClass(orderByDateButton, orderByPriceButton);
+                await changePage(currentPage, dateOrderedSortedAdverts);
+            });
+
+            orderByPriceButton.addEventListener("click", async () => {
+                toggleActiveClass(orderByPriceButton,orderByDateButton);
+                currentPage = 1;
+                await changePage(currentPage, priceOrderedSortedAdverts);
             });
             
         }

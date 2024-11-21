@@ -100,7 +100,7 @@
                         <ul class="dropdown-menu navbar-nav">
                             <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/users/" id="profileLink">Profil</a></li>
                             <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/adverts/create">İlan Ekle</a></li>
-                            <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/user-properties">İlanlarım</a></li>
+                            <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/user-properties/" id="user-properties-link">İlanlarım</a></li>
                             <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/adverts/client-requests">Müşteri İstekleri</a></li>
                             <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="#" id="logoutButton">Çıkış Yap</a></li>
                         </ul>
@@ -135,13 +135,13 @@
 
 
                             <ul class="sort-by-list pull-left">
-                                <li class="active">
-                                    <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC">
+                                <li class="active" style="cursor:pointer;">
+                                    <a id="order-by-date" class="order_by_date" data-orderby="property_date" data-order="ASC">
                                         Tarihe Göre Sırala <i class="fa fa-sort-amount-asc"></i>
                                     </a>
                                 </li>
-                                <li class="">
-                                    <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
+                                <li class="" style="cursor:pointer;">
+                                    <a id="order-by-price" class="order_by_price" data-orderby="property_price" data-order="DESC">
                                         Fiyata Göre Sırala <i class="fa fa-sort-numeric-desc"></i>
                                     </a>
                                 </li>
