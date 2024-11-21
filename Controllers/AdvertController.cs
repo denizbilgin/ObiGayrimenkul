@@ -169,17 +169,36 @@ namespace ObiGayrimenkul.Controllers
             return Ok(advert);
         }
 
-        [HttpPost("edit-user")]
+        [HttpPost("edit-user/{advertId}")]
         public async Task<IActionResult> ChangeAdvertsUser(string userId , string advertId , CancellationToken ct)
         {
-            if(!await AdvertExists(advertId.ToString() , ct)){
-                Response.StatusCode = 404;
-                return View("~/Views/Home/404.cshtml");
-            }
+            Console.WriteLine($"User Details: {userId}");
+            Console.WriteLine($"Advert ID : {advertId}");
             var advert = await _firestore.Get<Advert>(advertId, "adverts", ct);
-            advert.UserID = userId;
-            await _firestore.Update<Advert>(advert, "adverts", ct);
+            Console.WriteLine($"User Details: {System.Text.Json.JsonSerializer.Serialize(advert)}");
+            if (advert != null)
+            {
+                advert.UserID = userId;
+                Console.WriteLine($"User Details: {System.Text.Json.JsonSerializer.Serialize(advert)}");
+                await _firestore.Update<Advert>(advert, "adverts", ct);
+            }
+            else
+            {
+                try
+                {
+                    advert = await _firestore.Get<Advert>(advertId, "advert-requests", ct);
+                    advert.UserID = userId;
+                    Console.WriteLine($"User Details: {System.Text.Json.JsonSerializer.Serialize(advert)}");
+                    await _firestore.Update<Advert>(advert, "advert-requests", ct);
+                }catch(Exception ex)
+                {
+                    Response.StatusCode = 404;
+                    Console.WriteLine("Edit User Exception =>\n", ex);
+                    return View("~/Views/Home/404.cshtml");
+                }
 
+            }
+            
             return Ok(advert);
         }
 

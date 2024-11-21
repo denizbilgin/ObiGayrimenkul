@@ -74,7 +74,7 @@ namespace ObiGayrimenkul.Controllers
 
         }
 
-
+        [Authorize]
         [HttpPost("edit/{id}")]
         public async Task<IActionResult> Update(string id,[FromBody] User user, CancellationToken ct)
         {

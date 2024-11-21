@@ -64,7 +64,7 @@ const getFirebaseConfigurations = async () => {
 
         const firebaseConfig = await response.json();
         const app = initializeApp(firebaseConfig);
-        
+
         return app
     } catch (error) {
         console.log("Bir hata oluştu:", error);
@@ -234,7 +234,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             if (!user) {
                 user = await getUserById("3t5SEXDiNhFY0QHZO4n6");
             }
-            console.log(user);
 
             getImagesAndPopulateSlider(storage, data.advertImages);
             document.getElementsByTagName("h1")[0].innerHTML = data.advertTitle;
@@ -259,7 +258,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById("advert-dues-value").innerHTML = data.dues + " TL Aidat";
             document.getElementById("advert-video").setAttribute("src", data.video);
             document.getElementById("advert-adress-text").innerHTML = data.address;
-            
+
             /*
             const date = new Date(data.publishDate);
             const day = date.getDate();
@@ -301,7 +300,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             //const formattedDate = `${day < 10 ? '0' + day : day} ${month} ${year} ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
             document.getElementById("advert-upload-date-value").innerHTML = date;
 
-            
+
 
             const detailsList = document.querySelector(".additional-details-list");
             extraDetails.forEach(field => {
@@ -323,7 +322,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                 detailsList.appendChild(listItem);
             });
 
-<<<<<<< HEAD
             const userImageUrl = await getUserPhotoFromStorage(app, user);
             document.getElementById("user-picture").src = userImageUrl;
             document.getElementById("user-picture").style.height = "100%";
@@ -337,53 +335,32 @@ document.addEventListener("DOMContentLoaded", async function () {
             formattedPhoneNumber = formattedPhoneNumber.replace(/(\d{4})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3 $4");
             document.getElementById("user-phone-number").innerHTML = formattedPhoneNumber;
             document.getElementById("user-description").innerHTML = user.description.length > 100 ? user.description.slice(0, 100) + "..." : user.description;
-
+        }
+        if (authToken) {
+            document.getElementById("special-section").style.display = "inline";
             document.getElementById("advert-document-container").innerHTML = `
-=======
-            const user = await getUserById(data.userID);
-            if (user) {
-                const userImageUrl = await getUserPhotoFromStorage(app, user);
-                document.getElementById("user-picture").src = userImageUrl;
-                document.getElementById("user-picture").style.height = "100%";
-                document.getElementById("whatsapp-button").setAttribute("href", `https://wa.me/${user.phoneNumber}/?text=Merhaba ${data.advertTitle} başlıklı dairenin detayları hakkında görüşmek istiyorum.`);
-                document.getElementById("user-name").innerHTML = user.name + (user.midName === "" ? "" : " " + user.midName) + " " + user.surname;
-                document.getElementById("user-facebook-link").setAttribute("href", user.facebookLink);
-                document.getElementById("user-instagram-link").setAttribute("href", user.instagramLink);
-                document.getElementById("user-document-number").innerHTML = user.authDocNumber;
-                document.getElementById("user-email").innerHTML = user.email;
-                let formattedPhoneNumber = user.phoneNumber.replace(/^\+90/, "0");
-                formattedPhoneNumber = formattedPhoneNumber.replace(/(\d{4})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3 $4");
-                document.getElementById("user-phone-number").innerHTML = formattedPhoneNumber;
-                document.getElementById("user-description").innerHTML = user.description.length > 100 ? user.description.slice(0, 100) + "..." : user.description;
-            }
-            if(authToken){
-                document.getElementById("special-section").style.display = "inline";
-                document.getElementById("advert-document-container").innerHTML = `
-            <div class="clearfix padding-top-40">
-                <iframe src="${await getDocumentFromStorage(app, data.documentPath)}" width="100%" height="600px"></iframe>
-            </div>
-            `;
+                <div class="clearfix padding-top-40">
+                    <iframe src="${await getDocumentFromStorage(app, data.documentPath)}" width="100%" height="600px"></iframe>
+                </div>
+                `;
             var url = "/users/isAdmin/" + localStorage.getItem("userId");
-                fetch(url, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
+            fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById("container-decision").style.display = "inline";
+                    } else {
+                        throw new Error("Kullanıcı bilgisi alınamadı");
                     }
                 })
-                    .then(response => {
-                        if (response.ok) {
-                            document.getElementById("container-decision").style.display = "inline";
-                        } else {
-                            throw new Error("Kullanıcı bilgisi alınamadı");
-                        }
-                    })
-            }else{
-                document.getElementById("advert-document-container").style.display = "none";   
-            }
-            
+        } else {
+            document.getElementById("advert-document-container").style.display = "none";
         }
     } catch (error) {
         console.error("Firebase başlatma hatası:", error);
     }
 });
-
