@@ -114,10 +114,55 @@ document.addEventListener("DOMContentLoaded", async function () {
     const adverts = await getPendingAdverts();
     console.log(adverts);
 
+    const advertsContainer = document.getElementById("list-type");
+    const paginationContainer = document.querySelector(".pagination ul");
     if (adverts.length === 0) {
         advertsContainer.innerHTML = "Şuanda bekleyen hiçbir ilan bulunmamaktadır.";
     } else {
-        const advertsContainer = document.getElementById("list-type");
-        const paginationContainer = document.querySelector(".pagination ul");
+        const advertsPerPage = 6;
+            let currentPage = 1;
+
+            const updatePagination = (sortedAdverts) => {
+                const totalPages = Math.ceil(sortedAdverts.length / advertsPerPage);
+                paginationContainer.innerHTML = '';
+            
+                // Prev button
+                const prevButton = document.createElement('li');
+                prevButton.innerHTML = '<a href="#">Önceki</a>';
+                prevButton.classList.toggle('disabled', currentPage === 1);
+                prevButton.addEventListener('click', () => changePage(currentPage - 1, sortedAdverts));
+                paginationContainer.appendChild(prevButton);
+            
+                // Page numbers
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('li');
+                    pageButton.innerHTML = `<a href="#">${i}</a>`;
+                    if (i === currentPage) {
+                        pageButton.classList.add('active');
+                    }
+                    pageButton.addEventListener('click', () => changePage(i, sortedAdverts));
+                    paginationContainer.appendChild(pageButton);
+                }
+            
+                // Next button
+                const nextButton = document.createElement('li');
+                nextButton.innerHTML = '<a href="#">Sonraki</a>';
+                nextButton.classList.toggle('disabled', currentPage === totalPages);
+                nextButton.addEventListener('click', () => changePage(currentPage + 1, sortedAdverts));
+                paginationContainer.appendChild(nextButton);
+            };
+        
+            const changePage = (page, sortedAdverts) => {
+                currentPage = page;
+            
+                const startIndex = (currentPage - 1) * advertsPerPage;
+                const endIndex = startIndex + advertsPerPage;
+                const advertsToShow = sortedAdverts.slice(startIndex, endIndex);
+            
+                renderAdverts(advertsToShow);
+                updatePagination(sortedAdverts);
+            };
+
+            
     }
 });

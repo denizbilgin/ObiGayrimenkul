@@ -164,9 +164,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "currentAdvert",
+        "Type": "Advert",
+        "IsRequired": true
       },
       {
         "Name": "advertId",

@@ -221,13 +221,12 @@ namespace ObiGayrimenkul.Controllers
         }
 
         [HttpPost("edit-user/{advertId}")]
-        public async Task<IActionResult> ChangeAdvertsUser(string userId , string advertId , CancellationToken ct)
+        public async Task<IActionResult> ChangeAdvertsUser([FromBody] Advert currentAdvert , string advertId , CancellationToken ct)
         {
-            Console.WriteLine($"User Id : {userId}\nAdvert Id : {advertId}");
             var advert = await _firestore.Get<Advert>(advertId, "adverts", ct);
             if (advert != null)
             {
-                advert.UserID = userId;
+                advert.UserID = currentAdvert.UserID;
                 await _firestore.Update<Advert>(advert, "adverts", ct);
             }
             else
@@ -235,7 +234,7 @@ namespace ObiGayrimenkul.Controllers
                 try
                 {
                     advert = await _firestore.Get<Advert>(advertId, "advert-requests", ct);
-                    advert.UserID = userId;
+                    advert.UserID = currentAdvert.UserID;
                     await _firestore.Update<Advert>(advert, "advert-requests", ct);
                 }catch(Exception ex)
                 {
