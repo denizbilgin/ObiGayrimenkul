@@ -263,6 +263,16 @@
   },
   {
     "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
+    "Method": "GetPendingAdverts",
+    "RelativePath": "adverts/pending-adverts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ObiGayrimenkul.Controllers.AdvertController",
     "Method": "GetRequestByID",
     "RelativePath": "adverts/requests/{id}",
     "HttpMethod": "GET",
