@@ -336,6 +336,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById("user-phone-number").innerHTML = formattedPhoneNumber;
             document.getElementById("user-description").innerHTML = user.description.length > 100 ? user.description.slice(0, 100) + "..." : user.description;
         }
+
         if (authToken) {
             document.getElementById("special-section").style.display = "inline";
             document.getElementById("advert-document-container").innerHTML = `
@@ -360,7 +361,28 @@ document.addEventListener("DOMContentLoaded", async function () {
         } else {
             document.getElementById("advert-document-container").style.display = "none";
         }
+        if (data.approved) {
+            document.getElementById("container-decision").innerHTML = "";
+        }
     } catch (error) {
         console.error("Firebase başlatma hatası:", error);
     }
+});
+
+document.getElementById("approve-button").addEventListener("click", function () {
+    const path = window.location.pathname;
+    const advertId = path.split('/').pop();
+    fetch(`${window.location.origin}/adverts/approve/${advertId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type" : "application/json",
+        },
+    }).then(response => {
+        if (response.ok) {
+            alert("Onay işlemi başarılı");
+            location.reload();
+        } else {
+            alert("Onay işlemi başarısız. Lütfen tekrar deneyin.");
+        }
+    })
 });
