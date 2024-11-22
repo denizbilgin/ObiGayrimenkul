@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                             <a href="adverts/${advert.id}"><img src="${thumbnailUrl}"></a>
                         </div>
                         <div class="item-entry overflow">
-                            <h5><a href="adverts/${advert.id}">${advert.advertTitle}</a></h5>
+                            <h5><a href="adverts/${advert.id}">${advert.advertTitle.length > 16 ? advert.advertTitle.slice(0, 16) + "..." : advert.advertTitle}</a></h5>
                             <div class="dot-hr"></div>
                             <span class="pull-left"><b> Alan :</b> ${advert.squareMeterGross} m²</span>
                             <span class="proerty-price pull-right">${advert.price} TL</span>
@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             advertsContainer.innerHTML += advertCardHtml;
         }
     };
-
+    // ${advert.description.length > 100 ? advert.description.slice(0, 100) + "..." : advert.description + "<br><br>"}
     await changePage(currentPage, dateOrderedSortedAdverts);
 
     const orderByDateButton = document.getElementById("order-by-date");

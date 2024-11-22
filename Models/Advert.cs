@@ -105,4 +105,13 @@ public class Advert : IFirebaseEntity
 
     [FirestoreProperty("is_earthquake_resistant")]
     public bool IsEarthquakeResistant { get; set; }
+
+    [FirestoreProperty("owner_phone")]
+    public string OwnerPhone { get; set; }
+
+    [FirestoreProperty("island_number")]
+    public int IslandNumber { get; set; }
+
+    [FirestoreProperty("parcel_number")]
+    public int ParcelNumber { get; set; }
 }

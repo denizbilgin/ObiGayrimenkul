@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                             <div class="item-entry overflow">
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <h5><a href="${window.location.origin}/adverts/${advert.id}"> ${advert.advertTitle} </a></h5>
+                                        <h5><a href="${window.location.origin}/adverts/${advert.id}"> ${advert.advertTitle.length > 30 ? advert.advertTitle.slice(0, 30) + "..." : advert.advertTitle} </a></h5>
                                     </div>
                                     <div class="col-md-2">
                                         ${vertificationIcon}
@@ -221,6 +221,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                                     ${user.name + " " + user.surname}
                                     <div class="dealer-action pull-right">
                                         <a class="button approve-advert-btn" advert-id="${advert.id}" style="cursor:pointer;">ONAYLA</a>
+                                        <a class="button delete-user-car" advert-id="${advert.id}" style="cursor:pointer;">SİL</a>
                                     </div>
                                 </div>
                             </div>
@@ -266,6 +267,35 @@ document.addEventListener("DOMContentLoaded", async function () {
                             this.location.reload();
                         } else {
                             alert("İlan onaylanırken bir hata oluştu.");
+                        }
+        
+                    } catch (error) {
+                        console.error("Hata:", error);
+                        alert("Bir hata meydana geldi.");
+                    }
+                }
+            }
+        });
+
+        document.addEventListener("click", async (event) => {
+            if (event.target.classList.contains("delete-user-car")) {
+                const advertId = event.target.getAttribute("advert-id");
+                const confirmation = confirm("Bu ilanı silmek istediğinize emin misiniz?");
+
+                if (confirmation) {
+                    try {
+                        const response = await fetch(`${window.location.origin}/adverts/delete/${advertId}`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        });
+
+                        if (response.ok) {
+                            alert("İlan başarıyla silindi!");
+                            this.location.reload();
+                        } else {
+                            alert("İlan silinirken bir hata oluştu.");
                         }
         
                     } catch (error) {
