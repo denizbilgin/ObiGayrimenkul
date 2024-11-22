@@ -1,22 +1,69 @@
-ï»¿document.addEventListener("DOMContentLoaded", function () {
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+
+const getThumbnailUrl = async (storage, imagePath) => {
+    try {
+        const advertThumbnailRef = ref(storage, imagePath);
+        const advertThumbnailUrl = await getDownloadURL(advertThumbnailRef);
+        return advertThumbnailUrl;
+    } catch (error) {
+        const defaultThumbnailUrl = 'default_advert_thumbnail.webp';
+        const advertThumbnailRef = ref(storage, defaultThumbnailUrl);
+        const defaultImageUrl = await getDownloadURL(advertThumbnailRef);
+        return defaultImageUrl;
+    }
+};
+
+const getFirebaseConfigurations = async () => {
+    const url = '/fbase/obidatabase-3e651-firebase-adminsdk-ta9fl-2ef236de49';
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Firebase yapılandırması alınamadı");
+        }
+
+        const firebaseConfig = await response.json();
+        const app = initializeApp(firebaseConfig);
+
+        return app
+    } catch (error) {
+        console.log("Bir hata oluştu:", error);
+    }
+};
+
+document.addEventListener("DOMContentLoaded", async function () {
     const searchForm = document.querySelector(".search-widget form");
 
     searchForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
+        const ilce = Number(document.querySelector('.districtPicker select').value);
+        const mahalle = Number(document.querySelector('.quarterPicker select').value);
+        const durum = Number(document.querySelector('.statusPicker select').value) === 1
         const minPrice = document.getElementById("price-range").getAttribute("data-slider-value").split(",")[0];
         const maxPrice = document.getElementById("price-range").getAttribute("data-slider-value").split(",")[1];
         const minSquareMeters = document.getElementById("property-geo").getAttribute("data-slider-value").split(",")[0];
         const maxSquareMeters = document.getElementById("property-geo").getAttribute("data-slider-value").split(",")[1];
-        const hasElevator = document.querySelector("input[type='checkbox']:checked")?.value === "AsansÃ¶r" || false;
-        const hasGarage = document.querySelector("input[type='checkbox']:checked")?.value === "Otopark" || false;
-        const isFurnished = document.querySelector("input[type='checkbox'][value='EÅŸyalÄ±']")?.checked || false;
-        const nearSchool = document.querySelector("input[type='checkbox'][value='Okul']")?.checked || false;
-        const nearHealthCenter = document.querySelector("input[type='checkbox'][value='SaÄŸlÄ±k ocaÄŸÄ±']")?.checked || false;
-        const inSite = document.querySelector("input[type='checkbox'][value='Site iÃ§erisinde']")?.checked || false;
-        const hasPantry = document.querySelector("input[type='checkbox'][value='Kiler']")?.checked || false;
+        const hasElevator = document.getElementById("asansor-checkbox").checked;
+        const hasGarage = document.getElementById("otopark-checkbox").checked;
+        const isFurnished = document.getElementById("esyali-checkbox").checked;
+        const nearSchool = document.getElementById("okul-checkbox").checked;
+        const nearHealthCenter = document.getElementById("saglik-checkbox").checked;
+        const inSite = document.getElementById("siteicinde-checkbox").checked;
+        const hasPantry = document.getElementById("kiler-checkbox").checked;
+        const hasNaturalGas = document.getElementById("dogalgaz-checkbox").checked;
 
         const queryParams = new URLSearchParams({
+            ilce,
+            mahalle,
+            durum,
             minPrice,
             maxPrice,
             minSquareMeters,
@@ -27,7 +74,8 @@
             nearSchool,
             nearHealthCenter,
             inSite,
-            hasPantry
+            hasPantry,
+            hasNaturalGas
         });
 
         try {
@@ -40,14 +88,17 @@
 
             if (response.ok) {
                 const adverts = await response.json();
-                console.log("Arama sonuÃ§larÄ±:", adverts);
+                console.log("Arama sonuçları:", adverts);
+                const app = await getFirebaseConfigurations();
+                //const db = getFirestore(app);
+                const storage = getStorage(app);
 
                 const resultsContainer = document.getElementById("list-type");
                 resultsContainer.innerHTML = "";
 
-                adverts.forEach(advert => {
-                    const thumbnailUrl = advert.advertImages[0] || "https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/default_advert_thumbnail.webp?alt=media&token=7d5b7089-afcb-414b-a31c-cda31dbae71e";
-                    const advertDetailUrl = "adverts/requests/?id=" + advert.id
+                for (const advert of adverts) {
+                    const thumbnailUrl = await getThumbnailUrl(storage, advert.advertImages[0]);
+                    const advertDetailUrl = "adverts/" + advert.id
                     const advertHTML = `
                        <div class="col-sm-6 col-md-3 p0">
                         <div class="box-two proerty-item">
@@ -69,14 +120,14 @@
                         </div>
                     </div>`;
                     resultsContainer.innerHTML += advertHTML;
-                });
+                };
             } else {
-                console.error("Arama baÅŸarÄ±sÄ±z:", response.statusText);
-                alert("Arama sÄ±rasÄ±nda bir hata oluÅŸtu.");
+                console.error("Arama başarısız:", response.statusText);
+                alert("Arama sırasında bir hata oluştu.");
             }
         } catch (error) {
-            console.error("Bir hata oluÅŸtu:", error);
-            alert("Arama iÅŸlemi sÄ±rasÄ±nda bir hata oluÅŸtu.");
+            console.error("Bir hata oluştu:", error);
+            alert("Arama işlemi sırasında bir hata oluştu.");
         }
     });
 });

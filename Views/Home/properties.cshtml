@@ -139,19 +139,19 @@
                                     <fieldset>
                                         <div class="row" style="margin-bottom: 1rem;">
                                             <div class="col-xs-12">
-                                                <select id="lunchBegins" class="selectpicker districtPicker" data-live-search="true" data-live-search-style="begins" title="İlçe">
+                                                <select id="ilce-arama" class="selectpicker districtPicker" data-live-search="true" data-live-search-style="begins" title="İlçe">
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <select id="lunchBegins" class="selectpicker quarterPicker" data-live-search="true" data-live-search-style="begins" title="Mahalle">
+                                                <select id="mahalle-arama" class="selectpicker quarterPicker" data-live-search="true" data-live-search-style="begins" title="Mahalle">
                                                 </select>
                                             </div>
                                             <div class="col-xs-6">
-                                                <select id="basic" class="selectpicker show-tick form-control" title="Durum">
-                                                    <option>Satılık</option>
-                                                    <option>Kiralık</option>
+                                                <select id="durum-arama" class="selectpicker show-tick form-control statusPicker" title="Durum">
+                                                        <option value="1">Satılık</option>
+                                                        <option value="0">Kiralık</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -162,16 +162,16 @@
                                             <div class="col-xs-6">
                                                 <label for="price-range">Fiyat aralığı (₺):</label>
                                                 <input type="text" class="span2" value="" data-slider-min="0" 
-                                                       data-slider-max="600" data-slider-step="5" 
-                                                       data-slider-value="[0,450]" id="price-range" ><br />
+                                                       data-slider-max="1500000" data-slider-step="100" 
+                                                       data-slider-value="[2000,1500000]" id="price-range" ><br />
                                                 <b class="pull-left color">2000₺</b>
-                                                <b class="pull-right color">100000₺</b>                                              
+                                                <b class="pull-right color">1500000₺</b>                                              
                                             </div>
                                             <div class="col-xs-6">
                                                 <label for="property-geo">Metrekare (m²) :</label>
                                                 <input type="text" class="span2" value="" data-slider-min="0" 
-                                                       data-slider-max="600" data-slider-step="5" 
-                                                       data-slider-value="[50,450]" id="property-geo" ><br />
+                                                       data-slider-max="12000" data-slider-step="100" 
+                                                       data-slider-value="[40,12000]" id="property-geo" ><br />
                                                 <b class="pull-left color">40m</b> 
                                                 <b class="pull-right color">12000m</b>                                                
                                             </div>                                            
@@ -181,14 +181,14 @@
                                     <fieldset class="padding-5">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <div class="checkbox">
-                                                    <label> <input type="checkbox"> Asansör</label>
+                                                <div class="checkbox" >
+                                                    <label> <input type="checkbox" id="asansor-checkbox"> Asansör</label>
                                                 </div> 
                                             </div>
 
                                             <div class="col-xs-6">
-                                                <div class="checkbox">
-                                                    <label> <input type="checkbox"> Kiler</label>
+                                                <div class="checkbox" >
+                                                    <label> <input type="checkbox" id="kiler-checkbox" > Kiler</label>
                                                 </div>
                                             </div>                                            
                                         </div>
@@ -197,28 +197,13 @@
                                     <fieldset class="padding-5">
                                         <div class="row">
                                             <div class="col-xs-6"> 
-                                                <div class="checkbox">
-                                                    <label> <input type="checkbox"> Doğalgaz</label>
+                                                <div class="checkbox" >
+                                                    <label> <input type="checkbox" id="dogalgaz-checkbox"> Doğalgaz</label>
                                                 </div>
                                             </div>  
                                             <div class="col-xs-6"> 
-                                                <div class="checkbox">
-                                                    <label> <input type="checkbox"> Okul</label>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                    </fieldset>
-
-                                    <fieldset class="padding-5">
-                                        <div class="row">
-                                            <div class="col-xs-6"> 
-                                                <div class="checkbox">
-                                                    <label><input type="checkbox"> Sağlık ocağı</label>
-                                                </div>
-                                            </div>  
-                                            <div class="col-xs-6"> 
-                                                <div class="checkbox">
-                                                    <label> <input type="checkbox"> Eşyalı</label>
+                                                <div class="checkbox" >
+                                                    <label> <input type="checkbox" id="okul-checkbox"> Okul</label>
                                                 </div>
                                             </div>  
                                         </div>
@@ -227,13 +212,28 @@
                                     <fieldset class="padding-5">
                                         <div class="row">
                                             <div class="col-xs-6"> 
-                                                <div class="checkbox">
-                                                    <label>  <input type="checkbox"> Site içerisinde </label>
+                                                <div class="checkbox" >
+                                                    <label><input type="checkbox" id="saglik-checkbox"> Sağlık ocağı</label>
                                                 </div>
                                             </div>  
                                             <div class="col-xs-6"> 
-                                                <div class="checkbox">
-                                                    <label>  <input type="checkbox"> Otopark </label>
+                                                <div class="checkbox" >
+                                                    <label> <input type="checkbox" id="esyali-checkbox"> Eşyalı</label>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="padding-5">
+                                        <div class="row">
+                                            <div class="col-xs-6"> 
+                                                <div class="checkbox" >
+                                                    <label>  <input type="checkbox" id="siteicinde-checkbox"> Site içerisinde </label>
+                                                </div>
+                                            </div>  
+                                            <div class="col-xs-6"> 
+                                                <div class="checkbox" >
+                                                    <label>  <input type="checkbox" id="otopark-checkbox"> Otopark </label>
                                                 </div>
                                             </div>  
                                         </div>
@@ -372,6 +372,6 @@
         <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
         <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
         <script src = "/assets/js/logged-user-dropdown.js"></script>
-        <script src = "/assets/js/search-by-attributes.js"></script>
+        <script type="module" src = "/assets/js/search-by-attributes.js"></script>
     </body>
 </html>
