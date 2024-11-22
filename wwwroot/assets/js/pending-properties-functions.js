@@ -106,6 +106,27 @@ const getPendingAdverts = async (id) => {
     }
 };
 
+const getUserById = async (id) => {
+    const url = `/users/get-details/${id}`;
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (response.ok) {
+            const userData = await response.json();
+            return userData;
+        } else {
+            console.log("Kullanıcı bulunamadı");
+        }
+    } catch (error) {
+        console.log("Bir hata oluştu:", error);
+    }
+};
+
 document.addEventListener("DOMContentLoaded", async function () {
     const app = await getFirebaseConfigurations();
     const db = getFirestore(app);
@@ -119,10 +140,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (adverts.length === 0) {
         advertsContainer.innerHTML = "Şuanda bekleyen hiçbir ilan bulunmamaktadır.";
     } else {
-        const advertsPerPage = 6;
-            let currentPage = 1;
+        const dateOrderedSortedAdverts = [...adverts].sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
+        const priceOrderedSortedAdverts = [...adverts].sort((a, b) => a.price - b.price);
 
-            const updatePagination = (sortedAdverts) => {
+        const advertsPerPage = 6;
+        let currentPage = 1;
+
+        const updatePagination = (sortedAdverts) => {
                 const totalPages = Math.ceil(sortedAdverts.length / advertsPerPage);
                 paginationContainer.innerHTML = '';
             
@@ -150,9 +174,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                 nextButton.classList.toggle('disabled', currentPage === totalPages);
                 nextButton.addEventListener('click', () => changePage(currentPage + 1, sortedAdverts));
                 paginationContainer.appendChild(nextButton);
-            };
+        };
         
-            const changePage = (page, sortedAdverts) => {
+        const changePage = (page, sortedAdverts) => {
                 currentPage = page;
             
                 const startIndex = (currentPage - 1) * advertsPerPage;
@@ -161,8 +185,96 @@ document.addEventListener("DOMContentLoaded", async function () {
             
                 renderAdverts(advertsToShow);
                 updatePagination(sortedAdverts);
-            };
+        };
 
+        const renderAdverts = async (adverts) => {
+            advertsContainer.innerHTML = "";
+            for (const advert of adverts) {
+                const thumbnailUrl = await getThumbnailUrl(storage, advert.advertImages[0]);
+                const vertificationIcon = advert.approved
+                    ? '<img src="/assets/img/icon/verified.png" style="margin-top: 0.7rem;" alt="Onaylandı">'
+                    : '<img src="/assets/img/icon/declined.png" style="margin-top: 0.7rem;" alt="Reddedildi">';
+                const user = await getUserById(advert.userID);
+
+
+                const advertCardHtml = `
+                    <div class="col-md-4 p0">
+                        <div class="box-two proerty-item">
+                            <div class="item-thumb">
+                                <a href="${window.location.origin}/adverts/${advert.id}"><img src="${thumbnailUrl}"></a>
+                            </div>
+                            <div class="item-entry overflow">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <h5><a href="${window.location.origin}/adverts/${advert.id}"> ${advert.advertTitle} </a></h5>
+                                    </div>
+                                    <div class="col-md-2">
+                                        ${vertificationIcon}
+                                    </div>
+                                </div>
+                                <div class="dot-hr"></div>
+                                <span class="pull-left"><b> Metrekare :</b> ${advert.squareMeterGross} m² </span>
+                                <span class="proerty-price pull-right"> ${advert.price} TL</span>
+                                <p style="display: none;">${advert.description.length > 100 ? advert.description.slice(0, 100) + "..." : advert.description + "<br><br>"}</p>
+                                <div class="property-icon">
+                                    <img style="margin-left: 1rem;" src="/assets/img/icon/user.png">
+                                    ${user.name + " " + user.surname}
+                                    <div class="dealer-action pull-right">
+                                        <a class="button approve-advert-btn" advert-id="${advert.id}" style="cursor:pointer;">ONAYLA</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                advertsContainer.innerHTML += advertCardHtml;
+            }
+        };
+
+        await changePage(currentPage, dateOrderedSortedAdverts);
+
+        const orderByDateButton = document.getElementById("order-by-date");
+        const orderByPriceButton = document.getElementById("order-by-price");
+
+        orderByDateButton.addEventListener("click", async () => {
+            currentPage = 1;
+            toggleActiveClass(orderByDateButton, orderByPriceButton);
+            await changePage(currentPage, dateOrderedSortedAdverts);
+        });
+
+        orderByPriceButton.addEventListener("click", async () => {
+            toggleActiveClass(orderByPriceButton,orderByDateButton);
+            currentPage = 1;
+            await changePage(currentPage, priceOrderedSortedAdverts);
+        });
+
+        document.addEventListener("click", async (event) => {
+            if (event.target.classList.contains("approve-advert-btn")) {
+                const advertId = event.target.getAttribute("advert-id");
+                const confirmation = confirm("Bu ilanı onaylamak istediğinize emin misiniz?");
+
+                if (confirmation) {
+                    try {
+                        const response = await fetch(`${window.location.origin}/adverts/approve/${advertId}`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        });
+
+                        if (response.ok) {
+                            alert("İlan başarıyla onaylandı!");
+                            this.location.reload();
+                        } else {
+                            alert("İlan onaylanırken bir hata oluştu.");
+                        }
+        
+                    } catch (error) {
+                        console.error("Hata:", error);
+                        alert("Bir hata meydana geldi.");
+                    }
+                }
+            }
+        });
             
     }
 });
