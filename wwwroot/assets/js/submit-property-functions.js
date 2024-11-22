@@ -225,7 +225,9 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     // Checkboxes
     document.getElementById("advert-has-garage").addEventListener('change', (event) => {
+        console.log("Event tetiklendi!");
         newAdvertData.HasGarage = event.target.checked;
+        console.log(event.target.checked);
     });
     document.getElementById("advert-is-furnished").addEventListener('change', (event) => {
         newAdvertData.IsFurnished = event.target.checked;
