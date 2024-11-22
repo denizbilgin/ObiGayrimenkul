@@ -4,7 +4,6 @@
     searchForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
-        // Arama formundaki bilgileri al
         const minPrice = document.getElementById("price-range").getAttribute("data-slider-value").split(",")[0];
         const maxPrice = document.getElementById("price-range").getAttribute("data-slider-value").split(",")[1];
         const minSquareMeters = document.getElementById("property-geo").getAttribute("data-slider-value").split(",")[0];
@@ -17,7 +16,6 @@
         const inSite = document.querySelector("input[type='checkbox'][value='Site içerisinde']")?.checked || false;
         const hasPantry = document.querySelector("input[type='checkbox'][value='Kiler']")?.checked || false;
 
-        // Sorgu parametrelerini oluştur
         const queryParams = new URLSearchParams({
             minPrice,
             maxPrice,
@@ -33,7 +31,6 @@
         });
 
         try {
-            // Arama endpointine GET isteği gönder
             const response = await fetch(`/adverts/search-adverts?${queryParams.toString()}`, {
                 method: "GET",
                 headers: {
@@ -42,28 +39,35 @@
             });
 
             if (response.ok) {
-                // Sonuçları al ve işle
                 const adverts = await response.json();
                 console.log("Arama sonuçları:", adverts);
 
-                // Sonuçları ekranda göster
                 const resultsContainer = document.getElementById("list-type");
-                resultsContainer.innerHTML = ""; // Eski sonuçları temizle
+                resultsContainer.innerHTML = "";
 
                 adverts.forEach(advert => {
+                    const thumbnailUrl = advert.advertImages[0] || "https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/default_advert_thumbnail.webp?alt=media&token=7d5b7089-afcb-414b-a31c-cda31dbae71e";
+                    const advertDetailUrl = "adverts/requests/?id=" + advert.id
                     const advertHTML = `
-                        <div class="col-md-4">
-                            <div class="property-card">
-                                <img src="${advert.image || '/assets/img/default_advert.jpg'}" alt="Advert Image" />
-                                <div class="property-details">
-                                    <h4>${advert.title}</h4>
-                                    <p>${advert.description}</p>
-                                    <p><strong>Fiyat:</strong> ${advert.price} ₺</p>
-                                    <a href="/adverts/${advert.id}" class="btn btn-primary">Detayları Gör</a>
+                       <div class="col-sm-6 col-md-3 p0">
+                        <div class="box-two proerty-item">
+                            <div class="item-thumb">
+                                <a href="${advertDetailUrl}"><img src="${thumbnailUrl}"></a>
+                            </div>
+                            <div class="item-entry overflow">
+                                <h5><a href="${advertDetailUrl}">${advert.advertTitle}</a></h5>
+                                <div class="dot-hr"></div>
+                                <span class="pull-left"><b> Area :</b> ${advert.squareMeterGross}m</span>
+
+                                <span class="proerty-price pull-right"> $ ${advert.price}</span>
+                                <p style="display: none;">${advert.description}</p>
+                                <div class="property-icon">
+                                    <img src="assets/img/icon/district.png"><p style="margin-right: 1rem; display: inline;">${advert.addressDistrictID}</p>
+                                    <img src="assets/img/icon/room.png">${advert.roomNumber}
                                 </div>
                             </div>
                         </div>
-                    `;
+                    </div>`;
                     resultsContainer.innerHTML += advertHTML;
                 });
             } else {

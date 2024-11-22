@@ -171,7 +171,7 @@ namespace ObiGayrimenkul.Controllers
          {
              var advert = await _firestore.Get<Advert>(id,"adverts", ct);
 
-             if (advert == null)
+             if (advert != null)
              {
                 return View("~/Views/Home/edit-property.cshtml");
              }
