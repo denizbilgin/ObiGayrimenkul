@@ -196,8 +196,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         { key: "isCloseToSchool", label: "OKULA YAKIN", type: "boolean" },
         { key: "isFurnished", label: "EŞYALI", type: "boolean" },
         { key: "isInSite", label: "SİTE İÇERİSİNDE", type: "boolean" },
-        { key: "hasGarage", label: "OTOPARK", type: "boolean" },
-        { key: "isEarthquakeResistant", label: "DEPREME DAYANIKLI", type: "boolean" },
+        { key: "hasGarage", label: "OTOPARK", type: "boolean" }
     ];
 
     const sideTypes = {
@@ -338,12 +337,16 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         if (authToken) {
+            document.getElementById("property-owner-phone").innerHTML += data.ownerPhone;
+            document.getElementById("property-island-number").innerHTML += data.islandNumber;
+            document.getElementById("property-parcel-number").innerHTML += data.parcelNumber;
             document.getElementById("special-section").style.display = "inline";
             document.getElementById("advert-document-container").innerHTML = `
                 <div class="clearfix padding-top-40">
                     <iframe src="${await getDocumentFromStorage(app, data.documentPath)}" width="100%" height="600px"></iframe>
                 </div>
                 `;
+                
             var url = "/users/isAdmin/" + localStorage.getItem("userId");
             fetch(url, {
                 method: "GET",

@@ -241,6 +241,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById("advert-dues").value = advert.dues;
             document.getElementById("advert-balcony-count").value = advert.balconyCount;
             document.getElementById("advert-which-floor").value = advert.whichFloor;
+            document.getElementById("advert-property-owner-phone").value = advert.ownerPhone;
+            document.getElementById("advert-property-island-number").value = advert.islandNumber;
+            document.getElementById("advert-property-parcel-number").value = advert.parcelNumber;
             const sideSelectEditProp = document.querySelector('.sidePicker select');
             const heatingSelectEditProp = document.querySelector('.heatingPicker select');
             Array.from(sideSelectEditProp.options).forEach(option => {
@@ -283,7 +286,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             determineCheckboxStatus("advert-is-close-health-center", advert.isCloseToHealthCenter);
             determineCheckboxStatus("advert-is-close-school", advert.isCloseToSchool);
             determineCheckboxStatus("advert-is-in-site", advert.isInSite);
-            determineCheckboxStatus("advert-is-earthquake-resistant", advert.isEarthquakeResistant);
             $('.districtPicker').selectpicker('refresh');
             $('.quarterPicker').selectpicker('refresh');
             $('.statusPicker').selectpicker('refresh');
@@ -359,8 +361,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     HaveCellar: document.getElementById("advert-have-cellar").checked,                 
                     IsCloseToHealthCenter: document.getElementById("advert-is-close-health-center").checked,      
                     IsCloseToSchool: document.getElementById("advert-is-close-school").checked,            
-                    IsInSite: document.getElementById("advert-is-in-site").checked,                 
-                    IsEarthquakeResistant: document.getElementById("advert-is-earthquake-resistant").checked,      
+                    IsInSite: document.getElementById("advert-is-in-site").checked,                   
                     Heating: Number(document.querySelector('.heatingPicker select').value),                        
                     Dues: Number(document.getElementById("advert-dues").value),                           
                     AddressDistrictID: Number(document.querySelector('.districtPicker select').value),           
@@ -375,7 +376,10 @@ document.addEventListener("DOMContentLoaded", async function () {
                     UserID: localStorage.getItem("userId"),
                     BuildingFloors: Number(document.getElementById("advert-building-floors").value),                 
                     Approved: false,
-                    PublishDate: advert.publishDate
+                    PublishDate: advert.publishDate,
+                    OwnerPhone: document.getElementById("advert-property-owner-phone").value,
+                    IslandNumber: Number(document.getElementById("advert-property-island-number").value),
+                    ParcelNumber: Number(document.getElementById("advert-property-parcel-number").value)
                 };
 
                 try {

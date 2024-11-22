@@ -13,7 +13,19 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ObiGayrimenkul")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a11a7fa02e41cd3815d5c8fa84988f0f36fe6c68")]
+=======
+<<<<<<< HEAD
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0bdfec622971f94f986d97988a40211e40dfc3aa")]
+=======
+<<<<<<< HEAD
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d89920729fb8db6f6b7930208358cf1e7d9c69d1")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c39248151f28fcefed268c7c2ec6d150cbd5a5ee")]
+>>>>>>> 0bdfec622971f94f986d97988a40211e40dfc3aa
+>>>>>>> a11a7fa02e41cd3815d5c8fa84988f0f36fe6c68
+>>>>>>> a3bd05a5d367843542708c2fd11dce4273101e83
 [assembly: System.Reflection.AssemblyProductAttribute("ObiGayrimenkul")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ObiGayrimenkul")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

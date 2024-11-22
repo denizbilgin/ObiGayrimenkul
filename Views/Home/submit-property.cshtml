@@ -205,8 +205,8 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label>Dairenin Bulunduğu Kat <small>(zorunlu)</small></label>
-                                                        <input id="advert-which-floor" name="propertyprice" type="number" class="form-control" placeholder="3" required>
+                                                        <label>Mülk Sahibinin Telefonu: <small>(zorunlu)</small></label>
+                                                        <input id="advert-property-owner-phone" type="text" class="form-control" placeholder="05..." required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -242,6 +242,16 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                                <div class="form-group col-md-6">
+                                                    <label>Mülk Ada No: <small>(zorunlu)</small></label>
+                                                    <input id="advert-property-island-number" type="number" class="form-control" placeholder="1" required>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label>Mülk Parsel No: <small>(zorunlu)</small></label>
+                                                    <input id="advert-property-parcel-number" type="number" class="form-control" placeholder="1" required>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -279,6 +289,11 @@
                                                         <option value="0">Kiralık</option>
 
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <input id="advert-which-floor" name="propertyprice" type="number" class="form-control" placeholder="Dairenin bulunduğu kat" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -374,15 +389,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input id="advert-is-earthquake-resistant" type="checkbox"> Depreme Dayanıklı
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                         <br>
                                     </div>
@@ -442,7 +448,7 @@
                                 </div>
 
                                 <div class="pull-left">
-                                    <input type='button' class='btn btn-previous btn-default' name='previous' value='ÖNCEKİ' />
+                                    <input type='submit' class='btn btn-previous btn-default' name='previous' value='ÖNCEKİ' />
                                 </div>
                                 <div class="clearfix"></div>
                             </div>

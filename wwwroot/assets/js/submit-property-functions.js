@@ -133,8 +133,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         HaveCellar: false,                 
         IsCloseToHealthCenter: false,      
         IsCloseToSchool: false,            
-        IsInSite: false,                   
-        IsEarthquakeResistant: false,      
+        IsInSite: false,                        
         Heating: 0,                        
         Dues: 0,                           
         AddressDistrictID: null,           
@@ -149,7 +148,10 @@ document.addEventListener("DOMContentLoaded", async function() {
         UserID: localStorage.getItem("userId"),
         BuildingFloors: 0,                 
         Approved: false,
-        PublishDate: ""
+        PublishDate: "",
+        OwnerPhone: "",
+        IslandNumber: 0,
+        ParcelNumber: 0
     };
 
 
@@ -225,9 +227,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     // Checkboxes
     document.getElementById("advert-has-garage").addEventListener('change', (event) => {
-        console.log("Event tetiklendi!");
         newAdvertData.HasGarage = event.target.checked;
-        console.log(event.target.checked);
     });
     document.getElementById("advert-is-furnished").addEventListener('change', (event) => {
         newAdvertData.IsFurnished = event.target.checked;
@@ -246,9 +246,6 @@ document.addEventListener("DOMContentLoaded", async function() {
     });
     document.getElementById("advert-is-in-site").addEventListener('change', (event) => {
         newAdvertData.IsInSite = event.target.checked;
-    });
-    document.getElementById("advert-is-earthquake-resistant").addEventListener('change', (event) => {
-        newAdvertData.IsEarthquakeResistant = event.target.checked;
     });
 
     // File Selects
@@ -319,6 +316,18 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     document.getElementById("advert-submit-button").addEventListener("click", async function() {
         try {
+            newAdvertData.HasGarage = document.getElementById("advert-has-garage").checked;
+            newAdvertData.IsFurnished = document.getElementById("advert-is-furnished").checked;                
+            newAdvertData.HasLift = document.getElementById("advert-has-lift").checked;                    
+            newAdvertData.HaveCellar = document.getElementById("advert-have-cellar").checked;                 
+            newAdvertData.IsCloseToHealthCenter = document.getElementById("advert-is-close_health_center").checked;      
+            newAdvertData.IsCloseToSchool = document.getElementById("advert-is-close_school").checked;            
+            newAdvertData.IsInSite = document.getElementById("advert-is-in-site").checked;                 
+            newAdvertData.Video = convertToEmbed(document.getElementById("advert-video").value)
+            newAdvertData.OwnerPhone = document.getElementById("advert-property-owner-phone").value;
+            newAdvertData.IslandNumber = Number(document.getElementById("advert-property-island-number").value);
+            newAdvertData.ParcelNumber = Number(document.getElementById("advert-property-parcel-number").value);
+
             const response = await fetch("/adverts/create", {
                 method: "POST",
                 headers: {
