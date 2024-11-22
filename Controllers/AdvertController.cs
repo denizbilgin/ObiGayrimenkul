@@ -220,6 +220,32 @@ namespace ObiGayrimenkul.Controllers
             return Ok(advert);
         }
 
+        [HttpPost("edit-user/{advertId}")]
+        public async Task<IActionResult> ChangeAdvertsUser([FromBody] Advert currentAdvert , string advertId , CancellationToken ct)
+        {
+            var advert = await _firestore.Get<Advert>(advertId, "adverts", ct);
+            if (advert != null)
+            {
+                advert.UserID = currentAdvert.UserID;
+                await _firestore.Update<Advert>(advert, "adverts", ct);
+            }
+            else
+            {
+                try
+                {
+                    advert = await _firestore.Get<Advert>(advertId, "advert-requests", ct);
+                    advert.UserID = currentAdvert.UserID;
+                    await _firestore.Update<Advert>(advert, "advert-requests", ct);
+                }catch(Exception ex)
+                {
+                    Response.StatusCode = 404;
+                    return View("~/Views/Home/404.cshtml");
+                }
+
+            }
+            
+            return Ok(advert);
+        }
 
         [HttpGet("delete/{id}")]
         public async Task<IActionResult> Delete(string id, CancellationToken ct)

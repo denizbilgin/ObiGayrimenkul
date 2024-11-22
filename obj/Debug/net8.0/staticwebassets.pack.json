@@ -765,6 +765,10 @@
       "PackagePath": "staticwebassets\\assets\\js\\owl.carousel.min.js"
     },
     {
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\pending-properties-functions.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pending-properties-functions.js"
+    },
+    {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\plugins.js",
       "PackagePath": "staticwebassets\\assets\\js\\plugins.js"
     },
