@@ -85,6 +85,14 @@ async function resizeImage(file, width, height) {
         img.onerror = (error) => reject(error);
         img.src = URL.createObjectURL(file);
     });
+};
+
+function convertToEmbed(rawLink) {
+    const videoId = rawLink.split("v=")[1]?.split("&")[0];
+    if (videoId) {
+        return `https://www.youtube.com/embed/${videoId}`;
+    }
+    return rawLink;
 }
 
 document.addEventListener("DOMContentLoaded", async function() {
@@ -212,7 +220,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         newAdvertData.NumberOfFloors = Number(event.target.value);
     });
     document.getElementById("advert-video").addEventListener('input', (event) => {
-        newAdvertData.Video = event.target.value;
+        newAdvertData.Video = convertToEmbed(event.target.value);
     });
 
     // Checkboxes
