@@ -62,7 +62,7 @@ export async function updateUser(isImgUpdate){
         });
 
         if (response.ok) {
-            console.log("Kullanıcı bilgileri başarıyla güncellendi.");
+            alert("Profil fotoğrafınız başarıyla güncellendi!");
             window.location.href = `/users/${userId}`;
         } else {
             console.log("Kullanıcı bilgileri güncellenemedi.");
@@ -116,7 +116,6 @@ document.addEventListener("DOMContentLoaded", async function() {
     const user = await getUserById(userId);
     if (user){
         const app = await getFirebaseConfigurations();
-        console.log(user);
 
         document.getElementById("user-header-name").innerHTML = user.name + (user.midName === "" ? "": " " + user.midName)  + " " + user.surname;
         document.getElementById("user-firstname").value = user.name;

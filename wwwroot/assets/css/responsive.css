@@ -205,9 +205,9 @@
         font-size: 12px;
     }
     .tab-content ul li {
-        height: 235px;
+        height: fit-content;
         margin-bottom: 20px;
-        width: 219px;
+        width: 100%;
     }
     .tab-content ul li a img {
         height: 100%;
@@ -371,6 +371,33 @@
     .properties-area #list-type .item-thumb a{
         display: block;
     }
+
+    .property-icon .dealer-action.pull-right a{
+        font-size: 1.2rem;
+    }
+
+    .property-icon #user-properties-advert-district-name{
+        display: none;
+    }
+
+    .property-icon #user-properties-advert-img{
+        display: none;
+    }
+
+    .property-icon #user-dropdown{
+        padding: 0;
+    }
+
+    .property-icon .dealer-action.pull-right{
+        margin-top: 0;
+        background-color: #EDEDED;
+        width: 100%;
+    }
+
+    .property-icon{
+        background-color: white;
+    }
+
 }
 
 
@@ -649,6 +676,36 @@
     .recent-property #list-type .box-two.proerty-item{
         width: 100%;
     }
+
+    .image-card  {
+        margin: 2px;
+    }
+
+    .property-icon #user-properties-advert-img{
+        display: none;
+    }
+
+    .property-icon #user-properties-advert-district-name{
+        display: none;
+    }
+
+    .property-icon #user-properties-advert-img{
+        display: none;
+    }
+
+    .property-icon #user-dropdown{
+        padding: 0;
+    }
+
+    .property-icon .dealer-action.pull-right{
+        margin-top: 0;
+        background-color: #EDEDED;
+        width: 100%;
+    }
+
+    .property-icon{
+        background-color: white;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 979px){
@@ -811,6 +868,22 @@
     .recent-property #list-type .box-two.proerty-item{
         width: 100%;
     }
+
+    .image-card {
+        margin: 2px;
+    }
+
+    .profiel-container form .clear .col-sm-offset-1{
+        margin-left: 0px;
+    }
+
+    .property-icon #user-properties-advert-img{
+        display: none;
+    }
+
+    .property-icon .dealer-action.pull-right{
+        background-color: #EDEDED;
+    }
 }
 
 @media (min-width: 969px) and (max-width: 1169px){
@@ -832,8 +905,8 @@
         height: 540px;
     }
     .tab-content ul li {
-        height: 160px;
-        width: 145px;
+        height: fit-content;
+        width: 90%;
     }
     .tab-content ul li a img{
         width: 100%;

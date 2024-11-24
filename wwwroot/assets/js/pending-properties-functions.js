@@ -133,7 +133,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     const storage = getStorage(app);
 
     const adverts = await getPendingAdverts();
-    console.log(adverts);
 
     const advertsContainer = document.getElementById("list-type");
     const paginationContainer = document.querySelector(".pagination ul");

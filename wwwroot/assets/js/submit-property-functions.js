@@ -251,7 +251,6 @@ document.addEventListener("DOMContentLoaded", async function() {
     // File Selects
     document.getElementById("property-images").addEventListener("change", async function(event) {
         const files = event.target.files;
-        console.log(files);
         if (files.length > 0) {
             const storage = getStorage(app);
 
@@ -338,7 +337,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log("İlan başarıyla eklendi:", data);
                 window.location.href = `/home`;
             } else {
                 const errorData = await response.json();

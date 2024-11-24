@@ -295,7 +295,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             await getAdvertImages(app, advert);
             document.getElementById("property-images").addEventListener("change", async function(event) {
                 const files = event.target.files;
-                console.log(files);
                 if (files.length > 0) {
                     const storage = getStorage(app);
         
@@ -338,7 +337,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             `;
             document.getElementById("advert-document").addEventListener("change", async function(event) {
                 await uploadPDF(app, advert);
-                console.log(advert);
             });
             
 

@@ -203,8 +203,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const adverts = await getAdvertysByUserId(userId);
     const user = await getUserById(userId);
-    console.log(adverts);
-    console.log(user);
 
     if (user) {
         document.getElementById("user-name").innerHTML = user.name + (user.midName === "" ? "" : " " + user.midName) + " " + user.surname;
@@ -292,8 +290,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                                 <span class="proerty-price pull-right">${advert.price} TL</span>
                                 <p style="display: none;">${advert.description.length > 100 ? advert.description.slice(0, 100) + "..." : advert.description + "<br><br>"}</p>
                                 <div class="property-icon">
-                                    <img src="/assets/img/icon/district.png">
-                                    ${placeName}
+                                    <img id="user-properties-advert-img" src="/assets/img/icon/district.png">
+                                    <span id="user-properties-advert-district-name">${placeName}</span>
                                     <div class="dealer-action pull-right">
                                         <a href="${window.location.origin}/adverts/edit/${advert.id}" class="button">GÜNCELLE </a>
                                         <select class="show-tick form-control user-dropdown" id="user-dropdown" placeholder="Durum"></select>
@@ -318,7 +316,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                     const selectedId = selectDropdown.value;
                     const selectedText = selectDropdown.options[selectDropdown.selectedIndex].text;
                     const advert = JSON.parse(moveButton.dataset.advert);
-                    console.log(advert);
                     moveAdvertToAnotherUser(advert, selectedId, selectedText);
                 }
             });
