@@ -374,6 +374,53 @@ namespace ObiGayrimenkul.Controllers
             return Ok(userAdverts);
         }
 
+        [HttpGet("index-search")]
+        public async Task<IActionResult> SearchAdvertsIndex([FromQuery] int? selectedDistrictId,
+            [FromQuery] int? selectedQuartertId,
+            [FromQuery] bool? selectedStatus,
+            [FromQuery] double? minPrice,
+            [FromQuery] double? maxPrice,
+            [FromQuery] double? minSquaremeter,
+            [FromQuery] double? maxSquaremeter,
+            [FromQuery] bool? isHasLiftChecked,
+            [FromQuery] bool? isHasParkChecked,
+            [FromQuery] bool? isIsFurnishedChecked,
+            [FromQuery] bool? isIsCloseSchoolChecked,
+            [FromQuery] bool? isIsCloseHealthCenterChecked,
+            [FromQuery] bool? isIsInSiteChecked,
+            [FromQuery] bool? isHasCellarChecked,
+    CancellationToken ct)
+        {
+            try
+            {
+                var allAdverts = await _firestore.GetAllApproved<Advert>(ct);
+
+                var filteredAdverts = allAdverts.Where(advert =>
+                    (!selectedDistrictId.HasValue || advert.AddressDistrictID == selectedDistrictId.Value) &&
+                    (!selectedQuartertId.HasValue || advert.AddressQuarterID == selectedQuartertId.Value) &&
+                    (!selectedStatus.HasValue || advert.Status == selectedStatus.Value) &&
+                    (!minPrice.HasValue || advert.Price >= minPrice.Value) &&
+                    (!maxPrice.HasValue || advert.Price <= maxPrice.Value) &&
+                    (!minSquaremeter.HasValue || advert.SquareMeterGross >= minSquaremeter.Value) &&
+                    (!maxSquaremeter.HasValue || advert.SquareMeterGross <= maxSquaremeter.Value) &&
+                    (!isHasLiftChecked.HasValue || advert.HasLift == isHasLiftChecked.Value) &&
+                    (!isHasParkChecked.HasValue || advert.HasGarage == isHasParkChecked.Value) &&
+                    (!isIsFurnishedChecked.HasValue || advert.IsFurnished == isIsFurnishedChecked.Value) &&
+                    (!isIsCloseSchoolChecked.HasValue || advert.IsCloseToSchool == isIsCloseSchoolChecked.Value) &&
+                    (!isIsCloseHealthCenterChecked.HasValue || advert.IsCloseToHealthCenter == isIsCloseHealthCenterChecked.Value) &&
+                    (!isIsInSiteChecked.HasValue || advert.IsInSite == isIsInSiteChecked.Value) &&
+                    (!isHasCellarChecked.HasValue || advert.HaveCellar == isHasCellarChecked.Value)
+                ).ToList();
+
+                return Ok(filteredAdverts);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Arama sırasında hata oluştu: {ex.Message}");
+                return StatusCode(500, new { message = "Arama sırasında bir hata oluştu.", error = ex.Message });
+            }
+        }
+
         [HttpGet("search-adverts")]
         public async Task<IActionResult> SearchAdverts(
             [FromQuery] int? ilce,
