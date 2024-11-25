@@ -157,7 +157,35 @@
                                         </div>
                                     </fieldset>
 
+                                    <!--Fiyat ve metrekare inputunun yeni hali-->
+
                                     <fieldset class="padding-5">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="min-price">Minimum Fiyat (₺):</label>
+                                                <input type="number" class="form-control" id="min-price" placeholder="Minimum fiyat" min="0">
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="max-price">Maksimum Fiyat (₺):</label>
+                                                <input type="number" class="form-control" id="max-price" placeholder="Maksimum fiyat" min="0">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="padding-5">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="min-square-meters">Minimum Metrekare (m²):</label>
+                                                <input type="number" class="form-control" id="min-square-meters" placeholder="Minimum metrekare " min="0">
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="max-square-meters">Maksimum Metrekare (m²):</label>
+                                                <input type="number" class="form-control" id="max-square-meters" placeholder="Maksimum metrekare" min="0">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <!--      <fieldset class="padding-5">
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <label for="price-range">Fiyat aralığı (₺):</label>
@@ -176,9 +204,11 @@
                                                 <b class="pull-right color">12000m</b>                                                
                                             </div>                                            
                                         </div>
-                                    </fieldset>                                
+                                    </fieldset>      -->      
+                                    
 
-                                    <fieldset class="padding-5">
+
+                                 <!--   <fieldset class="padding-5">
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <div class="checkbox" >
@@ -237,7 +267,100 @@
                                                 </div>
                                             </div>  
                                         </div>
+                                    </fieldset> -->
+
+                                    <!-- Checkbox'ların hepsi dropdown olarak değişti -->
+
+                                    <fieldset class="padding-5">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="asansor-checkbox">Asansör:</label>
+                                                <select id="asansor-checkbox" class="form-control">
+                                                    <option value="">Tümü</option>
+                                                    <option value="true">Evet</option>
+                                                    <option value="false">Hayır</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-xs-6">
+                                                <label for="kiler-checkbox">Kiler:</label>
+                                                <select id="kiler-checkbox" class="form-control">
+                                                    <option value="">Tümü</option>
+                                                    <option value="true">Evet</option>
+                                                    <option value="false">Hayır</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </fieldset>
+
+                                    <fieldset class="padding-5">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="dogalgaz-checkbox">Doğalgaz:</label>
+                                                <select id="dogalgaz-checkbox" class="form-control">
+                                                    <option value="">Tümü</option>
+                                                    <option value="true">Evet</option>
+                                                    <option value="false">Hayır</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-xs-6">
+                                                <label for="okul-checkbox">Okul:</label>
+                                                <select id="okul-checkbox" class="form-control">
+                                                    <option value="">Tümü</option>
+                                                    <option value="true">Evet</option>
+                                                    <option value="false">Hayır</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="padding-5">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="saglik-checkbox">Sağlık Ocağı:</label>
+                                                <select id="saglik-checkbox" class="form-control">
+                                                    <option value="">Tümü</option>
+                                                    <option value="true">Evet</option>
+                                                    <option value="false">Hayır</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-xs-6">
+                                                <label for="esyali-checkbox">Eşyalı:</label>
+                                                <select id="esyali-checkbox" class="form-control">
+                                                    <option value="">Tümü</option>
+                                                    <option value="true">Evet</option>
+                                                    <option value="false">Hayır</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="padding-5">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="siteicinde-checkbox">Site İçerisinde:</label>
+                                                <select id="siteicinde-checkbox" class="form-control">
+                                                    <option value="">Tümü</option>
+                                                    <option value="true">Evet</option>
+                                                    <option value="false">Hayır</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-xs-6">
+                                                <label for="otopark-checkbox">Otopark:</label>
+                                                <select id="otopark-checkbox" class="form-control">
+                                                    <option value="">Tümü</option>
+                                                    <option value="true">Evet</option>
+                                                    <option value="false">Hayır</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+
+
                                     <fieldset >
                                         <div class="row">
                                             <div class="col-xs-12">  

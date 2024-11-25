@@ -32,7 +32,7 @@ const getFirebaseConfigurations = async () => {
         const firebaseConfig = await response.json();
         const app = initializeApp(firebaseConfig);
 
-        return app
+        return app;
     } catch (error) {
         console.log("Bir hata oluþtu:", error);
     }
@@ -44,26 +44,49 @@ document.addEventListener("DOMContentLoaded", async function () {
     searchForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
-        const ilce = Number(document.querySelector('.districtPicker select').value);
-        const mahalle = Number(document.querySelector('.quarterPicker select').value);
-        const durum = Number(document.querySelector('.statusPicker select').value) === 1
-        const minPrice = document.getElementById("price-range").getAttribute("data-slider-value").split(",")[0];
-        const maxPrice = document.getElementById("price-range").getAttribute("data-slider-value").split(",")[1];
-        const minSquareMeters = document.getElementById("property-geo").getAttribute("data-slider-value").split(",")[0];
-        const maxSquareMeters = document.getElementById("property-geo").getAttribute("data-slider-value").split(",")[1];
-        const hasElevator = document.getElementById("asansor-checkbox").checked;
-        const hasGarage = document.getElementById("otopark-checkbox").checked;
-        const isFurnished = document.getElementById("esyali-checkbox").checked;
-        const nearSchool = document.getElementById("okul-checkbox").checked;
-        const nearHealthCenter = document.getElementById("saglik-checkbox").checked;
-        const inSite = document.getElementById("siteicinde-checkbox").checked;
-        const hasPantry = document.getElementById("kiler-checkbox").checked;
-        const hasNaturalGas = document.getElementById("dogalgaz-checkbox").checked;
+        let ilce = Number(document.querySelector('.districtPicker select').value);
+        if (ilce === 0) {
+            ilce = null;
+        }
+        let mahalle = Number(document.querySelector('.quarterPicker select').value);
+        if (mahalle === 0) {
+            mahalle = null;
+        }
+        const status = Number(document.querySelector('.statusPicker select').value) == 1;
+        const minPrice = document.getElementById("min-price").value;
+        const maxPrice = document.getElementById("max-price").value;
+        const minSquareMeters = document.getElementById("min-square-meters").value;
+        const maxSquareMeters = document.getElementById("max-square-meters").value;
+        const hasElevator = document.getElementById("asansor-checkbox").value || null;
+        const hasGarage = document.getElementById("otopark-checkbox").value || null;
+        const isFurnished = document.getElementById("esyali-checkbox").value || null;
+        const nearSchool = document.getElementById("okul-checkbox").value || null;
+        const nearHealthCenter = document.getElementById("saglik-checkbox").value || null;
+        const inSite = document.getElementById("siteicinde-checkbox").value || null;
+        const hasPantry = document.getElementById("kiler-checkbox").value || null;
+        const hasNaturalGas = document.getElementById("dogalgaz-checkbox").value || null;
+
+        console.log("Form Parametreleri:");
+        console.log("ilce:", ilce);
+        console.log("mahalle:", mahalle);
+        console.log("durum:", status);
+        console.log("minPrice:", minPrice);
+        console.log("maxPrice:", maxPrice);
+        console.log("minSquareMeters:", minSquareMeters);
+        console.log("maxSquareMeters:", maxSquareMeters);
+        console.log("hasElevator:", hasElevator);
+        console.log("hasGarage:", hasGarage);
+        console.log("isFurnished:", isFurnished);
+        console.log("nearSchool:", nearSchool);
+        console.log("nearHealthCenter:", nearHealthCenter);
+        console.log("inSite:", inSite);
+        console.log("hasPantry:", hasPantry);
+        console.log("hasNaturalGas:", hasNaturalGas);
 
         const queryParams = new URLSearchParams({
             ilce,
             mahalle,
-            durum,
+            status,
             minPrice,
             maxPrice,
             minSquareMeters,
@@ -90,7 +113,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                 const adverts = await response.json();
                 console.log("Arama sonuçlarý:", adverts);
                 const app = await getFirebaseConfigurations();
-                //const db = getFirestore(app);
                 const storage = getStorage(app);
 
                 const resultsContainer = document.getElementById("list-type");
@@ -98,7 +120,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                 for (const advert of adverts) {
                     const thumbnailUrl = await getThumbnailUrl(storage, advert.advertImages[0]);
-                    const advertDetailUrl = "adverts/" + advert.id
+                    const advertDetailUrl = "adverts/" + advert.id;
                     const advertHTML = `
                        <div class="col-sm-6 col-md-3 p0">
                         <div class="box-two proerty-item">
@@ -131,4 +153,3 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     });
 });
-

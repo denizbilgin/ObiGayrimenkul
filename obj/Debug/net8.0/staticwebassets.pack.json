@@ -701,6 +701,10 @@
       "PackagePath": "staticwebassets\\assets\\js\\edit-property-functions.js"
     },
     {
+      "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\forgot-password.js",
+      "PackagePath": "staticwebassets\\assets\\js\\forgot-password.js"
+    },
+    {
       "Id": "C:\\Users\\serda\\Desktop\\Proje\\ObiGayrimenkul\\ObiGayrimenkul\\wwwroot\\assets\\js\\gmaps.init.js",
       "PackagePath": "staticwebassets\\assets\\js\\gmaps.init.js"
     },
