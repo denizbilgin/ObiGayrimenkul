@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ObiGayrimenkul.Firebase;
 using ObiGayrimenkul.Models;
+using System.Reflection.Metadata;
 
 namespace ObiGayrimenkul.Controllers
 {
@@ -375,10 +376,13 @@ namespace ObiGayrimenkul.Controllers
 
         [HttpGet("search-adverts")]
         public async Task<IActionResult> SearchAdverts(
+            [FromQuery] int? ilce,
+            [FromQuery] int? mahalle,
+            [FromQuery] bool? status,
             [FromQuery] double? minPrice,
             [FromQuery] double? maxPrice,
-            [FromQuery] int? minSquareMeters,
-            [FromQuery] int? maxSquareMeters,
+            [FromQuery] double? minSquareMeters,
+            [FromQuery] double? maxSquareMeters,
             [FromQuery] bool? hasElevator,
             [FromQuery] bool? hasGarage,
             [FromQuery] bool? isFurnished,
@@ -386,13 +390,35 @@ namespace ObiGayrimenkul.Controllers
             [FromQuery] bool? nearHealthCenter,
             [FromQuery] bool? inSite,
             [FromQuery] bool? hasPantry,
+            [FromQuery] bool? hasNaturalgas,
     CancellationToken ct)
         {
             try
             {
+
+                Console.WriteLine($"ilce:{ilce}");
+                Console.WriteLine($"mahalle:{mahalle}");
+                Console.WriteLine($"status:{status}");
+                Console.WriteLine($"minPrice:{minPrice}");
+                Console.WriteLine($"maxPrice:{maxPrice}");
+                Console.WriteLine($"minSquareMeters:{minSquareMeters}");
+                Console.WriteLine($"maxSquareMeters:{maxSquareMeters}");
+                Console.WriteLine($"hasElevator:{hasElevator}");
+                Console.WriteLine($"hasGarage:{hasGarage}");
+                Console.WriteLine($"isFurnished:{isFurnished}");
+                Console.WriteLine($"nearSchool:{nearSchool}");
+                Console.WriteLine($"nearHealthCenter:{nearHealthCenter}");
+                Console.WriteLine($"inSite:{inSite}");
+                Console.WriteLine($"hasPantry:{hasPantry}");
+                Console.WriteLine($"hasNaturalgas:{hasNaturalgas}");
+                Console.WriteLine("====================================");
+
                 var allAdverts = await _firestore.GetAllApproved<Advert>(ct);
 
                 var filteredAdverts = allAdverts.Where(advert =>
+                    (!ilce.HasValue || advert.AddressDistrictID == ilce.Value) &&
+                    (!mahalle.HasValue || advert.AddressQuarterID == mahalle.Value) &&
+                    (!status.HasValue || advert.Status == status.Value) &&
                     (!minPrice.HasValue || advert.Price >= minPrice.Value) &&
                     (!maxPrice.HasValue || advert.Price <= maxPrice.Value) &&
                     (!minSquareMeters.HasValue || advert.SquareMeterGross >= minSquareMeters.Value) &&
@@ -403,7 +429,8 @@ namespace ObiGayrimenkul.Controllers
                     (!nearSchool.HasValue || advert.IsCloseToSchool == nearSchool.Value) &&
                     (!nearHealthCenter.HasValue || advert.IsCloseToHealthCenter == nearHealthCenter.Value) &&
                     (!inSite.HasValue || advert.IsInSite == inSite.Value) &&
-                    (!hasPantry.HasValue || advert.HaveCellar == hasPantry.Value)
+                    (!hasPantry.HasValue || advert.HaveCellar == hasPantry.Value) &&
+                    (!hasNaturalgas.HasValue || (hasNaturalgas.Value && (advert.Heating == 1 || advert.Heating == 2)))
                 ).ToList();
 
                 return Ok(filteredAdverts);

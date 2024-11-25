@@ -103,9 +103,6 @@ public class Advert : IFirebaseEntity
     [FirestoreProperty("building_floor_number")]
     public int BuildingFloors {  get; set; }
 
-    [FirestoreProperty("is_earthquake_resistant")]
-    public bool IsEarthquakeResistant { get; set; }
-
     [FirestoreProperty("owner_phone")]
     public string OwnerPhone { get; set; }
 

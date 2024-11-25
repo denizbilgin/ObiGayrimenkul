@@ -104,7 +104,7 @@ namespace ObiGayrimenkul.Controllers
 
         // [Authorize]
         [HttpPost("change-user-password")]
-        public async Task<IActionResult> ChangePassword(string userId, string newPassword, CancellationToken ct)
+        public async Task<IActionResult> ChangePassword(string userId , string oldPassword , string newPassword, CancellationToken ct)
         {
             var user = await _firestore.Get<User>(userId, "users", ct);
             if (user == null)
@@ -113,11 +113,61 @@ namespace ObiGayrimenkul.Controllers
                 return View("~/Views/Home/404.cshtml");
             }
 
-            user.Password = newPassword;
+            if(user.Password == oldPassword)
+            {
+                user.Password = newPassword;
+                await _firestore.Update<User>(user, "users", ct);
+                return Ok(user);
+            }
+            else
+            {
+                return Content("Mevcut şifreniz yanlış . Şifrenizi unuttuysanız");
+            } 
+        }
+
+        [HttpGet("forgot-my-password")]
+        public IActionResult ForgotPassword()
+        {
+            return View("~/Views/Home/forgot-password.cshtml");
+        }
+
+        [HttpPost("forgot-my-password")]
+        public async Task<IActionResult> ForgotMyPassword([FromBody] ForgotPasswordRequest request, CancellationToken ct)
+        {
+            Console.WriteLine("Forgot Password Request: " + System.Text.Json.JsonSerializer.Serialize(request));
+            if (string.IsNullOrWhiteSpace(request.Email) || request.AuthDocNumber <= 0)
+            {
+                return BadRequest(new { message = "Geçerli bir e-posta ve kimlik numarası giriniz." });
+            }
+            var users = await _firestore.GetAll<User>("users", ct);
+            var user = users.FirstOrDefault(u => u.Email == request.Email && u.AuthDocNumber == request.AuthDocNumber);
+
+            if (user == null)
+            {
+                return NotFound(new { message = "Bu bilgilere sahip bir kullanıcı bulunamadı." });
+            }
+
+            if (request.NewPassword != request.NewPasswordRepeated)
+            {
+                return BadRequest(new { message = "Şifreler uyuşmuyor." });
+            }
+
+            if (string.IsNullOrWhiteSpace(request.NewPassword))
+            {
+                return BadRequest(new { message = "Geçerli bir şifre giriniz." });
+            }
+
+            if (user.Password == request.NewPassword)
+            {
+                return BadRequest(new { message = "Eski şifrenizle aynı bir şifre giremezsiniz." });
+            }
+
+            user.Password = request.NewPassword;
             await _firestore.Update<User>(user, "users", ct);
 
-            return Ok(user);
+            return Ok(new { message = "Şifreniz başarıyla sıfırlandı." });
         }
+
 
         [HttpGet("isAdmin/{userId}")]
         public async Task<IActionResult> IsAdmin(string userId, CancellationToken ct)

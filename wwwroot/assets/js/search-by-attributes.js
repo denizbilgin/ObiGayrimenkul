@@ -1,22 +1,92 @@
-ï»¿document.addEventListener("DOMContentLoaded", function () {
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+
+const getThumbnailUrl = async (storage, imagePath) => {
+    try {
+        const advertThumbnailRef = ref(storage, imagePath);
+        const advertThumbnailUrl = await getDownloadURL(advertThumbnailRef);
+        return advertThumbnailUrl;
+    } catch (error) {
+        const defaultThumbnailUrl = 'default_advert_thumbnail.webp';
+        const advertThumbnailRef = ref(storage, defaultThumbnailUrl);
+        const defaultImageUrl = await getDownloadURL(advertThumbnailRef);
+        return defaultImageUrl;
+    }
+};
+
+const getFirebaseConfigurations = async () => {
+    const url = '/fbase/obidatabase-3e651-firebase-adminsdk-ta9fl-2ef236de49';
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Firebase yapılandırması alınamadı");
+        }
+
+        const firebaseConfig = await response.json();
+        const app = initializeApp(firebaseConfig);
+
+        return app;
+    } catch (error) {
+        console.log("Bir hata oluştu:", error);
+    }
+};
+
+document.addEventListener("DOMContentLoaded", async function () {
     const searchForm = document.querySelector(".search-widget form");
 
     searchForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
-        const minPrice = document.getElementById("price-range").getAttribute("data-slider-value").split(",")[0];
-        const maxPrice = document.getElementById("price-range").getAttribute("data-slider-value").split(",")[1];
-        const minSquareMeters = document.getElementById("property-geo").getAttribute("data-slider-value").split(",")[0];
-        const maxSquareMeters = document.getElementById("property-geo").getAttribute("data-slider-value").split(",")[1];
-        const hasElevator = document.querySelector("input[type='checkbox']:checked")?.value === "AsansÃ¶r" || false;
-        const hasGarage = document.querySelector("input[type='checkbox']:checked")?.value === "Otopark" || false;
-        const isFurnished = document.querySelector("input[type='checkbox'][value='EÅŸyalÄ±']")?.checked || false;
-        const nearSchool = document.querySelector("input[type='checkbox'][value='Okul']")?.checked || false;
-        const nearHealthCenter = document.querySelector("input[type='checkbox'][value='SaÄŸlÄ±k ocaÄŸÄ±']")?.checked || false;
-        const inSite = document.querySelector("input[type='checkbox'][value='Site iÃ§erisinde']")?.checked || false;
-        const hasPantry = document.querySelector("input[type='checkbox'][value='Kiler']")?.checked || false;
+        let ilce = Number(document.querySelector('.districtPicker select').value);
+        if (ilce === 0) {
+            ilce = null;
+        }
+        let mahalle = Number(document.querySelector('.quarterPicker select').value);
+        if (mahalle === 0) {
+            mahalle = null;
+        }
+        const status = Number(document.querySelector('.statusPicker select').value) == 1;
+        const minPrice = document.getElementById("min-price").value;
+        const maxPrice = document.getElementById("max-price").value;
+        const minSquareMeters = document.getElementById("min-square-meters").value;
+        const maxSquareMeters = document.getElementById("max-square-meters").value;
+        const hasElevator = document.getElementById("asansor-checkbox").value || null;
+        const hasGarage = document.getElementById("otopark-checkbox").value || null;
+        const isFurnished = document.getElementById("esyali-checkbox").value || null;
+        const nearSchool = document.getElementById("okul-checkbox").value || null;
+        const nearHealthCenter = document.getElementById("saglik-checkbox").value || null;
+        const inSite = document.getElementById("siteicinde-checkbox").value || null;
+        const hasPantry = document.getElementById("kiler-checkbox").value || null;
+        const hasNaturalGas = document.getElementById("dogalgaz-checkbox").value || null;
+
+        console.log("Form Parametreleri:");
+        console.log("ilce:", ilce);
+        console.log("mahalle:", mahalle);
+        console.log("durum:", status);
+        console.log("minPrice:", minPrice);
+        console.log("maxPrice:", maxPrice);
+        console.log("minSquareMeters:", minSquareMeters);
+        console.log("maxSquareMeters:", maxSquareMeters);
+        console.log("hasElevator:", hasElevator);
+        console.log("hasGarage:", hasGarage);
+        console.log("isFurnished:", isFurnished);
+        console.log("nearSchool:", nearSchool);
+        console.log("nearHealthCenter:", nearHealthCenter);
+        console.log("inSite:", inSite);
+        console.log("hasPantry:", hasPantry);
+        console.log("hasNaturalGas:", hasNaturalGas);
 
         const queryParams = new URLSearchParams({
+            ilce,
+            mahalle,
+            status,
             minPrice,
             maxPrice,
             minSquareMeters,
@@ -27,7 +97,8 @@
             nearSchool,
             nearHealthCenter,
             inSite,
-            hasPantry
+            hasPantry,
+            hasNaturalGas
         });
 
         try {
@@ -40,14 +111,16 @@
 
             if (response.ok) {
                 const adverts = await response.json();
-                console.log("Arama sonuÃ§larÄ±:", adverts);
+                console.log("Arama sonuçları:", adverts);
+                const app = await getFirebaseConfigurations();
+                const storage = getStorage(app);
 
                 const resultsContainer = document.getElementById("list-type");
                 resultsContainer.innerHTML = "";
 
-                adverts.forEach(advert => {
-                    const thumbnailUrl = advert.advertImages[0] || "https://firebasestorage.googleapis.com/v0/b/obidatabase-3e651.appspot.com/o/default_advert_thumbnail.webp?alt=media&token=7d5b7089-afcb-414b-a31c-cda31dbae71e";
-                    const advertDetailUrl = "adverts/requests/?id=" + advert.id
+                for (const advert of adverts) {
+                    const thumbnailUrl = await getThumbnailUrl(storage, advert.advertImages[0]);
+                    const advertDetailUrl = "adverts/" + advert.id;
                     const advertHTML = `
                        <div class="col-sm-6 col-md-3 p0">
                         <div class="box-two proerty-item">
@@ -69,15 +142,14 @@
                         </div>
                     </div>`;
                     resultsContainer.innerHTML += advertHTML;
-                });
+                };
             } else {
-                console.error("Arama baÅŸarÄ±sÄ±z:", response.statusText);
-                alert("Arama sÄ±rasÄ±nda bir hata oluÅŸtu.");
+                console.error("Arama başarısız:", response.statusText);
+                alert("Arama sırasında bir hata oluştu.");
             }
         } catch (error) {
-            console.error("Bir hata oluÅŸtu:", error);
-            alert("Arama iÅŸlemi sÄ±rasÄ±nda bir hata oluÅŸtu.");
+            console.error("Bir hata oluştu:", error);
+            alert("Arama işlemi sırasında bir hata oluştu.");
         }
     });
 });
-
