@@ -67,8 +67,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     if (ugur && emrah) {
         const app = await getFirebaseConfigurations();
-        console.log(ugur);
-        console.log(emrah);
 
         // Uğur Bilgin
         const ugurImageUrl = await getUserPhotoFromStorage(app, ugur);

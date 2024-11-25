@@ -78,8 +78,6 @@
         }
         
 
-        console.log(JSON.stringify(userRegisterData));
-
         fetch("/user-process/register", {
             method: "POST",
             headers: {
@@ -96,7 +94,6 @@
                 }
             })
             .then(data => {
-                console.log("Kayit olundu:", data);
                 if (data.success) {
                     const formData = new URLSearchParams();
                     formData.append("Email", email);

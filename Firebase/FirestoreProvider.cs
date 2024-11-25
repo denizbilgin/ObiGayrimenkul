@@ -74,6 +74,7 @@ namespace ObiGayrimenkul.Firebase
             return snapshot.Documents.Select(x => x.ConvertTo<T>()).ToList();
         }
 
+
         /*public async Task<IReadOnlyCollection<T>> GetAllUsers<T>(CancellationToken ct) where T : IFirebaseEntity
         {
             var collection = _fireStoreDb.Collection("users"); ;

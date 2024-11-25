@@ -135,7 +135,7 @@
                     <p style="width: 60%; margin: auto;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi deserunt deleniti, ullam commodi sit ipsam laboriosam velit adipisci quibusdam aliquam teneturo!</p>
                     <div class="search-form wow pulse" data-wow-delay="0.8s">
 
-                        <form action="" class=" form-inline">
+                        <form action="" class=" form-inline" method="POST">
                             <button class="btn  toggle-btn" type="button"><i class="fa fa-bars"></i></button>
 
                             <div class="form-group">
@@ -147,35 +147,43 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select id="basic" class="selectpicker show-tick form-control" title="Durum">
-                                    <option>Satılık</option>
-                                    <option>Kiralık</option>
+                                <select id="basic" class="selectpicker show-tick form-control statusPicker" title="Durum">
+                                    <option value="1">Satılık</option>
+                                    <option value="2">Kiralık</option>
 
                                 </select>
                             </div>
-                            <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
+                            <button id="index-search-btn" class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
 
                             <div style="display: none;" class="search-toggle">
 
                                 <div class="search-row">
 
                                     <div class="form-group mar-r-20">
-                                        <label for="price-range">Fiyat aralığı (₺):</label>
-                                        <input type="text" class="span2" value="" data-slider-min="0"
-                                               data-slider-max="600" data-slider-step="5"
-                                               data-slider-value="[0,450]" id="price-range"><br />
-                                        <b class="pull-left color">2000₺</b>
-                                        <b class="pull-right color">100000₺</b>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="min-price">Minimum TL:</label>
+                                                <input id="index-min-price" name="min-price" type="number" class="form-control" placeholder="0" min=0 value=0>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="max-price">Maximum TL:</label>
+                                                <input id="index-max-price" name="max-price" type="number" class="form-control" placeholder="0" min=0>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- End of  -->
 
                                     <div class="form-group mar-l-20">
-                                        <label for="property-geo">Metrekare (m²) :</label>
-                                        <input type="text" class="span2" value="" data-slider-min="0"
-                                               data-slider-max="600" data-slider-step="5"
-                                               data-slider-value="[50,450]" id="property-geo"><br />
-                                        <b class="pull-left color">40m</b>
-                                        <b class="pull-right color">12000m</b>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="min-squaremeter">Minimum m²:</label>
+                                                <input id="index-min-squaremeter" name="min-squaremeter" type="number" class="form-control" placeholder="0" min=0 value=0>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="max-squaremeter">Maximum m²:</label>
+                                                <input id="index-max-squaremeter" name="max-squaremeter" type="number" class="form-control" placeholder="0" min=0>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- End of  -->
                                 </div>
@@ -186,7 +194,7 @@
                                     <div class="form-group">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox"> Asansör
+                                                <input type="checkbox" id="index-search-has-lift"> Asansör
                                             </label>
                                         </div>
                                     </div>
@@ -195,7 +203,7 @@
                                     <div class="form-group">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox"> Kiler
+                                                <input type="checkbox" id="index-search-has-cellar"> Kiler
                                             </label>
                                         </div>
                                     </div>
@@ -204,36 +212,7 @@
                                     <div class="form-group">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox"> Doğalgaz
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <!-- End of  -->
-                                </div>
-
-                                <div class="search-row">
-
-                                    <div class="form-group">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> Okul
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <!-- End of  -->
-
-                                    <div class="form-group">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> Sağlık ocağı
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> Eşyalı
+                                                <input type="checkbox" id="index-search-has-park"> Otopark
                                             </label>
                                         </div>
                                     </div>
@@ -245,7 +224,7 @@
                                     <div class="form-group">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox"> Site içerisinde
+                                                <input type="checkbox" id="index-search-is-close-school"> Okul
                                             </label>
                                         </div>
                                     </div>
@@ -254,10 +233,32 @@
                                     <div class="form-group">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox"> Otopark
+                                                <input type="checkbox" id="index-search-is-close-health-center"> Sağlık ocağı
                                             </label>
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="index-search-is-furnished"> Eşyalı
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- End of  -->
+                                </div>
+
+                                <div class="search-row">
+
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="index-search-is-in-site"> Site içerisinde
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- End of  -->
+
 
                                     <div class="form-group">
                                     </div>
@@ -407,6 +408,7 @@
     <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
     <script type="module" src="/assets/js/search-functions.js" defer></script>
     <script src = "/assets/js/logged-user-dropdown.js"></script>
+    <script src = "/assets/js/index-search-functions.js"></script>
 
 </body>
 </html>

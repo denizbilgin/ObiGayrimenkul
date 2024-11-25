@@ -134,7 +134,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 
     document.getElementById("advert-send-button").addEventListener("click", async function() {
-        console.log(newAdvertData);
         try {
             const response = await fetch("/adverts/sell-house", {
                 method: "POST",

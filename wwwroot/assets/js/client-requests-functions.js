@@ -59,7 +59,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         } else {
             for (const doc of snapshot.docs) {
                 const requestData = doc.data();
-                console.log(requestData);
 
                 const districtName = await getPlaceNameById(db, requestData.district_id);
                 const quarterName = await getPlaceNameById(db, requestData.quarter_id);
