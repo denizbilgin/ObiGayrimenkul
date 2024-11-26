@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", async function () {
             isIsFurnishedChecked : document.getElementById("index-search-is-furnished").checked === true ? true: null,
             isIsInSiteChecked : document.getElementById("index-search-is-in-site").checked === true ? true: null,
             isHasParkChecked : document.getElementById("index-search-has-park").checked === true ? true: null,
-            minPrice : Number(document.getElementById("index-min-price").value),
-            maxPrice : Number(document.getElementById("index-max-price").value) === 0 ? null: Number(document.getElementById("index-max-price").value),
-            minSquaremeter : Number(document.getElementById("index-min-squaremeter").value),
-            maxSquaremeter : Number(document.getElementById("index-max-squaremeter").value) === 0 ? null: Number(document.getElementById("index-max-squaremeter").value),
+            minPrice : document.getElementById("index-min-price").value,
+            maxPrice : document.getElementById("index-max-price").value === 0 ? null: document.getElementById("index-max-price").value,
+            minSquaremeter : document.getElementById("index-min-squaremeter").value,
+            maxSquaremeter : document.getElementById("index-max-squaremeter").value === 0 ? null: document.getElementById("index-max-squaremeter").value,
         }
         console.log(searchData);
 
