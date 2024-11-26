@@ -153,7 +153,7 @@
 
                                 </select>
                             </div>
-                            <button id="index-search-btn" class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
+                            <button id="search-btn" class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
 
                             <div style="display: none;" class="search-toggle">
 
@@ -163,7 +163,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="min-price">Minimum TL:</label>
-                                                <input id="index-min-price" name="min-price" type="number" class="form-control" placeholder="0" min=0 value=0>
+                                                <input id="index-min-price" name="min-price" type="number" class="form-control" placeholder="0" min=0>
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="max-price">Maximum TL:</label>
@@ -177,7 +177,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="min-squaremeter">Minimum m²:</label>
-                                                <input id="index-min-squaremeter" name="min-squaremeter" type="number" class="form-control" placeholder="0" min=0 value=0>
+                                                <input id="index-min-squaremeter" name="min-squaremeter" type="number" class="form-control" placeholder="0" min=0>
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="max-squaremeter">Maximum m²:</label>
@@ -408,7 +408,7 @@
     <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
     <script type="module" src="/assets/js/search-functions.js" defer></script>
     <script src = "/assets/js/logged-user-dropdown.js"></script>
-    <script src = "/assets/js/index-search-functions.js"></script>
+    <script type="module" src = "/assets/js/index-search-functions.js"></script>
 
 </body>
 </html>

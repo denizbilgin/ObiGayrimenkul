@@ -83,13 +83,23 @@ const parseFirebaseDate = (firebaseDateString) => {
     return result;
 };
 
-document.addEventListener("DOMContentLoaded", async function () {
+function getStatusValue() {
+    let data = Number(document.querySelector('.statusPicker select').value);
+    if (data === 1) {
+        return true;
+    } else if(data === 2) {
+        return false;
+    } else {
+        return null;
+    }
+}
+
+const showAdverts = async (adverts) => {
     const app = await getFirebaseConfigurations();
     const db = getFirestore(app);
     const storage = getStorage(app);
 
-    const response = await fetch("/adverts/all-adverts");
-    let adverts = await response.json();
+    document.getElementById("list-type").innerHTML = "";
 
     const dateOrderedSortedAdverts = [...adverts].sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
     const priceOrderedSortedAdverts = [...adverts].sort((a, b) => a.price - b.price);
@@ -132,7 +142,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const changePage = (page, sortedAdverts) => {
         currentPage = page;
-    
         const startIndex = (currentPage - 1) * advertsPerPage;
         const endIndex = startIndex + advertsPerPage;
         const advertsToShow = sortedAdverts.slice(startIndex, endIndex);
@@ -142,6 +151,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     };
 
     const renderAdverts = async (adverts) => {
+        console.log(adverts);
         advertsContainer.innerHTML = "";
         for (const advert of adverts) {
             const placeName = await getPlaceNameById(db, advert.addressDistrictID);
@@ -168,7 +178,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             advertsContainer.innerHTML += advertCardHtml;
         }
     };
-    // ${advert.description.length > 100 ? advert.description.slice(0, 100) + "..." : advert.description + "<br><br>"}
+
     await changePage(currentPage, dateOrderedSortedAdverts);
 
     const orderByDateButton = document.getElementById("order-by-date");
@@ -184,5 +194,45 @@ document.addEventListener("DOMContentLoaded", async function () {
         toggleActiveClass(orderByPriceButton,orderByDateButton);
         currentPage = 1;
         await changePage(currentPage, priceOrderedSortedAdverts);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", async function () {
+    const response = await fetch("/adverts/index-search");
+    let adverts = await response.json();
+    await showAdverts(adverts);
+
+    document.getElementById("search-btn").setAttribute("type", "button");
+    document.getElementById("search-btn").addEventListener("click", async (event) => {
+        event.preventDefault();
+        var searchData = {
+            selectedDistrictId : Number(document.querySelector('.districtPicker select').value) === 0 ? null: Number(document.querySelector('.districtPicker select').value),
+            selectedQuartertId : Number(document.querySelector('.quarterPicker select').value) === 0 ? null: Number(document.querySelector('.quarterPicker select').value),
+            selectedStatus : getStatusValue(),
+            isHasLiftChecked : document.getElementById("index-search-has-lift").checked === true ? true: null,
+            isHasCellarChecked : document.getElementById("index-search-has-cellar").checked === true ? true: null,
+            isIsCloseSchoolChecked : document.getElementById("index-search-is-close-school").checked === true ? true: null,
+            isIsCloseHealthCenterChecked : document.getElementById("index-search-is-close-health-center").checked === true ? true: null,
+            isIsFurnishedChecked : document.getElementById("index-search-is-furnished").checked === true ? true: null,
+            isIsInSiteChecked : document.getElementById("index-search-is-in-site").checked === true ? true: null,
+            isHasParkChecked : document.getElementById("index-search-has-park").checked === true ? true: null,
+            minPrice : document.getElementById("index-min-price").value,
+            maxPrice : Number(document.getElementById("index-max-price").value) === 0 ? null: Number(document.getElementById("index-max-price").value),
+            minSquaremeter : document.getElementById("index-min-squaremeter").value,
+            maxSquaremeter : Number(document.getElementById("index-max-squaremeter").value) === 0 ? null: Number(document.getElementById("index-max-squaremeter").value),
+        }
+        console.log(searchData);
+        const queryParams = new URLSearchParams(searchData).toString();
+        const response = await fetch(`/adverts/index-search/?${queryParams.toString()}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (response.ok) {
+            const adverts = await response.json();
+            await showAdverts(adverts);
+        }
     });
 });

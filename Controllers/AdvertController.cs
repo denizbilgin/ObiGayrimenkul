@@ -1,5 +1,6 @@
 ﻿using Google.Cloud.Firestore;
 using Google.Rpc;
+using Grpc.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ObiGayrimenkul.Firebase;
@@ -394,6 +395,12 @@ namespace ObiGayrimenkul.Controllers
             try
             {
                 var allAdverts = await _firestore.GetAllApproved<Advert>(ct);
+
+                Console.WriteLine($"ilce:{selectedDistrictId}");
+                Console.WriteLine($"mahalle:{selectedQuartertId}");
+                Console.WriteLine($"status:{selectedStatus}");
+                Console.WriteLine($"minPrice:{minPrice}");
+                Console.WriteLine($"maxPrice:{maxPrice}");
 
                 var filteredAdverts = allAdverts.Where(advert =>
                     (!selectedDistrictId.HasValue || advert.AddressDistrictID == selectedDistrictId.Value) &&
