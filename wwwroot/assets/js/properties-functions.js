@@ -117,39 +117,26 @@ const parseFirebaseDate = (firebaseDateString) => {
     return result;
 };
 
+function getStatusValue() {
+    let data = Number(document.querySelector('.statusPicker select').value);
+    if (data === 1) {
+        return true;
+    } else if(data === 2) {
+        return false;
+    } else {
+        return null;
+    }
+}
 
-document.addEventListener("DOMContentLoaded", async function () {
-    const waitForElement = (selector) => {
-        return new Promise((resolve) => {
-            const checkElement = () => {
-                const element = document.querySelector(selector);
-                if (element) {
-                    resolve(element);
-                } else {
-                    setTimeout(checkElement, 100);
-                }
-            };
-            checkElement();
-        });
-    };
-    const districtSelectProperties = await waitForElement('.districtPicker .selectpicker');
-    const quarterSelectProperties = await waitForElement('.quarterPicker .selectpicker');
+let filteredAdverts = [];
+let isSorting = false;
+const showAdverts = async (adverts) => {
 
     const app = await getFirebaseConfigurations();
     const db = getFirestore(app);
     const storage = getStorage(app);
 
-    await loadDistricts(db, districtSelectProperties);
-    districtSelectProperties.addEventListener('change', async (event) => {
-        const selectedDistrictId = Number(event.target.value);
-        await loadQuarters(db, selectedDistrictId, quarterSelectProperties);
-    });
-
-    const response = await fetch("/adverts/all-adverts");
-    const adverts = await response.json();
-
-    const dateOrderedSortedAdverts = [...adverts].sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
-    const priceOrderedSortedAdverts = [...adverts].sort((a, b) => a.price - b.price);
+    document.getElementById("list-type").innerHTML = "";
 
     const advertsPerPage = 12;
     let currentPage = 1;
@@ -189,7 +176,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const changePage = (page, sortedAdverts) => {
         currentPage = page;
-    
         const startIndex = (currentPage - 1) * advertsPerPage;
         const endIndex = startIndex + advertsPerPage;
         const advertsToShow = sortedAdverts.slice(startIndex, endIndex);
@@ -226,20 +212,110 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     };
 
-    await changePage(currentPage, dateOrderedSortedAdverts);
+    filteredAdverts = adverts;
+    changePage(currentPage, filteredAdverts);
 
     const orderByDateButton = document.getElementById("order-by-date");
     const orderByPriceButton = document.getElementById("order-by-price");
 
-    orderByDateButton.addEventListener("click", async () => {
-        currentPage = 1;
-        toggleActiveClass(orderByDateButton, orderByPriceButton);
-        await changePage(currentPage, dateOrderedSortedAdverts);
+    if (!orderByDateButton.hasEventListener) {
+        orderByDateButton.addEventListener("click", async () => {
+            if (isSorting) return;
+            isSorting = true;
+            currentPage = 1;
+            toggleActiveClass(orderByDateButton, orderByPriceButton);
+            const sortedAdverts = filteredAdverts
+                .slice()
+                .sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
+            changePage(currentPage, sortedAdverts);
+            isSorting = false;
+        });
+        orderByDateButton.hasEventListener = true;
+    }
+
+    if (!orderByPriceButton.hasEventListener) {
+        orderByPriceButton.addEventListener("click", async () => {
+            if (isSorting) return;
+            isSorting = true;
+            toggleActiveClass(orderByPriceButton, orderByDateButton);
+            currentPage = 1;
+            const sortedAdverts = filteredAdverts
+                .slice()
+                .sort((a, b) => a.price - b.price);
+            changePage(currentPage, sortedAdverts);
+            isSorting = false;
+        });
+        orderByPriceButton.hasEventListener = true;
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", async function () {
+    const waitForElement = (selector) => {
+        return new Promise((resolve) => {
+            const checkElement = () => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    resolve(element);
+                } else {
+                    setTimeout(checkElement, 100);
+                }
+            };
+            checkElement();
+        });
+    };
+    const districtSelectProperties = await waitForElement('.districtPicker .selectpicker');
+    const quarterSelectProperties = await waitForElement('.quarterPicker .selectpicker');
+
+    const app = await getFirebaseConfigurations();
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+
+    await loadDistricts(db, districtSelectProperties);
+    districtSelectProperties.addEventListener('change', async (event) => {
+        const selectedDistrictId = Number(event.target.value);
+        await loadQuarters(db, selectedDistrictId, quarterSelectProperties);
     });
 
-    orderByPriceButton.addEventListener("click", async () => {
-        toggleActiveClass(orderByPriceButton,orderByDateButton);
-        currentPage = 1;
-        await changePage(currentPage, priceOrderedSortedAdverts);
+    const response = await fetch("/adverts/index-search");
+    let adverts = await response.json();
+    await showAdverts(adverts);
+
+    document.getElementById("search-btn").setAttribute("type", "button");
+    document.getElementById("search-btn").addEventListener("click", async (event) => {
+        event.preventDefault();
+        var searchData = {
+            selectedDistrictId : Number(document.querySelector('.districtPicker select').value) === 0 ? null: Number(document.querySelector('.districtPicker select').value),
+            selectedQuartertId : Number(document.querySelector('.quarterPicker select').value) === 0 ? null: Number(document.querySelector('.quarterPicker select').value),
+            selectedStatus : getStatusValue(),
+            isHasLiftChecked : document.getElementById("asansor-checkbox").checked === true ? true: null,
+            isHasCellarChecked : document.getElementById("kiler-checkbox").checked === true ? true: null,
+            isIsCloseSchoolChecked : document.getElementById("okul-checkbox").checked === true ? true: null,
+            isIsCloseHealthCenterChecked : document.getElementById("saglik-checkbox").checked === true ? true: null,
+            isIsFurnishedChecked : document.getElementById("esyali-checkbox").checked === true ? true: null,
+            isIsInSiteChecked : document.getElementById("siteicinde-checkbox").checked === true ? true: null,
+            isHasParkChecked : document.getElementById("otopark-checkbox").checked === true ? true: null,
+            minPrice : document.getElementById("min-price").value,
+            maxPrice : Number(document.getElementById("max-price").value) === 0 ? null: Number(document.getElementById("max-price").value),
+            minSquaremeter : document.getElementById("min-squaremeter").value,
+            maxSquaremeter : Number(document.getElementById("max-squaremeter").value) === 0 ? null: Number(document.getElementById("max-squaremeter").value),
+        }
+
+        const queryParams = new URLSearchParams(searchData).toString();
+        const response = await fetch(`/adverts/index-search/?${queryParams}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (response.ok) {
+            filteredAdverts  = await response.json();
+            showAdverts(filteredAdverts);
+        }
+    });
+
+    document.getElementById("clear-filter").addEventListener("click", (event) => {
+        window.location.reload();
     });
 });

@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         const queryParams = new URLSearchParams(searchData).toString();
-        const response = await fetch(`/adverts/index-search/?${queryParams.toString()}`, {
+        const response = await fetch(`/adverts/index-search/?${queryParams}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

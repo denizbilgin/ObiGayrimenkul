@@ -139,17 +139,17 @@
                                     <fieldset>
                                         <div class="row" style="margin-bottom: 1rem;">
                                             <div class="col-xs-12">
-                                                <select id="ilce-arama" class="selectpicker districtPicker" data-live-search="true" data-live-search-style="begins" title="İlçe">
+                                                <select id="lunchBegins" class="selectpicker districtPicker" data-live-search="true" data-live-search-style="begins" title="İlçe">
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <select id="mahalle-arama" class="selectpicker quarterPicker" data-live-search="true" data-live-search-style="begins" title="Mahalle">
+                                                <select id="lunchBegins" class="selectpicker quarterPicker" data-live-search="true" data-live-search-style="begins" title="Mahalle">
                                                 </select>
                                             </div>
                                             <div class="col-xs-6">
-                                                <select id="durum-arama" class="selectpicker show-tick form-control statusPicker" title="Durum">
+                                                <select id="basic" class="selectpicker show-tick form-control statusPicker" title="Durum">
                                                         <option value="1">Satılık</option>
                                                         <option value="0">Kiralık</option>
                                                 </select>
@@ -162,12 +162,12 @@
                                     <fieldset class="padding-5">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <label for="min-price">Minimum Fiyat (₺):</label>
-                                                <input type="number" class="form-control" id="min-price" placeholder="Minimum fiyat" min="0">
+                                                <label for="min-price">Minimum TL :</label>
+                                                <input type="number" class="form-control" id="min-price" min="0">
                                             </div>
                                             <div class="col-xs-6">
-                                                <label for="max-price">Maksimum Fiyat (₺):</label>
-                                                <input type="number" class="form-control" id="max-price" placeholder="Maksimum fiyat" min="0">
+                                                <label for="max-price">Maksimum TL :</label>
+                                                <input type="number" class="form-control" id="max-price" min="0">
                                             </div>
                                         </div>
                                     </fieldset>
@@ -175,40 +175,16 @@
                                     <fieldset class="padding-5">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <label for="min-square-meters">Minimum Metrekare (m²):</label>
-                                                <input type="number" class="form-control" id="min-square-meters" placeholder="Minimum metrekare " min="0">
+                                                <label for="min-squaremeter">Minimum m² :</label>
+                                                <input type="number" class="form-control" id="min-squaremeter" min="0">
                                             </div>
                                             <div class="col-xs-6">
-                                                <label for="max-square-meters">Maksimum Metrekare (m²):</label>
-                                                <input type="number" class="form-control" id="max-square-meters" placeholder="Maksimum metrekare" min="0">
+                                                <label for="max-squaremeter">Maksimum m² :</label>
+                                                <input type="number" class="form-control" id="max-squaremeter" min="0">
                                             </div>
                                         </div>
                                     </fieldset>
-
-                                    <!--      <fieldset class="padding-5">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <label for="price-range">Fiyat aralığı (₺):</label>
-                                                <input type="text" class="span2" value="" data-slider-min="0" 
-                                                       data-slider-max="1500000" data-slider-step="100" 
-                                                       data-slider-value="[2000,1500000]" id="price-range" ><br />
-                                                <b class="pull-left color">2000₺</b>
-                                                <b class="pull-right color">1500000₺</b>                                              
-                                            </div>
-                                            <div class="col-xs-6">
-                                                <label for="property-geo">Metrekare (m²) :</label>
-                                                <input type="text" class="span2" value="" data-slider-min="0" 
-                                                       data-slider-max="12000" data-slider-step="100" 
-                                                       data-slider-value="[40,12000]" id="property-geo" ><br />
-                                                <b class="pull-left color">40m</b> 
-                                                <b class="pull-right color">12000m</b>                                                
-                                            </div>                                            
-                                        </div>
-                                    </fieldset>      -->      
-                                    
-
-
-                                 <!--   <fieldset class="padding-5">
+                                    <fieldset class="padding-5">
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <div class="checkbox" >
@@ -228,7 +204,7 @@
                                         <div class="row">
                                             <div class="col-xs-6"> 
                                                 <div class="checkbox" >
-                                                    <label> <input type="checkbox" id="dogalgaz-checkbox"> Doğalgaz</label>
+                                                    <label>  <input type="checkbox" id="otopark-checkbox"> Otopark </label>
                                                 </div>
                                             </div>  
                                             <div class="col-xs-6"> 
@@ -261,113 +237,18 @@
                                                     <label>  <input type="checkbox" id="siteicinde-checkbox"> Site içerisinde </label>
                                                 </div>
                                             </div>  
-                                            <div class="col-xs-6"> 
-                                                <div class="checkbox" >
-                                                    <label>  <input type="checkbox" id="otopark-checkbox"> Otopark </label>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                    </fieldset> -->
-
-                                    <!-- Checkbox'ların hepsi dropdown olarak değişti -->
-
-                                    <fieldset class="padding-5">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <label for="asansor-checkbox">Asansör:</label>
-                                                <select id="asansor-checkbox" class="form-control">
-                                                    <option value="">Tümü</option>
-                                                    <option value="true">Evet</option>
-                                                    <option value="false">Hayır</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-xs-6">
-                                                <label for="kiler-checkbox">Kiler:</label>
-                                                <select id="kiler-checkbox" class="form-control">
-                                                    <option value="">Tümü</option>
-                                                    <option value="true">Evet</option>
-                                                    <option value="false">Hayır</option>
-                                                </select>
-                                            </div>
                                         </div>
                                     </fieldset>
-
-                                    <fieldset class="padding-5">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <label for="dogalgaz-checkbox">Doğalgaz:</label>
-                                                <select id="dogalgaz-checkbox" class="form-control">
-                                                    <option value="">Tümü</option>
-                                                    <option value="true">Evet</option>
-                                                    <option value="false">Hayır</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-xs-6">
-                                                <label for="okul-checkbox">Okul:</label>
-                                                <select id="okul-checkbox" class="form-control">
-                                                    <option value="">Tümü</option>
-                                                    <option value="true">Evet</option>
-                                                    <option value="false">Hayır</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-
-                                    <fieldset class="padding-5">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <label for="saglik-checkbox">Sağlık Ocağı:</label>
-                                                <select id="saglik-checkbox" class="form-control">
-                                                    <option value="">Tümü</option>
-                                                    <option value="true">Evet</option>
-                                                    <option value="false">Hayır</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-xs-6">
-                                                <label for="esyali-checkbox">Eşyalı:</label>
-                                                <select id="esyali-checkbox" class="form-control">
-                                                    <option value="">Tümü</option>
-                                                    <option value="true">Evet</option>
-                                                    <option value="false">Hayır</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-
-                                    <fieldset class="padding-5">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <label for="siteicinde-checkbox">Site İçerisinde:</label>
-                                                <select id="siteicinde-checkbox" class="form-control">
-                                                    <option value="">Tümü</option>
-                                                    <option value="true">Evet</option>
-                                                    <option value="false">Hayır</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-xs-6">
-                                                <label for="otopark-checkbox">Otopark:</label>
-                                                <select id="otopark-checkbox" class="form-control">
-                                                    <option value="">Tümü</option>
-                                                    <option value="true">Evet</option>
-                                                    <option value="false">Hayır</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-
-
 
                                     <fieldset >
                                         <div class="row">
                                             <div class="col-xs-12">  
-                                                <input class="button btn largesearch-btn" value="Ara" type="submit">
+                                                <input class="button btn largesearch-btn" id="search-btn" value="Ara" type="submit">
                                             </div>  
                                         </div>
-                                    </fieldset>                                     
+                                    </fieldset>  
+
+                                    <!-- Checkbox'ların hepsi dropdown olarak değişti -->                                  
                                 </form>
                             </div>
                         </div>
@@ -386,6 +267,11 @@
                                 <li class="" style="cursor:pointer;">
                                     <a id="order-by-price" class="order_by_price" data-orderby="property_price" data-order="DESC">
                                         Fiyata Göre Sırala <i class="fa fa-sort-numeric-desc"></i>						
+                                    </a>
+                                </li>
+                                <li class="" style="cursor:pointer;">
+                                    <a id="clear-filter" class="order_by_price">
+                                        Filtreleri Temizle <i class="fa fa-trash"></i>
                                     </a>
                                 </li>
                             </ul><!--/ .sort-by-list-->
