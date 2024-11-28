@@ -94,15 +94,15 @@ function getStatusValue() {
     }
 }
 
+let filteredAdverts = [];
+let isSorting = false;
 const showAdverts = async (adverts) => {
+
     const app = await getFirebaseConfigurations();
     const db = getFirestore(app);
     const storage = getStorage(app);
 
     document.getElementById("list-type").innerHTML = "";
-
-    const dateOrderedSortedAdverts = [...adverts].sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
-    const priceOrderedSortedAdverts = [...adverts].sort((a, b) => a.price - b.price);
 
     const advertsPerPage = 8;
     let currentPage = 1;
@@ -151,7 +151,6 @@ const showAdverts = async (adverts) => {
     };
 
     const renderAdverts = async (adverts) => {
-        console.log(adverts);
         advertsContainer.innerHTML = "";
         for (const advert of adverts) {
             const placeName = await getPlaceNameById(db, advert.addressDistrictID);
@@ -179,22 +178,41 @@ const showAdverts = async (adverts) => {
         }
     };
 
-    await changePage(currentPage, dateOrderedSortedAdverts);
+    filteredAdverts = adverts;
+    changePage(currentPage, filteredAdverts);
 
     const orderByDateButton = document.getElementById("order-by-date");
     const orderByPriceButton = document.getElementById("order-by-price");
 
-    orderByDateButton.addEventListener("click", async () => {
-        currentPage = 1;
-        toggleActiveClass(orderByDateButton, orderByPriceButton);
-        await changePage(currentPage, dateOrderedSortedAdverts);
-    });
+    if (!orderByDateButton.hasEventListener) {
+        orderByDateButton.addEventListener("click", async () => {
+            if (isSorting) return;
+            isSorting = true;
+            currentPage = 1;
+            toggleActiveClass(orderByDateButton, orderByPriceButton);
+            const sortedAdverts = filteredAdverts
+                .slice()
+                .sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
+            changePage(currentPage, sortedAdverts);
+            isSorting = false;
+        });
+        orderByDateButton.hasEventListener = true;
+    }
 
-    orderByPriceButton.addEventListener("click", async () => {
-        toggleActiveClass(orderByPriceButton,orderByDateButton);
-        currentPage = 1;
-        await changePage(currentPage, priceOrderedSortedAdverts);
-    });
+    if (!orderByPriceButton.hasEventListener) {
+        orderByPriceButton.addEventListener("click", async () => {
+            if (isSorting) return;
+            isSorting = true;
+            toggleActiveClass(orderByPriceButton, orderByDateButton);
+            currentPage = 1;
+            const sortedAdverts = filteredAdverts
+                .slice()
+                .sort((a, b) => a.price - b.price);
+            changePage(currentPage, sortedAdverts);
+            isSorting = false;
+        });
+        orderByPriceButton.hasEventListener = true;
+    }
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -221,7 +239,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             minSquaremeter : document.getElementById("index-min-squaremeter").value,
             maxSquaremeter : Number(document.getElementById("index-max-squaremeter").value) === 0 ? null: Number(document.getElementById("index-max-squaremeter").value),
         }
-        console.log(searchData);
+
         const queryParams = new URLSearchParams(searchData).toString();
         const response = await fetch(`/adverts/index-search/?${queryParams.toString()}`, {
             method: 'GET',
@@ -231,8 +249,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
         if (response.ok) {
-            const adverts = await response.json();
-            await showAdverts(adverts);
+            filteredAdverts  = await response.json();
+            showAdverts(filteredAdverts);
         }
+    });
+
+    document.getElementById("clear-filter").addEventListener("click", (event) => {
+        window.location.reload();
     });
 });

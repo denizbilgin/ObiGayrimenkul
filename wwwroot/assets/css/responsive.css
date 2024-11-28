@@ -1,3 +1,10 @@
+@media (max-width: 400px){
+    #index-sort-buttons{
+        margin-top: 22rem;
+    }
+}
+
+
 @media (max-width: 480px){
 
     .welcome_text .page-title h2 {
@@ -398,10 +405,17 @@
         background-color: white;
     }
 
+    #index-sort-buttons{
+        margin-top: 20rem;
+    }
+
 }
 
 
 @media (min-width: 480px) and (max-width: 767px){
+    #index-sort-buttons{
+        margin-top: 4rem;
+    }
 
     .welcome_text .page-title h2 {
         color: #9B9B9B;
