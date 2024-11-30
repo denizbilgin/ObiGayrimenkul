@@ -19,14 +19,14 @@ namespace ObiGayrimenkul.Controllers
             _firestore = firestore;
             _jwtService = jwtService;
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var users = await _firestore.GetAll<User>("users", CancellationToken.None);
             return Ok(users);
         }
-
+        [Authorize]
         [HttpGet("get-details/{id}")]
         public async Task<IActionResult> GetDetailsByID(string id, CancellationToken ct)
         {
@@ -38,7 +38,7 @@ namespace ObiGayrimenkul.Controllers
             }
             return Ok(user);
         }
-
+        [Authorize]
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetProfile(string userId , CancellationToken ct)
         {
@@ -48,7 +48,7 @@ namespace ObiGayrimenkul.Controllers
             }
             return View("~/Views/Home/user-profile.cshtml");
         }
-
+        [Authorize(Roles ="Admin")]
         [HttpPost("delete/{id}")]
         public async Task<IActionResult> Delete(string id, CancellationToken ct)
         {
@@ -60,7 +60,7 @@ namespace ObiGayrimenkul.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-        //[Authorize(Roles ="Admin")]
+        [Authorize(Roles ="Admin")]
         [HttpGet("edit/{id}")]
         public async Task<IActionResult> Update(string id, CancellationToken ct)
         {
@@ -95,14 +95,14 @@ namespace ObiGayrimenkul.Controllers
             return Ok(user);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("change-user-password")]
         public IActionResult ChangePassword()
         {
             return View("~/Views/Home/change-password.cshtml");
         }
 
-        // [Authorize]
+        [Authorize]
         [HttpPost("change-user-password")]
         public async Task<IActionResult> ChangePassword(string userId , string oldPassword , string newPassword, CancellationToken ct)
         {
@@ -124,13 +124,13 @@ namespace ObiGayrimenkul.Controllers
                 return Content("Mevcut şifreniz yanlış . Şifrenizi unuttuysanız");
             } 
         }
-
+        [Authorize]
         [HttpGet("forgot-my-password")]
         public IActionResult ForgotPassword()
         {
             return View("~/Views/Home/forgot-password.cshtml");
         }
-
+        [Authorize]
         [HttpPost("forgot-my-password")]
         public async Task<IActionResult> ForgotMyPassword([FromBody] ForgotPasswordRequest request, CancellationToken ct)
         {
@@ -168,7 +168,7 @@ namespace ObiGayrimenkul.Controllers
             return Ok(new { message = "Şifreniz başarıyla sıfırlandı." });
         }
 
-
+        [Authorize(Roles ="Admin")]
         [HttpGet("isAdmin/{userId}")]
         public async Task<IActionResult> IsAdmin(string userId, CancellationToken ct)
         {
@@ -185,14 +185,14 @@ namespace ObiGayrimenkul.Controllers
                 
             }
         }
-
+        [Authorize]
         [HttpGet("user-adverts/{userId}")]
         public async Task<IActionResult> UserAdverts(string userId, CancellationToken ct)
         {
             return View("~/Views/Home/user-properties.cshtml");
         }
 
-
+        [Authorize]
         [HttpGet("user-exists")]
         private async Task<bool> UserExists(string id, CancellationToken ct)
         {

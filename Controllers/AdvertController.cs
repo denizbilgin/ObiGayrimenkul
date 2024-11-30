@@ -33,26 +33,26 @@ namespace ObiGayrimenkul.Controllers
             var adverts = await _firestore.GetAllApproved<Advert>(CancellationToken.None);
             return Ok(adverts);
         }
-
+        [Authorize(Roles ="Admin")]
         [HttpGet("advert-requests")]
         public async Task<IActionResult> GetAdvertRequests(CancellationToken ct)
         {
             return View("~/Views/Home/pending-properties.cshtml");
         }
-
+        [Authorize]
         [HttpGet("client-requests")]
         public async Task<IActionResult> GetClientRequests(CancellationToken ct)
         {
             return View("~/Views/Home/client-requests.cshtml");
         }
-
+        [Authorize]
         [HttpGet("all-advert-requests")]
         public async Task<IActionResult> GetAllAdvertRequests(CancellationToken ct)
         {
             var adverts = await _firestore.GetAll<Advert>("advert-requests",CancellationToken.None);
             return Ok(adverts);
         }
-
+        [Authorize(Roles ="Admin")]
         [HttpGet("pending-adverts")]
         public async Task<IActionResult> GetPendingAdverts(CancellationToken ct)
         {
@@ -126,8 +126,7 @@ namespace ObiGayrimenkul.Controllers
             
         }
 
-        // İlan ekle - GET (Form gösterimi)
-        //[Authorize]
+        [Authorize]
         [HttpGet("create")]
         public IActionResult Create()
 
@@ -135,9 +134,7 @@ namespace ObiGayrimenkul.Controllers
             return View("~/Views/Home/submit-property.cshtml");
 
         }
-
-        // İlan ekle - POST (Formdan gelen verileri işleme)
-        //[Authorize]
+        [Authorize]
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] Advert advert, CancellationToken ct)
         {
@@ -150,8 +147,10 @@ namespace ObiGayrimenkul.Controllers
                         advert.Id = Guid.NewGuid().ToString();
                     }
 
-                    var date = Timestamp.FromDateTime(DateTime.UtcNow);
-                    advert.PublishDate = date.ToDateTime().ToString();
+                    var utcDateTime = DateTime.UtcNow;
+                    var turkeyTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Turkey Standard Time");
+                    var dateTimeInTurkey = TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, turkeyTimeZone);
+                    advert.PublishDate = dateTimeInTurkey.ToString("dd.MM.yyyy HH:mm:ss");
                     advert.Approved = false;
                     Console.WriteLine(advert.PublishDate);
                     await _firestore.Add(advert, "advert-requests", ct);
@@ -192,7 +191,7 @@ namespace ObiGayrimenkul.Controllers
             }
              
          }
-        
+        [Authorize]
         [HttpPost("edit/{id}")]
         public async Task<IActionResult> Edit(string id,[FromBody]Advert advert , CancellationToken ct)
         {       
@@ -221,7 +220,7 @@ namespace ObiGayrimenkul.Controllers
             }
             return Ok(advert);
         }
-
+        [Authorize]
         [HttpPost("edit-user/{advertId}")]
         public async Task<IActionResult> ChangeAdvertsUser([FromBody] Advert currentAdvert , string advertId , CancellationToken ct)
         {
@@ -248,7 +247,7 @@ namespace ObiGayrimenkul.Controllers
             
             return Ok(advert);
         }
-
+        [Authorize(Roles ="Admin")]
         [HttpGet("delete/{id}")]
         public async Task<IActionResult> Delete(string id, CancellationToken ct)
         {
@@ -272,7 +271,7 @@ namespace ObiGayrimenkul.Controllers
             }         
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("delete/{id}")]
         public async Task<IActionResult> DeleteConfirmed(string id, CancellationToken ct)
         {
@@ -300,7 +299,7 @@ namespace ObiGayrimenkul.Controllers
         }
 
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("approve/{id}")]
         public async Task<IActionResult> Approve(string id, CancellationToken ct)
         {
@@ -317,7 +316,7 @@ namespace ObiGayrimenkul.Controllers
             await _firestore.MoveDocument<Advert>(id, "advert-requests", "adverts", ct);
             return Ok(advert);
         }
-
+        [Authorize(Roles ="Admin")]
         [HttpPost("delete-request/{id}")]
         public async Task<IActionResult> DeleteRequest(string id, CancellationToken ct)
         {
@@ -350,7 +349,7 @@ namespace ObiGayrimenkul.Controllers
             }
             return Ok(new { success = true, message = "işlem başarılı." });
         }
-
+        [Authorize]
         [HttpGet("advert-exists")]
             
         private async Task<bool> AdvertExists(string id, CancellationToken ct)
@@ -358,7 +357,7 @@ namespace ObiGayrimenkul.Controllers
             var advert = await _firestore.Get<Advert>(id,"adverts", ct);
             return advert != null;
         }
-
+        [Authorize]
         [HttpGet("get-user-adverts/{userId}")]
         public async Task<IActionResult> GetAdvertsByUserID(string userId, CancellationToken ct)
         {

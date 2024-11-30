@@ -2,9 +2,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebas
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
-let adverts = [];
-let filteredAdverts = [];
-
 const getPlaceNameById = async (db, place_id) => {
     try {
         const docRef = doc(db, 'district_and_quarters', String(place_id));
@@ -59,7 +56,7 @@ const getFirebaseConfigurations = async () => {
 
         const firebaseConfig = await response.json();
         const app = initializeApp(firebaseConfig);
-        
+
         return app
     } catch (error) {
         console.log("Bir hata oluştu:", error);
@@ -81,7 +78,7 @@ const toggleActiveClass = (clickedButton, otherButton) => {
 
 const parseFirebaseDate = (firebaseDateString) => {
     const cleanedDateString = firebaseDateString.replace(" at", "").replace(" UTC+3", "");
-    
+
     const result = new Date(cleanedDateString);
     return result;
 };
@@ -90,7 +87,7 @@ function getStatusValue() {
     let data = Number(document.querySelector('.statusPicker select').value);
     if (data === 1) {
         return true;
-    } else if(data === 2) {
+    } else if (data === 2) {
         return false;
     } else {
         return null;
@@ -105,31 +102,25 @@ const showAdverts = async (adverts) => {
     const db = getFirestore(app);
     const storage = getStorage(app);
 
-<<<<<<< HEAD
-    const dateOrderedSortedAdverts = [...(filteredAdverts.length > 0 ? filteredAdverts : adverts)].sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
-    const priceOrderedSortedAdverts = [...(filteredAdverts.length > 0 ? filteredAdverts : adverts)].sort((a, b) => a.price - b.price);
-=======
     document.getElementById("list-type").innerHTML = "";
->>>>>>> 321829a847c36c60c1c15da45a1062709f7a5ede
 
     const advertsPerPage = 8;
     let currentPage = 1;
 
     const advertsContainer = document.getElementById("list-type");
-    advertsContainer.innerHTML = "";
     const paginationContainer = document.querySelector(".pagination ul");
 
     const updatePagination = (sortedAdverts) => {
         const totalPages = Math.ceil(sortedAdverts.length / advertsPerPage);
         paginationContainer.innerHTML = '';
-    
+
         // Prev button
         const prevButton = document.createElement('li');
         prevButton.innerHTML = '<a href="#">Önceki</a>';
         prevButton.classList.toggle('disabled', currentPage === 1);
         prevButton.addEventListener('click', () => changePage(currentPage - 1, sortedAdverts));
         paginationContainer.appendChild(prevButton);
-    
+
         // Page numbers
         for (let i = 1; i <= totalPages; i++) {
             const pageButton = document.createElement('li');
@@ -140,7 +131,7 @@ const showAdverts = async (adverts) => {
             pageButton.addEventListener('click', () => changePage(i, sortedAdverts));
             paginationContainer.appendChild(pageButton);
         }
-    
+
         // Next button
         const nextButton = document.createElement('li');
         nextButton.innerHTML = '<a href="#">Sonraki</a>';
@@ -150,12 +141,11 @@ const showAdverts = async (adverts) => {
     };
 
     const changePage = (page, sortedAdverts) => {
-        console.log("change Page'e girdi");
         currentPage = page;
         const startIndex = (currentPage - 1) * advertsPerPage;
         const endIndex = startIndex + advertsPerPage;
         const advertsToShow = sortedAdverts.slice(startIndex, endIndex);
-        advertsContainer.innerHTML = "";
+
         renderAdverts(advertsToShow);
         updatePagination(sortedAdverts);
     };
@@ -188,35 +178,12 @@ const showAdverts = async (adverts) => {
         }
     };
 
-<<<<<<< HEAD
-    changePage(currentPage, dateOrderedSortedAdverts);
-=======
     filteredAdverts = adverts;
     changePage(currentPage, filteredAdverts);
->>>>>>> 321829a847c36c60c1c15da45a1062709f7a5ede
 
     const orderByDateButton = document.getElementById("order-by-date");
     const orderByPriceButton = document.getElementById("order-by-price");
 
-<<<<<<< HEAD
-    orderByDateButton.addEventListener("click", async () => {
-        advertsContainer.innerHTML = "";
-        currentPage = 1;
-        toggleActiveClass(orderByDateButton, orderByPriceButton);
-        const sortedAdverts = [...filteredAdverts].sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
-        console.log("Date Sorted Adverts : ", sortedAdverts);
-        changePage(currentPage, sortedAdverts);
-    });
-
-    orderByPriceButton.addEventListener("click", async () => {
-        advertsContainer.innerHTML = "";
-        toggleActiveClass(orderByPriceButton, orderByDateButton);
-        currentPage = 1;
-        const sortedAdverts = [...filteredAdverts].sort((a, b) => a.price - b.price);
-        console.log("Fiyat Sorted Adverts : ", sortedAdverts);
-        changePage(currentPage, sortedAdverts);
-    });
-=======
     if (!orderByDateButton.hasEventListener) {
         orderByDateButton.addEventListener("click", async () => {
             if (isSorting) return;
@@ -246,39 +213,33 @@ const showAdverts = async (adverts) => {
         });
         orderByPriceButton.hasEventListener = true;
     }
->>>>>>> 321829a847c36c60c1c15da45a1062709f7a5ede
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
     const response = await fetch("/adverts/index-search");
-    adverts = await response.json();
-    filteredAdverts = adverts;
-    await showAdverts(filteredAdverts);
+    let adverts = await response.json();
+    await showAdverts(adverts);
 
     document.getElementById("search-btn").setAttribute("type", "button");
     document.getElementById("search-btn").addEventListener("click", async (event) => {
         event.preventDefault();
         var searchData = {
-            selectedDistrictId : Number(document.querySelector('.districtPicker select').value) === 0 ? null: Number(document.querySelector('.districtPicker select').value),
-            selectedQuartertId : Number(document.querySelector('.quarterPicker select').value) === 0 ? null: Number(document.querySelector('.quarterPicker select').value),
-            selectedStatus : getStatusValue(),
-            isHasLiftChecked : document.getElementById("index-search-has-lift").checked === true ? true: null,
-            isHasCellarChecked : document.getElementById("index-search-has-cellar").checked === true ? true: null,
-            isIsCloseSchoolChecked : document.getElementById("index-search-is-close-school").checked === true ? true: null,
-            isIsCloseHealthCenterChecked : document.getElementById("index-search-is-close-health-center").checked === true ? true: null,
-            isIsFurnishedChecked : document.getElementById("index-search-is-furnished").checked === true ? true: null,
-            isIsInSiteChecked : document.getElementById("index-search-is-in-site").checked === true ? true: null,
-            isHasParkChecked : document.getElementById("index-search-has-park").checked === true ? true: null,
-            minPrice : document.getElementById("index-min-price").value,
-            maxPrice : Number(document.getElementById("index-max-price").value) === 0 ? null: Number(document.getElementById("index-max-price").value),
-            minSquaremeter : document.getElementById("index-min-squaremeter").value,
-            maxSquaremeter : Number(document.getElementById("index-max-squaremeter").value) === 0 ? null: Number(document.getElementById("index-max-squaremeter").value),
+            selectedDistrictId: Number(document.querySelector('.districtPicker select').value) === 0 ? null : Number(document.querySelector('.districtPicker select').value),
+            selectedQuartertId: Number(document.querySelector('.quarterPicker select').value) === 0 ? null : Number(document.querySelector('.quarterPicker select').value),
+            selectedStatus: getStatusValue(),
+            isHasLiftChecked: document.getElementById("index-search-has-lift").checked === true ? true : null,
+            isHasCellarChecked: document.getElementById("index-search-has-cellar").checked === true ? true : null,
+            isIsCloseSchoolChecked: document.getElementById("index-search-is-close-school").checked === true ? true : null,
+            isIsCloseHealthCenterChecked: document.getElementById("index-search-is-close-health-center").checked === true ? true : null,
+            isIsFurnishedChecked: document.getElementById("index-search-is-furnished").checked === true ? true : null,
+            isIsInSiteChecked: document.getElementById("index-search-is-in-site").checked === true ? true : null,
+            isHasParkChecked: document.getElementById("index-search-has-park").checked === true ? true : null,
+            minPrice: document.getElementById("index-min-price").value,
+            maxPrice: Number(document.getElementById("index-max-price").value) === 0 ? null : Number(document.getElementById("index-max-price").value),
+            minSquaremeter: document.getElementById("index-min-squaremeter").value,
+            maxSquaremeter: Number(document.getElementById("index-max-squaremeter").value) === 0 ? null : Number(document.getElementById("index-max-squaremeter").value),
         }
-<<<<<<< HEAD
-        //console.log(searchData);
-=======
 
->>>>>>> 321829a847c36c60c1c15da45a1062709f7a5ede
         const queryParams = new URLSearchParams(searchData).toString();
         const response = await fetch(`/adverts/index-search/?${queryParams}`, {
             method: 'GET',
@@ -288,15 +249,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
         if (response.ok) {
-<<<<<<< HEAD
             filteredAdverts = await response.json();
-            console.log("Filtered adverts : " , filteredAdverts);
-            document.getElementById("list-type").innerHTML = "";
-            await showAdverts(filteredAdverts); // Burası kaldırıldığı zaman sıralama yapınca bir tekrar olmuyor , ama olmadığı zamanda da arama yapınca ekran değişmiyor .
-=======
-            filteredAdverts  = await response.json();
             showAdverts(filteredAdverts);
->>>>>>> 321829a847c36c60c1c15da45a1062709f7a5ede
         }
     });
 
