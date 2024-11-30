@@ -316,7 +316,7 @@ namespace ObiGayrimenkul.Controllers
             await _firestore.MoveDocument<Advert>(id, "advert-requests", "adverts", ct);
             return Ok(advert);
         }
-        [Authorize(Roles ="Admin")]
+        [Authorize]
         [HttpPost("delete-request/{id}")]
         public async Task<IActionResult> DeleteRequest(string id, CancellationToken ct)
         {
