@@ -2,6 +2,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebas
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
+let adverts = [];
+let filteredAdverts = [];
+
 const getPlaceNameById = async (db, place_id) => {
     try {
         const docRef = doc(db, 'district_and_quarters', String(place_id));
@@ -99,15 +102,14 @@ const showAdverts = async (adverts) => {
     const db = getFirestore(app);
     const storage = getStorage(app);
 
-    document.getElementById("list-type").innerHTML = "";
-
-    const dateOrderedSortedAdverts = [...adverts].sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
-    const priceOrderedSortedAdverts = [...adverts].sort((a, b) => a.price - b.price);
+    const dateOrderedSortedAdverts = [...(filteredAdverts.length > 0 ? filteredAdverts : adverts)].sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
+    const priceOrderedSortedAdverts = [...(filteredAdverts.length > 0 ? filteredAdverts : adverts)].sort((a, b) => a.price - b.price);
 
     const advertsPerPage = 8;
     let currentPage = 1;
 
     const advertsContainer = document.getElementById("list-type");
+    advertsContainer.innerHTML = "";
     const paginationContainer = document.querySelector(".pagination ul");
 
     const updatePagination = (sortedAdverts) => {
@@ -141,11 +143,12 @@ const showAdverts = async (adverts) => {
     };
 
     const changePage = (page, sortedAdverts) => {
+        console.log("change Page'e girdi");
         currentPage = page;
         const startIndex = (currentPage - 1) * advertsPerPage;
         const endIndex = startIndex + advertsPerPage;
         const advertsToShow = sortedAdverts.slice(startIndex, endIndex);
-    
+        advertsContainer.innerHTML = "";
         renderAdverts(advertsToShow);
         updatePagination(sortedAdverts);
     };
@@ -179,28 +182,35 @@ const showAdverts = async (adverts) => {
         }
     };
 
-    await changePage(currentPage, dateOrderedSortedAdverts);
+    changePage(currentPage, dateOrderedSortedAdverts);
 
     const orderByDateButton = document.getElementById("order-by-date");
     const orderByPriceButton = document.getElementById("order-by-price");
 
     orderByDateButton.addEventListener("click", async () => {
+        advertsContainer.innerHTML = "";
         currentPage = 1;
         toggleActiveClass(orderByDateButton, orderByPriceButton);
-        await changePage(currentPage, dateOrderedSortedAdverts);
+        const sortedAdverts = [...filteredAdverts].sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
+        console.log("Date Sorted Adverts : ", sortedAdverts);
+        changePage(currentPage, sortedAdverts);
     });
 
     orderByPriceButton.addEventListener("click", async () => {
-        toggleActiveClass(orderByPriceButton,orderByDateButton);
+        advertsContainer.innerHTML = "";
+        toggleActiveClass(orderByPriceButton, orderByDateButton);
         currentPage = 1;
-        await changePage(currentPage, priceOrderedSortedAdverts);
+        const sortedAdverts = [...filteredAdverts].sort((a, b) => a.price - b.price);
+        console.log("Fiyat Sorted Adverts : ", sortedAdverts);
+        changePage(currentPage, sortedAdverts);
     });
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
     const response = await fetch("/adverts/index-search");
-    let adverts = await response.json();
-    await showAdverts(adverts);
+    adverts = await response.json();
+    filteredAdverts = adverts;
+    await showAdverts(filteredAdverts);
 
     document.getElementById("search-btn").setAttribute("type", "button");
     document.getElementById("search-btn").addEventListener("click", async (event) => {
@@ -221,7 +231,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             minSquaremeter : document.getElementById("index-min-squaremeter").value,
             maxSquaremeter : Number(document.getElementById("index-max-squaremeter").value) === 0 ? null: Number(document.getElementById("index-max-squaremeter").value),
         }
-        console.log(searchData);
+        //console.log(searchData);
         const queryParams = new URLSearchParams(searchData).toString();
         const response = await fetch(`/adverts/index-search/?${queryParams.toString()}`, {
             method: 'GET',
@@ -231,8 +241,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
         if (response.ok) {
-            const adverts = await response.json();
-            await showAdverts(adverts);
+            filteredAdverts = await response.json();
+            console.log("Filtered adverts : " , filteredAdverts);
+            document.getElementById("list-type").innerHTML = "";
+            await showAdverts(filteredAdverts); // Burası kaldırıldığı zaman sıralama yapınca bir tekrar olmuyor , ama olmadığı zamanda da arama yapınca ekran değişmiyor .
         }
     });
 });

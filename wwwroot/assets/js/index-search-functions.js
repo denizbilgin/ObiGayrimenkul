@@ -13,7 +13,6 @@ function getStatusValue() {
     }
 }
 
-<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", async function () {
     document.getElementById("index-search-btn").setAttribute("type", "button");
     document.getElementById("index-search-btn").addEventListener("click", (event) => {
@@ -32,8 +31,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             minPrice : document.getElementById("index-min-price").value,
             maxPrice : document.getElementById("index-max-price").value === 0 ? null: document.getElementById("index-max-price").value,
             minSquaremeter : document.getElementById("index-min-squaremeter").value,
-            maxSquaremeter : document.getElementById("index-max-squaremeter").value === 0 ? null: document.getElementById("index-max-squaremeter").value,
-=======
+            maxSquaremeter: document.getElementById("index-max-squaremeter").value === 0 ? null : document.getElementById("index-max-squaremeter").value,
+            };
 const getPlaceNameById = async (db, place_id) => {
     try {
         const docRef = doc(db, 'district_and_quarters', String(place_id));
@@ -45,7 +44,6 @@ const getPlaceNameById = async (db, place_id) => {
         } else {
             console.log(`${place_id} IDsine sahip belge bulunamadı.`);
             return null;
->>>>>>> 50fe96984be8ed75b1a561d94cb22060f3c3ea85
         }
     } catch (error) {
         console.error("Hata oluştu: ", error);
