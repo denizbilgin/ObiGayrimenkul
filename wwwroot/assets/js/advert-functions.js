@@ -97,13 +97,20 @@ function getStatusValue() {
     }
 }
 
+let filteredAdverts = [];
+let isSorting = false;
 const showAdverts = async (adverts) => {
+
     const app = await getFirebaseConfigurations();
     const db = getFirestore(app);
     const storage = getStorage(app);
 
+<<<<<<< HEAD
     const dateOrderedSortedAdverts = [...(filteredAdverts.length > 0 ? filteredAdverts : adverts)].sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
     const priceOrderedSortedAdverts = [...(filteredAdverts.length > 0 ? filteredAdverts : adverts)].sort((a, b) => a.price - b.price);
+=======
+    document.getElementById("list-type").innerHTML = "";
+>>>>>>> 321829a847c36c60c1c15da45a1062709f7a5ede
 
     const advertsPerPage = 8;
     let currentPage = 1;
@@ -154,7 +161,6 @@ const showAdverts = async (adverts) => {
     };
 
     const renderAdverts = async (adverts) => {
-        console.log(adverts);
         advertsContainer.innerHTML = "";
         for (const advert of adverts) {
             const placeName = await getPlaceNameById(db, advert.addressDistrictID);
@@ -182,11 +188,17 @@ const showAdverts = async (adverts) => {
         }
     };
 
+<<<<<<< HEAD
     changePage(currentPage, dateOrderedSortedAdverts);
+=======
+    filteredAdverts = adverts;
+    changePage(currentPage, filteredAdverts);
+>>>>>>> 321829a847c36c60c1c15da45a1062709f7a5ede
 
     const orderByDateButton = document.getElementById("order-by-date");
     const orderByPriceButton = document.getElementById("order-by-price");
 
+<<<<<<< HEAD
     orderByDateButton.addEventListener("click", async () => {
         advertsContainer.innerHTML = "";
         currentPage = 1;
@@ -204,6 +216,37 @@ const showAdverts = async (adverts) => {
         console.log("Fiyat Sorted Adverts : ", sortedAdverts);
         changePage(currentPage, sortedAdverts);
     });
+=======
+    if (!orderByDateButton.hasEventListener) {
+        orderByDateButton.addEventListener("click", async () => {
+            if (isSorting) return;
+            isSorting = true;
+            currentPage = 1;
+            toggleActiveClass(orderByDateButton, orderByPriceButton);
+            const sortedAdverts = filteredAdverts
+                .slice()
+                .sort((a, b) => parseFirebaseDate(b.publishDate) - parseFirebaseDate(a.publishDate));
+            changePage(currentPage, sortedAdverts);
+            isSorting = false;
+        });
+        orderByDateButton.hasEventListener = true;
+    }
+
+    if (!orderByPriceButton.hasEventListener) {
+        orderByPriceButton.addEventListener("click", async () => {
+            if (isSorting) return;
+            isSorting = true;
+            toggleActiveClass(orderByPriceButton, orderByDateButton);
+            currentPage = 1;
+            const sortedAdverts = filteredAdverts
+                .slice()
+                .sort((a, b) => a.price - b.price);
+            changePage(currentPage, sortedAdverts);
+            isSorting = false;
+        });
+        orderByPriceButton.hasEventListener = true;
+    }
+>>>>>>> 321829a847c36c60c1c15da45a1062709f7a5ede
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -231,9 +274,13 @@ document.addEventListener("DOMContentLoaded", async function () {
             minSquaremeter : document.getElementById("index-min-squaremeter").value,
             maxSquaremeter : Number(document.getElementById("index-max-squaremeter").value) === 0 ? null: Number(document.getElementById("index-max-squaremeter").value),
         }
+<<<<<<< HEAD
         //console.log(searchData);
+=======
+
+>>>>>>> 321829a847c36c60c1c15da45a1062709f7a5ede
         const queryParams = new URLSearchParams(searchData).toString();
-        const response = await fetch(`/adverts/index-search/?${queryParams.toString()}`, {
+        const response = await fetch(`/adverts/index-search/?${queryParams}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -241,10 +288,19 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
         if (response.ok) {
+<<<<<<< HEAD
             filteredAdverts = await response.json();
             console.log("Filtered adverts : " , filteredAdverts);
             document.getElementById("list-type").innerHTML = "";
             await showAdverts(filteredAdverts); // Burası kaldırıldığı zaman sıralama yapınca bir tekrar olmuyor , ama olmadığı zamanda da arama yapınca ekran değişmiyor .
+=======
+            filteredAdverts  = await response.json();
+            showAdverts(filteredAdverts);
+>>>>>>> 321829a847c36c60c1c15da45a1062709f7a5ede
         }
+    });
+
+    document.getElementById("clear-filter").addEventListener("click", (event) => {
+        window.location.reload();
     });
 });
