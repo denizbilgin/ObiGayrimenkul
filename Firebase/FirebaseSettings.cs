@@ -13,4 +13,5 @@ namespace ObiGayrimenkul.Firebase
         [JsonPropertyName("database_url")]
         public string DatabaseURl => "https://obidatabase-3e651-default-rtdb.europe-west1.firebasedatabase.app";
     }
+
 }

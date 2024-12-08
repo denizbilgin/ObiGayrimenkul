@@ -17,6 +17,7 @@ namespace ObiGayrimenkul.Services
             _secretKey = jwtSettings.Value.SecretKey;
         }
 
+
         public string GenerateJwtToken(User user)
         {
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_secretKey));

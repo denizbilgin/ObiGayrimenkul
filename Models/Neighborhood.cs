@@ -17,4 +17,5 @@ namespace ObiGayrimenkul.Models
         public string ParentId { get; set; }
 
     }
+
 }

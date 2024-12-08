@@ -16,5 +16,6 @@ namespace ObiGayrimenkul.Controllers
         {
             return View("~/Views/Home/properties.cshtml");
         }
+
     }
 }
