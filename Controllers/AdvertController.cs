@@ -395,12 +395,6 @@ namespace ObiGayrimenkul.Controllers
             {
                 var allAdverts = await _firestore.GetAllApproved<Advert>(ct);
 
-                Console.WriteLine($"ilce:{selectedDistrictId}");
-                Console.WriteLine($"mahalle:{selectedQuartertId}");
-                Console.WriteLine($"status:{selectedStatus}");
-                Console.WriteLine($"minPrice:{minPrice}");
-                Console.WriteLine($"maxPrice:{maxPrice}");
-
                 var filteredAdverts = allAdverts.Where(advert =>
                     (!selectedDistrictId.HasValue || advert.AddressDistrictID == selectedDistrictId.Value) &&
                     (!selectedQuartertId.HasValue || advert.AddressQuarterID == selectedQuartertId.Value) &&
