@@ -26,7 +26,7 @@ namespace ObiGayrimenkul.Controllers
             var users = await _firestore.GetAll<User>("users", CancellationToken.None);
             return Ok(users);
         }
-        [Authorize]
+        
         [HttpGet("get-details/{id}")]
         public async Task<IActionResult> GetDetailsByID(string id, CancellationToken ct)
         {
